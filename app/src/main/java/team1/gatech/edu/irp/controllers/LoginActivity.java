@@ -36,6 +36,13 @@ import team1.gatech.edu.irp.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
+import android.content.Intent;
+
+import team1.gatech.edu.irp.R;
+import android.widget.Button;
+import android.content.Intent;
+import android.view.View;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -94,6 +101,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+
+        Button btn = (Button) findViewById(R.id.cancel);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
+            }
+        });
+
     }
 
     private void populateAutoComplete() {
@@ -189,6 +206,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+
+
+            startActivity(new Intent(LoginActivity.this, AppActivity.class));
+
+
+
+
         }
     }
 
