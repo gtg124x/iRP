@@ -43,6 +43,9 @@ import android.widget.Button;
 import android.content.Intent;
 import android.view.View;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -52,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+    MediaPlayer adu1;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -75,6 +79,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        adu1 = MediaPlayer.create(LoginActivity.this, R.raw.mysong);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
