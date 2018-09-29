@@ -2,23 +2,16 @@ package team1.gatech.edu.irp.controllers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import team1.gatech.edu.irp.model.Account;
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.AccountDataBase;
 import team1.gatech.edu.irp.model.UserType;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.SimpleAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -64,11 +57,13 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
         String cInfo = contactInfo.getText().toString();
         UserType userTypeEnum = (UserType) userTypeSpinner.getSelectedItem();
         if (name.length() < 4) {
-            Toast.makeText(this, "User Name must be at least 4 characters long", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User Name must be at least 4 characters long.", Toast.LENGTH_SHORT).show();
+        } else if (userNameIsTaken(name)) {
+            Toast.makeText(this, "User Name is already taken.", Toast.LENGTH_SHORT).show();
         } else if (pword.length() < 4) {
-            Toast.makeText(this, "Password must be at least 4 characters long", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password must be at least 4 characters long.", Toast.LENGTH_SHORT).show();
         } else if (!cInfo.contains("@") || !cInfo.contains(".")) {
-            Toast.makeText(this, "Must Enter Valid Email Address", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Must Enter Valid Email Address.", Toast.LENGTH_SHORT).show();
         } else {
             account = new Account(name, pword, cInfo, userTypeEnum);
             AccountDataBase.addToAccountDatabase(account);
@@ -98,7 +93,18 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
     }
 
 
-
+    public boolean userNameIsTaken(String uName) {
+        for (int i = 0; i < AccountDataBase.accountArray.length; i++) {
+            if (AccountDataBase.accountArray[i] == null) {
+                return false;
+            }
+            String Lname = AccountDataBase.accountArray[i].getUserName();
+            if (uName.equals(Lname)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }

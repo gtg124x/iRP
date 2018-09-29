@@ -8,10 +8,10 @@ public enum UserType {
      * This class represents the different types of users
      */
 
-    ADMIN ("Admin"),
     USER ("User"),
     LOCALEMPLOYEE ("Local Employee"),
-    MANAGER ("Manager");
+    MANAGER ("Manager"),
+    ADMIN ("Admin");
 
     /** the full string representation of the class standing */
     private final String type;

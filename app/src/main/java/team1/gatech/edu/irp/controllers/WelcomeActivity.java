@@ -4,10 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-
 import android.view.View;
-import team1.gatech.edu.irp.model.Model;
-import android.util.Log;
 import android.content.Intent;
 
 

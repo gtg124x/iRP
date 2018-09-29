@@ -2,4 +2,5 @@
     <string name="app_name">iRP</string>
     <string name="userName_hint">User Name</string>
     <string name="password_hint">Password</string>
+    <string name="title_activity_admin">AdminActivity</string>
 </resources>
