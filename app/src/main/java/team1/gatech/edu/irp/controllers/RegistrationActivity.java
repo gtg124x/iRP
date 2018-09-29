@@ -19,10 +19,7 @@ import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-
-
-
+import android.widget.Toast;
 
 
 public class RegistrationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -66,10 +63,17 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
         String pword = password.getText().toString();
         String cInfo = contactInfo.getText().toString();
         UserType userTypeEnum = (UserType) userTypeSpinner.getSelectedItem();
-
-        account = new Account(name, pword, cInfo, userTypeEnum);
-        AccountDataBase.addToAccountDatabase(account);
-        finish();
+        if (name.length() < 4) {
+            Toast.makeText(this, "User Name must be at least 4 characters long", Toast.LENGTH_SHORT).show();
+        } else if (pword.length() < 4) {
+            Toast.makeText(this, "Password must be at least 4 characters long", Toast.LENGTH_SHORT).show();
+        } else if (!cInfo.contains("@") || !cInfo.contains(".")) {
+            Toast.makeText(this, "Must Enter Valid Email Address", Toast.LENGTH_SHORT).show();
+        } else {
+            account = new Account(name, pword, cInfo, userTypeEnum);
+            AccountDataBase.addToAccountDatabase(account);
+            finish();
+        }
     }
 
     /**
