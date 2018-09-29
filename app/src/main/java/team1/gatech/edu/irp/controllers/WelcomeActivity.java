@@ -10,9 +10,6 @@ import team1.gatech.edu.irp.model.Model;
 import android.util.Log;
 import android.content.Intent;
 
-import android.widget.Button;
-
-
 
 /**
  * THIS IS OUR TOP_LEVEL WINDOW THAT THE USER FIRST SEES IN THE APPLICATION!
@@ -27,16 +24,17 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        Button btn = (Button) findViewById(R.id.login);
+    }
 
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-            }
-        });
+    public void onLoginClicked(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 
+    public void onRegistrationClicked(View v) {
+        Intent intent = new Intent(this, RegistrationActivity.class);
+        startActivity(intent);
     }
 
 }

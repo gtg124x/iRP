@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 
 import team1.gatech.edu.irp.R;
+
+import android.util.Log;
 import android.widget.Button;
 import android.content.Intent;
 import android.view.View;
@@ -18,17 +20,13 @@ public class AppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
 
-
-        Button btn = (Button) findViewById(R.id.logout);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AppActivity.this, WelcomeActivity.class));
-            }
-        });
-
-
-
-
     }
+
+
+    public void onLogoutClicked(View v) {
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
+    }
+
+
 }
