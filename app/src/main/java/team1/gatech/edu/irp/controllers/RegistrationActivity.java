@@ -89,7 +89,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        userT = "Admin";
+        userT = "User";
     }
 
 
