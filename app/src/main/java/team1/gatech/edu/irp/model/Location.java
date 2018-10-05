@@ -97,7 +97,7 @@ public class Location {
     @Override
     public boolean equals(Object o) {
         Location l = (Location) o;
-        return (l.getName().equals(_name) && l.getStreetAddress().equals(_streetAddress));
+        return (l.getName().equals(_name));
     }
 
     /* *****************************************
@@ -138,7 +138,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return _name + " " + _streetAddress + " " + _locationType;
+        return _name ;
     }
 
 }
