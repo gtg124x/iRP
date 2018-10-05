@@ -24,8 +24,8 @@ public class Model {
     /** holds the list of all courses */
     private List<Location> locations;
 
+    //public static List<String> locationsArray = Arrays.asList((new Location()).toString());
     public static List<String> locationsArray = Arrays.asList((new Location()).toString());
-
     /**
      * make a new model
      */
@@ -38,7 +38,7 @@ public class Model {
 
     public void setCurrentLocation(String currentLocation) {
         for (Location l : locations) {
-            if (l.getName().equals(currentLocation)) {
+            if (l.toString().equals(currentLocation)) {
                 _currentLocation = l;
             }
         }

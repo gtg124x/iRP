@@ -138,7 +138,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return _name ;
+        return _name + " " + _streetAddress;
     }
 
 }
