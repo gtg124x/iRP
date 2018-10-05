@@ -17,6 +17,8 @@ import android.app.Activity;
 import android.os.Parcelable;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +70,7 @@ public class AdminActivity extends AppCompatActivity {
 
             }
 
+        Toast.makeText(this, "Locations have been loaded.", Toast.LENGTH_SHORT).show();
 
    // public Location(int id, String name, Double latitude, Double longitude, String streetAddress,
           //      String city, String state, int zipCode, LocationType locationType,
