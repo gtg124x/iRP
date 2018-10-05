@@ -56,33 +56,28 @@ public class AdminActivity extends AppCompatActivity {
         scoreList = csvFile.read();
 
         for (int i = 1; i < scoreList.size(); i++) {
-            //for (int j = 0; j < scoreList.get(i).length; j++) {
-                //Log.d("Edit", "" + scoreList.get(i)[j]);
+                boolean duplicate = false;
                 Location tempLoc = new Location(Integer.parseInt(scoreList.get(i)[0]), scoreList.get(i)[1],
                         Double.parseDouble(scoreList.get(i)[2]), Double.parseDouble(scoreList.get(i)[3]),
                         scoreList.get(i)[4], scoreList.get(i)[5], scoreList.get(i)[6],
                         Integer.parseInt(scoreList.get(i)[7]), LocationType.convertType(scoreList.get(i)[8]),
                         scoreList.get(i)[9], scoreList.get(i)[10]);
-            //Log.d("Edit", "" + scoreList.get(i)[1] + " " + scoreList.get(i)[4]);
-                model.getLocationsArray().add(tempLoc.toString());
-            //Log.d("Edit", "" + scoreList.get(i)[1] + " " + scoreList.get(i)[4]);
-                model.getLocation().add(tempLoc);
+                for (Location x : model.getLocation()){
+                    if ((x.equals(tempLoc))) {
+                        duplicate = true;
+                    }
+                }
+                if (duplicate) {
+                    Toast.makeText(this, "Duplicate Locations will not be added.", Toast.LENGTH_SHORT).show();
+                } else {
+                    model.getLocationsArray().add(tempLoc.toString());
+                    model.getLocation().add(tempLoc);
+                    Toast.makeText(this, "Locations have been loaded.", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
 
-        Toast.makeText(this, "Locations have been loaded.", Toast.LENGTH_SHORT).show();
-
-   // public Location(int id, String name, Double latitude, Double longitude, String streetAddress,
-          //      String city, String state, int zipCode, LocationType locationType,
-           //     String phoneNumber, String websiteLink) {
-
-        //Log.d("Edit", "" + scoreList.get(0)[0]);
-
-        //for(String[] scoreData: scoreList ) {
-           /// for (int i = 0; i < scoreData.length; i++) {
-                //Log.d("Edit", "" + scoreData[0]);
-            //}
-        ///}
 
     }
 
