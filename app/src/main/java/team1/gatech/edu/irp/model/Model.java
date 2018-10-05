@@ -4,6 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//package com.javapapers.android.csvfileread.app;
+
+import android.app.Activity;
+import android.os.Parcelable;
+import android.os.Bundle;
+import android.widget.ListView;
+import java.io.InputStream;
+import java.util.List;
+
+
 /**
  * Created by mitchellalvarado on 9/20/18.
  *
@@ -26,12 +36,20 @@ public class Model {
 
     //public static List<String> locationsArray = Arrays.asList((new Location()).toString());
     public static List<String> locationsArray = Arrays.asList((new Location()).toString());
+
+
+
+
     /**
      * make a new model
      */
     private Model() {
         locations = new ArrayList<>();
         locations.add(new Location());
+
+
+
+
     }
 
     public Location getCurrentLocation() { return _currentLocation; }
@@ -43,4 +61,9 @@ public class Model {
             }
         }
     }
+
+
+
+
+
 }

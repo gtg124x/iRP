@@ -33,7 +33,8 @@
         <activity android:name=".controllers.LocalEmployeeActivity" />
         <activity android:name=".controllers.ManagerActivity" />
         <activity android:name=".controllers.LocationListActivity" />
-        <activity android:name=".controllers.LocationDetailsActivity"></activity>
+        <activity android:name=".controllers.LocationDetailsActivity" />
+        <activity android:name=".model.CSVFileReaderActivity"></activity>
     </application>
 
 </manifest>
