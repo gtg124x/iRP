@@ -4,27 +4,25 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import team1.gatech.edu.irp.R;
-//import team1.gatech.edu.irp.model.CSVFile;
+import team1.gatech.edu.irp.model.CSVFile;
 
 
+import android.util.Log;
 import android.view.View;
-
-
-
-//package com.javapapers.android.csvfileread.app;
 
 import android.app.Activity;
 import android.os.Parcelable;
 import android.os.Bundle;
 import android.widget.ListView;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class AdminActivity extends AppCompatActivity {
 
-    //private ListView listView;
-    //private ItemArrayAdapter itemArrayAdapter;
+    private ListView listView;
+   // private ItemArrayAdapter itemArrayAdapter;
 
 
     @Override
@@ -45,20 +43,18 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     public void onLoadLocationOnPress(View v) {
-//        listView = (ListView) findViewById(R.id.listView);
-//        itemArrayAdapter = new ItemArrayAdapter(getApplicationContext(), R.layout.item_layout);
-//
-//        Parcelable state = listView.onSaveInstanceState();
-//        listView.setAdapter(itemArrayAdapter);
-//        listView.onRestoreInstanceState(state);
-//
-//        InputStream inputStream = getResources().openRawResource(R.raw.LocationData);
-//        CSVFile csvFile = new CSVFile(inputStream);
-//        List scoreList = csvFile.read();
-//
-//        for(String[] scoreData:scoreList ) {
-//            itemArrayAdapter.add(scoreData);
-//        }
+
+        InputStream inputStream = getResources().openRawResource(R.raw.locationdata);
+        CSVFile csvFile = new CSVFile(inputStream);
+        ArrayList<String[]> scoreList;
+        scoreList = csvFile.read();
+
+        for(String[] scoreData: scoreList ) {
+            for (int i = 0; i < scoreData.length; i++) {
+                Log.d("Edit", "" + scoreData[i] );
+            }
+
+        }
 
 
     }
