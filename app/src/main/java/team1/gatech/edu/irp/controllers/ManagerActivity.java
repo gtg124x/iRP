@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.Model;
 
 public class ManagerActivity extends AppCompatActivity {
 
@@ -21,8 +23,17 @@ public class ManagerActivity extends AppCompatActivity {
     }
 
     public void onViewLocationManagerOnPress(View v) {
-        Intent intent = new Intent(this, LocationListActivity.class);
-        startActivity(intent);
+        Model model = Model.getInstance();
+        if (model.getLocation().size() == 0) {
+            Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
+        } else {
+
+
+            Intent intent = new Intent(this, LocationListActivity.class);
+            startActivity(intent);
+
+        }
+
     }
 
 }

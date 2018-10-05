@@ -1,5 +1,6 @@
 package team1.gatech.edu.irp.controllers;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -67,7 +68,18 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
         } else {
             account = new Account(name, pword, cInfo, userTypeEnum);
             AccountDataBase.addToAccountDatabase(account);
-            finish();
+            //if (AccountDataBase.AddedToAccount) {
+                Toast.makeText(this, "Account Created.", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(this, WelcomeActivity.class);
+                startActivity(intent);
+
+
+            //} else {
+
+                //Toast.makeText(this, "Account Not Added.", Toast.LENGTH_SHORT).show();
+            //}
+
         }
     }
 
@@ -94,13 +106,14 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
 
 
     public boolean userNameIsTaken(String uName) {
-        for (int i = 0; i < AccountDataBase.accountArray.length; i++) {
-            if (AccountDataBase.accountArray[i] == null) {
-                return false;
-            }
-            String Lname = AccountDataBase.accountArray[i].getUserName();
-            if (uName.equals(Lname)) {
-                return true;
+        for (int i = 0; i < AccountDataBase.accountArray.size(); i++) {
+            if (!(AccountDataBase.accountArray.get(i) == null)) {
+                //return false;
+                //}
+                String Lname = AccountDataBase.accountArray.get(i).getUserName();
+                if (uName.equals(Lname)) {
+                    return true;
+                }
             }
         }
         return false;
