@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.CSVFile;
+import team1.gatech.edu.irp.model.Location;
+import team1.gatech.edu.irp.model.LocationType;
+import team1.gatech.edu.irp.model.Model;
 
 
 import android.util.Log;
@@ -21,7 +24,7 @@ import java.util.List;
 
 public class AdminActivity extends AppCompatActivity {
 
-    private ListView listView;
+    //private ListView listView;
    // private ItemArrayAdapter itemArrayAdapter;
 
 
@@ -44,18 +47,39 @@ public class AdminActivity extends AppCompatActivity {
 
     public void onLoadLocationOnPress(View v) {
 
+        Model model = Model.getInstance();
         InputStream inputStream = getResources().openRawResource(R.raw.locationdata);
         CSVFile csvFile = new CSVFile(inputStream);
         ArrayList<String[]> scoreList;
         scoreList = csvFile.read();
 
-        for(String[] scoreData: scoreList ) {
-            for (int i = 0; i < scoreData.length; i++) {
-                Log.d("Edit", "" + scoreData[i] );
+        for (int i = 1; i < scoreList.size(); i++) {
+            //for (int j = 0; j < scoreList.get(i).length; j++) {
+                //Log.d("Edit", "" + scoreList.get(i)[j]);
+                Location tempLoc = new Location(Integer.parseInt(scoreList.get(i)[0]), scoreList.get(i)[1],
+                        Double.parseDouble(scoreList.get(i)[2]), Double.parseDouble(scoreList.get(i)[3]),
+                        scoreList.get(i)[4], scoreList.get(i)[5], scoreList.get(i)[6],
+                        Integer.parseInt(scoreList.get(i)[7]), LocationType.convertType(scoreList.get(i)[8]),
+                        scoreList.get(i)[9], scoreList.get(i)[10]);
+            //Log.d("Edit", "" + scoreList.get(i)[1] + " " + scoreList.get(i)[4]);
+                model.getLocationsArray().add(tempLoc.toString());
+            //Log.d("Edit", "" + scoreList.get(i)[1] + " " + scoreList.get(i)[4]);
+                model.getLocation().add(tempLoc);
+
             }
 
-        }
 
+   // public Location(int id, String name, Double latitude, Double longitude, String streetAddress,
+          //      String city, String state, int zipCode, LocationType locationType,
+           //     String phoneNumber, String websiteLink) {
+
+        //Log.d("Edit", "" + scoreList.get(0)[0]);
+
+        //for(String[] scoreData: scoreList ) {
+           /// for (int i = 0; i < scoreData.length; i++) {
+                //Log.d("Edit", "" + scoreData[0]);
+            //}
+        ///}
 
     }
 

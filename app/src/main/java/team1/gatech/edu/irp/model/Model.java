@@ -24,20 +24,29 @@ import java.util.List;
  */
 public class Model {
 
-    /** Singleton instance */
+    /**
+     * Singleton instance
+     */
     private static final Model _instance = new Model();
-    public static Model getInstance() { return _instance; }
 
-    /** the currently selected location, defaults to first course */
+    public static Model getInstance() {
+        return _instance;
+    }
+
+    /**
+     * the currently selected location, defaults to first course
+     */
     private static Location _currentLocation;
 
-    /** holds the list of all courses */
-    private List<Location> locations;
+    /**
+     * holds the list of all locations
+     */
+    private static List<Location> locations;
 
     //public static List<String> locationsArray = Arrays.asList((new Location()).toString());
-    public static List<String> locationsArray = Arrays.asList((new Location()).toString());
+    private static List<String> locationsArray;
 
-
+    //= Arrays.asList((new Location()).toString());
 
 
     /**
@@ -45,14 +54,19 @@ public class Model {
      */
     private Model() {
         locations = new ArrayList<>();
-        locations.add(new Location());
-
-
+        locationsArray = new ArrayList<>();
+        //
 
 
     }
 
-    public Location getCurrentLocation() { return _currentLocation; }
+    public List<Location> getLocation() {
+        return locations;
+    }
+
+    public Location getCurrentLocation() {
+        return _currentLocation;
+    }
 
     public void setCurrentLocation(String currentLocation) {
         for (Location l : locations) {
@@ -61,6 +75,15 @@ public class Model {
             }
         }
     }
+
+
+    public List<String> getLocationsArray() {
+        //for (int i = 0; i < locations.size(); i++) {
+          //  locationsArray.add(locations.get(i).toString());
+        //}
+        return locationsArray;
+    }
+
 
 
 

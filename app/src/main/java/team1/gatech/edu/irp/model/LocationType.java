@@ -8,9 +8,9 @@ public enum LocationType {
      * This class represents the different types of users
      */
 
-    DROPOFFONLY("Dropoff-only"),
-    STORE("Drop-off and Sales"),
-    WAREHOUSE("Inventory Storage Only");
+    DROPOFF("Drop off"),
+    STORE("Store"),
+    WAREHOUSE("Warehouse");
 
     /**
      * the full string representation of the class standing
@@ -40,5 +40,32 @@ public enum LocationType {
     public String toString() {
         return type;
     }
+
+    /**
+     * @return the class standing
+     */
+    public static LocationType convertType(String typeAsString) {
+        if (typeAsString.equalsIgnoreCase("Drop off")) {
+            return LocationType.DROPOFF;
+        } else if (typeAsString.equalsIgnoreCase("Store")) {
+            return LocationType.STORE;
+        } else if (typeAsString.equalsIgnoreCase("Warehouse")) {
+            return LocationType.WAREHOUSE;
+        } else {
+            return LocationType.DROPOFF;
+        }
+    }
+//        for (LocationType x : )
+//        return type;
+//
+//        LocationType locT = LocationType.elements();
+//        while (LocationType.hasMoreElements())
+//            System.out.println(days.nextElement()); } }
+
+
+
+
+
+
 }
 

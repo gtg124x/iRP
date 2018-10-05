@@ -12,7 +12,7 @@ package team1.gatech.edu.irp.model;
 public class Location {
 
     /** allow us to assign unique number to the location */
-    private static int nextNo = 1;
+   // private static int nextNo = 1;
 
     /** unique id number */
     private int _id;
@@ -50,6 +50,7 @@ public class Location {
 
     /**
      * Makes a new Location
+     * @param id  the id of the location as an integer
      * @param name  the name of the location like "GOODWILL"
      * @param latitude the latitude of the location like "33.75416"
      * @param longitude the longitude of the location like "-84.37742"
@@ -62,9 +63,10 @@ public class Location {
      * @param websiteLink the website link of the location like "www.gooddonation.com"
      *
      */
-    public Location(String name, Double latitude, Double longitude, String streetAddress,
+    public Location(int id, String name, Double latitude, Double longitude, String streetAddress,
                     String city, String state, int zipCode, LocationType locationType,
                     String phoneNumber, String websiteLink) {
+        _id = id;
         _name = name;
         _latitude = latitude;
         _longitude = longitude;
@@ -75,11 +77,12 @@ public class Location {
         _locationType = locationType;
         _phoneNumber = phoneNumber;
         _websiteLink = websiteLink;
-        _id = Location.nextNo++;
+
 
     }
 
     public Location() {
+        _id = 0;
         _name = "Test Store";
         _latitude = 23.33223;
         _longitude = -23.85674;
@@ -87,10 +90,10 @@ public class Location {
         _city = "TestCity";
         _state = "GA";
         _zipCode = 12345;
-        _locationType = LocationType.DROPOFFONLY;
+        _locationType = LocationType.DROPOFF;
         _phoneNumber = "(770) 634 - 5309";
         _websiteLink = "www.testsite.com";
-        _id = Location.nextNo++;
+
 
     }
 
