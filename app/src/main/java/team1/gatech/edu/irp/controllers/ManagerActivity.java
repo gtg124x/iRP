@@ -20,5 +20,9 @@ public class ManagerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onViewLocationManagerOnPress(View v) {
+        Intent intent = new Intent(this, LocationListActivity.class);
+        startActivity(intent);
+    }
 
 }

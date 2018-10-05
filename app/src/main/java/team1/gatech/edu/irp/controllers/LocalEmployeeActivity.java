@@ -13,9 +13,14 @@ public class LocalEmployeeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_employee);
     }
+
     public void onLogoutClicked(View v) {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
 
+    public void onViewLocationLocalEmployeeOnPress(View v) {
+        Intent intent = new Intent(this, LocationListActivity.class);
+        startActivity(intent);
+    }
 }

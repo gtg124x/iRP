@@ -20,6 +20,15 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onViewLocationAdminOnPress(View v) {
+        Intent intent = new Intent(this, LocationListActivity.class);
+        startActivity(intent);
+    }
 
+    public void onLoadLocationOnPress(View v) {
+        //TODO create parse file program
+
+
+    }
 
 }

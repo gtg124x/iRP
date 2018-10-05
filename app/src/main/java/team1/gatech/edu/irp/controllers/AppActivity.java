@@ -23,5 +23,9 @@ public class AppActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onViewLocationUserOnPress(View v) {
+        Intent intent = new Intent(this, LocationListActivity.class);
+        startActivity(intent);
+    }
 
 }

@@ -3,7 +3,7 @@ package team1.gatech.edu.irp.model;
 public enum UserType {
 
     /**
-     * Created by mitchellalvarado on 9/28/17.
+     * Created by mitchellalvarado on 9/28/18.
      *
      * This class represents the different types of users
      */
