@@ -33,7 +33,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="onLoginPressed"
-        android:text="Login"
+        android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Password_Input"
@@ -48,7 +48,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="onCancelLoginPressed"
-        android:text="Cancel"
+        android:text="@string/cancel_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -69,5 +69,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.004"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UserName_Box" />
+        app:layout_constraintTop_toBottomOf="@+id/UserName_Box"
+        android:importantForAutofill="no" />
 </android.support.constraint.ConstraintLayout>
