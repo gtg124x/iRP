@@ -7,42 +7,36 @@
     tools:context=".controllers.LocationDetailsActivity">
 
     <TextView
-        android:id="@+id/LocationNameText"
-        android:layout_width="214dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/NameTextView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/NameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="36dp"
         android:text="Location Name:"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/LocationNameText"
+        android:layout_width="214dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/NameTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/LocationStreetAddressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="36dp"
         android:text="Street Address:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/LocationNameText" />
 
     <TextView
         android:id="@+id/adressText"
-        android:layout_width="246dp"
-        android:layout_height="27dp"
+        android:layout_width="215dp"
+        android:layout_height="19dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -50,43 +44,39 @@
         app:layout_constraintTop_toBottomOf="@+id/LocationNameText" />
 
     <TextView
+        android:id="@+id/CityLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:text="City:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adressText" />
+
+    <TextView
         android:id="@+id/CityText"
         android:layout_width="138dp"
-        android:layout_height="28dp"
+        android:layout_height="19dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginEnd="112dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/CityLabel"
         app:layout_constraintTop_toBottomOf="@+id/adressText" />
 
     <TextView
-        android:id="@+id/CityLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="36dp"
-        android:text="City:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LocationStreetAddressTextView" />
-
-    <TextView
         android:id="@+id/StateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="96dp"
         android:text="State:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CityLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/CityText" />
 
     <TextView
         android:id="@+id/StateText"
-        android:layout_width="171dp"
-        android:layout_height="22dp"
+        android:layout_width="60dp"
+        android:layout_height="19dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
         app:layout_constraintStart_toEndOf="@+id/StateLabel"
         app:layout_constraintTop_toBottomOf="@+id/CityText" />
 
@@ -95,64 +85,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="Zip Code: "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StateLabel" />
+        app:layout_constraintStart_toEndOf="@+id/StateText"
+        app:layout_constraintTop_toTopOf="@+id/StateText" />
 
     <TextView
         android:id="@+id/ZipText"
-        android:layout_width="175dp"
-        android:layout_height="16dp"
+        android:layout_width="111dp"
+        android:layout_height="18dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/ZipLabel"
-        app:layout_constraintTop_toBottomOf="@+id/StateText" />
+        app:layout_constraintTop_toBottomOf="@+id/CityText" />
 
     <TextView
         android:id="@+id/LocationTypeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="40dp"
         android:text="Location Type:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ZipLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/StateText" />
 
     <TextView
         android:id="@+id/LocationTypeText"
         android:layout_width="157dp"
-        android:layout_height="25dp"
+        android:layout_height="18dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="91dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/LocationTypeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/ZipText" />
+        app:layout_constraintTop_toBottomOf="@+id/StateText" />
 
     <TextView
         android:id="@+id/PhoneNumberLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="36dp"
         android:text="Phone Number:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LocationTypeLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/LocationTypeText" />
 
     <TextView
         android:id="@+id/PhoneNumberText"
         android:layout_width="173dp"
         android:layout_height="19dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/PhoneNumberLabel"
         app:layout_constraintTop_toBottomOf="@+id/LocationTypeText" />
 
@@ -160,21 +144,16 @@
         android:id="@+id/WebSiteLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="76dp"
         android:text="WebSite:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PhoneNumberLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/PhoneNumberText" />
 
     <TextView
         android:id="@+id/WebSiteText"
         android:layout_width="155dp"
-        android:layout_height="24dp"
+        android:layout_height="19dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/WebSiteLabel"
         app:layout_constraintTop_toBottomOf="@+id/PhoneNumberText" />
 
@@ -182,18 +161,17 @@
         android:id="@+id/LatitudeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="76dp"
         android:text="Latitude: "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WebSiteLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/WebSiteText" />
 
     <TextView
         android:id="@+id/LatitudeText"
         android:layout_width="151dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/LatitudeLabel"
@@ -203,25 +181,20 @@
         android:id="@+id/LongitudeLabel"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="68dp"
         android:text="Longitude:"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LatitudeLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/LatitudeText" />
 
     <TextView
         android:id="@+id/LongitudeText"
         android:layout_width="160dp"
-        android:layout_height="22dp"
+        android:layout_height="17dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="88dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/LongitudeLabel"
         app:layout_constraintTop_toBottomOf="@+id/LatitudeText" />
+
 </android.support.constraint.ConstraintLayout>
