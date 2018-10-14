@@ -9,8 +9,17 @@
     <string name="admin_page">Admin Page</string>
     <string name="load_locations">Load Locations</string>
     <string name="user_page">User Page</string>
-
-
+    <string name="local_employee_page">Local Employee Page</string>
+    <string name="location_name">Location Name: </string>
+    <string name="street_address">Street Address: </string>
+    <string name="city">City: </string>
+    <string name="state">State: </string>
+    <string name="zip_code">Zip Code: </string>
+    <string name="location_type">Location Type: </string>
+    <string name="phone_number">Phone Number: </string>
+    <string name="website">Website: </string>
+    <string name="latitude">Latitude: </string>
+    <string name="longitude">Longitude: </string>
 
 
 
