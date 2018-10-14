@@ -1,8 +1,12 @@
 package team1.gatech.edu.irp.controllers;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 
@@ -27,6 +31,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
     private TextView latitudeField;
     private TextView longitudeField;
 
+    private Spinner itemSpinner;
 
 
 
@@ -80,6 +85,29 @@ public class LocationDetailsActivity extends AppCompatActivity {
         longitudeField = (TextView) findViewById(R.id.LongitudeText);
         longitudeField.setText(longitude);
 
+
+
+
+        itemSpinner = (Spinner) findViewById(R.id.ItemSpinner);
+    /*
+      Set up the adapter to display the allowable locations in the spinner
+     */
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getInventoryArray());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        itemSpinner.setAdapter(adapter);
+        itemSpinner.setSelection(0);
+
+
+
+
+    }
+
+    public void onViewItemOnPress(View v) {
+        Model model = Model.getInstance();
+        String currItem = ((String) itemSpinner.getSelectedItem());
+        model.setCurrentItemDetails(currItem);
+        Intent intent = new Intent(this, ItemDetailsActivity.class);
+        startActivity(intent);
     }
 
 

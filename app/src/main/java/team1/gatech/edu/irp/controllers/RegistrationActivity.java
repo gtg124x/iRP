@@ -48,6 +48,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
 
 
     }
+
     /**
      * Button handler for the add new user button
      * @param view the button

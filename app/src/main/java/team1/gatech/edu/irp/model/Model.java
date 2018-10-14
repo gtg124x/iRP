@@ -47,7 +47,19 @@ public class Model {
     private static List<String> locationsArray;
 
     //= Arrays.asList((new Location()).toString());
+    private static Inventory inventory;
+    private static List<Item> inventoryArray;
 
+
+    /**
+     * the currently selected location, defaults to first location for Add Donation
+     */
+    private static Location _currentLocationAddDonation;
+
+    /**
+     * convert string to location for Add Donation Activity
+     */
+    private static Item _currentItemDetails;
 
     /**
      * make a new model
@@ -55,13 +67,14 @@ public class Model {
     private Model() {
         locations = new ArrayList<>();
         locationsArray = new ArrayList<>();
-        //
-
+        inventory = new Inventory();
 
     }
 
     public List<Location> getLocation() {
         return locations;
+    }
+    public Inventory getInventory() { return inventory;
     }
 
     public Location getCurrentLocation() {
@@ -76,6 +89,29 @@ public class Model {
         }
     }
 
+    public Location getCurrentLocationAddDonation() {
+        return _currentLocationAddDonation;
+    }
+
+    public void setCurrentLocationAddDonation(String currentLocationAddDonation) {
+        for (Location l : locations) {
+            if (l.toString().equals(currentLocationAddDonation)) {
+                _currentLocationAddDonation = l;
+            }
+        }
+    }
+
+    public Item getCurrentItemDetails() {
+        return _currentItemDetails;
+    }
+
+    public void setCurrentItemDetails(String currentItemDetails) {
+        for (Item item : inventory.getInventoryAsArray()) {
+            if (item.toString().equals(currentItemDetails)) {
+                _currentItemDetails = item;
+            }
+        }
+    }
 
     public List<String> getLocationsArray() {
         //for (int i = 0; i < locations.size(); i++) {
@@ -84,6 +120,9 @@ public class Model {
         return locationsArray;
     }
 
+    public List<Item> getInventoryArray() {
+        return inventory.getInventoryAsArray();
+    }
 
 
 

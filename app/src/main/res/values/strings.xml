@@ -42,4 +42,13 @@
     <string name="short_description">Short Description</string>
     <string name="full_description">Full Description</string>
     <string name="submit">Submit</string>
+
+    <string name="time_stamp_colen">Time Stamp: </string>
+    <string name="date_stamp_colen">Date Stamp: </string>
+    <string name="category_colens">Category : </string>
+    <string name="location_colen">Location : </string>
+    <string name="value_colen">Value: </string>
+    <string name="short_description_colen">Short Description: </string>
+    <string name="full_description_colen">Full Description: </string>
+
 </resources>
