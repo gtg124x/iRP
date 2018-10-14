@@ -23,7 +23,7 @@ public class LocationListActivity extends AppCompatActivity {
         LocationSpinner = (Spinner) findViewById(R.id.SpinnerLocation);
         Model model = Model.getInstance();
     /*
-      Set up the adapter to display the allowable class standing in the spinner
+      Set up the adapter to display the allowable locations in the spinner
      */
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsArray());
@@ -42,6 +42,8 @@ public class LocationListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LocationDetailsActivity.class);
         startActivity(intent);
     }
-
+    public void onLocationListBackOnPress(View v) {
+        finish();
+    }
 
 }

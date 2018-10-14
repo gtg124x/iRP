@@ -3,9 +3,9 @@
     <string name="userName_hint">User Name</string>
     <string name="password_hint">Password</string>
     <string name="title_activity_admin">AdminActivity</string>
-    <string name="add_donation">Add Donation</string>
+    <string name="add_donation">Add A New Donation</string>
     <string name="logout">Logout</string>
-    <string name="view_locations">View Locations</string>
+    <string name="view_locations">View Locations / Items</string>
     <string name="admin_page">Admin Page</string>
     <string name="load_locations">Load Locations</string>
     <string name="user_page">User Page</string>
@@ -32,7 +32,14 @@
     <string name="irp">iRP</string>
     <string name="registration">Registration</string>
     <string name="irp_decription">an internal resource planning app</string>
-
-
-
+    <string name="item_list">Item List</string>
+    <string name="view_item">View Item</string>
+    <string name="back">Back</string>
+    <string name="add_donation_page">Add Donation Page</string>
+    <string name="time_stamp">Time Stamp Of Donation</string>
+    <string name="date">Date Of Donation</string>
+    <string name="value">Value (in dollars)</string>
+    <string name="short_description">Short Description</string>
+    <string name="full_description">Full Description</string>
+    <string name="submit">Submit</string>
 </resources>

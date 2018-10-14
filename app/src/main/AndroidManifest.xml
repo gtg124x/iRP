@@ -34,7 +34,8 @@
         <activity android:name=".controllers.ManagerActivity" />
         <activity android:name=".controllers.LocationListActivity" />
         <activity android:name=".controllers.LocationDetailsActivity" />
-        <activity android:name=".model.CSVFileReaderActivity"></activity>
+        <activity android:name=".model.CSVFileReaderActivity" />
+        <activity android:name=".controllers.AddDonationActivity"></activity>
     </application>
 
 </manifest>
