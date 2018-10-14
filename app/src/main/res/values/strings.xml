@@ -3,5 +3,15 @@
     <string name="userName_hint">User Name</string>
     <string name="password_hint">Password</string>
     <string name="title_activity_admin">AdminActivity</string>
+    <string name="add_donation">Add Donation</string>
+    <string name="logout">Logout</string>
+    <string name="view_locations">View Locations</string>
+    <string name="admin_page">Admin Page</string>
+    <string name="load_locations">Load Locations</string>
+    <string name="user_page">User Page</string>
+
+
+
+
 
 </resources>
