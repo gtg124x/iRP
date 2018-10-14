@@ -49,7 +49,7 @@ public class Model {
     //= Arrays.asList((new Location()).toString());
     private static Inventory inventory;
     private static List<Item> inventoryArray;
-
+    private static List<String> inventoryAsStringArray;
 
     /**
      * the currently selected location, defaults to first location for Add Donation
@@ -124,7 +124,9 @@ public class Model {
         return inventory.getInventoryAsArray();
     }
 
-
+    public List<String> getInventoryStringArray() {
+        return inventory.getInventoryAsStringArray();
+    }
 
 
 

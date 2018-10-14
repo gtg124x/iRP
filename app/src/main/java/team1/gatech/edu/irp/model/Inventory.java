@@ -14,4 +14,13 @@ public class Inventory {
         return inventoryArray;
     }
 
+    protected List<String> getInventoryAsStringArray() {
+        List<String> inventoryStringArray = new ArrayList<>();
+        for(Item i : inventoryArray) {
+            inventoryStringArray.add(i.toString());
+        }
+
+        return inventoryStringArray;
+    }
+
 }

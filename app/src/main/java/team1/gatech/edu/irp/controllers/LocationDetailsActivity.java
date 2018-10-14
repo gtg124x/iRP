@@ -92,7 +92,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
     /*
       Set up the adapter to display the allowable locations in the spinner
      */
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getInventoryArray());
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getInventoryStringArray());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(adapter);
         itemSpinner.setSelection(0);
