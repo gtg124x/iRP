@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="@string/full_description_colen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ShortDescriptionLabelTextView" />
@@ -103,10 +103,10 @@
         android:layout_width="106dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="297dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
         app:layout_constraintEnd_toStartOf="@+id/BackItemDetailsButton"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/DateStampLabelTextView"
         app:layout_constraintTop_toBottomOf="@+id/TimeStampText" />
 
@@ -118,6 +118,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="363dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/LocationLabelTextView"
         app:layout_constraintTop_toBottomOf="@+id/DateStampText" />
 
@@ -141,6 +142,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="376dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/ValueLabelTextView"
         app:layout_constraintTop_toBottomOf="@+id/CategoryText" />
 
@@ -149,9 +151,10 @@
         android:layout_width="207dp"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="257dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/ShortDescriptionLabelTextView"
         app:layout_constraintTop_toBottomOf="@+id/ValueText" />
 
@@ -162,6 +165,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="238dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FullDescriptionTextView" />
 </android.support.constraint.ConstraintLayout>

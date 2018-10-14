@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import team1.gatech.edu.irp.R;
@@ -104,10 +105,18 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
     public void onViewItemOnPress(View v) {
         Model model = Model.getInstance();
-        String currItem = ((String) itemSpinner.getSelectedItem());
-        model.setCurrentItemDetails(currItem);
-        Intent intent = new Intent(this, ItemDetailsActivity.class);
-        startActivity(intent);
+        if (model.getInventoryStringArray().size() == 0) {
+            Toast.makeText(this, "No Items Have Been Added To Inventory", Toast.LENGTH_SHORT).show();
+        } else {
+            String currItem = ((String) itemSpinner.getSelectedItem());
+            model.setCurrentItemDetails(currItem);
+            Intent intent = new Intent(this, ItemDetailsActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    public void onLocationDetailsBackButtonOnPress(View v) {
+        finish();
     }
 
 

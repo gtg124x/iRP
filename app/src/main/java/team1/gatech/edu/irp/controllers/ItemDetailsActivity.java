@@ -52,7 +52,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         categoryField.setText(category);
 
         valueField = (TextView) findViewById(R.id.ValueText);
-        valueField.setText(value);
+        valueField.setText("$" + value);
 
         shortDescriptionField = (TextView) findViewById(R.id.ShortDecriptionText);
         shortDescriptionField.setText(shortDescription);
