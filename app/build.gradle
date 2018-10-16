@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "team1.gatech.edu.irp"
         minSdkVersion 17
-        targetSdkVersion 28
+        targetSdkVersion 17
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -16,9 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '28.0.3'
     productFlavors {
     }
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {
