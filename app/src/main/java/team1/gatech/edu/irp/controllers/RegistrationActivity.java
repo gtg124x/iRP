@@ -15,6 +15,8 @@ import team1.gatech.edu.irp.model.UserType;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import java.io.File;
+
 
 public class RegistrationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -70,6 +72,11 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
         } else {
             account = new Account(name, pword, cInfo, userTypeEnum);
             model.addAccount(account);
+
+
+
+
+
                 Toast.makeText(this, "Account Created.", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(this, WelcomeActivity.class);

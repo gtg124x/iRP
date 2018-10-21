@@ -44,7 +44,7 @@ public class AdminActivity extends AppCompatActivity {
 
     public void onViewLocationAdminOnPress(View v) {
         Model model = Model.getInstance();
-        if (model.getLocation().size() == 0) {
+        if (model.getLocations().size() == 0) {
             Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
         } else {
 
@@ -72,7 +72,7 @@ public class AdminActivity extends AppCompatActivity {
                         scoreList.get(i)[4], scoreList.get(i)[5], scoreList.get(i)[6],
                         Integer.parseInt(scoreList.get(i)[7]), LocationType.convertType(scoreList.get(i)[8]),
                         scoreList.get(i)[9], scoreList.get(i)[10]);
-                for (Location x : model.getLocation()){
+                for (Location x : model.getLocations()){
                     if ((x.equals(tempLoc))) {
                         duplicate = true;
                     }
@@ -80,8 +80,8 @@ public class AdminActivity extends AppCompatActivity {
                 if (duplicate) {
                     Toast.makeText(this, "Duplicate Locations will not be added.", Toast.LENGTH_SHORT).show();
                 } else {
-                    model.getLocationsArray().add(tempLoc.toString());
-                    model.getLocation().add(tempLoc);
+                    model.getLocationsAsString().add(tempLoc.toString());
+                    model.getLocations().add(tempLoc);
                     Toast.makeText(this, "Locations have been loaded.", Toast.LENGTH_SHORT).show();
                 }
 

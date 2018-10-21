@@ -28,7 +28,7 @@ public class AppActivity extends AppCompatActivity {
 
     public void onViewLocationUserOnPress(View v) {
         Model model = Model.getInstance();
-        if (model.getLocation().size() == 0) {
+        if (model.getLocations().size() == 0) {
             Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
         } else {
 

@@ -1,5 +1,11 @@
 package team1.gatech.edu.irp.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +16,10 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Parcelable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.io.InputStream;
 import java.util.List;
 
@@ -23,8 +32,8 @@ import java.util.List;
  *
  *
  */
-public class Model implements Serializable {
-
+public class Model {
+    public final static String DEFAULT_BINARY_FILE_NAME = "data.bin";
     /**
      * Singleton instance
      */
@@ -38,25 +47,10 @@ public class Model implements Serializable {
      */
     private AccountManager accountManager;
 
-    /****************************************************************************************
-     *    LIST OF LOCATIONS ATTRIBUTES                                                    ***
-     *    Notes: I created both a list of location obj and of strings because the         ***
-     *    spinner displays the string description of a location. Both of these are        ***
-     *    initialized in the AdminActivity Class when an admin hits the load              ***
-     *    locations button.  The CSVFile class used and the data is parsed and            ***
-     *    locations are created.                                                          ***
-     ****************************************************************************************
-     */
-
     /**
-     * holds the list of all locations
+     *  holds the locations
      */
-    private List<Location> locations;
-
-    /**
-     * array to hold string representation of locations
-     */
-    private List<String> locationsArray;
+    private LocationManager locationManager;
 
 
     /****************************************************************************************
@@ -102,16 +96,19 @@ public class Model implements Serializable {
      * make a new model
      */
     private Model() {
-        locations = new ArrayList<>();
-        locationsArray = new ArrayList<>();
+//        locations = new ArrayList<>();
+//        locationsArray = new ArrayList<>();
         inventory = new ArrayList<>();
         inventoryArray = new ArrayList<>();
         accountManager = new AccountManager();
+        locationManager = new LocationManager();
 
     }
 
     /****************************************************************************************
      *    ACCOUNT MANAGER METHODS
+     *    Notes: Pass through methods from Controller to Model, being from the
+     *           RegistrationActivity to AccountManager.
      ****************************************************************************************
      *
      */
@@ -132,27 +129,30 @@ public class Model implements Serializable {
 
 
     /****************************************************************************************
-     *    LOCATION METHODS
+     *    LOCATION MANAGER METHODS
+     *    Notes: Pass through methods from Controller to Model, being from the
+     *           AdminActivity to LocationManager.
      ****************************************************************************************
+     *
      */
 
     /**
-     * returns a list of locations that have been added to the app
+     * a list of locations that have been added to the app
      *
      * @return list of Location objects
      */
-    public List<Location> getLocation() {
-        return locations;
-    }
+    public ArrayList<Location> getLocations() { return locationManager.getLocationArray(); }
 
     /**
-     * returns a list of locations represented as Strings that have been added to the app
+     * a list of locations represented as Strings that have been added to the app
      *
      * @return list of locations represented as Strings
      */
-    public List<String> getLocationsArray() {
-        return locationsArray;
-    }
+    public ArrayList<String> getLocationsAsString() { return locationManager.getLocationStringArray(); }
+
+
+
+
 
 
     /****************************************************************************************
@@ -209,7 +209,7 @@ public class Model implements Serializable {
      * @param currentLocation the currently selected location on the LocationListActivity spinner
      */
     public void setCurrentLocation(String currentLocation) {
-        for (Location l : locations) {
+        for (Location l : locationManager.getLocationArray()) {
             if (l.toString().equals(currentLocation)) {
                 _currentLocation = l;
             }
@@ -231,7 +231,7 @@ public class Model implements Serializable {
      * @param currentLocationAddDonation the currently selected location on the AddDonationActivity spinner
      */
     public void setCurrentLocationAddDonation(String currentLocationAddDonation) {
-        for (Location l : locations) {
+        for (Location l : locationManager.getLocationArray()) {
             if (l.toString().equals(currentLocationAddDonation)) {
                 _currentLocationAddDonation = l;
             }
@@ -258,6 +258,61 @@ public class Model implements Serializable {
                 _currentItemDetails = item;
             }
         }
+    }
+
+
+    public boolean loadBinary(File file) {
+        boolean success = true;
+        try {
+            /*
+              To read, we must use the ObjectInputStream since we want to read our model in with
+              a single read.
+             */
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            // assuming we saved our top level object, we read it back in with one line of code.
+            accountManager = (AccountManager) in.readObject();
+            //sm.regenMap();
+            in.close();
+        } catch (IOException e) {
+            //Log.e("UserManagementFacade", "Error reading an entry from binary file",e);
+            //Toast.makeText(this, "Error reading an entry from binary file.", Toast.LENGTH_SHORT).show();
+            success = false;
+        } catch (ClassNotFoundException e) {
+            //Log.e("UserManagementFacade", "Error casting a class from the binary file",e);
+            //Toast.makeText(this, "Error casting a class from the binary file.", Toast.LENGTH_SHORT).show();
+           success = false;
+        }
+
+        return success;
+    }
+
+    public boolean saveBinary(File file) {
+        boolean success = true;
+        try {
+            /*
+               For binary, we use Serialization, so everything we write has to implement
+               the Serializable interface.  Fortunately all the collection classes and APi classes
+               that we might use are already Serializable.  You just have to make sure your
+               classes implement Serializable.
+
+               We have to use an ObjectOutputStream to write objects.
+
+               One thing to be careful of:  You cannot serialize static data.
+             */
+
+
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            // We basically can save our entire data model with one write, since this will follow
+            // all the links and pointers to save everything.  Just save the top level object.
+            out.writeObject(accountManager);
+            out.close();
+
+        } catch (IOException e) {
+            //Log.e("UserManagerFacade", "Error writing an entry from binary file",e);
+            //Toast.makeText(this, "Error writing an entry from binary file.", Toast.LENGTH_SHORT).show();
+            success = false;
+        }
+        return success;
     }
 
 

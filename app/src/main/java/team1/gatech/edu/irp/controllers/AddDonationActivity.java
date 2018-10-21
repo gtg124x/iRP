@@ -49,7 +49,7 @@ public class AddDonationActivity extends AppCompatActivity {
     /*
       Set up the adapter to display the allowable location in the spinner
      */
-        ArrayAdapter<String> locationAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsArray());
+        ArrayAdapter<String> locationAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(locationAdapter);
         locationSpinner.setSelection(0);

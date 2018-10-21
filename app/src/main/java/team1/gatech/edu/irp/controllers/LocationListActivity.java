@@ -26,7 +26,7 @@ public class LocationListActivity extends AppCompatActivity {
       Set up the adapter to display the allowable locations in the spinner
      */
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsArray());
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationSpinner.setAdapter(adapter);
         LocationSpinner.setSelection(0);

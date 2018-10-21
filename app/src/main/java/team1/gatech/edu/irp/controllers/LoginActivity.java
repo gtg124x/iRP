@@ -13,6 +13,8 @@ import team1.gatech.edu.irp.model.UserType;
 import android.content.Intent;
 import android.widget.Toast;
 
+import java.io.File;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         password = (TextView) findViewById(R.id.Password_Input);
 
     }
+
+
 
     public void onCancelLoginPressed(View v) {
         Intent intent = new Intent(this, WelcomeActivity.class);

@@ -1,13 +1,14 @@
 package team1.gatech.edu.irp.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AccountManager {
+public class AccountManager implements Serializable {
 
 
     /****************************************************************************************
      *    ACCOUNT ATTRIBUTES
-     *    Notes: accountDataBase is just a list of account objects that are created in
+     *    Notes: accounts is just a list of account objects that are created in
      *    RegistrationActivity when the user clicks the add button. The validation of the
      *    data is done there then the Account obj is added to the accountDataBase
      ****************************************************************************************
