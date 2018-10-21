@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Account;
-import team1.gatech.edu.irp.model.AccountDataBase;
+import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.UserType;
 
 import android.view.View;
@@ -25,8 +25,9 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        Model model = Model.getInstance();
         Account account = new Account("mitch", "1234", "@.", UserType.ADMIN);
-        AccountDataBase.addToAccountDatabase(account);
+        model.addToAccountDatabase(account);
 
 
     }

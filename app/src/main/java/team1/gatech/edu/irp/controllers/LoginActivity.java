@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import team1.gatech.edu.irp.R;
 import android.view.View;
-import team1.gatech.edu.irp.model.AccountDataBase;
+
+import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.UserType;
 
 import android.content.Intent;
@@ -66,17 +67,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean validateLogin(String uName, String password) {
+        Model model = Model.getInstance();
         if (uName.length() == 0 || password.length() == 0) {
             return false;
         }
-        for (int i = 0; i < AccountDataBase.accountArray.size(); i++) {
-            if (AccountDataBase.accountArray.get(i) == null) {
+        for (int i = 0; i < model.getAccountDataBase().size(); i++) {
+            if (model.getAccountDataBase().get(i) == null) {
                 return false;
             }
-            String Lname = AccountDataBase.accountArray.get(i).getUserName();
-            String pword = AccountDataBase.accountArray.get(i).getPassword();
+            String Lname = model.getAccountDataBase().get(i).getUserName();
+            String pword = model.getAccountDataBase().get(i).getPassword();
             if (uName.equals(Lname) && password.equals(pword)) {
-                userType = AccountDataBase.accountArray.get(i).getUserType();
+                userType = model.getAccountDataBase().get(i).getUserType();
                 return true;
             }
         }

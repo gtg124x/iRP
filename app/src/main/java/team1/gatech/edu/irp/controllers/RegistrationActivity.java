@@ -10,7 +10,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import team1.gatech.edu.irp.model.Account;
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.AccountDataBase;
+import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.UserType;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -54,6 +54,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
      * @param view the button
      */
     public void onAddPressed(View view) {
+        Model model = Model.getInstance();
         String name = loginName.getText().toString();
         String pword = password.getText().toString();
         String cInfo = contactInfo.getText().toString();
@@ -68,8 +69,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
             Toast.makeText(this, "Must Enter Valid Email Address.", Toast.LENGTH_SHORT).show();
         } else {
             account = new Account(name, pword, cInfo, userTypeEnum);
-            AccountDataBase.addToAccountDatabase(account);
-            //if (AccountDataBase.AddedToAccount) {
+            model.addToAccountDatabase(account);
                 Toast.makeText(this, "Account Created.", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(this, WelcomeActivity.class);
@@ -107,11 +107,12 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
 
 
     public boolean userNameIsTaken(String uName) {
-        for (int i = 0; i < AccountDataBase.accountArray.size(); i++) {
-            if (!(AccountDataBase.accountArray.get(i) == null)) {
+        Model model = Model.getInstance();
+        for (int i = 0; i < model.getAccountDataBase().size(); i++) {
+            if (!(model.getAccountDataBase().get(i) == null)) {
                 //return false;
                 //}
-                String Lname = AccountDataBase.accountArray.get(i).getUserName();
+                String Lname = model.getAccountDataBase().get(i).getUserName();
                 if (uName.equals(Lname)) {
                     return true;
                 }

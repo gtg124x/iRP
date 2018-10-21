@@ -1,6 +1,5 @@
 package team1.gatech.edu.irp.controllers;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +11,8 @@ import android.widget.Toast;
 
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Account;
-import team1.gatech.edu.irp.model.AccountDataBase;
 import team1.gatech.edu.irp.model.Category;
-import team1.gatech.edu.irp.model.Inventory;
 import team1.gatech.edu.irp.model.Location;
-import team1.gatech.edu.irp.model.LocationType;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.Item;
 
@@ -107,7 +102,7 @@ public class AddDonationActivity extends AppCompatActivity {
         } else {
             Item item = new Item(timeStamp, dateStamp, location, category, dollarValue, shortDescription,
                     fullDescription);
-            model.getInventory().addToInventory(item);
+            model.addToInventory(item);
             Toast.makeText(this, "Item added to Inventory.", Toast.LENGTH_SHORT).show();
 //
 //            Intent intent = new Intent(this, LocalEmployeeActivity.class);

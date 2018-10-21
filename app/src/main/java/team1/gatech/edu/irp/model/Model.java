@@ -28,28 +28,71 @@ public class Model {
      * Singleton instance
      */
     private static final Model _instance = new Model();
-
     public static Model getInstance() {
         return _instance;
     }
 
-    /**
-     * the currently selected location, defaults to first course
+
+    /****************************************************************************************
+     *    ACCOUNT ATTRIBUTES
+     *    Notes: accountDataBase is just a list of account objects that are created in
+     *    RegistrationActivity when the user clicks the add button. The validation of the
+     *    data is done there then the Account obj is added to the accountDataBase
+     ****************************************************************************************
      */
-    private static Location _currentLocation;
+
+    /**
+     * list of account objects
+     */
+    public ArrayList<Account> accountDataBase;
+
+
+
+    /****************************************************************************************
+     *    LIST OF LOCATIONS ATTRIBUTES                                                    ***
+     *    Notes: I created both a list of location obj and of strings because the         ***
+     *    spinner displays the string description of a location. Both of these are        ***
+     *    initialized in the AdminActivity Class when an admin hits the load              ***
+     *    locations button.  The CSVFile class used and the data is parsed and            ***
+     *    locations are created.                                                          ***
+     ****************************************************************************************
+     */
 
     /**
      * holds the list of all locations
      */
-    private static List<Location> locations;
+    private List<Location> locations;
 
-    //public static List<String> locationsArray = Arrays.asList((new Location()).toString());
-    private static List<String> locationsArray;
+    /**
+     * holds the list of all locations as a string
+     */
+    private List<String> locationsArray;
 
-    //= Arrays.asList((new Location()).toString());
-    private static Inventory inventory;
-    private static List<Item> inventoryArray;
-    private static List<String> inventoryAsStringArray;
+    /**
+     * the currently selected location of the ____ spinner used for ______
+     */
+    private Location _currentLocation;
+
+
+
+    /****************************************************************************************
+     *    INVENTORY ATTRIBUTES
+     *    Notes:
+     ****************************************************************************************
+     */
+    private List<String> inventoryArray;
+
+
+
+    private List<Item> inventory;
+    //private List<Item> inventoryArray;
+    //private List<String> inventoryAsStringArray;
+
+
+
+
+
+
 
     /**
      * the currently selected location, defaults to first location for Add Donation
@@ -67,14 +110,26 @@ public class Model {
     private Model() {
         locations = new ArrayList<>();
         locationsArray = new ArrayList<>();
-        inventory = new Inventory();
+        inventory = new ArrayList<>();
+        inventoryArray = new ArrayList<>();
+        accountDataBase = new ArrayList<>();
 
     }
+
+
+    public void addToAccountDatabase(Account newAccount) {
+        accountDataBase.add(newAccount);
+    }
+
+    public ArrayList<Account> getAccountDataBase() {
+        return accountDataBase;
+    }
+
+
+
 
     public List<Location> getLocation() {
         return locations;
-    }
-    public Inventory getInventory() { return inventory;
     }
 
     public Location getCurrentLocation() {
@@ -89,6 +144,7 @@ public class Model {
         }
     }
 
+
     public Location getCurrentLocationAddDonation() {
         return _currentLocationAddDonation;
     }
@@ -100,33 +156,58 @@ public class Model {
             }
         }
     }
+    public List<String> getLocationsArray() {
+        return locationsArray;
+    }
+
+
+
+
+
 
     public Item getCurrentItemDetails() {
         return _currentItemDetails;
     }
 
     public void setCurrentItemDetails(String currentItemDetails) {
-        for (Item item : inventory.getInventoryAsArray()) {
+        for (Item item : inventory) {
             if (item.toString().equals(currentItemDetails)) {
                 _currentItemDetails = item;
             }
         }
     }
 
-    public List<String> getLocationsArray() {
-        //for (int i = 0; i < locations.size(); i++) {
-          //  locationsArray.add(locations.get(i).toString());
-        //}
-        return locationsArray;
+
+
+    // inventory getters for String Array for Spinner
+//    public List<Item> getInventoryArray() {
+//        return inventory.getInventoryAsArray();
+//    }
+//    public List<String> getInventoryStringArray() {
+//        return inventory.getInventoryAsStringArray();
+//    }
+
+
+    public List<Item> getInventory() { return inventory; }
+
+    public void addToInventory(Item item) {
+        inventory.add(item);
+        inventoryArray.add(item.toString());
     }
 
-    public List<Item> getInventoryArray() {
-        return inventory.getInventoryAsArray();
+    public List<String> getInventoryAsArray() {
+        return inventoryArray;
     }
 
-    public List<String> getInventoryStringArray() {
-        return inventory.getInventoryAsStringArray();
+    public List<String> getInventoryAsStringArray() {
+//        List<String> inventoryStringArray = new ArrayList<>();
+//        for(Item i : inventory) {
+//            inventoryStringArray.add(i.toString());
+//        }
+        return inventoryArray;
     }
+
+
 
 
 

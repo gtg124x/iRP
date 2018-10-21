@@ -93,7 +93,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
     /*
       Set up the adapter to display the allowable locations in the spinner
      */
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getInventoryStringArray());
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getInventoryAsStringArray());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(adapter);
         itemSpinner.setSelection(0);
@@ -105,7 +105,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
     public void onViewItemOnPress(View v) {
         Model model = Model.getInstance();
-        if (model.getInventoryStringArray().size() == 0) {
+        if (model.getInventoryAsStringArray().size() == 0) {
             Toast.makeText(this, "No Items Have Been Added To Inventory", Toast.LENGTH_SHORT).show();
         } else {
             String currItem = ((String) itemSpinner.getSelectedItem());
