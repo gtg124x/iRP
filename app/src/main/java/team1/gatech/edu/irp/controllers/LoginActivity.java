@@ -71,14 +71,14 @@ public class LoginActivity extends AppCompatActivity {
         if (uName.length() == 0 || password.length() == 0) {
             return false;
         }
-        for (int i = 0; i < model.getAccountDataBase().size(); i++) {
-            if (model.getAccountDataBase().get(i) == null) {
+        for (int i = 0; i < model.getAccounts().size(); i++) {
+            if (model.getAccounts().get(i) == null) {
                 return false;
             }
-            String Lname = model.getAccountDataBase().get(i).getUserName();
-            String pword = model.getAccountDataBase().get(i).getPassword();
+            String Lname = model.getAccounts().get(i).getUserName();
+            String pword = model.getAccounts().get(i).getPassword();
             if (uName.equals(Lname) && password.equals(pword)) {
-                userType = model.getAccountDataBase().get(i).getUserType();
+                userType = model.getAccounts().get(i).getUserType();
                 return true;
             }
         }

@@ -1,6 +1,8 @@
 package team1.gatech.edu.irp.model;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
 
     /** time stamp for the item */
     private String timeStamp;

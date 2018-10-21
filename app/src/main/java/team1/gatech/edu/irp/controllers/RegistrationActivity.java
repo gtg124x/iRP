@@ -69,7 +69,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
             Toast.makeText(this, "Must Enter Valid Email Address.", Toast.LENGTH_SHORT).show();
         } else {
             account = new Account(name, pword, cInfo, userTypeEnum);
-            model.addToAccountDatabase(account);
+            model.addAccount(account);
                 Toast.makeText(this, "Account Created.", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(this, WelcomeActivity.class);
@@ -108,11 +108,11 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
 
     public boolean userNameIsTaken(String uName) {
         Model model = Model.getInstance();
-        for (int i = 0; i < model.getAccountDataBase().size(); i++) {
-            if (!(model.getAccountDataBase().get(i) == null)) {
+        for (int i = 0; i < model.getAccounts().size(); i++) {
+            if (!(model.getAccounts().get(i) == null)) {
                 //return false;
                 //}
-                String Lname = model.getAccountDataBase().get(i).getUserName();
+                String Lname = model.getAccounts().get(i).getUserName();
                 if (uName.equals(Lname)) {
                     return true;
                 }

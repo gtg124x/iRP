@@ -1,5 +1,6 @@
 package team1.gatech.edu.irp.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
  *
  *
  */
-public class Model {
+public class Model implements Serializable {
 
     /**
      * Singleton instance
@@ -32,21 +33,10 @@ public class Model {
         return _instance;
     }
 
-
-    /****************************************************************************************
-     *    ACCOUNT ATTRIBUTES
-     *    Notes: accountDataBase is just a list of account objects that are created in
-     *    RegistrationActivity when the user clicks the add button. The validation of the
-     *    data is done there then the Account obj is added to the accountDataBase
-     ****************************************************************************************
-     */
-
     /**
-     * list of account objects
+     *  holds the accounts
      */
-    public ArrayList<Account> accountDataBase;
-
-
+    private AccountManager accountManager;
 
     /****************************************************************************************
      *    LIST OF LOCATIONS ATTRIBUTES                                                    ***
@@ -116,34 +106,29 @@ public class Model {
         locationsArray = new ArrayList<>();
         inventory = new ArrayList<>();
         inventoryArray = new ArrayList<>();
-        accountDataBase = new ArrayList<>();
+        accountManager = new AccountManager();
 
     }
-
 
     /****************************************************************************************
-     *    ACCOUNT METHODS
+     *    ACCOUNT MANAGER METHODS
      ****************************************************************************************
+     *
      */
 
     /**
-     * adds an account to the app
+     * a list of the accounts
      *
-     * @param newAccount a new account from the registration screen
+     *  @return a list of Account objects
      */
-    public void addToAccountDatabase(Account newAccount) {
-        accountDataBase.add(newAccount);
-    }
+    public ArrayList<Account> getAccounts() { return accountManager.getAccounts(); }
 
     /**
-     * gets the list of Account objects
+     * adds and account to the list of the accounts
      *
-     * @return a list of Account objects
+     *  @param account a user account
      */
-    public ArrayList<Account> getAccountDataBase() {
-        return accountDataBase;
-    }
-
+    public void addAccount(Account account) { accountManager.addToAccounts(account);}
 
 
     /****************************************************************************************

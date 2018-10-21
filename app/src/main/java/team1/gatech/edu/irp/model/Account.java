@@ -1,6 +1,8 @@
 package team1.gatech.edu.irp.model;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
 
     /** login name for the account */
     private String userName;

@@ -51,4 +51,6 @@
     <string name="short_description_colen">Short Description: </string>
     <string name="full_description_colen">Full Description: </string>
 
+    <string name="load_data">Load Data</string>
+    <string name="save_data">Save Data</string>
 </resources>

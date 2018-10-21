@@ -1,6 +1,7 @@
 package team1.gatech.edu.irp.model;
 
 
+import java.io.Serializable;
 
 /**
  * Created by mitchellalvarado on 10/5/16.
@@ -9,7 +10,7 @@ package team1.gatech.edu.irp.model;
  *
  * Information Holder
  */
-public class Location {
+public class Location implements Serializable {
 
     /** allow us to assign unique number to the location */
    // private static int nextNo = 1;
