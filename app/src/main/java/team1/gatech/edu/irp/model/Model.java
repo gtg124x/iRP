@@ -271,6 +271,7 @@ public class Model {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
             // assuming we saved our top level object, we read it back in with one line of code.
             accountManager = (AccountManager) in.readObject();
+            locationManager =  (LocationManager) in.readObject();
             //sm.regenMap();
             in.close();
         } catch (IOException e) {
@@ -305,6 +306,7 @@ public class Model {
             // We basically can save our entire data model with one write, since this will follow
             // all the links and pointers to save everything.  Just save the top level object.
             out.writeObject(accountManager);
+            out.writeObject(locationManager);
             out.close();
 
         } catch (IOException e) {
