@@ -64,45 +64,49 @@ public class Model {
     private List<Location> locations;
 
     /**
-     * holds the list of all locations as a string
+     * array to hold string representation of locations
      */
     private List<String> locationsArray;
-
-    /**
-     * the currently selected location of the ____ spinner used for ______
-     */
-    private Location _currentLocation;
-
 
 
     /****************************************************************************************
      *    INVENTORY ATTRIBUTES
-     *    Notes:
+     *    Notes: Same as locations, I created two arrays one to hold Item obj and one to hold
+     *    the toString of the obj for display on the spinner
      ****************************************************************************************
+     */
+
+    /**
+     * holds the items that are donated
+     */
+    private List<Item> inventory;
+
+    /**
+     * array to hold string representation of item in inventory
      */
     private List<String> inventoryArray;
 
 
 
-    private List<Item> inventory;
-    //private List<Item> inventoryArray;
-    //private List<String> inventoryAsStringArray;
-
-
-
-
-
-
+    /****************************************************************************************
+     *    PASS THROUGH VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
+     ****************************************************************************************
+     */
 
     /**
-     * the currently selected location, defaults to first location for Add Donation
+     * the currently selected location of the LocationListActivity
      */
-    private static Location _currentLocationAddDonation;
+    private Location _currentLocation;
 
     /**
-     * convert string to location for Add Donation Activity
+     * the currently selected location, defaults to first location for AddDonationActivity
      */
-    private static Item _currentItemDetails;
+    private Location _currentLocationAddDonation;
+
+    /**
+     * convert string to location for LocationDetailActivity
+     */
+    private Item _currentItemDetails;
 
     /**
      * make a new model
@@ -117,25 +121,108 @@ public class Model {
     }
 
 
+    /****************************************************************************************
+     *    ACCOUNT METHODS
+     ****************************************************************************************
+     */
+
+    /**
+     * adds an account to the app
+     *
+     * @param newAccount a new account from the registration screen
+     */
     public void addToAccountDatabase(Account newAccount) {
         accountDataBase.add(newAccount);
     }
 
+    /**
+     * gets the list of Account objects
+     *
+     * @return a list of Account objects
+     */
     public ArrayList<Account> getAccountDataBase() {
         return accountDataBase;
     }
 
 
 
+    /****************************************************************************************
+     *    LOCATION METHODS
+     ****************************************************************************************
+     */
 
+    /**
+     * returns a list of locations that have been added to the app
+     *
+     * @return list of Location objects
+     */
     public List<Location> getLocation() {
         return locations;
     }
 
+    /**
+     * returns a list of locations represented as Strings that have been added to the app
+     *
+     * @return list of locations represented as Strings
+     */
+    public List<String> getLocationsArray() {
+        return locationsArray;
+    }
+
+
+    /****************************************************************************************
+     *    INVENTORY METHODS
+     ****************************************************************************************
+     */
+
+    /**
+     * adds an item to the inventory
+     *
+     * @param item a donated item at a location
+     */
+    public void addToInventory(Item item) {
+        inventory.add(item);
+        inventoryArray.add(item.toString());
+    }
+
+    /**
+     * returns a list of items that have been added to the app
+     *
+     * @return list of Item objects
+     */
+    public List<Item> getInventory() { return inventory; }
+
+    /**
+     * returns a list of items represented as Strings that have been added to the app
+     *
+     * @return list of items represented as Strings
+     */
+    public List<String> getInventoryAsStringArray() {
+        return inventoryArray;
+    }
+
+
+
+    /****************************************************************************************
+     *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
+     ****************************************************************************************
+     */
+
+
+    /**
+     * passes through the selected Location on the LocationListActivity spinner
+     *
+     * @return the currently selected location of the LocationListActivity
+     */
     public Location getCurrentLocation() {
         return _currentLocation;
     }
 
+    /**
+     * sets the selected Location on the LocationListActivity spinner
+     *
+     * @param currentLocation the currently selected location on the LocationListActivity spinner
+     */
     public void setCurrentLocation(String currentLocation) {
         for (Location l : locations) {
             if (l.toString().equals(currentLocation)) {
@@ -144,11 +231,20 @@ public class Model {
         }
     }
 
-
+    /**
+     * passes through the selected Location on the AddDonationActivity spinner
+     *
+     * @return the currently selected location of the AddDonationActivity
+     */
     public Location getCurrentLocationAddDonation() {
         return _currentLocationAddDonation;
     }
 
+    /**
+     * sets the selected Location on the AddDonationActivity spinner
+     *
+     * @param currentLocationAddDonation the currently selected location on the AddDonationActivity spinner
+     */
     public void setCurrentLocationAddDonation(String currentLocationAddDonation) {
         for (Location l : locations) {
             if (l.toString().equals(currentLocationAddDonation)) {
@@ -156,19 +252,21 @@ public class Model {
             }
         }
     }
-    public List<String> getLocationsArray() {
-        return locationsArray;
-    }
 
-
-
-
-
-
+    /**
+     * passes through the selected Item on the LocationDetailActivity spinner
+     *
+     * @return the currently selected item of the LocationDetailActivity
+     */
     public Item getCurrentItemDetails() {
         return _currentItemDetails;
     }
 
+    /**
+     * sets the selected item on the LocationDetailActivity spinner
+     *
+     * @param currentItemDetails the currently selected item on the LocationDetailActivity spinner
+     */
     public void setCurrentItemDetails(String currentItemDetails) {
         for (Item item : inventory) {
             if (item.toString().equals(currentItemDetails)) {
@@ -176,39 +274,6 @@ public class Model {
             }
         }
     }
-
-
-
-    // inventory getters for String Array for Spinner
-//    public List<Item> getInventoryArray() {
-//        return inventory.getInventoryAsArray();
-//    }
-//    public List<String> getInventoryStringArray() {
-//        return inventory.getInventoryAsStringArray();
-//    }
-
-
-    public List<Item> getInventory() { return inventory; }
-
-    public void addToInventory(Item item) {
-        inventory.add(item);
-        inventoryArray.add(item.toString());
-    }
-
-    public List<String> getInventoryAsArray() {
-        return inventoryArray;
-    }
-
-    public List<String> getInventoryAsStringArray() {
-//        List<String> inventoryStringArray = new ArrayList<>();
-//        for(Item i : inventory) {
-//            inventoryStringArray.add(i.toString());
-//        }
-        return inventoryArray;
-    }
-
-
-
 
 
 }
