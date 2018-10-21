@@ -13,7 +13,7 @@ public enum UserType {
     MANAGER ("Manager"),
     ADMIN ("Admin");
 
-    /** the full string representation of the class standing */
+    /** the full string representation of the user type */
     private final String type;
 
 
@@ -28,13 +28,13 @@ public enum UserType {
 
     /**
      *
-     * @return   the class standing
+     * @return   the user type
      */
     public String getType() { return type; }
 
     /**
      *
-     * @return the display string representation of the course
+     * @return the display string representation of the user type
      */
     public String toString() { return type; }
     }

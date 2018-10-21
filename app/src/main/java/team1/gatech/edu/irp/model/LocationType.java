@@ -13,7 +13,7 @@ public enum LocationType {
     WAREHOUSE("Warehouse");
 
     /**
-     * the full string representation of the class standing
+     * the full string representation of the location type
      */
     private final String type;
 
@@ -21,28 +21,28 @@ public enum LocationType {
     /**
      * Constructor for the enumeration
      *
-     * @param type user type
+     * @param type location type
      */
     LocationType(String type) {
         this.type = type;
     }
 
     /**
-     * @return the class standing
+     * @return the location type
      */
     public String getType() {
         return type;
     }
 
     /**
-     * @return the display string representation of the course
+     * @return the display string representation of the location type
      */
     public String toString() {
         return type;
     }
 
     /**
-     * @return the class standing
+     * @return the location type
      */
     public static LocationType convertType(String typeAsString) {
         if (typeAsString.equalsIgnoreCase("Drop off")) {
@@ -55,16 +55,6 @@ public enum LocationType {
             return LocationType.DROPOFF;
         }
     }
-//        for (LocationType x : )
-//        return type;
-//
-//        LocationType locT = LocationType.elements();
-//        while (LocationType.hasMoreElements())
-//            System.out.println(days.nextElement()); } }
-
-
-
-
 
 
 }
