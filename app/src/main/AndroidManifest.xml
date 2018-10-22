@@ -36,7 +36,10 @@
         <activity android:name=".controllers.LocationDetailsActivity" />
         <activity android:name=".model.CSVFileReaderActivity" />
         <activity android:name=".controllers.AddDonationActivity" />
-        <activity android:name=".controllers.ItemDetailsActivity"></activity>
+        <activity android:name=".controllers.ItemDetailsActivity" />
+        <activity android:name=".controllers.ItemSearchByNameActivity" />
+        <activity android:name=".controllers.ItemSearchByCategoryActivity" />
+        <activity android:name=".controllers.ItemListActivity"></activity>
     </application>
 
 </manifest>

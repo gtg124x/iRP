@@ -65,6 +65,11 @@ public class Model {
      */
 
     /**
+     * the currently selected category of the ItemSearchByCategoryActivity
+     */
+    private Category _currentCategory;
+
+    /**
      * the currently selected location of the LocationListActivity
      */
     private Location _currentLocation;
@@ -174,7 +179,9 @@ public class Model {
      *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
      ****************************************************************************************
      */
-
+    public void setCurrentCategory(Category currentCategory) {
+        _currentCategory = currentCategory;
+    }
 
     /**
      * passes through the selected Location on the LocationListActivity spinner

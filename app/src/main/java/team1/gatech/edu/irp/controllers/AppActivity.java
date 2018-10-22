@@ -31,13 +31,18 @@ public class AppActivity extends AppCompatActivity {
         if (model.getLocations().size() == 0) {
             Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
         } else {
-
-
             Intent intent = new Intent(this, LocationListActivity.class);
             startActivity(intent);
-
         }
-
     }
 
+    public void onItemSearchByNameOnPress(View v) {
+        Intent intent = new Intent(this, ItemSearchByNameActivity.class);
+        startActivity(intent);
+    }
+
+    public void onItemSearchByCategoryOnPress(View v) {
+        Intent intent = new Intent(this, ItemSearchByCategoryActivity.class);
+        startActivity(intent);
+    }
 }
