@@ -65,9 +65,9 @@ public class Model {
      */
 
     /**
-     * the currently selected category of the ItemSearchByCategoryActivity
+     * the currently item list from ItemSearchByCategoryActivity
      */
-    private Category _currentCategory;
+    private ArrayList<String> _currentItemList;
 
     /**
      * the currently selected location of the LocationListActivity
@@ -83,6 +83,8 @@ public class Model {
      * convert string to location for LocationDetailActivity
      */
     private Item _currentItemDetails;
+
+
 
     /**
      * make a new model
@@ -179,9 +181,18 @@ public class Model {
      *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
      ****************************************************************************************
      */
-    public void setCurrentCategory(Category currentCategory) {
-        _currentCategory = currentCategory;
+    public ArrayList<String> getInventoryByCategoryAndLocation(Category category, String locationString ) {
+        return itemManager.getItemListByCategoryAndLocation(category, locationString);
     }
+
+    public void setCurrentItemList(ArrayList<String> currentItemList) {
+        _currentItemList = currentItemList;
+    }
+
+    public ArrayList<String> getCurrentItemList() {
+       return _currentItemList;
+    }
+
 
     /**
      * passes through the selected Location on the LocationListActivity spinner

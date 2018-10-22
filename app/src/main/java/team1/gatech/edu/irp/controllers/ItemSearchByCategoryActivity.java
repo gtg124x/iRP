@@ -7,8 +7,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Category;
+import team1.gatech.edu.irp.model.Item;
 import team1.gatech.edu.irp.model.Model;
 
 public class ItemSearchByCategoryActivity extends AppCompatActivity {
@@ -42,10 +45,10 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         Model model = Model.getInstance();
 
         String currLoc = ((String) LocationSpinner.getSelectedItem());
-        model.setCurrentLocation(currLoc);
-
         Category category = (Category) CategorySpinner.getSelectedItem();
-        model.setCurrentCategory(category);
+
+        ArrayList<String> itemListByCategoryAndLocation = model.getInventoryByCategoryAndLocation(category, currLoc);
+        model.setCurrentItemList(itemListByCategoryAndLocation);
 
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);

@@ -49,6 +49,12 @@ public class LocationManager implements Serializable {
         return locationsArray;
     }
 
-
-
+    public Location convertStringToLocation(String locationString) {
+        for (Location l : locations) {
+            if (l.getName().equals(locationString)) {
+                return l;
+            }
+        }
+        return new Location();
+    }
 }
