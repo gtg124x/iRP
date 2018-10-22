@@ -57,5 +57,8 @@ public class ItemListActivity extends AppCompatActivity {
         }
     }
 
+    public void onItemListBackOnPress(View view) {
+        finish();
+    }
 
 }
