@@ -42,10 +42,10 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
         Model model = Model.getInstance();
 
         String itemName = itemNameTextView.getText().toString();
-        //ArrayList<String>
-
         String currLoc = ((String) LocationSpinner.getSelectedItem());
-        model.setCurrentLocation(currLoc);
+
+        ArrayList<String> itemListByNameAndLocation = model.getInventoryByNameAndLocation(itemName, currLoc);
+        model.setCurrentItemList(itemListByNameAndLocation);
 
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);

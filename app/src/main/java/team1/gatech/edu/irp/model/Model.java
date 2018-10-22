@@ -185,6 +185,10 @@ public class Model {
         return itemManager.getItemListByCategoryAndLocation(category, locationString);
     }
 
+    public ArrayList<String> getInventoryByNameAndLocation(String name, String locationString ) {
+        return itemManager.getItemListByNameAndLocation(name, locationString);
+    }
+
     public void setCurrentItemList(ArrayList<String> currentItemList) {
         _currentItemList = currentItemList;
     }

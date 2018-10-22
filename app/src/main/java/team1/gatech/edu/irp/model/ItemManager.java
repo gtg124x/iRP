@@ -79,5 +79,16 @@ public class ItemManager implements Serializable {
     }
 
 
+    public ArrayList<String> getItemListByNameAndLocation(String name, String location) {
+        ArrayList<String> itemLocationList = new ArrayList<>();
+        for (Item i : inventory) {
+            if (i.getLocation().toString().equals(location) && i.getShortDescripiton().equals(name)) {
+                itemLocationList.add(i.toString());
+            }
+        }
+        return itemLocationList;
+    }
+
+
 }
 
