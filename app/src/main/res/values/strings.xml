@@ -53,4 +53,6 @@
 
     <string name="load_data">Load Data</string>
     <string name="save_data">Save Data</string>
+
+    <string name="clear_data">Clear Data</string>
 </resources>

@@ -83,12 +83,12 @@ public class Location implements Serializable {
     }
 
     public Location() {
-        _id = 0;
-        _name = "Test Store";
-        _latitude = 23.33223;
-        _longitude = -23.85674;
-        _streetAddress = "TEST STREET";
-        _city = "TestCity";
+        _id = 201;
+        _name = "H&M";
+        _latitude = 38.89770;
+        _longitude = 77.03650;
+        _streetAddress = "MAIN STREET";
+        _city = "Atlanta";
         _state = "GA";
         _zipCode = 12345;
         _locationType = LocationType.DROPOFF;

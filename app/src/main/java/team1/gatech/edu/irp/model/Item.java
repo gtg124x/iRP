@@ -74,8 +74,8 @@ public class Item implements Serializable {
      * This constructor only for GUI use in edit/new account dialog
      */
     public Item() {
-        this("12:00:00" , "12/25/18", new Location(), Category.CLOTHING,
-                "10.69", "shirt", "old shirt");
+        this("12:00:00" , "12-25-2018", new Location(), Category.CLOTHING,
+                "10.00", "Best Shirt Ever", "Really Old Shirt");
     }
 
     /**

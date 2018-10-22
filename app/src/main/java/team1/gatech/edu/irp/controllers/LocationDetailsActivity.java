@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
+
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.LocationType;
@@ -45,16 +47,17 @@ public class LocationDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_location_details);
 
         Model model = Model.getInstance();
-        String name = model.getCurrentLocation().getName();
-        String address = model.getCurrentLocation().getStreetAddress();
-        String city = model.getCurrentLocation().getCity();
-        String state = model.getCurrentLocation().getState();
-        String zip = "" + model.getCurrentLocation().getZipCode();
-        String locationType = model.getCurrentLocation().getLocationType().toString();
-        String phoneNumber = model.getCurrentLocation().getPhoneNumber();
-        String website =  model.getCurrentLocation().getWebsiteLink();
-        String latitude = "" + model.getCurrentLocation().getLatitude();
-        String longitude = "" + model.getCurrentLocation().getLongitude();
+        Location currSelectedLocation = model.getCurrentLocation();
+        String name = currSelectedLocation.getName();
+        String address = currSelectedLocation.getStreetAddress();
+        String city = currSelectedLocation.getCity();
+        String state = currSelectedLocation.getState();
+        String zip = "" + currSelectedLocation.getZipCode();
+        String locationType = currSelectedLocation.getLocationType().toString();
+        String phoneNumber = currSelectedLocation.getPhoneNumber();
+        String website =  currSelectedLocation.getWebsiteLink();
+        String latitude = "" + currSelectedLocation.getLatitude();
+        String longitude = "" + currSelectedLocation.getLongitude();
 
         nameField = (TextView) findViewById(R.id.LocationNameText);
         nameField.setText(name);
@@ -93,7 +96,9 @@ public class LocationDetailsActivity extends AppCompatActivity {
     /*
       Set up the adapter to display the allowable locations in the spinner
      */
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getInventoryAsStringArray());
+        ArrayList<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, currentLocationItemList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(adapter);
         itemSpinner.setSelection(0);
@@ -105,7 +110,9 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
     public void onViewItemOnPress(View v) {
         Model model = Model.getInstance();
-        if (model.getInventoryAsStringArray().size() == 0) {
+        Location currSelectedLocation = model.getCurrentLocation();
+        ArrayList<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
+        if (currentLocationItemList.size() == 0) {
             Toast.makeText(this, "No Items Have Been Added To Inventory", Toast.LENGTH_SHORT).show();
         } else {
             String currItem = ((String) itemSpinner.getSelectedItem());

@@ -52,28 +52,15 @@ public class Model {
      */
     private LocationManager locationManager;
 
-
-    /****************************************************************************************
-     *    INVENTORY ATTRIBUTES
-     *    Notes: Same as locations, I created two arrays one to hold Item obj and one to hold
-     *    the toString of the obj for display on the spinner
-     ****************************************************************************************
-     */
-
     /**
-     * holds the items that are donated
+     *  holds the items
      */
-    private List<Item> inventory;
-
-    /**
-     * array to hold string representation of item in inventory
-     */
-    private List<String> inventoryArray;
+    private ItemManager itemManager;
 
 
 
     /****************************************************************************************
-     *    PASS THROUGH VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
+     *    PASS THROUGH VALUES FROM SPINNERS TO ACTIVITY PAGES
      ****************************************************************************************
      */
 
@@ -96,13 +83,9 @@ public class Model {
      * make a new model
      */
     private Model() {
-//        locations = new ArrayList<>();
-//        locationsArray = new ArrayList<>();
-        inventory = new ArrayList<>();
-        inventoryArray = new ArrayList<>();
         accountManager = new AccountManager();
         locationManager = new LocationManager();
-
+        itemManager = new ItemManager();
     }
 
     /****************************************************************************************
@@ -110,7 +93,6 @@ public class Model {
      *    Notes: Pass through methods from Controller to Model, being from the
      *           RegistrationActivity to AccountManager.
      ****************************************************************************************
-     *
      */
 
     /**
@@ -133,7 +115,6 @@ public class Model {
      *    Notes: Pass through methods from Controller to Model, being from the
      *           AdminActivity to LocationManager.
      ****************************************************************************************
-     *
      */
 
     /**
@@ -151,41 +132,42 @@ public class Model {
     public ArrayList<String> getLocationsAsString() { return locationManager.getLocationStringArray(); }
 
 
-
-
-
-
     /****************************************************************************************
-     *    INVENTORY METHODS
+     *    ITEM MANAGER METHODS
+     *    Notes: Pass through methods from Controller to Model, being from the
+     *           AddDonationActivity to ItemManager.
      ****************************************************************************************
      */
 
     /**
-     * adds an item to the inventory
+     * adds and item to the inventory
      *
-     * @param item a donated item at a location
+     *  @param item a donation item
      */
-    public void addToInventory(Item item) {
-        inventory.add(item);
-        inventoryArray.add(item.toString());
-    }
+    public void addToInventory(Item item) { itemManager.addToItemManager(item);}
 
     /**
-     * returns a list of items that have been added to the app
+     * a list of items that have been added to the app
      *
-     * @return list of Item objects
+     * @return list of items objects
      */
-    public List<Item> getInventory() { return inventory; }
+    public ArrayList<Item> getInventoryAsItemArray() { return itemManager.getItemManagerAsItemArray(); }
 
     /**
-     * returns a list of items represented as Strings that have been added to the app
+     * a list of items represented as Strings that have been added to the app
      *
      * @return list of items represented as Strings
      */
-    public List<String> getInventoryAsStringArray() {
-        return inventoryArray;
-    }
+    public ArrayList<String> getInvtoryAsStringArrary() { return itemManager.getItemManagerAsStringArray(); }
 
+    /**
+     * a list of items represented as Strings that have been added to the a selected location
+     *
+     * @param  location currently selected location to view
+     * @return list of items represented as Strings
+     */
+    public ArrayList<String> getInventoryByLocation(Location location) {
+        return itemManager.getItemListByLocation(location); }
 
 
     /****************************************************************************************
@@ -253,13 +235,18 @@ public class Model {
      * @param currentItemDetails the currently selected item on the LocationDetailActivity spinner
      */
     public void setCurrentItemDetails(String currentItemDetails) {
-        for (Item item : inventory) {
+        for (Item item : itemManager.getItemManagerAsItemArray()) {
             if (item.toString().equals(currentItemDetails)) {
                 _currentItemDetails = item;
             }
         }
     }
 
+    public boolean deleteBinary(File file) {
+        boolean success = true;
+            file.delete();
+        return success;
+    }
 
     public boolean loadBinary(File file) {
         boolean success = true;
@@ -272,15 +259,12 @@ public class Model {
             // assuming we saved our top level object, we read it back in with one line of code.
             accountManager = (AccountManager) in.readObject();
             locationManager =  (LocationManager) in.readObject();
+            itemManager = (ItemManager) in.readObject();
             //sm.regenMap();
             in.close();
         } catch (IOException e) {
-            //Log.e("UserManagementFacade", "Error reading an entry from binary file",e);
-            //Toast.makeText(this, "Error reading an entry from binary file.", Toast.LENGTH_SHORT).show();
             success = false;
         } catch (ClassNotFoundException e) {
-            //Log.e("UserManagementFacade", "Error casting a class from the binary file",e);
-            //Toast.makeText(this, "Error casting a class from the binary file.", Toast.LENGTH_SHORT).show();
            success = false;
         }
 
@@ -301,17 +285,16 @@ public class Model {
                One thing to be careful of:  You cannot serialize static data.
              */
 
-
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
             // We basically can save our entire data model with one write, since this will follow
             // all the links and pointers to save everything.  Just save the top level object.
             out.writeObject(accountManager);
             out.writeObject(locationManager);
+            out.writeObject(itemManager);
+
             out.close();
 
         } catch (IOException e) {
-            //Log.e("UserManagerFacade", "Error writing an entry from binary file",e);
-            //Toast.makeText(this, "Error writing an entry from binary file.", Toast.LENGTH_SHORT).show();
             success = false;
         }
         return success;

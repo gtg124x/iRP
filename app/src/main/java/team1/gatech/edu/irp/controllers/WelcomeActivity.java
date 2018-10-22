@@ -5,21 +5,14 @@ import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Account;
-import team1.gatech.edu.irp.model.AccountManager;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.UserType;
 
-import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 
 /**
@@ -31,23 +24,19 @@ import java.io.ObjectOutputStream;
 public class WelcomeActivity extends AppCompatActivity {
     private Model model;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
         model = Model.getInstance();
-        Account account = new Account("mitch", "1234", "@.", UserType.ADMIN);
-        model.addAccount(account);
 
-//        File file = new File(this.getFilesDir(), model.DEFAULT_BINARY_FILE_NAME);
-//        model.loadBinary(file);
-
+        // hack to get into app before persistence data
+        Account admin = new Account("mitch", "1234", "@.", UserType.ADMIN);
+        model.addAccount(admin);
 
     }
-
-
-
 
     public void onLoginClicked(View v) {
         Intent intent = new Intent(this, LoginActivity.class);
@@ -67,7 +56,7 @@ public class WelcomeActivity extends AppCompatActivity {
         if (success) {
             Toast.makeText(this, "Data has been loaded.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "ERROR: Data has been NOT loaded.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ERROR: No saved data to load.", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -80,10 +69,21 @@ public class WelcomeActivity extends AppCompatActivity {
         if (success) {
             Toast.makeText(this, "Data has been saved.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "ERROR: Data has been NOT saved.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ERROR: Data has NOT been saved.", Toast.LENGTH_SHORT).show();
         }
     }
 
+    public void onClearDataOnPressed(View v) {
+        model = model.getInstance();
+        File file;
+        file = new File(this.getFilesDir(), model.DEFAULT_BINARY_FILE_NAME);
+        boolean success =  model.deleteBinary(file);
+        if (success) {
+            Toast.makeText(this, "Data has been deleted.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "ERROR: Data has NOT been deleted.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
 }
