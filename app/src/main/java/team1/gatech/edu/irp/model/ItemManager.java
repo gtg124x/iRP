@@ -70,9 +70,17 @@ public class ItemManager implements Serializable {
 
     public ArrayList<String> getItemListByCategoryAndLocation(Category category, String location) {
         ArrayList<String> itemLocationList = new ArrayList<>();
-        for (Item i : inventory) {
-            if (i.getLocation().toString().equals(location) && i.getCategory().equals(category)) {
-                itemLocationList.add(i.toString());
+        if (location.equals("All Locations")) {
+            for (Item i : inventory) {
+                if (i.getCategory().equals(category)) {
+                    itemLocationList.add(i.toString());
+                }
+            }
+        } else {
+            for (Item i : inventory) {
+                if (i.getLocation().toString().equals(location) && i.getCategory().equals(category)) {
+                    itemLocationList.add(i.toString());
+                }
             }
         }
         return itemLocationList;
@@ -81,9 +89,17 @@ public class ItemManager implements Serializable {
 
     public ArrayList<String> getItemListByNameAndLocation(String name, String location) {
         ArrayList<String> itemLocationList = new ArrayList<>();
-        for (Item i : inventory) {
-            if (i.getLocation().toString().equals(location) && i.getShortDescripiton().equals(name)) {
-                itemLocationList.add(i.toString());
+        if (location.equals("All Locations")) {
+            for (Item i : inventory) {
+                if (i.getShortDescripiton().equals(name)) {
+                    itemLocationList.add(i.toString());
+                }
+            }
+        } else {
+            for (Item i : inventory) {
+                if (i.getLocation().toString().equals(location) && i.getShortDescripiton().equals(name)) {
+                    itemLocationList.add(i.toString());
+                }
             }
         }
         return itemLocationList;

@@ -28,8 +28,11 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
     /*
       Set up the adapter to display the allowable locations in the spinner
      */
+        ArrayList<String> locationsList = new ArrayList<>();
+        locationsList.add("All Locations");
+        locationsList.addAll(model.getLocationsAsString());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, locationsList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationSpinner.setAdapter(adapter);
         LocationSpinner.setSelection(0);
