@@ -53,7 +53,7 @@ public class Model {
     /**
      * the currently item list from ItemSearchByCategoryActivity
      */
-    private ArrayList<String> _currentItemList;
+    private List<String> _currentItemList;
 
     /**
      * the currently selected location of the LocationListActivity
@@ -140,6 +140,12 @@ public class Model {
      */
     public boolean loadLocations(View v) { return locationManager.loadLocationsFromCSV(v); }
 
+    /**
+     * tests whether or not the location list is empty
+     *
+     * @return if there are no locations entered in the app
+     */
+    public boolean noLocations() { return locationManager.locationListEmpty(); }
 
 
     /**
@@ -173,6 +179,15 @@ public class Model {
     }
 
     /**
+     * tests whether or not the inventory is empty
+     *
+     * @return if the inventory is empty
+     */
+    public boolean inventoryEmpty() { return itemManager.itemListEmpty(); }
+
+
+
+    /**
      * adds and item to the inventory
      *
      *  @param item a donation item
@@ -184,14 +199,14 @@ public class Model {
      *
      * @return list of items objects
      */
-    public ArrayList<Item> getInventoryAsItemArray() { return itemManager.getItemManagerAsItemArray(); }
+    public List<Item> getInventoryAsItemArray() { return itemManager.getItemManagerAsItemArray(); }
 
     /**
      * a list of items represented as Strings that have been added to the app
      *
      * @return list of items represented as Strings
      */
-    public ArrayList<String> getInvtoryAsStringArrary() { return itemManager.getItemManagerAsStringArray(); }
+    public List<String> getInvtoryAsStringArrary() { return itemManager.getItemManagerAsStringArray(); }
 
     /**
      * a list of items represented as Strings that have been added to the a selected location
@@ -199,7 +214,7 @@ public class Model {
      * @param  location currently selected location to view
      * @return list of items represented as Strings
      */
-    public ArrayList<String> getInventoryByLocation(Location location) {
+    public List<String> getInventoryByLocation(Location location) {
         return itemManager.getItemListByLocation(location); }
 
 
@@ -207,20 +222,30 @@ public class Model {
      *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
      ****************************************************************************************
      */
-    public ArrayList<String> getInventoryByCategoryAndLocation(Category category, String locationString ) {
+    public List<String> getInventoryByCategoryAndLocation(Category category, String locationString ) {
         return itemManager.getItemListByCategoryAndLocation(category, locationString);
     }
 
-    public ArrayList<String> getInventoryByNameAndLocation(String name, String locationString ) {
+    public List<String> getInventoryByNameAndLocation(String name, String locationString ) {
         return itemManager.getItemListByNameAndLocation(name, locationString);
     }
 
-    public void setCurrentItemList(ArrayList<String> currentItemList) {
+    public void setCurrentItemList(List<String> currentItemList) {
         _currentItemList = currentItemList;
     }
 
-    public ArrayList<String> getCurrentItemList() {
+    public List<String> getCurrentItemList() {
        return _currentItemList;
+    }
+
+    public boolean isCurrentItemListEmpty() {
+        boolean success;
+        if( _currentItemList.size() == 0) {
+            success = true;
+        } else {
+            success = false;
+        }
+        return success;
     }
 
 

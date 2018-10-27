@@ -13,6 +13,9 @@ import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.AddDonationResultENUM;
 
+/**
+ * Screen that lets a location employee input items details to add to the inventory
+ */
 public class AddDonationActivity extends AppCompatActivity {
 
     private TextView timeStampTextView;
@@ -97,7 +100,7 @@ public class AddDonationActivity extends AppCompatActivity {
     }
 
     /**
-     * Button handler for when the user presses the back button
+     * When the user presses the Back button is sends them back to the Local Employee home screen
      */
     public void onAddDonationBackOnPress(View v) {
         finish();

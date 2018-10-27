@@ -73,6 +73,22 @@ public class LocationManager implements Serializable {
         return success;
     }
 
+    /**
+     * tests whether or not the location list is empty
+     *
+     * @return if there are no locations entered in the app
+     */
+    public boolean locationListEmpty() {
+        boolean success;
+        if (locations.size() == 0) {
+            success = true;
+        } else {
+            success = false;
+        }
+        return success;
+    }
+
+
 
     /**
      * returns a list of locations that have been added to the app

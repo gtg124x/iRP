@@ -3,14 +3,17 @@ package team1.gatech.edu.irp.controllers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Model;
 import android.view.View;
 import android.widget.Toast;
 
+/**
+ * Screen that appears after login when the account is for an administrator
+ */
 public class AdminActivity extends AppCompatActivity {
 
-    private final static int NOLOCATIONS = 0;
     private Model model;
 
     @Override
@@ -20,7 +23,7 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     /**
-     * Button handler for logout
+     * When the Logout Button is pressed it sends the admin back to the welcome screen
      *
      * @param v the view
      */
@@ -30,13 +33,13 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     /**
-     * Button handler for viewing a list of locations
+     * When the View Locations Button is pressed it sends the admin to the a screen that displays the locations in a spinner
      *
      * @param v the view
      */
     public void onViewLocationAdminOnPress(View v) {
         model = Model.getInstance();
-        if (model.getLocations().size() == NOLOCATIONS) {
+        if (model.noLocations()) {
             Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, LocationListActivity.class);
@@ -45,7 +48,7 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     /**
-     * Button handler for loading locations into app from CSV
+     * When the Load Locations Button is pressed it loads the locations into app from a CSV file
      *
      * @param v the view
      */

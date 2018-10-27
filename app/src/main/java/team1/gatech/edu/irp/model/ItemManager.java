@@ -16,12 +16,12 @@ public class ItemManager implements Serializable {
     /**
      * holds the items that are donated
      */
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private List<Item> inventory = new ArrayList<>();
 
     /**
      * array to hold string representation of item in inventory
      */
-    private ArrayList<String> inventoryStringArray = new ArrayList<>();
+    private List<String> inventoryStringArray = new ArrayList<>();
 
 
 
@@ -149,19 +149,19 @@ public class ItemManager implements Serializable {
      *
      * @return list of Item objects
      */
-    public ArrayList<Item> getItemManagerAsItemArray() { return inventory; }
+    public List<Item> getItemManagerAsItemArray() { return inventory; }
 
     /**
      * returns a list of items represented as Strings that have been added to the app
      *
      * @return list of items represented as Strings
      */
-    public ArrayList<String> getItemManagerAsStringArray() {
+    public List<String> getItemManagerAsStringArray() {
         return inventoryStringArray;
     }
 
-    public ArrayList<String> getItemListByLocation(Location location) {
-        ArrayList<String> itemLocationList = new ArrayList<>();
+    public List<String> getItemListByLocation(Location location) {
+        List<String> itemLocationList = new ArrayList<>();
         for (Item i : inventory) {
             if (i.getLocation().equals(location)) {
                 itemLocationList.add(i.toString());
@@ -170,8 +170,8 @@ public class ItemManager implements Serializable {
         return itemLocationList;
     }
 
-    public ArrayList<String> getItemListByCategoryAndLocation(Category category, String location) {
-        ArrayList<String> itemLocationList = new ArrayList<>();
+    public List<String> getItemListByCategoryAndLocation(Category category, String location) {
+        List<String> itemLocationList = new ArrayList<>();
         if (location.equals("All Locations")) {
             for (Item i : inventory) {
                 if (i.getCategory().equals(category)) {
@@ -189,8 +189,8 @@ public class ItemManager implements Serializable {
     }
 
 
-    public ArrayList<String> getItemListByNameAndLocation(String name, String location) {
-        ArrayList<String> itemLocationList = new ArrayList<>();
+    public List<String> getItemListByNameAndLocation(String name, String location) {
+        List<String> itemLocationList = new ArrayList<>();
         if (location.equals("All Locations")) {
             for (Item i : inventory) {
                 if (i.getShortDescripiton().equals(name)) {
@@ -207,6 +207,20 @@ public class ItemManager implements Serializable {
         return itemLocationList;
     }
 
+    /**
+     * tests whether or not the inventory is empty
+     *
+     * @return if the inventory is empty
+     */
+    public boolean itemListEmpty() {
+        boolean success;
+        if (inventory.size() == 0) {
+            success = true;
+        } else {
+            success = false;
+        }
+        return success;
+    }
 
 }
 

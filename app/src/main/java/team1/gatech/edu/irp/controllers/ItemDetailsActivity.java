@@ -1,17 +1,16 @@
 package team1.gatech.edu.irp.controllers;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.Model;
+import android.view.View;
+import android.widget.TextView;
 
+/**
+ * Screen that displays the details of an item
+ */
 public class ItemDetailsActivity extends AppCompatActivity {
 
     private TextView timeStampField;
@@ -22,7 +21,9 @@ public class ItemDetailsActivity extends AppCompatActivity {
     private TextView shortDescriptionField;
     private TextView fullDescriptionField;
 
-
+    /**
+     * displays the details of an item
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +64,9 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * When the user presses the Back button is sends them back to the previous screen
+     */
     public void onBackItemDetailsOnPress(View v) {
         finish();
     }

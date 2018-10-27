@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Category;
@@ -57,7 +58,7 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         String currLoc = ((String) LocationSpinner.getSelectedItem());
         Category category = (Category) CategorySpinner.getSelectedItem();
 
-        ArrayList<String> itemListByCategoryAndLocation = model.getInventoryByCategoryAndLocation(category, currLoc);
+        List<String> itemListByCategoryAndLocation = model.getInventoryByCategoryAndLocation(category, currLoc);
         model.setCurrentItemList(itemListByCategoryAndLocation);
 
         Intent intent = new Intent(this, ItemListActivity.class);

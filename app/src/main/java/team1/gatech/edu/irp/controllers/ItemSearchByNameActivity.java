@@ -9,6 +9,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Model;
@@ -47,7 +48,7 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
         String itemName = itemNameTextView.getText().toString();
         String currLoc = ((String) LocationSpinner.getSelectedItem());
 
-        ArrayList<String> itemListByNameAndLocation = model.getInventoryByNameAndLocation(itemName, currLoc);
+        List<String> itemListByNameAndLocation = model.getInventoryByNameAndLocation(itemName, currLoc);
         model.setCurrentItemList(itemListByNameAndLocation);
 
         Intent intent = new Intent(this, ItemListActivity.class);

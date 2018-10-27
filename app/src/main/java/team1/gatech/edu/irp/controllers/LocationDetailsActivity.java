@@ -9,6 +9,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.List;
+
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.Model;
@@ -84,7 +86,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
     /**
       Set up the adapter to display the allowable locations in the spinner
      */
-        ArrayList<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
+        List<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, currentLocationItemList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -100,7 +102,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
     public void onViewItemOnPress(View v) {
         Model model = Model.getInstance();
         Location currSelectedLocation = model.getCurrentLocation();
-        ArrayList<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
+        List<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
         if (currentLocationItemList.size() == NOITEMS) {
             Toast.makeText(this, "No Items Have Been Added To Inventory", Toast.LENGTH_SHORT).show();
         } else {
