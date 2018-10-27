@@ -6,21 +6,17 @@ import android.os.Bundle;
 import android.widget.TextView;
 import team1.gatech.edu.irp.R;
 import android.view.View;
-
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.UserType;
-
 import android.content.Intent;
 import android.widget.Toast;
 
-import java.io.File;
-
-
 public class LoginActivity extends AppCompatActivity {
 
+    private Model model;
     private TextView userName;
     private TextView password;
-    private UserType userType = UserType.USER;
+    private UserType userType;
 
 
     @Override
@@ -37,18 +33,27 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Cancel Button Handler.
+     * Return to previous screen when pressed
+     */
     public void onCancelLoginPressed(View v) {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Login Button Handler.
+     * Valid the login and get the user type to determine which screen to navigate towards
+     */
     public void onLoginPressed(View v) {
+        model = Model.getInstance();
+
         String name = userName.getText().toString();
         String pword = password.getText().toString();
 
-
-        if (validateLogin(name, pword)) {
+        if (model.validateLogin(name, pword)) {
+            userType = model.getUserType(name);
             if (userType == UserType.ADMIN) {
                 Intent intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);
@@ -65,29 +70,6 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Invalid Username/Password combination", Toast.LENGTH_SHORT).show();
         }
-
-
-
     }
-
-    public boolean validateLogin(String uName, String password) {
-        Model model = Model.getInstance();
-        if (uName.length() == 0 || password.length() == 0) {
-            return false;
-        }
-        for (int i = 0; i < model.getAccounts().size(); i++) {
-            if (model.getAccounts().get(i) == null) {
-                return false;
-            }
-            String Lname = model.getAccounts().get(i).getUserName();
-            String pword = model.getAccounts().get(i).getPassword();
-            if (uName.equals(Lname) && password.equals(pword)) {
-                userType = model.getAccounts().get(i).getUserType();
-                return true;
-            }
-        }
-        return false;
-    }
-
 
 }

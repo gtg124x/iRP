@@ -14,7 +14,6 @@ public class LocationListActivity extends AppCompatActivity {
 
     private Spinner LocationSpinner;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,10 +21,10 @@ public class LocationListActivity extends AppCompatActivity {
 
         LocationSpinner = (Spinner) findViewById(R.id.SpinnerLocation);
         Model model = Model.getInstance();
-    /*
+
+    /**
       Set up the adapter to display the allowable locations in the spinner
      */
-
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationSpinner.setAdapter(adapter);
@@ -33,6 +32,11 @@ public class LocationListActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Button handler for viewing location details
+     *
+     * @param v the view
+     */
     public void onViewLocationDetailsOnPress(View v) {
         Model model = Model.getInstance();
 
@@ -42,6 +46,12 @@ public class LocationListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LocationDetailsActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * Button handler for the back button
+     *
+     * @param v the view
+     */
     public void onLocationListBackOnPress(View v) {
         finish();
     }

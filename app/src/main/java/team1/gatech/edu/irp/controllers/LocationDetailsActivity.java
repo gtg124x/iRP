@@ -1,6 +1,5 @@
 package team1.gatech.edu.irp.controllers;
 
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,17 +8,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import java.util.ArrayList;
-
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Location;
-import team1.gatech.edu.irp.model.LocationType;
 import team1.gatech.edu.irp.model.Model;
-
-
-
 
 public class LocationDetailsActivity extends AppCompatActivity {
 
@@ -35,11 +27,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
     private TextView longitudeField;
 
     private Spinner itemSpinner;
-
-
-
-    private Location location;
-
+    private final static int NOITEMS = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +81,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
 
         itemSpinner = (Spinner) findViewById(R.id.ItemSpinner);
-    /*
+    /**
       Set up the adapter to display the allowable locations in the spinner
      */
         ArrayList<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
@@ -102,17 +90,18 @@ public class LocationDetailsActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(adapter);
         itemSpinner.setSelection(0);
-
-
-
-
     }
 
+    /**
+     * Button handler for viewing a item selection
+     *
+     * @param v the view
+     */
     public void onViewItemOnPress(View v) {
         Model model = Model.getInstance();
         Location currSelectedLocation = model.getCurrentLocation();
         ArrayList<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
-        if (currentLocationItemList.size() == 0) {
+        if (currentLocationItemList.size() == NOITEMS) {
             Toast.makeText(this, "No Items Have Been Added To Inventory", Toast.LENGTH_SHORT).show();
         } else {
             String currItem = ((String) itemSpinner.getSelectedItem());
@@ -122,6 +111,11 @@ public class LocationDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Button handler for the back button
+     *
+     * @param v the view
+     */
     public void onLocationDetailsBackButtonOnPress(View v) {
         finish();
     }

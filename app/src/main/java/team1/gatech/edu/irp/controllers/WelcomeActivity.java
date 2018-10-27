@@ -4,14 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Account;
 import team1.gatech.edu.irp.model.Model;
-import team1.gatech.edu.irp.model.UserType;
-
 import android.view.View;
 import android.content.Intent;
 import android.widget.Toast;
-
 import java.io.File;
 
 
@@ -29,25 +25,30 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
-        model = Model.getInstance();
-
-        // hack to get into app before persistence data
-        Account admin = new Account("mitch", "1234", "@.", UserType.ADMIN);
-        model.addAccount(admin);
-
     }
 
+    /**
+     * When the user clicks the login button it sends them to the loginActivity
+     *
+     */
     public void onLoginClicked(View v) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * When the user clicks the register button it sends them to the RegistrationActivity
+     *
+     */
     public void onRegistrationClicked(View v) {
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * When the user clicks the load data button it loads the saved data
+     *
+     */
     public void onLoadDataOnPressed(View v) {
         model = model.getInstance();
         File file;
@@ -61,6 +62,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * When the user clicks the save data button it saves the data
+     *
+     */
     public void onSaveDataOnPressed(View v) {
         model = model.getInstance();
         File file;
@@ -73,6 +78,10 @@ public class WelcomeActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * When the user clicks the clear data button it erases the data
+     *
+     */
     public void onClearDataOnPressed(View v) {
         model = model.getInstance();
         File file;

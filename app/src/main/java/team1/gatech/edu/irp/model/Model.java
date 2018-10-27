@@ -6,23 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-//package com.javapapers.android.csvfileread.app;
-
-import android.app.Activity;
-import android.os.Parcelable;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import java.io.InputStream;
-import java.util.List;
-
+import android.view.View;
 
 /**
  * Created by mitchellalvarado on 9/20/18.
@@ -103,18 +89,41 @@ public class Model {
      */
 
     /**
-     * a list of the accounts
+     * adds an account to the system
      *
-     *  @return a list of Account objects
+     *  @param name an account name
+     *  @param pword an account password
+     *  @param cInfo an account contact info
+     *  @param userTypeEnum an account type
+     *  @return success
      */
-    public ArrayList<Account> getAccounts() { return accountManager.getAccounts(); }
+    public RegistrationResultENUM addAccount(String name, String pword, String cInfo, UserType userTypeEnum) {
+        return accountManager.addToAccounts(name, pword, cInfo, userTypeEnum);
+    }
 
     /**
-     * adds and account to the list of the accounts
+     * validate the login information
      *
-     *  @param account a user account
+     *  @param name an account name
+     *  @param pword an account password
+     *
+     *  @return success
      */
-    public void addAccount(Account account) { accountManager.addToAccounts(account);}
+    public boolean validateLogin(String name, String pword) {
+        return accountManager.loginCheck(name, pword);
+    }
+
+    /**
+     * retrieves the user type from a valid account
+     *
+     *  @param name an account name
+     *
+     *  @return user type
+     */
+    public UserType getUserType(String name) {
+        return accountManager.lookupUserType(name);
+    }
+
 
 
     /****************************************************************************************
@@ -125,18 +134,27 @@ public class Model {
      */
 
     /**
+     * loads the locations from CSV file to app
+     *
+     * @return list of Location objects
+     */
+    public boolean loadLocations(View v) { return locationManager.loadLocationsFromCSV(v); }
+
+
+
+    /**
      * a list of locations that have been added to the app
      *
      * @return list of Location objects
      */
-    public ArrayList<Location> getLocations() { return locationManager.getLocationArray(); }
+    public List<Location> getLocations() { return locationManager.getLocationAsLocationArray(); }
 
     /**
      * a list of locations represented as Strings that have been added to the app
      *
      * @return list of locations represented as Strings
      */
-    public ArrayList<String> getLocationsAsString() { return locationManager.getLocationStringArray(); }
+    public List<String> getLocationsAsString() { return locationManager.getLocationAsStringArray(); }
 
 
     /****************************************************************************************
@@ -145,6 +163,14 @@ public class Model {
      *           AddDonationActivity to ItemManager.
      ****************************************************************************************
      */
+
+    public AddDonationResultENUM validateAndAddItemToInventory(String timeStamp, String dateStamp,
+                                                               Location location, Category category,
+                                                               String dollarValue, String shortDescription,
+                                                               String fullDescription) {
+        return itemManager.validateAndAddItemToItemManager(timeStamp, dateStamp, location, category,
+                dollarValue, shortDescription, fullDescription);
+    }
 
     /**
      * adds and item to the inventory
@@ -213,7 +239,7 @@ public class Model {
      * @param currentLocation the currently selected location on the LocationListActivity spinner
      */
     public void setCurrentLocation(String currentLocation) {
-        for (Location l : locationManager.getLocationArray()) {
+        for (Location l : locationManager.getLocationAsLocationArray()) {
             if (l.toString().equals(currentLocation)) {
                 _currentLocation = l;
             }
@@ -235,7 +261,7 @@ public class Model {
      * @param currentLocationAddDonation the currently selected location on the AddDonationActivity spinner
      */
     public void setCurrentLocationAddDonation(String currentLocationAddDonation) {
-        for (Location l : locationManager.getLocationArray()) {
+        for (Location l : locationManager.getLocationAsLocationArray()) {
             if (l.toString().equals(currentLocationAddDonation)) {
                 _currentLocationAddDonation = l;
             }

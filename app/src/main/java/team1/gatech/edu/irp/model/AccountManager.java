@@ -1,7 +1,7 @@
 package team1.gatech.edu.irp.model;
-
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AccountManager implements Serializable {
 
@@ -17,7 +17,7 @@ public class AccountManager implements Serializable {
     /**
      * list of account objects
      */
-    private ArrayList<Account> accounts = new ArrayList<>();
+    private Map<String, Account> accounts = new HashMap<>();
 
 
 
@@ -27,24 +27,130 @@ public class AccountManager implements Serializable {
      */
 
     /**
-     * adds an account to the app
+     * adds an account to the system
      *
-     * @param newAccount a new account from the registration screen
+     *  @param name an account name
+     *  @param pword an account password
+     *  @param cInfo an account contact info
+     *  @param userTypeEnum an account type
+     *  @return result of registration
      */
-    public void addToAccounts(Account newAccount) {
-        accounts.add(newAccount);
+    public RegistrationResultENUM addToAccounts(String name, String pword, String cInfo, UserType userTypeEnum) {
+
+
+        if (accountNameNotValid(name)) {
+            return RegistrationResultENUM.NAME_INVALID;
+        } else if (accountNameIsTaken(name)) {
+            return RegistrationResultENUM.NAME_TAKEN;
+        } else if (accountPasswordNotValid(pword)) {
+            return RegistrationResultENUM.PASSWORD_INVALID;
+        } else if (accountEmailNotValid(cInfo)) {
+            return RegistrationResultENUM.EMAIL_INVALID;
+        } else {
+            return createAccounts(name, pword, cInfo, userTypeEnum);
+        }
+
+
     }
+
+
 
     /**
      * gets the list of Account objects
      *
      * @return a list of Account objects
      */
-    public ArrayList<Account> getAccounts() {
-        return accounts;
+//    public ArrayList<Account> getAccounts() {
+//        return accounts;
+//    }
+
+    /**
+     * validates that the user input in the name field is valid
+     *
+     *  @param name the account name
+     */
+    private boolean accountNameNotValid(String name) {
+        if (name.length() < 4) {
+            return true;
+        }
+        return false;
     }
 
+    /**
+     * validates that the user input in the name field has not already been taken
+     *
+     *  @param uName the account name
+     */
+    private boolean accountNameIsTaken(String uName) {
+        if (accounts.containsKey(uName)) {
+            return true;
+        }
+        return false;
 
+//        for (int i = 0; i < accounts.size(); i++) {
+//            if (!(accounts.get(i) == null)) {
+//                String Lname = accounts.get(i).getUserName();
+//                if (uName.equals(Lname)) {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+    }
 
+    /**
+     * validates that the user input in the password field is valid
+     *
+     *  @param password the account password
+     */
+    private boolean accountPasswordNotValid(String password) {
+        if (password.length() < 4) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * validates that the user input in the email field is valid
+     *
+     *  @param email the account email
+     */
+    private boolean accountEmailNotValid(String email) {
+        if (!email.contains("@") || !email.contains(".")) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * adds an account to the system
+     *
+     *  @param name an account name
+     *  @param pword an account password
+     *  @param cInfo an account contact info
+     *  @param userTypeEnum an account type
+     *  @return success
+     */
+    private RegistrationResultENUM createAccounts(String name, String pword, String cInfo, UserType userTypeEnum) {
+        Account newAccount = new Account(name, pword, cInfo, userTypeEnum);
+        accounts.put(name, newAccount);
+        return RegistrationResultENUM.SUCCESS;
+    }
+
+    public boolean loginCheck(String name, String pword) {
+        boolean success = false;
+        if (accounts.containsKey(name)) {
+            if (accounts.get(name).getPassword().equals(pword)) {
+                success = true;
+            }
+        } else {
+            success = false;
+        }
+        return success;
+    }
+
+    public UserType lookupUserType(String name) {
+        return accounts.get(name).getUserType();
+    }
 
 }

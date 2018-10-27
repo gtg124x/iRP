@@ -4,31 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.CSVFile;
-import team1.gatech.edu.irp.model.Location;
-import team1.gatech.edu.irp.model.LocationType;
 import team1.gatech.edu.irp.model.Model;
-
-
-import android.util.Log;
 import android.view.View;
-
-import android.app.Activity;
-import android.os.Parcelable;
-import android.os.Bundle;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class AdminActivity extends AppCompatActivity {
 
-    //private ListView listView;
-   // private ItemArrayAdapter itemArrayAdapter;
-
+    private final static int NOLOCATIONS = 0;
+    private Model model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,59 +19,43 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
     }
 
-
+    /**
+     * Button handler for logout
+     *
+     * @param v the view
+     */
     public void onLogoutClicked(View v) {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Button handler for viewing a list of locations
+     *
+     * @param v the view
+     */
     public void onViewLocationAdminOnPress(View v) {
-        Model model = Model.getInstance();
-        if (model.getLocations().size() == 0) {
+        model = Model.getInstance();
+        if (model.getLocations().size() == NOLOCATIONS) {
             Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
         } else {
-
-
             Intent intent = new Intent(this, LocationListActivity.class);
             startActivity(intent);
-
         }
-
     }
 
+    /**
+     * Button handler for loading locations into app from CSV
+     *
+     * @param v the view
+     */
     public void onLoadLocationOnPress(View v) {
-
-        Model model = Model.getInstance();
-
-        InputStream inputStream = getResources().openRawResource(R.raw.locationdata);
-        CSVFile csvFile = new CSVFile(inputStream);
-        ArrayList<String[]> scoreList;
-        scoreList = csvFile.read();
-
-        for (int i = 1; i < scoreList.size(); i++) {
-                boolean duplicate = false;
-                Location tempLoc = new Location(Integer.parseInt(scoreList.get(i)[0]), scoreList.get(i)[1],
-                        Double.parseDouble(scoreList.get(i)[2]), Double.parseDouble(scoreList.get(i)[3]),
-                        scoreList.get(i)[4], scoreList.get(i)[5], scoreList.get(i)[6],
-                        Integer.parseInt(scoreList.get(i)[7]), LocationType.convertType(scoreList.get(i)[8]),
-                        scoreList.get(i)[9], scoreList.get(i)[10]);
-                for (Location x : model.getLocations()){
-                    if ((x.equals(tempLoc))) {
-                        duplicate = true;
-                    }
-                }
-                if (duplicate) {
-                    Toast.makeText(this, "Duplicate Locations will not be added.", Toast.LENGTH_SHORT).show();
-                } else {
-                    model.getLocationsAsString().add(tempLoc.toString());
-                    model.getLocations().add(tempLoc);
-                    Toast.makeText(this, "Locations have been loaded.", Toast.LENGTH_SHORT).show();
-                }
-
-
-            }
-
-
+        model = Model.getInstance();
+        boolean success = model.loadLocations(v);
+        if (success) {
+            Toast.makeText(this, "Locations have been loaded.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Duplicate Locations will not be added.", Toast.LENGTH_SHORT).show();
+        }
     }
-
 }

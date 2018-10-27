@@ -1,8 +1,23 @@
 package team1.gatech.edu.irp.model;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import team1.gatech.edu.irp.R;
+
+
+import team1.gatech.edu.irp.model.CSVFile;
+import team1.gatech.edu.irp.model.Location;
+import team1.gatech.edu.irp.model.LocationType;
+import team1.gatech.edu.irp.model.Model;
+import android.view.View;
+import android.widget.Toast;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class LocationManager implements Serializable {
 
@@ -19,24 +34,52 @@ public class LocationManager implements Serializable {
     /**
      * holds the list of all locations
      */
-    private ArrayList<Location> locations = new ArrayList<>();;
+    private List<Location> locations = new ArrayList<>();;
 
     /**
      * array to hold string representation of locations
      */
-    private ArrayList<String> locationsArray = new ArrayList<>();
+    private List<String> locationsAsStringArray = new ArrayList<>();
 
     /****************************************************************************************
      *    LOCATION METHODS
      ****************************************************************************************
      */
 
+    public boolean loadLocationsFromCSV(View v) {
+
+        InputStream inputStream = v.getResources().openRawResource(R.raw.locationdata);
+        CSVFile csvFile = new CSVFile(inputStream);
+        ArrayList<String[]> scoreList;
+        scoreList = csvFile.read();
+        boolean success = true;
+
+        for (int i = 1; i < scoreList.size(); i++) {
+            Location tempLoc = new Location(Integer.parseInt(scoreList.get(i)[0]), scoreList.get(i)[1],
+                    Double.parseDouble(scoreList.get(i)[2]), Double.parseDouble(scoreList.get(i)[3]),
+                    scoreList.get(i)[4], scoreList.get(i)[5], scoreList.get(i)[6],
+                    Integer.parseInt(scoreList.get(i)[7]), LocationType.convertType(scoreList.get(i)[8]),
+                    scoreList.get(i)[9], scoreList.get(i)[10]);
+            for (Location x : locations) {
+                if ((x.equals(tempLoc))) {
+                    success = false;
+                    return success;
+                }
+            }
+            locationsAsStringArray.add(tempLoc.toString());
+            locations.add(tempLoc);
+
+        }
+        return success;
+    }
+
+
     /**
      * returns a list of locations that have been added to the app
      *
      * @return list of Location objects
      */
-    public ArrayList<Location> getLocationArray() {
+    public List<Location> getLocationAsLocationArray() {
         return locations;
     }
 
@@ -45,8 +88,8 @@ public class LocationManager implements Serializable {
      *
      * @return list of locations represented as Strings
      */
-    public ArrayList<String> getLocationStringArray() {
-        return locationsArray;
+    public List<String> getLocationAsStringArray() {
+        return locationsAsStringArray;
     }
 
     public Location convertStringToLocation(String locationString) {
@@ -58,3 +101,5 @@ public class LocationManager implements Serializable {
         return new Location();
     }
 }
+
+
