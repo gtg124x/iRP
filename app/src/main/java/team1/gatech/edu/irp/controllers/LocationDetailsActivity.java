@@ -79,7 +79,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         longitudeField.setText(longitude);
 
         itemSpinner = (Spinner) findViewById(R.id.ItemSpinner);
-        
+
         /**
          * Set up the adapter to display the allowable locations in the spinner
          */
