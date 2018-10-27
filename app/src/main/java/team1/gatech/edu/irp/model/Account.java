@@ -14,10 +14,10 @@ public class Account implements Serializable {
     private String contactInfo;
 
     /** account state (locked or unlocked)*/
-    private AccountState accountState;
+    private AccountStateENUM accountState;
 
     /** account type admin, user, local emp, or manager*/
-    private UserType userType;
+    private UserTypeENUM userType;
 
     public String getUserName() { return userName; }
     public void setUserName(String userName) { this.userName = userName; }
@@ -28,11 +28,11 @@ public class Account implements Serializable {
     public String getContactInfo() { return contactInfo; }
     public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
 
-    public AccountState getAccountState() { return accountState; }
-    public void setAccountState(AccountState accountState) { this.accountState = accountState; }
+    public AccountStateENUM getAccountState() { return accountState; }
+    public void setAccountState(AccountStateENUM accountState) { this.accountState = accountState; }
 
-    public UserType getUserType() { return userType; }
-    public void setUserType(UserType userType) { this.userType = userType; }
+    public UserTypeENUM getUserType() { return userType; }
+    public void setUserType(UserTypeENUM userType) { this.userType = userType; }
 
     /**
      * Make a new account
@@ -43,7 +43,7 @@ public class Account implements Serializable {
      * @param accountState      the state of the account
      *
      */
-    public Account(String userName, String password, String contactInfo, UserType userType, AccountState accountState) {
+    public Account(String userName, String password, String contactInfo, UserTypeENUM userType, AccountStateENUM accountState) {
         this.userName = userName;
         this.password = password;
         this.contactInfo = contactInfo;
@@ -59,8 +59,8 @@ public class Account implements Serializable {
      * @param userType          the type of user
      *
      */
-    public Account(String userName, String password, String contactInfo, UserType userType) {
-        this(userName, password, contactInfo, userType,  AccountState.UNLOCKED);
+    public Account(String userName, String password, String contactInfo, UserTypeENUM userType) {
+        this(userName, password, contactInfo, userType,  AccountStateENUM.UNLOCKED);
     }
 
     /**
@@ -71,7 +71,7 @@ public class Account implements Serializable {
      *
      */
     public Account(String userName, String password, String contactInfo) {
-        this(userName, password, contactInfo, UserType.USER, AccountState.UNLOCKED);
+        this(userName, password, contactInfo, UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
     }
 
     /**
@@ -79,7 +79,7 @@ public class Account implements Serializable {
      * This constructor only for GUI use in edit/new account dialog
      */
     public Account() {
-        this("enter new name" , "NA", "enter email address", UserType.USER, AccountState.UNLOCKED);
+        this("enter new name" , "NA", "enter email address", UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
     }
 
     /**

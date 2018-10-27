@@ -1,6 +1,6 @@
 package team1.gatech.edu.irp.model;
 
-public enum UserType {
+public enum UserTypeENUM {
 
     /**
      * Created by mitchellalvarado on 9/28/18.
@@ -22,7 +22,7 @@ public enum UserType {
      *
      * @param type   user type
      */
-    UserType(String type) {
+    UserTypeENUM(String type) {
         this.type = type;
     }
 
@@ -37,5 +37,5 @@ public enum UserType {
      * @return the display string representation of the user type
      */
     public String toString() { return type; }
-    }
+}
 

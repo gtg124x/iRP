@@ -1,6 +1,6 @@
 package team1.gatech.edu.irp.model;
 
-public enum LocationType {
+public enum LocationTypeEnum {
 
     /**
      * Created by mitchellalvarado on 10/05/18.
@@ -23,7 +23,7 @@ public enum LocationType {
      *
      * @param type location type
      */
-    LocationType(String type) {
+    LocationTypeEnum(String type) {
         this.type = type;
     }
 
@@ -44,18 +44,19 @@ public enum LocationType {
     /**
      * @return the location type
      */
-    public static LocationType convertType(String typeAsString) {
+    public static LocationTypeEnum convertType(String typeAsString) {
         if (typeAsString.equalsIgnoreCase("Drop off")) {
-            return LocationType.DROPOFF;
+            return LocationTypeEnum.DROPOFF;
         } else if (typeAsString.equalsIgnoreCase("Store")) {
-            return LocationType.STORE;
+            return LocationTypeEnum.STORE;
         } else if (typeAsString.equalsIgnoreCase("Warehouse")) {
-            return LocationType.WAREHOUSE;
+            return LocationTypeEnum.WAREHOUSE;
         } else {
-            return LocationType.DROPOFF;
+            return LocationTypeEnum.DROPOFF;
         }
     }
 
 
 }
+
 

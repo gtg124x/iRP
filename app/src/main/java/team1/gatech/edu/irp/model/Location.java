@@ -40,7 +40,7 @@ public class Location implements Serializable {
     private int _zipCode;
 
     /** the list of all registered students for this course */
-    private LocationType _locationType;
+    private LocationTypeEnum _locationType;
 
     /** the phone number */
     private String _phoneNumber;
@@ -65,7 +65,7 @@ public class Location implements Serializable {
      *
      */
     public Location(int id, String name, Double latitude, Double longitude, String streetAddress,
-                    String city, String state, int zipCode, LocationType locationType,
+                    String city, String state, int zipCode, LocationTypeEnum locationType,
                     String phoneNumber, String websiteLink) {
         _id = id;
         _name = name;
@@ -91,7 +91,7 @@ public class Location implements Serializable {
         _city = "Atlanta";
         _state = "GA";
         _zipCode = 12345;
-        _locationType = LocationType.DROPOFF;
+        _locationType = LocationTypeEnum.DROPOFF;
         _phoneNumber = "(770) 634 - 5309";
         _websiteLink = "www.testsite.com";
 
@@ -130,8 +130,8 @@ public class Location implements Serializable {
     public int getZipCode() { return _zipCode; }
     public void setZipCode(int zipCode) { _zipCode = zipCode; }
 
-    public LocationType getLocationType() { return _locationType; }
-    public void setLocationType(LocationType locationType) { _locationType = locationType; }
+    public LocationTypeEnum getLocationType() { return _locationType; }
+    public void setLocationType(LocationTypeEnum locationType) { _locationType = locationType; }
 
     public String getPhoneNumber() { return _phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { _phoneNumber = phoneNumber; }

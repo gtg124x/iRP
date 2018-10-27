@@ -35,7 +35,7 @@ public class AccountManager implements Serializable {
      *  @param userTypeEnum an account type
      *  @return result of registration
      */
-    public RegistrationResultENUM addToAccounts(String name, String pword, String cInfo, UserType userTypeEnum) {
+    public RegistrationResultENUM addToAccounts(String name, String pword, String cInfo, UserTypeENUM userTypeEnum) {
 
 
         if (accountNameNotValid(name)) {
@@ -131,7 +131,7 @@ public class AccountManager implements Serializable {
      *  @param userTypeEnum an account type
      *  @return success
      */
-    private RegistrationResultENUM createAccounts(String name, String pword, String cInfo, UserType userTypeEnum) {
+    private RegistrationResultENUM createAccounts(String name, String pword, String cInfo, UserTypeENUM userTypeEnum) {
         Account newAccount = new Account(name, pword, cInfo, userTypeEnum);
         accounts.put(name, newAccount);
         return RegistrationResultENUM.SUCCESS;
@@ -149,7 +149,7 @@ public class AccountManager implements Serializable {
         return success;
     }
 
-    public UserType lookupUserType(String name) {
+    public UserTypeENUM lookupUserType(String name) {
         return accounts.get(name).getUserType();
     }
 

@@ -7,7 +7,7 @@ import android.widget.TextView;
 import team1.gatech.edu.irp.R;
 import android.view.View;
 import team1.gatech.edu.irp.model.Model;
-import team1.gatech.edu.irp.model.UserType;
+import team1.gatech.edu.irp.model.UserTypeENUM;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -16,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     private Model model;
     private TextView userName;
     private TextView password;
-    private UserType userType;
+    private UserTypeENUM userType;
 
 
     @Override
@@ -54,13 +54,13 @@ public class LoginActivity extends AppCompatActivity {
 
         if (model.validateLogin(name, pword)) {
             userType = model.getUserType(name);
-            if (userType == UserType.ADMIN) {
+            if (userType == UserTypeENUM.ADMIN) {
                 Intent intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);
-            } else if (userType == UserType.LOCALEMPLOYEE) {
+            } else if (userType == UserTypeENUM.LOCALEMPLOYEE) {
                 Intent intent = new Intent(this, LocalEmployeeActivity.class);
                 startActivity(intent);
-            } else if (userType == UserType.MANAGER) {
+            } else if (userType == UserTypeENUM.MANAGER) {
                 Intent intent = new Intent(this, ManagerActivity.class);
                 startActivity(intent);
             } else {

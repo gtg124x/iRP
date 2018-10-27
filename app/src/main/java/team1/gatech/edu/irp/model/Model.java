@@ -97,7 +97,7 @@ public class Model {
      *  @param userTypeEnum an account type
      *  @return success
      */
-    public RegistrationResultENUM addAccount(String name, String pword, String cInfo, UserType userTypeEnum) {
+    public RegistrationResultENUM addAccount(String name, String pword, String cInfo, UserTypeENUM userTypeEnum) {
         return accountManager.addToAccounts(name, pword, cInfo, userTypeEnum);
     }
 
@@ -120,7 +120,7 @@ public class Model {
      *
      *  @return user type
      */
-    public UserType getUserType(String name) {
+    public UserTypeENUM getUserType(String name) {
         return accountManager.lookupUserType(name);
     }
 

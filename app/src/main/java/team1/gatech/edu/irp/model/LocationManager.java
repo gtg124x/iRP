@@ -9,7 +9,7 @@ import team1.gatech.edu.irp.R;
 
 import team1.gatech.edu.irp.model.CSVFile;
 import team1.gatech.edu.irp.model.Location;
-import team1.gatech.edu.irp.model.LocationType;
+import team1.gatech.edu.irp.model.LocationTypeEnum;
 import team1.gatech.edu.irp.model.Model;
 import android.view.View;
 import android.widget.Toast;
@@ -64,7 +64,7 @@ public class LocationManager implements Serializable {
             Location tempLoc = new Location(Integer.parseInt(scoreList.get(i)[0]), scoreList.get(i)[1],
                     Double.parseDouble(scoreList.get(i)[2]), Double.parseDouble(scoreList.get(i)[3]),
                     scoreList.get(i)[4], scoreList.get(i)[5], scoreList.get(i)[6],
-                    Integer.parseInt(scoreList.get(i)[7]), LocationType.convertType(scoreList.get(i)[8]),
+                    Integer.parseInt(scoreList.get(i)[7]), LocationTypeEnum.convertType(scoreList.get(i)[8]),
                     scoreList.get(i)[9], scoreList.get(i)[10]);
             for (Location x : locations) {
                 if ((x.equals(tempLoc))) {
