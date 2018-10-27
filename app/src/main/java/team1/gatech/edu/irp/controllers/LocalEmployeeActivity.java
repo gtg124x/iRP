@@ -38,7 +38,7 @@ public class LocalEmployeeActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onViewLocationLocalEmployeeOnPress(View v) {
-        Model model = Model.getInstance();
+        model = Model.getInstance();
         if (model.noLocations()) {
             Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
         } else {

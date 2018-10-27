@@ -3,17 +3,16 @@ package team1.gatech.edu.irp.controllers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.Location;
+import team1.gatech.edu.irp.model.Model;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.ArrayList;
 import java.util.List;
-
-import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Location;
-import team1.gatech.edu.irp.model.Model;
 
 public class LocationDetailsActivity extends AppCompatActivity {
 
@@ -79,13 +78,11 @@ public class LocationDetailsActivity extends AppCompatActivity {
         longitudeField = (TextView) findViewById(R.id.LongitudeText);
         longitudeField.setText(longitude);
 
-
-
-
         itemSpinner = (Spinner) findViewById(R.id.ItemSpinner);
-    /**
-      Set up the adapter to display the allowable locations in the spinner
-     */
+        
+        /**
+         * Set up the adapter to display the allowable locations in the spinner
+         */
         List<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, currentLocationItemList);
@@ -102,8 +99,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
     public void onViewItemOnPress(View v) {
         Model model = Model.getInstance();
         Location currSelectedLocation = model.getCurrentLocation();
-        List<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
-        if (currentLocationItemList.size() == NOITEMS) {
+        if (model.isInventoryByLocationEmpty(currSelectedLocation)) {
             Toast.makeText(this, "No Items Have Been Added To Inventory", Toast.LENGTH_SHORT).show();
         } else {
             String currItem = ((String) itemSpinner.getSelectedItem());

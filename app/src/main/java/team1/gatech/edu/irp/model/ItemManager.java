@@ -23,7 +23,7 @@ public class ItemManager implements Serializable {
      */
     private List<String> inventoryStringArray = new ArrayList<>();
 
-
+    private static final int EMPTY = 0;
 
 
 
@@ -221,6 +221,24 @@ public class ItemManager implements Serializable {
         }
         return success;
     }
+
+    /**
+     * determines if the inventory at a location is empty or no
+     *
+     * @param  location currently selected location to analyze for inventory size
+     * @return if the inventory is empty
+     */
+    public boolean isItemListByLocationEmpty(Location location) {
+        List<String> itemLocationList = new ArrayList<>();
+        for (Item i : inventory) {
+            if (i.getLocation().equals(location)) {
+                itemLocationList.add(i.toString());
+            }
+        }
+        return itemLocationList.size() == EMPTY;
+    }
+
+
 
 }
 

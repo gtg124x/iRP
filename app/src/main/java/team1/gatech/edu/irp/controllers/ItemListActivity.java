@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,15 +23,12 @@ public class ItemListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_list);
 
         model = Model.getInstance();
-
         List<String> itemList = model.getCurrentItemList();
-
         itemSpinner = (Spinner) findViewById(R.id.spinnerItemListing);
 
-
-     /**
-      Set up the adapter to display the allowable location in the spinner
-     */
+        /**
+         * Set up the adapter to display the allowable location in the spinner
+         */
         ArrayAdapter<String> itemAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, itemList);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(itemAdapter);

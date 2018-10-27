@@ -26,13 +26,11 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
 
         LocationSpinner = (Spinner) findViewById(R.id.SpinnerLocationItemSearchByName);
         Model model = Model.getInstance();
-    /*
-      Set up the adapter to display the allowable locations in the spinner
-     */
-        ArrayList<String> locationsList = new ArrayList<>();
-        locationsList.add("All Locations");
-        locationsList.addAll(model.getLocationsAsString());
 
+        /**
+         * Set up the adapter to display the allowable location in the spinner
+         */
+        List<String> locationsList = model.getLocationsAsStringWithAllLocationOption();
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, locationsList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationSpinner.setAdapter(adapter);
@@ -42,6 +40,9 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * When the user presses the View Item Details button is sends Item Details Screen
+     */
     public void onViewItemDetailsFromNameSearchOnPress(View v) {
         Model model = Model.getInstance();
 
@@ -55,6 +56,9 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * When the user presses the Back button is sends them back to the previous screen
+     */
     public void onItemSearchByCategoryBackOnPress(View v) {
         finish();
     }

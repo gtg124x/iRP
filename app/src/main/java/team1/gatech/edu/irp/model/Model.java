@@ -162,6 +162,15 @@ public class Model {
      */
     public List<String> getLocationsAsString() { return locationManager.getLocationAsStringArray(); }
 
+    /**
+     * a list of locations represented as Strings that have been added to the app with All locations as first option
+     *
+     * @return list of locations represented as Strings with All locations as first option
+     */
+    public List<String> getLocationsAsStringWithAllLocationOption() { return locationManager.getLocationsAsStringArrayWithAllLocationOption(); }
+
+
+
 
     /****************************************************************************************
      *    ITEM MANAGER METHODS
@@ -217,6 +226,14 @@ public class Model {
     public List<String> getInventoryByLocation(Location location) {
         return itemManager.getItemListByLocation(location); }
 
+    /**
+     * determines if the inventory at a location is empty or no
+     *
+     * @param  location currently selected location to analyze for inventory size
+     * @return if the inventory is empty
+     */
+    public boolean isInventoryByLocationEmpty(Location location) {
+        return itemManager.isItemListByLocationEmpty(location); }
 
     /****************************************************************************************
      *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES

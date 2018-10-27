@@ -3,17 +3,14 @@ package team1.gatech.edu.irp.controllers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.Category;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
-import java.util.ArrayList;
 import java.util.List;
-
-import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Category;
-import team1.gatech.edu.irp.model.Item;
-import team1.gatech.edu.irp.model.Model;
 
 public class ItemSearchByCategoryActivity extends AppCompatActivity {
 
@@ -27,21 +24,12 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         LocationSpinner = (Spinner) findViewById(R.id.SpinnerLocationSearchByCategory);
         CategorySpinner = (Spinner) findViewById(R.id.spinnerCategorySearch);
         Model model = Model.getInstance();
-    /*
-      Set up the adapter to display the allowable locations in the spinner
-     */
 
-
-
-
-        ArrayList<String> locationsList = new ArrayList<>();
-        locationsList.add("All Locations");
-        locationsList.addAll(model.getLocationsAsString());
-
-
+        /**
+         * Set up the adapter to display the allowable locations in the spinner
+         */
+        List<String> locationsList = model.getLocationsAsStringWithAllLocationOption();
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, locationsList);
-
-//        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationSpinner.setAdapter(adapter);
         LocationSpinner.setSelection(0);
@@ -52,6 +40,9 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         CategorySpinner.setSelection(0);
     }
 
+    /**
+     * When the user presses the View Item Details button is sends Item Details Screen
+     */
     public void onViewItemDetailsFromNameCategoryOnPress(View v) {
         Model model = Model.getInstance();
 
@@ -65,6 +56,9 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * When the user presses the Back button is sends them back to the previous screen
+     */
     public void onItemSearchByCategoryBackOnPress(View v) {
         finish();
     }

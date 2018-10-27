@@ -43,17 +43,17 @@ public class AddDonationActivity extends AppCompatActivity {
         shortDescriptionTextView = (TextView) findViewById(R.id.DescriptionEditText);
         fullDescriptionTextView = (TextView) findViewById(R.id.FullDescriptionEditText);
 
-    /**
-      Set up the adapter to display the allowable location in the spinner
-     */
+        /**
+         * Set up the adapter to display the allowable location in the spinner
+         */
         ArrayAdapter<String> locationAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(locationAdapter);
         locationSpinner.setSelection(0);
 
-    /**
-      Set up the adapter to display the allowable location in the spinner
-     */
+        /**
+         * Set up the adapter to display the allowable location in the spinner
+         */
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category.values());
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
