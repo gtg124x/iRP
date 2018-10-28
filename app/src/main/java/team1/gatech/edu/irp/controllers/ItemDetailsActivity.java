@@ -65,7 +65,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
     }
 
     /**
-     * When the user presses the Back button is sends them back to the previous screen
+     * When the user presses the Back button is sends them back the LocationDetailsActivity
      */
     public void onBackItemDetailsOnPress(View v) {
         finish();

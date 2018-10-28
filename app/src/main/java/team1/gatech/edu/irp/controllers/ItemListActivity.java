@@ -12,7 +12,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import java.util.List;
 
-
+/**
+ * Displays the list of items from the search by category/name activity
+ */
 public class ItemListActivity extends AppCompatActivity {
     private Spinner itemSpinner;
     private Model model;
@@ -27,7 +29,7 @@ public class ItemListActivity extends AppCompatActivity {
         itemSpinner = (Spinner) findViewById(R.id.spinnerItemListing);
 
         /**
-         * Set up the adapter to display the allowable location in the spinner
+         * Set up the adapter to display the allowable items in the spinner
          */
         ArrayAdapter<String> itemAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, itemList);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -36,7 +38,7 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     /**
-     * Button handler for the add new donation button
+     * After selecting an item it displays the ItemDetailsActivity
      * @param view the button
      */
     public void onViewItemDetailsOnPress(View view) {
@@ -52,7 +54,7 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     /**
-     * When the user presses the Back button is sends them back to the previous screen
+     * When the user presses the Back button is sends them back to search by category/name Activity
      */
     public void onItemListBackOnPress(View view) {
         finish();

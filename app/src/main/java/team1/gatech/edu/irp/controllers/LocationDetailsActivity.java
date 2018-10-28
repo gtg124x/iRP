@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
 
+
 public class LocationDetailsActivity extends AppCompatActivity {
 
     private TextView nameField;
@@ -28,8 +29,10 @@ public class LocationDetailsActivity extends AppCompatActivity {
     private TextView longitudeField;
 
     private Spinner itemSpinner;
-    private final static int NOITEMS = 0;
 
+    /**
+     * Displays the details of a location
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +95,8 @@ public class LocationDetailsActivity extends AppCompatActivity {
     }
 
     /**
-     * Button handler for viewing a item selection
+     * Upon selecting the "View Items" Button, display the detail of the item.
+     * This takes the user to the ItemDetailsActivity if there are items to view.
      *
      * @param v the view
      */
@@ -110,8 +114,8 @@ public class LocationDetailsActivity extends AppCompatActivity {
     }
 
     /**
-     * Button handler for the back button
-     *
+     * Sends them back to the LocationListActivity
+     * 
      * @param v the view
      */
     public void onLocationDetailsBackButtonOnPress(View v) {

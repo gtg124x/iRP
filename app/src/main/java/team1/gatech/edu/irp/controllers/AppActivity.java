@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 /**
- * Screen that appears after login when the account is for an user
+ * User home screen that appears after login
  */
 public class AppActivity extends AppCompatActivity {
 

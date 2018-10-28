@@ -33,7 +33,7 @@ public class AddDonationActivity extends AppCompatActivity {
         Model model = Model.getInstance();
 
         /**
-         * Grab the dialog widgets so we can get info for later
+         * Grab the dialog widgets so we can get info for later use
          */
         timeStampTextView = (TextView) findViewById(R.id.TimeStampEditText);
         dateStampTextView = (TextView) findViewById(R.id.DateOfDonationEditText);
@@ -52,7 +52,7 @@ public class AddDonationActivity extends AppCompatActivity {
         locationSpinner.setSelection(0);
 
         /**
-         * Set up the adapter to display the allowable location in the spinner
+         * Set up the adapter to display the allowable category in the spinner
          */
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category.values());
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -62,6 +62,7 @@ public class AddDonationActivity extends AppCompatActivity {
 
     /**
      * Button handler for the add new donation button
+     * Takes the user input and send to model for verification
      * @param view the button
      */
     public void onSubmitOnPress(View view) {
@@ -75,9 +76,17 @@ public class AddDonationActivity extends AppCompatActivity {
         String shortDescription = shortDescriptionTextView.getText().toString();
         String fullDescription = fullDescriptionTextView.getText().toString();
 
-        model.setCurrentLocationAddDonation(locationString);               //convert location string to a location object
+        /**
+         * Sets the current location in the model, but converts it from a Location Object to a
+         * String Object so that the location can be displayed as a String on the Item Details Screen
+         */
+        model.setCurrentLocationAddDonation(locationString);
         Location location = model.getCurrentLocationAddDonation();
 
+        /**
+         * Validates the user input and adds it to the inventory if correct
+         * Returns the result of the attempt to add to inventory
+         */
         AddDonationResultENUM addDonationResult = model.validateAndAddItemToInventory(timeStamp, dateStamp,
                 location, category, dollarValue, shortDescription, fullDescription);
 

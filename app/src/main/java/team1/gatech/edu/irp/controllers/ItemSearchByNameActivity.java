@@ -3,17 +3,19 @@ package team1.gatech.edu.irp.controllers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.Model;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Model;
 
+/**
+ * After a user selects the Search Item by Name, this is the screen that appears
+ */
 public class ItemSearchByNameActivity extends AppCompatActivity {
 
     private Spinner LocationSpinner;
@@ -41,7 +43,7 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
     }
 
     /**
-     * When the user presses the View Item Details button is sends Item Details Screen
+     * When the user presses the View Item Details button is sends them to the Item Details Screen
      */
     public void onViewItemDetailsFromNameSearchOnPress(View v) {
         Model model = Model.getInstance();
@@ -57,7 +59,7 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
     }
 
     /**
-     * When the user presses the Back button is sends them back to the previous screen
+     * When the user presses the Back button is sends them back to user home screen
      */
     public void onItemSearchByCategoryBackOnPress(View v) {
         finish();

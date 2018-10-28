@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 /**
- * Screen that appears after login when the account is for an administrator
+ * Administrator home page that appears after login screen
  */
 public class AdminActivity extends AppCompatActivity {
 

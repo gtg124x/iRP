@@ -12,6 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import java.util.List;
 
+/**
+ * After a user selects the Search Item by Category, this is the screen that appears
+ */
 public class ItemSearchByCategoryActivity extends AppCompatActivity {
 
     private Spinner LocationSpinner;
@@ -34,6 +37,9 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         LocationSpinner.setAdapter(adapter);
         LocationSpinner.setSelection(0);
 
+        /**
+         * Set up the adapter to display the categories in the spinner
+         */
         ArrayAdapter<String> adapterCat = new ArrayAdapter(this, android.R.layout.simple_spinner_item,  Category.values());
         adapterCat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         CategorySpinner.setAdapter(adapterCat);
@@ -41,7 +47,7 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
     }
 
     /**
-     * When the user presses the View Item Details button is sends Item Details Screen
+     * When the user presses the View Item Details button is sends them to the Item Details Screen
      */
     public void onViewItemDetailsFromNameCategoryOnPress(View v) {
         Model model = Model.getInstance();
@@ -57,7 +63,7 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
     }
 
     /**
-     * When the user presses the Back button is sends them back to the previous screen
+     * When the user presses the Back button is sends them back to user home screen
      */
     public void onItemSearchByCategoryBackOnPress(View v) {
         finish();

@@ -11,6 +11,9 @@ import team1.gatech.edu.irp.model.UserTypeENUM;
 import android.content.Intent;
 import android.widget.Toast;
 
+/**
+ * The login Screen
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private Model model;
@@ -45,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Login Button Handler.
      * Valid the login and get the user type to determine which screen to navigate towards
+     * Graps the user input and sends it to model for verification.
      */
     public void onLoginPressed(View v) {
         model = Model.getInstance();

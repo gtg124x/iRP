@@ -15,6 +15,10 @@ import team1.gatech.edu.irp.model.UserTypeENUM;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+
+/**
+ * Account Registration Screen
+ */
 public class RegistrationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Model model;
@@ -79,9 +83,9 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
     }
 
     /**
-     * Button handler for cancel
+     * Sends them back to the Welcome Screen
      *
-     * @param view the button pressed
+     * @param v the view
      */
     public void onCancelPressed(View view) {
         finish();
