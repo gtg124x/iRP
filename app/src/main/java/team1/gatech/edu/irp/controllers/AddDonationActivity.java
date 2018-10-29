@@ -8,7 +8,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Category;
+import team1.gatech.edu.irp.model.CategoryENUM;
 import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.AddDonationResultENUM;
@@ -54,7 +54,7 @@ public class AddDonationActivity extends AppCompatActivity {
         /**
          * Set up the adapter to display the allowable category in the spinner
          */
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category.values());
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, CategoryENUM.values());
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
         categorySpinner.setSelection(0);
@@ -71,7 +71,7 @@ public class AddDonationActivity extends AppCompatActivity {
         String timeStamp = timeStampTextView.getText().toString();
         String dateStamp = dateStampTextView.getText().toString();
         String locationString = ((String) locationSpinner.getSelectedItem());
-        Category category = (Category) categorySpinner.getSelectedItem();
+        CategoryENUM category = (CategoryENUM) categorySpinner.getSelectedItem();
         String dollarValue = dollarValueTextView.getText().toString();
         String shortDescription = shortDescriptionTextView.getText().toString();
         String fullDescription = fullDescriptionTextView.getText().toString();

@@ -1,11 +1,7 @@
 package team1.gatech.edu.irp.model;
 
+/** Result of adding a donation Enum */
 public enum AddDonationResultENUM {
-    /**
-     * Created by mitchellalvarado on 9/28/18.
-     *
-     * This class represents the different types of users
-     */
 
     TIME_INVALID ("Time Invalid"),
     DATE_INVALID ("Date Taken"),

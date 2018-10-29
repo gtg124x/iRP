@@ -1,12 +1,10 @@
 package team1.gatech.edu.irp.model;
 
+/**
+ *
+ * This class represents the different types of users
+ */
 public enum UserTypeENUM {
-
-    /**
-     * Created by mitchellalvarado on 9/28/18.
-     *
-     * This class represents the different types of users
-     */
 
     USER ("User"),
     LOCALEMPLOYEE ("Local Employee"),

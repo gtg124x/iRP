@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Model;
-import team1.gatech.edu.irp.model.Category;
+import team1.gatech.edu.irp.model.CategoryENUM;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -40,7 +40,7 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         /**
          * Set up the adapter to display the categories in the spinner
          */
-        ArrayAdapter<String> adapterCat = new ArrayAdapter(this, android.R.layout.simple_spinner_item,  Category.values());
+        ArrayAdapter<String> adapterCat = new ArrayAdapter(this, android.R.layout.simple_spinner_item,  CategoryENUM.values());
         adapterCat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         CategorySpinner.setAdapter(adapterCat);
         CategorySpinner.setSelection(0);
@@ -53,7 +53,7 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         Model model = Model.getInstance();
 
         String currLoc = ((String) LocationSpinner.getSelectedItem());
-        Category category = (Category) CategorySpinner.getSelectedItem();
+        CategoryENUM category = (CategoryENUM) CategorySpinner.getSelectedItem();
 
         List<String> itemListByCategoryAndLocation = model.getInventoryByCategoryAndLocation(category, currLoc);
         model.setCurrentItemList(itemListByCategoryAndLocation);

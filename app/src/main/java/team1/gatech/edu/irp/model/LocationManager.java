@@ -5,19 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import team1.gatech.edu.irp.R;
-
-
-import team1.gatech.edu.irp.model.CSVFile;
-import team1.gatech.edu.irp.model.Location;
-import team1.gatech.edu.irp.model.LocationTypeEnum;
-import team1.gatech.edu.irp.model.Model;
 import android.view.View;
-import android.widget.Toast;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-
 
 public class LocationManager implements Serializable {
 
@@ -39,7 +27,7 @@ public class LocationManager implements Serializable {
     /**
      * array to hold string representation of locations
      */
-    private List<String> locationsAsStringArray = new ArrayList<>();
+    private List<String> locationsAsStringArray;
 
     /**
      * array to hold string representation of locations with All locations as first option
@@ -56,7 +44,7 @@ public class LocationManager implements Serializable {
 
         InputStream inputStream = v.getResources().openRawResource(R.raw.locationdata);
         CSVFile csvFile = new CSVFile(inputStream);
-        ArrayList<String[]> scoreList;
+        List<String[]> scoreList;
         scoreList = csvFile.read();
         boolean success = true;
 
@@ -111,9 +99,18 @@ public class LocationManager implements Serializable {
      * @return list of locations represented as Strings
      */
     public List<String> getLocationAsStringArray() {
+        locationsAsStringArray = new ArrayList<>();
+        for (Location l : locations) {
+            locationsAsStringArray.add(l.toString());
+        }
         return locationsAsStringArray;
     }
 
+    /**
+     * converts a location in string form to a location object
+     *
+     * @return a location
+     */
     public Location convertStringToLocation(String locationString) {
         for (Location l : locations) {
             if (l.getName().equals(locationString)) {

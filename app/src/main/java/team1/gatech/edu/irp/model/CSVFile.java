@@ -1,13 +1,17 @@
 package team1.gatech.edu.irp.model;
 
-//package com.javapapers.android.csvfileread.app;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+/****************************************************************************************
+ *    CSV FILE READER
+ *    Notes: Reads in the CSV File separated by commas. Each line is a separate location
+ ****************************************************************************************
+ */
 
 public class CSVFile {
     InputStream inputStream;
@@ -16,9 +20,8 @@ public class CSVFile {
         this.inputStream = inputStream;
     }
 
-    public ArrayList<String[]>  read(){
-        //List resultList = new ArrayList();
-        ArrayList<String[]> resultList = new ArrayList<>();
+    public List<String[]>  read(){
+        List<String[]> resultList = new ArrayList<>();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {

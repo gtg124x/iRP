@@ -6,27 +6,59 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import android.view.View;
 
-/**
- * Created by mitchellalvarado on 9/20/18.
- *
- * This is our facade to the Model.  We are using a Singleton design pattern to allow
- * access to the model from each controller.
- *
- *
+/****************************************************************************************
+ *    MODEL
+ ****************************************************************************************
  */
 public class Model {
-    public final static String DEFAULT_BINARY_FILE_NAME = "data.bin";
+
+    /****************************************************************************************
+     *    MODEL STUFF
+     ****************************************************************************************
+     */
+
     /**
      * Singleton instance
      */
     private static final Model _instance = new Model();
+
+    /**
+     * getter for model
+     *
+     * @return  the model
+     */
     public static Model getInstance() {
         return _instance;
     }
+
+    /**
+     * make a new model
+     */
+    private Model() {
+        accountManager = new AccountManager();
+        locationManager = new LocationManager();
+        itemManager = new ItemManager();
+    }
+
+
+    /****************************************************************************************
+     *    PERSISTENCE DATA ATTRIBUTE
+     ****************************************************************************************
+     */
+
+    /**
+     * File for persistence data
+     */
+    public final static String DEFAULT_BINARY_FILE_NAME = "data.bin";
+
+
+    /****************************************************************************************
+     *     DATA MANGER ATTRIBUTES
+     ****************************************************************************************
+     */
 
     /**
      *  holds the accounts
@@ -42,7 +74,6 @@ public class Model {
      *  holds the items
      */
     private ItemManager itemManager;
-
 
 
     /****************************************************************************************
@@ -70,16 +101,6 @@ public class Model {
      */
     private Item _currentItemDetails;
 
-
-
-    /**
-     * make a new model
-     */
-    private Model() {
-        accountManager = new AccountManager();
-        locationManager = new LocationManager();
-        itemManager = new ItemManager();
-    }
 
     /****************************************************************************************
      *    ACCOUNT MANAGER METHODS
@@ -125,7 +146,6 @@ public class Model {
     }
 
 
-
     /****************************************************************************************
      *    LOCATION MANAGER METHODS
      *    Notes: Pass through methods from Controller to Model, being from the
@@ -146,7 +166,6 @@ public class Model {
      * @return if there are no locations entered in the app
      */
     public boolean noLocations() { return locationManager.locationListEmpty(); }
-
 
     /**
      * a list of locations that have been added to the app
@@ -170,8 +189,6 @@ public class Model {
     public List<String> getLocationsAsStringWithAllLocationOption() { return locationManager.getLocationsAsStringArrayWithAllLocationOption(); }
 
 
-
-
     /****************************************************************************************
      *    ITEM MANAGER METHODS
      *    Notes: Pass through methods from Controller to Model, being from the
@@ -180,7 +197,7 @@ public class Model {
      */
 
     public AddDonationResultENUM validateAndAddItemToInventory(String timeStamp, String dateStamp,
-                                                               Location location, Category category,
+                                                               Location location, CategoryENUM category,
                                                                String dollarValue, String shortDescription,
                                                                String fullDescription) {
         return itemManager.validateAndAddItemToItemManager(timeStamp, dateStamp, location, category,
@@ -193,8 +210,6 @@ public class Model {
      * @return if the inventory is empty
      */
     public boolean inventoryEmpty() { return itemManager.itemListEmpty(); }
-
-
 
     /**
      * adds and item to the inventory
@@ -223,8 +238,7 @@ public class Model {
      * @param  location currently selected location to view
      * @return list of items represented as Strings
      */
-    public List<String> getInventoryByLocation(Location location) {
-        return itemManager.getItemListByLocation(location); }
+    public List<String> getInventoryByLocation(Location location) { return itemManager.getItemListByLocation(location); }
 
     /**
      * determines if the inventory at a location is empty or no
@@ -232,29 +246,61 @@ public class Model {
      * @param  location currently selected location to analyze for inventory size
      * @return if the inventory is empty
      */
-    public boolean isInventoryByLocationEmpty(Location location) {
-        return itemManager.isItemListByLocationEmpty(location); }
+    public boolean isInventoryByLocationEmpty(Location location) { return itemManager.isItemListByLocationEmpty(location); }
+
+    /**
+     * finds the items sorted by location and category
+     *
+     * @param category item category
+     * @param locationString store location
+     *
+     * @return list of items in inventory at a particular location and category
+     */
+    public List<String> getInventoryByCategoryAndLocation(CategoryENUM category, String locationString ) {
+        return itemManager.getItemListByCategoryAndLocation(category, locationString);
+    }
+
+    /**
+     * finds the items sorted by location and name
+     *
+     * @param name item name
+     * @param locationString store location
+     *
+     * @return list of items in inventory at a particular location and name
+     */
+    public List<String> getInventoryByNameAndLocation(String name, String locationString ) {
+        return itemManager.getItemListByNameAndLocation(name, locationString);
+    }
+
 
     /****************************************************************************************
      *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
      ****************************************************************************************
      */
-    public List<String> getInventoryByCategoryAndLocation(Category category, String locationString ) {
-        return itemManager.getItemListByCategoryAndLocation(category, locationString);
-    }
 
-    public List<String> getInventoryByNameAndLocation(String name, String locationString ) {
-        return itemManager.getItemListByNameAndLocation(name, locationString);
-    }
-
+    /**
+     * set the selected Item on the spinner
+     *
+     * @return the currently selected Item
+     */
     public void setCurrentItemList(List<String> currentItemList) {
         _currentItemList = currentItemList;
     }
 
+    /**
+     * get the selected Item on the spinner
+     *
+     * @return the currently selected item
+     */
     public List<String> getCurrentItemList() {
        return _currentItemList;
     }
 
+    /**
+     * determines if the inventory selected by a spinner is empty or not
+     *
+     * @return if the inventory is empty
+     */
     public boolean isCurrentItemListEmpty() {
         boolean success;
         if( _currentItemList.size() == 0) {
@@ -264,7 +310,6 @@ public class Model {
         }
         return success;
     }
-
 
     /**
      * passes through the selected Location on the LocationListActivity spinner
@@ -332,25 +377,40 @@ public class Model {
         }
     }
 
+
+    /****************************************************************************************
+     *    PERSISTENCE DATA METHODS
+     ****************************************************************************************
+     */
+
+    /**
+     * Deletes the Binary file
+     *
+     * @param file the file that holds the persistence data
+     */
     public boolean deleteBinary(File file) {
         boolean success = true;
             file.delete();
         return success;
     }
 
+    /**
+     * Loads the Binary file
+     *
+     * @param file the file that holds the persistence data
+     */
     public boolean loadBinary(File file) {
         boolean success = true;
         try {
-            /*
-              To read, we must use the ObjectInputStream since we want to read our model in with
-              a single read.
+            /**
+             * To read, we must use the ObjectInputStream since we want to read our model in with
+             * a single read.
              */
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
             // assuming we saved our top level object, we read it back in with one line of code.
             accountManager = (AccountManager) in.readObject();
             locationManager =  (LocationManager) in.readObject();
             itemManager = (ItemManager) in.readObject();
-            //sm.regenMap();
             in.close();
         } catch (IOException e) {
             success = false;
@@ -361,23 +421,31 @@ public class Model {
         return success;
     }
 
+    /**
+     * Saves the Binary file
+     *
+     * @param file the file that holds the persistence data
+     */
     public boolean saveBinary(File file) {
         boolean success = true;
         try {
-            /*
-               For binary, we use Serialization, so everything we write has to implement
-               the Serializable interface.  Fortunately all the collection classes and APi classes
-               that we might use are already Serializable.  You just have to make sure your
-               classes implement Serializable.
 
-               We have to use an ObjectOutputStream to write objects.
-
-               One thing to be careful of:  You cannot serialize static data.
+            /**
+             * For binary, we use Serialization, so everything we write has to implement
+             * the Serializable interface.  Fortunately all the collection classes and APi classes
+             * that we might use are already Serializable.  You just have to make sure your
+             * classes implement Serializable.
+             *
+             * We have to use an ObjectOutputStream to write objects.
+             * One thing to be careful of:  You cannot serialize static data.
+             *
              */
-
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
-            // We basically can save our entire data model with one write, since this will follow
-            // all the links and pointers to save everything.  Just save the top level object.
+
+            /**
+             * We basically can save our entire data model with one write, since this will follow
+             * all the links and pointers to save everything.  Just save the top level object.
+             */
             out.writeObject(accountManager);
             out.writeObject(locationManager);
             out.writeObject(itemManager);
@@ -389,6 +457,5 @@ public class Model {
         }
         return success;
     }
-
 
 }

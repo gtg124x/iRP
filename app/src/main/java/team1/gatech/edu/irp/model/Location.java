@@ -3,17 +3,20 @@ package team1.gatech.edu.irp.model;
 
 import java.io.Serializable;
 
-/**
- * Created by mitchellalvarado on 10/5/16.
- *
- * Represents a single Location which may have much information assigned
- *
- * Information Holder
+
+/****************************************************************************************
+ *    LOCATION
+ *    Notes: Represents a single Location which may have much information assigned
+ *    information holder
+ ****************************************************************************************
  */
 public class Location implements Serializable {
 
-    /** allow us to assign unique number to the location */
-   // private static int nextNo = 1;
+    /****************************************************************************************
+     *    ATTRIBUTES
+     *    Notes: allow us to assign unique number to the location
+     ****************************************************************************************
+     */
 
     /** unique id number */
     private int _id;
@@ -48,6 +51,10 @@ public class Location implements Serializable {
     /** the website link */
     private String _websiteLink;
 
+    /****************************************************************************************
+     *    CONSTRUCTORS
+     ****************************************************************************************
+     */
 
     /**
      * Makes a new Location
@@ -82,6 +89,9 @@ public class Location implements Serializable {
 
     }
 
+    /**
+     * No param constructor -- DO NOT CALL NORMALLY
+     */
     public Location() {
         _id = 201;
         _name = "H&M";
@@ -94,55 +104,184 @@ public class Location implements Serializable {
         _locationType = LocationTypeEnum.DROPOFF;
         _phoneNumber = "(770) 634 - 5309";
         _websiteLink = "www.testsite.com";
-
-
     }
 
+    /****************************************************************************************
+     *    GETTERS AND SETTERS
+     ****************************************************************************************
+     */
+
+    /**
+     * getter for the location name
+     *
+     * @return the location name
+     */
+    public String getName() { return _name; }
+
+    /**
+     * sets the location name
+     *
+     * @param name the location name
+     */
+    public void setName(String name) { _name = name; }
+
+    /**
+     * getter for the id
+     *
+     * @return the id
+     */
+    public int getId() { return _id; }
+
+    /**
+     * getter for the latitude
+     *
+     * @return the latitude
+     */
+    public Double getLatitude() { return _latitude; }
+
+    /**
+     * sets the latitude
+     *
+     * @param latitude the latitude
+     */
+    public void setLatitude(Double latitude) { _latitude = latitude; }
+
+    /**
+     * getter for the longitude
+     *
+     * @return the longitude
+     */
+    public Double getLongitude() { return _longitude; }
+
+    /**
+     * sets the longitude
+     *
+     * @param longitude the longitude
+     */
+    public void setLongitude(Double longitude) { _longitude = longitude; }
+
+    /**
+     * getter for the street address
+     *
+     * @return the street address
+     */
+    public String getStreetAddress() { return _streetAddress; }
+
+    /**
+     * sets the street address
+     *
+     * @param streetAddress the street address
+     */
+    public void setStreetAddress(String streetAddress) { _streetAddress = streetAddress; }
+
+    /**
+     * getter for the city
+     *
+     * @return the city
+     */
+    public String getCity() { return _city; }
+
+    /**
+     * sets the city
+     *
+     * @param city the city
+     */
+    public void setCity(String city) { _city = city; }
+
+    /**
+     * getter for the state
+     *
+     * @return the state
+     */
+    public String getState() { return _state; }
+
+    /**
+     * sets the state
+     *
+     * @param state the state
+     */
+    public void setState(String state) { _state = state; }
+
+    /**
+     * getter for the zipCode
+     *
+     * @return the zipCode
+     */
+    public int getZipCode() { return _zipCode; }
+
+    /**
+     * sets the zipCode
+     *
+     * @param zipCode the zipCode
+     */
+    public void setZipCode(int zipCode) { _zipCode = zipCode; }
+
+    /**
+     * getter for the locationType
+     *
+     * @return the locationType
+     */
+    public LocationTypeEnum getLocationType() { return _locationType; }
+
+    /**
+     * sets the locationType
+     *
+     * @param locationType the locationType
+     */
+    public void setLocationType(LocationTypeEnum locationType) { _locationType = locationType; }
+
+    /**
+     * getter for the phoneNumber
+     *
+     * @return the phoneNumber
+     */
+    public String getPhoneNumber() { return _phoneNumber; }
+
+    /**
+     * sets the phoneNumber
+     *
+     * @param phoneNumber the phoneNumber
+     */
+    public void setPhoneNumber(String phoneNumber) { _phoneNumber = phoneNumber; }
+
+    /**
+     * getter for the websiteLink
+     *
+     * @return the websiteLink
+     */
+    public String getWebsiteLink() { return _websiteLink; }
+
+    /**
+     * sets the websiteLink
+     *
+     * @param websiteLink the websiteLink
+     */
+    public void setWebsiteLink(String websiteLink) { _websiteLink = websiteLink; }
+
+    /****************************************************************************************
+     *    METHODS
+     ****************************************************************************************
+     */
+
+    /**
+     * Override the toString to just return the "location name" and "street address"
+     *
+     * @return the display string representation
+     */
+    @Override
+    public String toString() {
+        return _name + " " + _streetAddress;
+    }
+
+    /**
+     * Override the equals to just check the "name"
+     *
+     * @return the success of the equals test
+     */
     @Override
     public boolean equals(Object o) {
         Location l = (Location) o;
         return (l.getName().equals(_name));
-    }
-
-    /* *****************************************
-     * All the property setters and getters
-     * */
-    public String getName() { return _name; }
-    public void setName(String name) { _name = name; }
-
-    public int getId() { return _id; }
-
-    public Double getLatitude() { return _latitude; }
-    public void setLatitude(Double latitude) { _latitude = latitude; }
-
-    public Double getLongitude() { return _longitude; }
-    public void setLongitude(Double longitude) { _longitude = longitude; }
-
-    public String getStreetAddress() { return _streetAddress; }
-    public void setStreetAddress(String streetAddress) { _streetAddress = streetAddress; }
-
-    public String getCity() { return _city; }
-    public void setCity(String city) { _city = city; }
-
-    public String getState() { return _state; }
-    public void setState(String state) { _state = state; }
-
-    public int getZipCode() { return _zipCode; }
-    public void setZipCode(int zipCode) { _zipCode = zipCode; }
-
-    public LocationTypeEnum getLocationType() { return _locationType; }
-    public void setLocationType(LocationTypeEnum locationType) { _locationType = locationType; }
-
-    public String getPhoneNumber() { return _phoneNumber; }
-    public void setPhoneNumber(String phoneNumber) { _phoneNumber = phoneNumber; }
-
-    public String getWebsiteLink() { return _websiteLink; }
-    public void setWebsiteLink(String websiteLink) { _websiteLink = websiteLink; }
-
-
-    @Override
-    public String toString() {
-        return _name + " " + _streetAddress;
     }
 
 }

@@ -1,6 +1,7 @@
 package team1.gatech.edu.irp.model;
 
-public enum Category {
+/** Donation category Enum */
+public enum CategoryENUM {
 
     /**
      * Created by mitchellalvarado on 10/14/18.
@@ -24,7 +25,7 @@ public enum Category {
      *
      * @param type   category
      */
-    Category(String type) {
+    CategoryENUM(String type) {
         this.type = type;
     }
 
@@ -40,4 +41,5 @@ public enum Category {
      */
     public String toString() { return type; }
 }
+
 

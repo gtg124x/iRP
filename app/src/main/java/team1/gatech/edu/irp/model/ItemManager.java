@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/****************************************************************************************
+ *    ITEM MANAGER
+ *    Notes: information holder
+ ****************************************************************************************
+ */
 public class ItemManager implements Serializable {
 
     /****************************************************************************************
@@ -21,21 +26,34 @@ public class ItemManager implements Serializable {
     /**
      * array to hold string representation of item in inventory
      */
-    private List<String> inventoryStringArray = new ArrayList<>();
+    private List<String> inventoryStringArray;
 
+    /**
+     * used to test if inventory is empty
+     */
     private static final int EMPTY = 0;
-
-
 
     /****************************************************************************************
      *    INVENTORY METHODS
      ****************************************************************************************
      */
 
-    public AddDonationResultENUM validateAndAddItemToItemManager(String timeStamp, String dateStamp,
-                                                                 Location location, Category category,
-                                                                 String dollarValue, String shortDescription,
-                                                                 String fullDescription) {
+    /**
+     * Validates the user input then adds the item into the inventory
+     *
+     * @param timeStamp         the account login name
+     * @param dateStamp         date stamp for the item
+     * @param location          location for the item
+     * @param category          category for the item
+     * @param dollarValue       dollar value for the item
+     * @param shortDescription   short description for the item
+     * @param fullDescription    full description for the item
+     *
+     * @return the result of the adding and item to inventory in the form of AddDonationResultENUM
+     */
+    public AddDonationResultENUM validateAndAddItemToItemManager(String timeStamp, String dateStamp, Location location,
+                                                                 CategoryENUM category, String dollarValue,
+                                                                 String shortDescription, String fullDescription) {
         if (!validiateTimeStamp(timeStamp)) {
             return AddDonationResultENUM.TIME_INVALID;
         } else if (!validiateDateStamp(dateStamp)) {
@@ -55,7 +73,13 @@ public class ItemManager implements Serializable {
         }
     }
 
-
+    /**
+     * helper method to validate the user input for the time stamp field
+     *
+     * @param time the time stamp
+     *
+     * @return the result success of the validation
+     */
     private boolean validiateTimeStamp(String time) {
         if (time.length() != 8) { return false; }
         String firstColen = "" + time.charAt(2);
@@ -82,6 +106,13 @@ public class ItemManager implements Serializable {
 
     }
 
+    /**
+     * helper method to validate the user input for the date stamp field
+     *
+     * @param date the date stamp
+     *
+     * @return the result success of the validation
+     */
     private boolean validiateDateStamp(String date) {
         if (date.length() != 10) { return false; }
         String firstDast = "" + date.charAt(2);
@@ -111,6 +142,13 @@ public class ItemManager implements Serializable {
 
     }
 
+    /**
+     * helper method to validate the user input for the dollarValue field
+     *
+     * @param dollarValue the dollarValue
+     *
+     * @return the result success of the validation
+     */
     private boolean validiateDollarValue(String dollarValue) {
         if (dollarValue.length() < 4) { return false; }
 
@@ -141,7 +179,6 @@ public class ItemManager implements Serializable {
      */
     public void addToItemManager(Item item) {
         inventory.add(item);
-        inventoryStringArray.add(item.toString());
     }
 
     /**
@@ -157,9 +194,20 @@ public class ItemManager implements Serializable {
      * @return list of items represented as Strings
      */
     public List<String> getItemManagerAsStringArray() {
+        inventoryStringArray = new ArrayList<>();
+        for (Item i : inventory) {
+            inventoryStringArray.add(i.toString());
+        }
         return inventoryStringArray;
     }
 
+    /**
+     * finds the items sorted by location
+     *
+     * @param location store location
+     *
+     * @return list of items in inventory at a particular location
+     */
     public List<String> getItemListByLocation(Location location) {
         List<String> itemLocationList = new ArrayList<>();
         for (Item i : inventory) {
@@ -170,7 +218,15 @@ public class ItemManager implements Serializable {
         return itemLocationList;
     }
 
-    public List<String> getItemListByCategoryAndLocation(Category category, String location) {
+    /**
+     * finds the items sorted by location and category
+     *
+     * @param category item category
+     * @param location store location
+     *
+     * @return list of items in inventory at a particular location and category
+     */
+    public List<String> getItemListByCategoryAndLocation(CategoryENUM category, String location) {
         List<String> itemLocationList = new ArrayList<>();
         if (location.equals("All Locations")) {
             for (Item i : inventory) {
@@ -188,7 +244,14 @@ public class ItemManager implements Serializable {
         return itemLocationList;
     }
 
-
+    /**
+     * finds the items sorted by location and name
+     *
+     * @param name item name
+     * @param location store location
+     *
+     * @return list of items in inventory at a particular location and name
+     */
     public List<String> getItemListByNameAndLocation(String name, String location) {
         List<String> itemLocationList = new ArrayList<>();
         if (location.equals("All Locations")) {

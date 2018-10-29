@@ -1,12 +1,10 @@
 package team1.gatech.edu.irp.model;
 
+/**
+ *
+ * This class represents the results from registration attempt
+ */
 public enum RegistrationResultENUM {
-
-    /**
-     * Created by mitchellalvarado on 9/28/18.
-     *
-     * This class represents the different types of users
-     */
 
     NAME_INVALID ("Name Invalid"),
     NAME_TAKEN ("Name Taken"),
@@ -15,7 +13,7 @@ public enum RegistrationResultENUM {
     SUCCESS ("Success");
 
 
-    /** the full string representation of the user type */
+    /** the full string representation of the result */
     private final String result;
 
 

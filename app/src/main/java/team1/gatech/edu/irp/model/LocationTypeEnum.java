@@ -1,12 +1,10 @@
 package team1.gatech.edu.irp.model;
 
+/**
+ *
+ * This class represents the different types of locations
+ */
 public enum LocationTypeEnum {
-
-    /**
-     * Created by mitchellalvarado on 10/05/18.
-     *
-     * This class represents the different types of users
-     */
 
     DROPOFF("Drop off"),
     STORE("Store"),

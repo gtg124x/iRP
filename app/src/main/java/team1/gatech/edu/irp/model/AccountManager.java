@@ -3,16 +3,15 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/****************************************************************************************
+ *    ACCOUNT MANAGER
+ *    Notes: accounts is just a list of account objects that are created in
+ *    RegistrationActivity when the user clicks the add button. The validation of the
+ *    data is done there then the Account obj is added to the accountDataBase
+ ****************************************************************************************
+ */
+
 public class AccountManager implements Serializable {
-
-
-    /****************************************************************************************
-     *    ACCOUNT ATTRIBUTES
-     *    Notes: accounts is just a list of account objects that are created in
-     *    RegistrationActivity when the user clicks the add button. The validation of the
-     *    data is done there then the Account obj is added to the accountDataBase
-     ****************************************************************************************
-     */
 
     /**
      * list of account objects
@@ -36,8 +35,6 @@ public class AccountManager implements Serializable {
      *  @return result of registration
      */
     public RegistrationResultENUM addToAccounts(String name, String pword, String cInfo, UserTypeENUM userTypeEnum) {
-
-
         if (accountNameNotValid(name)) {
             return RegistrationResultENUM.NAME_INVALID;
         } else if (accountNameIsTaken(name)) {
@@ -49,20 +46,7 @@ public class AccountManager implements Serializable {
         } else {
             return createAccounts(name, pword, cInfo, userTypeEnum);
         }
-
-
     }
-
-
-
-    /**
-     * gets the list of Account objects
-     *
-     * @return a list of Account objects
-     */
-//    public ArrayList<Account> getAccounts() {
-//        return accounts;
-//    }
 
     /**
      * validates that the user input in the name field is valid
@@ -86,16 +70,6 @@ public class AccountManager implements Serializable {
             return true;
         }
         return false;
-
-//        for (int i = 0; i < accounts.size(); i++) {
-//            if (!(accounts.get(i) == null)) {
-//                String Lname = accounts.get(i).getUserName();
-//                if (uName.equals(Lname)) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
     }
 
     /**
@@ -129,6 +103,7 @@ public class AccountManager implements Serializable {
      *  @param pword an account password
      *  @param cInfo an account contact info
      *  @param userTypeEnum an account type
+     *
      *  @return success
      */
     private RegistrationResultENUM createAccounts(String name, String pword, String cInfo, UserTypeENUM userTypeEnum) {
@@ -137,6 +112,14 @@ public class AccountManager implements Serializable {
         return RegistrationResultENUM.SUCCESS;
     }
 
+    /**
+     * checks is user name and passord match
+     *
+     *  @param name an account name
+     *  @param pword an account password
+     *
+     *  @return success
+     */
     public boolean loginCheck(String name, String pword) {
         boolean success = false;
         if (accounts.containsKey(name)) {
@@ -149,6 +132,13 @@ public class AccountManager implements Serializable {
         return success;
     }
 
+    /**
+     * looks up the user type given a user name
+     *
+     *  @param name an account name
+     *
+     *  @return the user type
+     */
     public UserTypeENUM lookupUserType(String name) {
         return accounts.get(name).getUserType();
     }
