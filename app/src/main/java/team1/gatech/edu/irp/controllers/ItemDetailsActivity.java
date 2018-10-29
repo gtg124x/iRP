@@ -13,13 +13,7 @@ import android.widget.TextView;
  */
 public class ItemDetailsActivity extends AppCompatActivity {
 
-    private TextView timeStampField;
-    private TextView dateStampField;
-    private TextView locationField;
-    private TextView categoryField;
-    private TextView valueField;
-    private TextView shortDescriptionField;
-    private TextView fullDescriptionField;
+
 
     /**
      * displays the details of an item
@@ -40,25 +34,27 @@ public class ItemDetailsActivity extends AppCompatActivity {
         String fullDescription = model.getCurrentItemDetails().getFullDescripiton();
 
 
-        timeStampField = (TextView) findViewById(R.id.TimeStampText);
+
+        TextView timeStampField = findViewById(R.id.TimeStampText);
         timeStampField.setText(timeStamp);
 
-        dateStampField = (TextView) findViewById(R.id.DateStampText);
+        TextView dateStampField = findViewById(R.id.DateStampText);
         dateStampField.setText(dateStamp);
 
-        locationField = (TextView) findViewById(R.id.LocationText);
+        TextView locationField = findViewById(R.id.LocationText);
         locationField.setText(location);
 
-        categoryField = (TextView) findViewById(R.id.CategoryText);
+        TextView categoryField = findViewById(R.id.CategoryText);
         categoryField.setText(category);
 
-        valueField = (TextView) findViewById(R.id.ValueText);
-        valueField.setText("$" + value);
+        TextView valueField = findViewById(R.id.ValueText);
+        String moneySignAndValue = "$ " + value;
+        valueField.setText(moneySignAndValue);
 
-        shortDescriptionField = (TextView) findViewById(R.id.ShortDecriptionText);
+        TextView shortDescriptionField = findViewById(R.id.ShortDecriptionText);
         shortDescriptionField.setText(shortDescription);
 
-        fullDescriptionField = (TextView) findViewById(R.id.FullDecriptionText);
+        TextView fullDescriptionField = findViewById(R.id.FullDecriptionText);
         fullDescriptionField.setText(fullDescription);
 
 

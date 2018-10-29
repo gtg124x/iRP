@@ -14,8 +14,6 @@ import android.widget.Toast;
  */
 public class LocalEmployeeActivity extends AppCompatActivity {
 
-    private Model model;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +36,7 @@ public class LocalEmployeeActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onViewLocationLocalEmployeeOnPress(View v) {
-        model = Model.getInstance();
+        Model model = Model.getInstance();
         if (model.noLocations()) {
             Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
         } else {

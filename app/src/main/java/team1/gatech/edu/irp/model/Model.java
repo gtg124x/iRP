@@ -15,10 +15,10 @@ import android.view.View;
  */
 public class Model {
 
-    /****************************************************************************************
-     *    MODEL STUFF
-     ****************************************************************************************
-     */
+//    /****************************************************************************************
+//     *    MODEL STUFF
+//     ****************************************************************************************
+//     */
 
     /**
      * Singleton instance
@@ -44,10 +44,10 @@ public class Model {
     }
 
 
-    /****************************************************************************************
-     *    PERSISTENCE DATA ATTRIBUTE
-     ****************************************************************************************
-     */
+//    /****************************************************************************************
+//     *    PERSISTENCE DATA ATTRIBUTE
+//     ****************************************************************************************
+//     */
 
     /**
      * File for persistence data
@@ -55,10 +55,10 @@ public class Model {
     public final static String DEFAULT_BINARY_FILE_NAME = "data.bin";
 
 
-    /****************************************************************************************
-     *     DATA MANGER ATTRIBUTES
-     ****************************************************************************************
-     */
+//    /****************************************************************************************
+//     *     DATA MANGER ATTRIBUTES
+//     ****************************************************************************************
+//     */
 
     /**
      *  holds the accounts
@@ -76,10 +76,10 @@ public class Model {
     private ItemManager itemManager;
 
 
-    /****************************************************************************************
-     *    PASS THROUGH VALUES FROM SPINNERS TO ACTIVITY PAGES
-     ****************************************************************************************
-     */
+//    /****************************************************************************************
+//     *    PASS THROUGH VALUES FROM SPINNERS TO ACTIVITY PAGES
+//     ****************************************************************************************
+//     */
 
     /**
      * the currently item list from ItemSearchByCategoryActivity
@@ -102,12 +102,12 @@ public class Model {
     private Item _currentItemDetails;
 
 
-    /****************************************************************************************
-     *    ACCOUNT MANAGER METHODS
-     *    Notes: Pass through methods from Controller to Model, being from the
-     *           RegistrationActivity to AccountManager.
-     ****************************************************************************************
-     */
+//    /****************************************************************************************
+//     *    ACCOUNT MANAGER METHODS
+//     *    Notes: Pass through methods from Controller to Model, being from the
+//     *           RegistrationActivity to AccountManager.
+//     ****************************************************************************************
+//     */
 
     /**
      * adds an account to the system
@@ -146,12 +146,12 @@ public class Model {
     }
 
 
-    /****************************************************************************************
-     *    LOCATION MANAGER METHODS
-     *    Notes: Pass through methods from Controller to Model, being from the
-     *           AdminActivity to LocationManager.
-     ****************************************************************************************
-     */
+//    /****************************************************************************************
+//     *    LOCATION MANAGER METHODS
+//     *    Notes: Pass through methods from Controller to Model, being from the
+//     *           AdminActivity to LocationManager.
+//     ****************************************************************************************
+//     */
 
     /**
      * loads the locations from CSV file to app
@@ -204,33 +204,33 @@ public class Model {
                 dollarValue, shortDescription, fullDescription);
     }
 
-    /**
-     * tests whether or not the inventory is empty
-     *
-     * @return if the inventory is empty
-     */
-    public boolean inventoryEmpty() { return itemManager.itemListEmpty(); }
+//    /**
+//     * tests whether or not the inventory is empty
+//     *
+//     * @return if the inventory is empty
+//     */
+//    public boolean inventoryEmpty() { return itemManager.itemListEmpty(); }
 
-    /**
-     * adds and item to the inventory
-     *
-     *  @param item a donation item
-     */
-    public void addToInventory(Item item) { itemManager.addToItemManager(item);}
+//    /**
+//     * adds and item to the inventory
+//     *
+//     *  @param item a donation item
+//     */
+//    public void addToInventory(Item item) { itemManager.addToItemManager(item);}
 
-    /**
-     * a list of items that have been added to the app
-     *
-     * @return list of items objects
-     */
-    public List<Item> getInventoryAsItemArray() { return itemManager.getItemManagerAsItemArray(); }
+//    /**
+//     * a list of items that have been added to the app
+//     *
+//     * @return list of items objects
+//     */
+//    public List<Item> getInventoryAsItemArray() { return itemManager.getItemManagerAsItemArray(); }
 
-    /**
-     * a list of items represented as Strings that have been added to the app
-     *
-     * @return list of items represented as Strings
-     */
-    public List<String> getInvtoryAsStringArrary() { return itemManager.getItemManagerAsStringArray(); }
+//    /**
+//     * a list of items represented as Strings that have been added to the app
+//     *
+//     * @return list of items represented as Strings
+//     */
+//    public List<String> getInvtoryAsStringArrary() { return itemManager.getItemManagerAsStringArray(); }
 
     /**
      * a list of items represented as Strings that have been added to the a selected location
@@ -273,15 +273,15 @@ public class Model {
     }
 
 
-    /****************************************************************************************
-     *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
-     ****************************************************************************************
-     */
+//    /****************************************************************************************
+//     *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
+//     ****************************************************************************************
+//     */
 
     /**
      * set the selected Item on the spinner
      *
-     * @return the currently selected Item
+     * @param currentItemList the currently selected Item
      */
     public void setCurrentItemList(List<String> currentItemList) {
         _currentItemList = currentItemList;
@@ -302,13 +302,13 @@ public class Model {
      * @return if the inventory is empty
      */
     public boolean isCurrentItemListEmpty() {
-        boolean success;
-        if( _currentItemList.size() == 0) {
-            success = true;
-        } else {
-            success = false;
-        }
-        return success;
+//        boolean success;
+//        if( _currentItemList.size() == 0) {
+//            success = true;
+//        } else {
+//            success = false;
+//        }
+        return ( _currentItemList.size() == 0);
     }
 
     /**
@@ -378,10 +378,10 @@ public class Model {
     }
 
 
-    /****************************************************************************************
-     *    PERSISTENCE DATA METHODS
-     ****************************************************************************************
-     */
+//    /****************************************************************************************
+//     *    PERSISTENCE DATA METHODS
+//     ****************************************************************************************
+//     */
 
     /**
      * Deletes the Binary file
@@ -402,10 +402,10 @@ public class Model {
     public boolean loadBinary(File file) {
         boolean success = true;
         try {
-            /**
-             * To read, we must use the ObjectInputStream since we want to read our model in with
-             * a single read.
-             */
+//            /**
+//             * To read, we must use the ObjectInputStream since we want to read our model in with
+//             * a single read.
+//             */
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
             // assuming we saved our top level object, we read it back in with one line of code.
             accountManager = (AccountManager) in.readObject();
@@ -430,22 +430,22 @@ public class Model {
         boolean success = true;
         try {
 
-            /**
-             * For binary, we use Serialization, so everything we write has to implement
-             * the Serializable interface.  Fortunately all the collection classes and APi classes
-             * that we might use are already Serializable.  You just have to make sure your
-             * classes implement Serializable.
-             *
-             * We have to use an ObjectOutputStream to write objects.
-             * One thing to be careful of:  You cannot serialize static data.
-             *
-             */
+//            /**
+//             * For binary, we use Serialization, so everything we write has to implement
+//             * the Serializable interface.  Fortunately all the collection classes and APi classes
+//             * that we might use are already Serializable.  You just have to make sure your
+//             * classes implement Serializable.
+//             *
+//             * We have to use an ObjectOutputStream to write objects.
+//             * One thing to be careful of:  You cannot serialize static data.
+//             *
+//             */
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
 
-            /**
-             * We basically can save our entire data model with one write, since this will follow
-             * all the links and pointers to save everything.  Just save the top level object.
-             */
+//            /**
+//             * We basically can save our entire data model with one write, since this will follow
+//             * all the links and pointers to save everything.  Just save the top level object.
+//             */
             out.writeObject(accountManager);
             out.writeObject(locationManager);
             out.writeObject(itemManager);

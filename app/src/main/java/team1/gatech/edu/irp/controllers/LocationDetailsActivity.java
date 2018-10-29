@@ -17,17 +17,6 @@ import java.util.List;
 
 public class LocationDetailsActivity extends AppCompatActivity {
 
-    private TextView nameField;
-    private TextView addressField;
-    private TextView cityField;
-    private TextView stateField;
-    private TextView zipField;
-    private TextView locationTypeField;
-    private TextView phoneNumberField;
-    private TextView websiteLinkField;
-    private TextView latitudeField;
-    private TextView longitudeField;
-
     private Spinner itemSpinner;
 
     /**
@@ -51,41 +40,41 @@ public class LocationDetailsActivity extends AppCompatActivity {
         String latitude = "" + currSelectedLocation.getLatitude();
         String longitude = "" + currSelectedLocation.getLongitude();
 
-        nameField = (TextView) findViewById(R.id.LocationNameText);
+        TextView nameField = findViewById(R.id.LocationNameText);
         nameField.setText(name);
 
-        addressField = (TextView) findViewById(R.id.adressText);
+        TextView addressField = findViewById(R.id.adressText);
         addressField.setText(address);
 
-        cityField = (TextView) findViewById(R.id.CityText);
+        TextView cityField = findViewById(R.id.CityText);
         cityField.setText(city);
 
-        stateField = (TextView) findViewById(R.id.StateText);
+        TextView stateField = findViewById(R.id.StateText);
         stateField.setText(state);
 
-        zipField = (TextView) findViewById(R.id.ZipText);
+        TextView zipField = findViewById(R.id.ZipText);
         zipField.setText(zip);
 
-        locationTypeField = (TextView) findViewById(R.id.LocationTypeText);
+        TextView locationTypeField = findViewById(R.id.LocationTypeText);
         locationTypeField.setText(locationType);
 
-        phoneNumberField = (TextView) findViewById(R.id.PhoneNumberText);
+        TextView phoneNumberField = findViewById(R.id.PhoneNumberText);
         phoneNumberField.setText(phoneNumber);
 
-        websiteLinkField = (TextView) findViewById(R.id.WebSiteText);
+        TextView websiteLinkField = findViewById(R.id.WebSiteText);
         websiteLinkField.setText(website);
 
-        latitudeField = (TextView) findViewById(R.id.LatitudeText);
+        TextView latitudeField = findViewById(R.id.LatitudeText);
         latitudeField.setText(latitude);
 
-        longitudeField = (TextView) findViewById(R.id.LongitudeText);
+        TextView longitudeField = findViewById(R.id.LongitudeText);
         longitudeField.setText(longitude);
 
-        itemSpinner = (Spinner) findViewById(R.id.ItemSpinner);
+        itemSpinner = findViewById(R.id.ItemSpinner);
 
-        /**
-         * Set up the adapter to display the allowable locations in the spinner
-         */
+
+//          Set up the adapter to display the allowable locations in the spinner
+
         List<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, currentLocationItemList);

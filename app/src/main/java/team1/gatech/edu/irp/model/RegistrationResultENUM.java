@@ -26,11 +26,11 @@ public enum RegistrationResultENUM {
         this.result = result;
     }
 
-    /**
-     *
-     * @return   the registration result
-     */
-    public String getReuslt() { return result; }
+//    /**
+//     *
+//     * @return   the registration result
+//     */
+//    public String getReuslt() { return result; }
 
     /**
      *

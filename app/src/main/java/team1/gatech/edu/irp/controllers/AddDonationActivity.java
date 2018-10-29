@@ -32,28 +32,25 @@ public class AddDonationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_donation);
         Model model = Model.getInstance();
 
-        /**
-         * Grab the dialog widgets so we can get info for later use
-         */
-        timeStampTextView = (TextView) findViewById(R.id.TimeStampEditText);
-        dateStampTextView = (TextView) findViewById(R.id.DateOfDonationEditText);
-        locationSpinner = (Spinner) findViewById(R.id.AddDonationLocationSpinner);
-        categorySpinner = (Spinner) findViewById(R.id.CategorySpinner);
-        dollarValueTextView = (TextView) findViewById(R.id.ValueEditText);
-        shortDescriptionTextView = (TextView) findViewById(R.id.DescriptionEditText);
-        fullDescriptionTextView = (TextView) findViewById(R.id.FullDescriptionEditText);
 
-        /**
-         * Set up the adapter to display the allowable location in the spinner
-         */
+//      Grab the dialog widgets so we can get info for later use
+        timeStampTextView = findViewById(R.id.TimeStampEditText);
+        dateStampTextView = findViewById(R.id.DateOfDonationEditText);
+        locationSpinner = findViewById(R.id.AddDonationLocationSpinner);
+        categorySpinner = findViewById(R.id.CategorySpinner);
+        dollarValueTextView = findViewById(R.id.ValueEditText);
+        shortDescriptionTextView = findViewById(R.id.DescriptionEditText);
+        fullDescriptionTextView = findViewById(R.id.FullDescriptionEditText);
+
+
+//      Set up the adapter to display the allowable location in the spinner
         ArrayAdapter<String> locationAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(locationAdapter);
         locationSpinner.setSelection(0);
 
-        /**
-         * Set up the adapter to display the allowable category in the spinner
-         */
+
+//      Set up the adapter to display the allowable category in the spinner
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, CategoryENUM.values());
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
@@ -76,17 +73,15 @@ public class AddDonationActivity extends AppCompatActivity {
         String shortDescription = shortDescriptionTextView.getText().toString();
         String fullDescription = fullDescriptionTextView.getText().toString();
 
-        /**
-         * Sets the current location in the model, but converts it from a Location Object to a
-         * String Object so that the location can be displayed as a String on the Item Details Screen
-         */
+
+//      Sets the current location in the model, but converts it from a Location Object to a
+//      String Object so that the location can be displayed as a String on the Item Details Screen
         model.setCurrentLocationAddDonation(locationString);
         Location location = model.getCurrentLocationAddDonation();
 
-        /**
-         * Validates the user input and adds it to the inventory if correct
-         * Returns the result of the attempt to add to inventory
-         */
+
+//         Validates the user input and adds it to the inventory if correct
+//         Returns the result of the attempt to add to inventory
         AddDonationResultENUM addDonationResult = model.validateAndAddItemToInventory(timeStamp, dateStamp,
                 location, category, dollarValue, shortDescription, fullDescription);
 

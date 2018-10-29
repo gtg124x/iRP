@@ -10,11 +10,6 @@ import java.io.Serializable;
  */
 public class Item implements Serializable {
 
-    /****************************************************************************************
-     *    ATTRIBUTES
-     ****************************************************************************************
-     */
-
     /** time stamp for the item */
     private String timeStamp;
 
@@ -36,10 +31,6 @@ public class Item implements Serializable {
     /** full description for the item */
     private String fullDescripiton;
 
-    /****************************************************************************************
-     *    CONSTRUCTORS
-     ****************************************************************************************
-     */
 
     /**
      * Make a new item
@@ -63,18 +54,14 @@ public class Item implements Serializable {
         this.fullDescripiton = fullDescripiton;
     }
 
-    /**
-     * No param constructor -- DO NOT CALL NORMALLY
-     */
-    public Item() {
-        this("12:00:00" , "12-25-2018", new Location(), CategoryENUM.CLOTHING,
-                "10.00", "Best Shirt Ever", "Really Old Shirt");
-    }
+//    /**
+//     * No param constructor -- DO NOT CALL NORMALLY
+//     */
+//    public Item() {
+//        this("12:00:00" , "12-25-2018", new Location(), CategoryENUM.CLOTHING,
+//                "10.00", "Best Shirt Ever", "Really Old Shirt");
+//    }
 
-    /****************************************************************************************
-     *    GETTERS AND SETTERS
-     ****************************************************************************************
-     */
 
     /**
      * getter for the timeStamp
@@ -83,12 +70,12 @@ public class Item implements Serializable {
      */
     public String getTimeStamp() { return timeStamp; }
 
-    /**
-     * sets the timeStamp
-     *
-     * @param timeStamp the timeStamp
-     */
-    public void setTimeStamp(String timeStamp) { this.timeStamp = timeStamp; }
+//    /**
+//     * sets the timeStamp
+//     *
+//     * @param timeStamp the timeStamp
+//     */
+//    public void setTimeStamp(String timeStamp) { this.timeStamp = timeStamp; }
 
     /**
      * getter for the dateStamp
@@ -97,12 +84,12 @@ public class Item implements Serializable {
      */
     public String getDateStamp() { return dateStamp; }
 
-    /**
-     * sets the dateStamp
-     *
-     * @param dateStamp the dateStamp
-     */
-    public void setDateStamp(String dateStamp) { this.dateStamp = dateStamp; }
+//    /**
+//     * sets the dateStamp
+//     *
+//     * @param dateStamp the dateStamp
+//     */
+//    public void setDateStamp(String dateStamp) { this.dateStamp = dateStamp; }
 
     /**
      * getter for the location
@@ -111,12 +98,12 @@ public class Item implements Serializable {
      */
     public Location getLocation() { return location; }
 
-    /**
-     * sets the location
-     *
-     * @param location the location
-     */
-    public void setLocation(Location location) { this.location = location; }
+//    /**
+//     * sets the location
+//     *
+//     * @param location the location
+//     */
+//    public void setLocation(Location location) { this.location = location; }
 
     /**
      * getter for the category
@@ -125,12 +112,12 @@ public class Item implements Serializable {
      */
     public CategoryENUM getCategory() { return category; }
 
-    /**
-     * sets the category
-     *
-     * @param category the category
-     */
-    public void setCategory(CategoryENUM category) { this.category = category; }
+//    /**
+//     * sets the category
+//     *
+//     * @param category the category
+//     */
+//    public void setCategory(CategoryENUM category) { this.category = category; }
 
     /**
      * getter for the dollarValue
@@ -139,12 +126,12 @@ public class Item implements Serializable {
      */
     public String getDollarValue() { return dollarValue; }
 
-    /**
-     * sets the dollarValue
-     *
-     * @param dollarValue the dollarValue
-     */
-    public void setDollarValue(String dollarValue) { this.dollarValue = dollarValue; }
+//    /**
+//     * sets the dollarValue
+//     *
+//     * @param dollarValue the dollarValue
+//     */
+//    public void setDollarValue(String dollarValue) { this.dollarValue = dollarValue; }
 
     /**
      * getter for the shortDescripiton
@@ -153,12 +140,12 @@ public class Item implements Serializable {
      */
     public String getShortDescripiton() { return shortDescripiton; }
 
-    /**
-     * sets the shortDescripiton
-     *
-     * @param shortDescripiton the shortDescripiton
-     */
-    public void setShortDescripiton(String shortDescripiton) { this.shortDescripiton = shortDescripiton; }
+//    /**
+//     * sets the shortDescripiton
+//     *
+//     * @param shortDescripiton the shortDescripiton
+//     */
+//    public void setShortDescripiton(String shortDescripiton) { this.shortDescripiton = shortDescripiton; }
 
     /**
      * getter for the fullDescripiton
@@ -167,18 +154,14 @@ public class Item implements Serializable {
      */
     public String getFullDescripiton() { return fullDescripiton; }
 
-    /**
-     * sets the fullDescripiton
-     *
-     * @param fullDescripiton the fullDescripiton
-     */
-    public void setFullDescripiton(String fullDescripiton) { this.fullDescripiton = fullDescripiton; }
+//    /**
+//     * sets the fullDescripiton
+//     *
+//     * @param fullDescripiton the fullDescripiton
+//     */
+//    public void setFullDescripiton(String fullDescripiton) { this.fullDescripiton = fullDescripiton; }
 
 
-    /****************************************************************************************
-     *    METHODS
-     ****************************************************************************************
-     */
 
     /**
      * Override the toString to just return the "Short Description"

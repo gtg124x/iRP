@@ -11,19 +11,13 @@ import java.util.Map;
  ****************************************************************************************
  */
 
-public class AccountManager implements Serializable {
+class AccountManager implements Serializable {
 
     /**
      * list of account objects
      */
     private Map<String, Account> accounts = new HashMap<>();
 
-
-
-    /****************************************************************************************
-     *    ACCOUNT METHODS
-     ****************************************************************************************
-     */
 
     /**
      * adds an account to the system
@@ -54,10 +48,7 @@ public class AccountManager implements Serializable {
      *  @param name the account name
      */
     private boolean accountNameNotValid(String name) {
-        if (name.length() < 4) {
-            return true;
-        }
-        return false;
+        return (name.length() < 4);
     }
 
     /**
@@ -66,10 +57,7 @@ public class AccountManager implements Serializable {
      *  @param uName the account name
      */
     private boolean accountNameIsTaken(String uName) {
-        if (accounts.containsKey(uName)) {
-            return true;
-        }
-        return false;
+        return accounts.containsKey(uName);
     }
 
     /**
@@ -78,10 +66,7 @@ public class AccountManager implements Serializable {
      *  @param password the account password
      */
     private boolean accountPasswordNotValid(String password) {
-        if (password.length() < 4) {
-            return true;
-        }
-        return false;
+        return (password.length() < 4);
     }
 
     /**
@@ -90,10 +75,7 @@ public class AccountManager implements Serializable {
      *  @param email the account email
      */
     private boolean accountEmailNotValid(String email) {
-        if (!email.contains("@") || !email.contains(".")) {
-            return true;
-        }
-        return false;
+        return (!email.contains("@") || !email.contains("."));
     }
 
     /**
@@ -122,12 +104,14 @@ public class AccountManager implements Serializable {
      */
     public boolean loginCheck(String name, String pword) {
         boolean success = false;
+        //boolean failure = false;
         if (accounts.containsKey(name)) {
+            if (accounts.get(name) == null) {
+                return success;
+            }
             if (accounts.get(name).getPassword().equals(pword)) {
                 success = true;
             }
-        } else {
-            success = false;
         }
         return success;
     }
@@ -140,7 +124,23 @@ public class AccountManager implements Serializable {
      *  @return the user type
      */
     public UserTypeENUM lookupUserType(String name) {
-        return accounts.get(name).getUserType();
+//        return accounts.get(name).getUserType();
+
+        //UserTypeENUM userType;
+
+        try {
+            return accounts.get(name).getUserType();
+
+        } catch(java.lang.NullPointerException ex) {
+            return UserTypeENUM.USER;
+        }
+
+
+
+
+
+
+
     }
 
 }

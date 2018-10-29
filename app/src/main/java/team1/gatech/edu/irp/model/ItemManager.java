@@ -9,14 +9,11 @@ import java.util.List;
  *    Notes: information holder
  ****************************************************************************************
  */
-public class ItemManager implements Serializable {
+class ItemManager implements Serializable {
 
-    /****************************************************************************************
-     *    INVENTORY ATTRIBUTES
-     *    Notes: Same as locations, I created two arrays one to hold Item obj and one to hold
-     *    the toString of the obj for display on the spinner
-     ****************************************************************************************
-     */
+//    INVENTORY ATTRIBUTES
+//    Notes: Same as locations, I created two arrays one to hold Item obj and one to hold
+//    the toString of the obj for display on the spinner
 
     /**
      * holds the items that are donated
@@ -24,19 +21,12 @@ public class ItemManager implements Serializable {
     private List<Item> inventory = new ArrayList<>();
 
     /**
-     * array to hold string representation of item in inventory
-     */
-    private List<String> inventoryStringArray;
-
-    /**
      * used to test if inventory is empty
      */
     private static final int EMPTY = 0;
 
-    /****************************************************************************************
-     *    INVENTORY METHODS
-     ****************************************************************************************
-     */
+
+//    INVENTORY METHODS
 
     /**
      * Validates the user input then adds the item into the inventory
@@ -129,7 +119,7 @@ public class ItemManager implements Serializable {
             int yearAsInt = Integer.parseInt(yearAsString);
 
             if (monthAsInt < 1 || monthAsInt > 12) { return false; }
-            else if (dateAsInt < 0 || dateAsInt >= 31) { return false; }
+            else if (dateAsInt < 0 || dateAsInt > 31) { return false; }
             else if (yearAsInt < 2000 || yearAsInt >= 2020) { return false; }
             else if ((monthAsInt == 4 || monthAsInt == 6 || monthAsInt == 9 || monthAsInt == 11)
                     && (dateAsInt > 30)) { return false; }
@@ -194,7 +184,7 @@ public class ItemManager implements Serializable {
      * @return list of items represented as Strings
      */
     public List<String> getItemManagerAsStringArray() {
-        inventoryStringArray = new ArrayList<>();
+        List<String> inventoryStringArray = new ArrayList<>();
         for (Item i : inventory) {
             inventoryStringArray.add(i.toString());
         }
@@ -276,13 +266,13 @@ public class ItemManager implements Serializable {
      * @return if the inventory is empty
      */
     public boolean itemListEmpty() {
-        boolean success;
-        if (inventory.size() == 0) {
-            success = true;
-        } else {
-            success = false;
-        }
-        return success;
+//        boolean success;
+//        if (inventory.size() == 0) {
+//            success = true;
+//        } else {
+//            success = false;
+//        }
+        return (inventory.size() == 0);
     }
 
     /**

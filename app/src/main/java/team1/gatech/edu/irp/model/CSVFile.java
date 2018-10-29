@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 /****************************************************************************************
  *    CSV FILE READER
@@ -13,15 +12,15 @@ import java.util.List;
  ****************************************************************************************
  */
 
-public class CSVFile {
-    InputStream inputStream;
+class CSVFile {
+    private InputStream inputStream;
 
     public CSVFile(InputStream inputStream){
         this.inputStream = inputStream;
     }
 
-    public List<String[]>  read(){
-        List<String[]> resultList = new ArrayList<>();
+    public ArrayList<String[]>  read(){
+        ArrayList<String[]> resultList = new ArrayList<>();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {

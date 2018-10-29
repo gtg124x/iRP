@@ -7,12 +7,7 @@ import java.io.Serializable;
  *    Notes: information holder
  ****************************************************************************************
  */
-public class Account implements Serializable {
-
-    /****************************************************************************************
-     *    ATTRIBUTES
-     ****************************************************************************************
-     */
+class Account implements Serializable {
 
     /** login name for the account */
     private String userName;
@@ -29,11 +24,6 @@ public class Account implements Serializable {
     /** account type admin, user, local emp, or manager*/
     private UserTypeENUM userType;
 
-
-    /****************************************************************************************
-     *    CONSTRUCTORS
-     ****************************************************************************************
-     */
 
     /**
      * Make a new account
@@ -64,44 +54,39 @@ public class Account implements Serializable {
         this(userName, password, contactInfo, userType,  AccountStateENUM.UNLOCKED);
     }
 
-    /**
-     * Make a new account
-     * @param userName         the account login name
-     * @param password          the account password
-     * @param contactInfo       the account contact Information
-     *
-     */
-    public Account(String userName, String password, String contactInfo) {
-        this(userName, password, contactInfo, UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
-    }
+//    /**
+//     * Make a new account
+//     * @param userName         the account login name
+//     * @param password          the account password
+//     * @param contactInfo       the account contact Information
+//     *
+//     */
+//    public Account(String userName, String password, String contactInfo) {
+//        this(userName, password, contactInfo, UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
+//    }
 
-    /**
-     * No param constructor -- DO NOT CALL NORMALLY
-     * This constructor only for GUI use in edit/new account dialog
-     */
-    public Account() {
-        this("enter new name" , "NA", "enter email address", UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
-    }
+//    /**
+//     * No param constructor -- DO NOT CALL NORMALLY
+//     * This constructor only for GUI use in edit/new account dialog
+//     */
+//    public Account() {
+//        this("enter new name" , "NA", "enter email address", UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
+//    }
 
 
-    /****************************************************************************************
-     *    GETTERS AND SETTERS
-     ****************************************************************************************
-     */
+//    /**
+//     * getter for the user name
+//     *
+//     * @return the user name
+//     */
+//    public String getUserName() { return userName; }
 
-    /**
-     * getter for the user name
-     *
-     * @return the user name
-     */
-    public String getUserName() { return userName; }
-
-    /**
-     * sets the user name
-     *
-     * @param userName the user name
-     */
-    public void setUserName(String userName) { this.userName = userName; }
+//    /**
+//     * sets the user name
+//     *
+//     * @param userName the user name
+//     */
+//    public void setUserName(String userName) { this.userName = userName; }
 
     /**
      * getter for the password
@@ -110,40 +95,40 @@ public class Account implements Serializable {
      */
     public String getPassword() { return password; }
 
-    /**
-     * sets the password
-     *
-     * @param password the password
-     */
-    public void setPassword(String password) { this.contactInfo = password; }
+//    /**
+//     * sets the password
+//     *
+//     * @param password the password
+//     */
+//    public void setPassword(String password) { this.contactInfo = password; }
 
-    /**
-     * getter for the contact info
-     *
-     * @return the contact info
-     */
-    public String getContactInfo() { return contactInfo; }
+//    /**
+//     * getter for the contact info
+//     *
+//     * @return the contact info
+//     */
+//    public String getContactInfo() { return contactInfo; }
 
-    /**
-     * sets the contact info
-     *
-     * @param contactInfo the contact info
-     */
-    public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
+//    /**
+//     * sets the contact info
+//     *
+//     * @param contactInfo the contact info
+//     */
+//    public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
 
-    /**
-     * getter for the account state
-     *
-     * @return the account state
-     */
-    public AccountStateENUM getAccountState() { return accountState; }
+//    /**
+//     * getter for the account state
+//     *
+//     * @return the account state
+//     */
+//    public AccountStateENUM getAccountState() { return accountState; }
 
-    /**
-     * sets the account state
-     *
-     * @param accountState the account state
-     */
-    public void setAccountState(AccountStateENUM accountState) { this.accountState = accountState; }
+//    /**
+//     * sets the account state
+//     *
+//     * @param accountState the account state
+//     */
+//    public void setAccountState(AccountStateENUM accountState) { this.accountState = accountState; }
 
     /**
      * getter for the user type
@@ -152,18 +137,14 @@ public class Account implements Serializable {
      */
     public UserTypeENUM getUserType() { return userType; }
 
-    /**
-     * sets the user type
-     *
-     * @param userType the user type
-     */
-    public void setUserType(UserTypeENUM userType) { this.userType = userType; }
+//    /**
+//     * sets the user type
+//     *
+//     * @param userType the user type
+//     */
+//    public void setUserType(UserTypeENUM userType) { this.userType = userType; }
 
 
-    /****************************************************************************************
-     *    METHODS
-     ****************************************************************************************
-     */
 
     /**
      *
@@ -173,9 +154,6 @@ public class Account implements Serializable {
     public String toString() {
         return userName + " " + contactInfo + " " + userType;
     }
-
-
-
 
 
 

@@ -2,7 +2,6 @@
     <string name="app_name">iRP</string>
     <string name="userName_hint">User Name</string>
     <string name="password_hint">Password</string>
-    <string name="title_activity_admin">AdminActivity</string>
     <string name="add_donation">Add A New Donation</string>
     <string name="logout">Logout</string>
     <string name="view_locations">View Locations / Items</string>
@@ -59,9 +58,9 @@
     <string name="search_by_name">Search Item By Name</string>
     <string name="search_by_category">Search Item By Category</string>
 
-    <string name="item">Items:</string>
     <string name="title_activity_maps">Map</string>
 
     <string name="view_map">View Map</string>
+
 
 </resources>

@@ -24,11 +24,11 @@ public enum UserTypeENUM {
         this.type = type;
     }
 
-    /**
-     *
-     * @return   the user type
-     */
-    public String getType() { return type; }
+//    /**
+//     *
+//     * @return   the user type
+//     */
+//    public String getType() { return type; }
 
     /**
      *

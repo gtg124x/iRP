@@ -16,22 +16,19 @@ import android.widget.Toast;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    private Model model;
     private TextView userName;
     private TextView password;
-    private UserTypeENUM userType;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        /**
-         * Grab the dialog widgets so we can get info for later
-         */
-        userName = (TextView) findViewById(R.id.UserName_Input);
-        password = (TextView) findViewById(R.id.Password_Input);
+//        /**
+//         * Grab the dialog widgets so we can get info for later
+//         */
+        userName = findViewById(R.id.UserName_Input);
+        password = findViewById(R.id.Password_Input);
 
     }
 
@@ -51,13 +48,13 @@ public class LoginActivity extends AppCompatActivity {
      * Graps the user input and sends it to model for verification.
      */
     public void onLoginPressed(View v) {
-        model = Model.getInstance();
+        Model model = Model.getInstance();
 
         String name = userName.getText().toString();
         String pword = password.getText().toString();
 
         if (model.validateLogin(name, pword)) {
-            userType = model.getUserType(name);
+            UserTypeENUM userType = model.getUserType(name);
             if (userType == UserTypeENUM.ADMIN) {
                 Intent intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);

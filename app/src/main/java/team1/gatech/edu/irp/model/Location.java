@@ -12,11 +12,9 @@ import java.io.Serializable;
  */
 public class Location implements Serializable {
 
-    /****************************************************************************************
-     *    ATTRIBUTES
-     *    Notes: allow us to assign unique number to the location
-     ****************************************************************************************
-     */
+
+//         ATTRIBUTES
+//         Notes: allow us to assign unique number to the location
 
     /** unique id number */
     private int _id;
@@ -51,11 +49,7 @@ public class Location implements Serializable {
     /** the website link */
     private String _websiteLink;
 
-    /****************************************************************************************
-     *    CONSTRUCTORS
-     ****************************************************************************************
-     */
-
+//         CONSTRUCTORS
     /**
      * Makes a new Location
      * @param id  the id of the location as an integer
@@ -106,10 +100,8 @@ public class Location implements Serializable {
         _websiteLink = "www.testsite.com";
     }
 
-    /****************************************************************************************
-     *    GETTERS AND SETTERS
-     ****************************************************************************************
-     */
+
+//         GETTERS AND SETTERS
 
     /**
      * getter for the location name
@@ -118,19 +110,19 @@ public class Location implements Serializable {
      */
     public String getName() { return _name; }
 
-    /**
-     * sets the location name
-     *
-     * @param name the location name
-     */
-    public void setName(String name) { _name = name; }
+//    /**
+//     * sets the location name
+//     *
+//     * @param name the location name
+//     */
+//    public void setName(String name) { _name = name; }
 
-    /**
-     * getter for the id
-     *
-     * @return the id
-     */
-    public int getId() { return _id; }
+//    /**
+//     * getter for the id
+//     *
+//     * @return the id
+//     */
+//    public int getId() { return _id; }
 
     /**
      * getter for the latitude
@@ -139,12 +131,12 @@ public class Location implements Serializable {
      */
     public Double getLatitude() { return _latitude; }
 
-    /**
-     * sets the latitude
-     *
-     * @param latitude the latitude
-     */
-    public void setLatitude(Double latitude) { _latitude = latitude; }
+//    /**
+//     * sets the latitude
+//     *
+//     * @param latitude the latitude
+//     */
+//    public void setLatitude(Double latitude) { _latitude = latitude; }
 
     /**
      * getter for the longitude
@@ -153,12 +145,12 @@ public class Location implements Serializable {
      */
     public Double getLongitude() { return _longitude; }
 
-    /**
-     * sets the longitude
-     *
-     * @param longitude the longitude
-     */
-    public void setLongitude(Double longitude) { _longitude = longitude; }
+//    /**
+//     * sets the longitude
+//     *
+//     * @param longitude the longitude
+//     */
+//    public void setLongitude(Double longitude) { _longitude = longitude; }
 
     /**
      * getter for the street address
@@ -167,12 +159,12 @@ public class Location implements Serializable {
      */
     public String getStreetAddress() { return _streetAddress; }
 
-    /**
-     * sets the street address
-     *
-     * @param streetAddress the street address
-     */
-    public void setStreetAddress(String streetAddress) { _streetAddress = streetAddress; }
+//    /**
+//     * sets the street address
+//     *
+//     * @param streetAddress the street address
+//     */
+//    public void setStreetAddress(String streetAddress) { _streetAddress = streetAddress; }
 
     /**
      * getter for the city
@@ -181,12 +173,12 @@ public class Location implements Serializable {
      */
     public String getCity() { return _city; }
 
-    /**
-     * sets the city
-     *
-     * @param city the city
-     */
-    public void setCity(String city) { _city = city; }
+//    /**
+//     * sets the city
+//     *
+//     * @param city the city
+//     */
+//    public void setCity(String city) { _city = city; }
 
     /**
      * getter for the state
@@ -195,12 +187,12 @@ public class Location implements Serializable {
      */
     public String getState() { return _state; }
 
-    /**
-     * sets the state
-     *
-     * @param state the state
-     */
-    public void setState(String state) { _state = state; }
+//    /**
+//     * sets the state
+//     *
+//     * @param state the state
+//     */
+//    public void setState(String state) { _state = state; }
 
     /**
      * getter for the zipCode
@@ -209,12 +201,12 @@ public class Location implements Serializable {
      */
     public int getZipCode() { return _zipCode; }
 
-    /**
-     * sets the zipCode
-     *
-     * @param zipCode the zipCode
-     */
-    public void setZipCode(int zipCode) { _zipCode = zipCode; }
+//    /**
+//     * sets the zipCode
+//     *
+//     * @param zipCode the zipCode
+//     */
+//    public void setZipCode(int zipCode) { _zipCode = zipCode; }
 
     /**
      * getter for the locationType
@@ -223,12 +215,12 @@ public class Location implements Serializable {
      */
     public LocationTypeEnum getLocationType() { return _locationType; }
 
-    /**
-     * sets the locationType
-     *
-     * @param locationType the locationType
-     */
-    public void setLocationType(LocationTypeEnum locationType) { _locationType = locationType; }
+//    /**
+//     * sets the locationType
+//     *
+//     * @param locationType the locationType
+//     */
+//    public void setLocationType(LocationTypeEnum locationType) { _locationType = locationType; }
 
     /**
      * getter for the phoneNumber
@@ -237,12 +229,12 @@ public class Location implements Serializable {
      */
     public String getPhoneNumber() { return _phoneNumber; }
 
-    /**
-     * sets the phoneNumber
-     *
-     * @param phoneNumber the phoneNumber
-     */
-    public void setPhoneNumber(String phoneNumber) { _phoneNumber = phoneNumber; }
+//    /**
+//     * sets the phoneNumber
+//     *
+//     * @param phoneNumber the phoneNumber
+//     */
+//    public void setPhoneNumber(String phoneNumber) { _phoneNumber = phoneNumber; }
 
     /**
      * getter for the websiteLink
@@ -251,17 +243,15 @@ public class Location implements Serializable {
      */
     public String getWebsiteLink() { return _websiteLink; }
 
-    /**
-     * sets the websiteLink
-     *
-     * @param websiteLink the websiteLink
-     */
-    public void setWebsiteLink(String websiteLink) { _websiteLink = websiteLink; }
+//    /**
+//     * sets the websiteLink
+//     *
+//     * @param websiteLink the websiteLink
+//     */
+//    public void setWebsiteLink(String websiteLink) { _websiteLink = websiteLink; }
 
-    /****************************************************************************************
-     *    METHODS
-     ****************************************************************************************
-     */
+//         METHODS
+
 
     /**
      * Override the toString to just return the "location name" and "street address"

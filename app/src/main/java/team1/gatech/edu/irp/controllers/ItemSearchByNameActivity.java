@@ -26,19 +26,17 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_search_by_name);
 
-        LocationSpinner = (Spinner) findViewById(R.id.SpinnerLocationItemSearchByName);
+        LocationSpinner = findViewById(R.id.SpinnerLocationItemSearchByName);
         Model model = Model.getInstance();
 
-        /**
-         * Set up the adapter to display the allowable location in the spinner
-         */
+//      Set up the adapter to display the allowable location in the spinner
         List<String> locationsList = model.getLocationsAsStringWithAllLocationOption();
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, locationsList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationSpinner.setAdapter(adapter);
         LocationSpinner.setSelection(0);
 
-        itemNameTextView = (TextView) findViewById(R.id.SearchByNameEditText);
+        itemNameTextView = findViewById(R.id.SearchByNameEditText);
 
     }
 

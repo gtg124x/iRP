@@ -24,22 +24,19 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_search_by_category);
-        LocationSpinner = (Spinner) findViewById(R.id.SpinnerLocationSearchByCategory);
-        CategorySpinner = (Spinner) findViewById(R.id.spinnerCategorySearch);
+        LocationSpinner = findViewById(R.id.SpinnerLocationSearchByCategory);
+        CategorySpinner = findViewById(R.id.spinnerCategorySearch);
         Model model = Model.getInstance();
 
-        /**
-         * Set up the adapter to display the allowable locations in the spinner
-         */
+
+//      Set up the adapter to display the allowable locations in the spinner
         List<String> locationsList = model.getLocationsAsStringWithAllLocationOption();
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, locationsList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationSpinner.setAdapter(adapter);
         LocationSpinner.setSelection(0);
 
-        /**
-         * Set up the adapter to display the categories in the spinner
-         */
+//      Set up the adapter to display the categories in the spinner
         ArrayAdapter<String> adapterCat = new ArrayAdapter(this, android.R.layout.simple_spinner_item,  CategoryENUM.values());
         adapterCat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         CategorySpinner.setAdapter(adapterCat);

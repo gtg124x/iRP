@@ -7,22 +7,22 @@ import java.util.List;
 import team1.gatech.edu.irp.R;
 import android.view.View;
 
-public class LocationManager implements Serializable {
+class LocationManager implements Serializable {
 
-    /****************************************************************************************
-     *    LIST OF LOCATIONS ATTRIBUTES                                                    ***
-     *    Notes: I created both a list of location obj and of strings because the         ***
-     *    spinner displays the string description of a location. Both of these are        ***
-     *    initialized in the AdminActivity Class when an admin hits the load              ***
-     *    locations button.  The CSVFile class used and the data is parsed and            ***
-     *    locations are created.                                                          ***
-     ****************************************************************************************
-     */
+//    /****************************************************************************************
+//     *    LIST OF LOCATIONS ATTRIBUTES                                                    ***
+//     *    Notes: I created both a list of location obj and of strings because the         ***
+//     *    spinner displays the string description of a location. Both of these are        ***
+//     *    initialized in the AdminActivity Class when an admin hits the load              ***
+//     *    locations button.  The CSVFile class used and the data is parsed and            ***
+//     *    locations are created.                                                          ***
+//     ****************************************************************************************
+//     */
 
     /**
      * holds the list of all locations
      */
-    private List<Location> locations = new ArrayList<>();;
+    private List<Location> locations = new ArrayList<>();
 
     /**
      * array to hold string representation of locations
@@ -33,7 +33,6 @@ public class LocationManager implements Serializable {
      * array to hold string representation of locations with All locations as first option
      */
     private List<String> locationsAsStringArrayWithAllLocationOption = new ArrayList<>();
-    private String allLocations = "All Locations";
 
     /****************************************************************************************
      *    LOCATION METHODS
@@ -44,7 +43,7 @@ public class LocationManager implements Serializable {
 
         InputStream inputStream = v.getResources().openRawResource(R.raw.locationdata);
         CSVFile csvFile = new CSVFile(inputStream);
-        List<String[]> scoreList;
+        ArrayList<String[]> scoreList;
         scoreList = csvFile.read();
         boolean success = true;
 
@@ -60,7 +59,7 @@ public class LocationManager implements Serializable {
                     return success;
                 }
             }
-            locationsAsStringArray.add(tempLoc.toString());
+            //locationsAsStringArray.add(tempLoc.toString());
             locations.add(tempLoc);
 
         }
@@ -73,13 +72,13 @@ public class LocationManager implements Serializable {
      * @return if there are no locations entered in the app
      */
     public boolean locationListEmpty() {
-        boolean success;
-        if (locations.size() == 0) {
-            success = true;
-        } else {
-            success = false;
-        }
-        return success;
+//        boolean success;
+//        if (locations.size() == 0) {
+//            success = true;
+//        } else {
+//            success = false;
+//        }
+        return (locations.size() == 0);
     }
 
 
@@ -106,19 +105,19 @@ public class LocationManager implements Serializable {
         return locationsAsStringArray;
     }
 
-    /**
-     * converts a location in string form to a location object
-     *
-     * @return a location
-     */
-    public Location convertStringToLocation(String locationString) {
-        for (Location l : locations) {
-            if (l.getName().equals(locationString)) {
-                return l;
-            }
-        }
-        return new Location();
-    }
+//    /**
+//     * converts a location in string form to a location object
+//     *
+//     * @return a location
+//     */
+//    public Location convertStringToLocation(String locationString) {
+//        for (Location l : locations) {
+//            if (l.getName().equals(locationString)) {
+//                return l;
+//            }
+//        }
+//        return new Location();
+//    }
 
     /**
      * returns a list of locations represented as Strings with All locations as first option
@@ -127,6 +126,7 @@ public class LocationManager implements Serializable {
      * @return list of locations represented as Strings with All locations as first option
      */
     public List<String> getLocationsAsStringArrayWithAllLocationOption() {
+        String allLocations = "All Locations";
         locationsAsStringArrayWithAllLocationOption.add(allLocations);
         locationsAsStringArrayWithAllLocationOption.addAll(locationsAsStringArray);
         return locationsAsStringArrayWithAllLocationOption;

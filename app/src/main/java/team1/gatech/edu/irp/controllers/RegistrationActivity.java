@@ -21,7 +21,6 @@ import android.widget.Toast;
  */
 public class RegistrationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private Model model;
     private TextView loginName;
     private TextView password;
     private TextView contactInfo;
@@ -33,18 +32,18 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        /**
-         * Grab the dialog widgets so we can get info for later
-         */
-        loginName = (TextView) findViewById(R.id.loginNameText);
-        password = (TextView) findViewById(R.id.passwordText);
-        contactInfo = (TextView) findViewById(R.id.contactInfoText);
-        userTypeSpinner = (Spinner) findViewById(R.id.SpinnerUT);
+//        /**
+//         * Grab the dialog widgets so we can get info for later
+//         */
+        loginName = findViewById(R.id.loginNameText);
+        password = findViewById(R.id.passwordText);
+        contactInfo = findViewById(R.id.contactInfoText);
+        userTypeSpinner = findViewById(R.id.SpinnerUT);
 
 
-        /**
-         * Set up the adapter to display the allowable class standing in the spinner
-         */
+//        /**
+//         * Set up the adapter to display the allowable class standing in the spinner
+//         */
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, UserTypeENUM.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeSpinner.setAdapter(adapter);
@@ -59,7 +58,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
      * @param view the button
      */
     public void onAddPressed(View view) {
-        model = Model.getInstance();
+        Model model = Model.getInstance();
         String name = loginName.getText().toString();
         String pword = password.getText().toString();
         String cInfo = contactInfo.getText().toString();
@@ -85,7 +84,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
     /**
      * Sends them back to the Welcome Screen
      *
-     * @param v the view
+     * @param view the view
      */
     public void onCancelPressed(View view) {
         finish();

@@ -29,11 +29,11 @@ public enum CategoryENUM {
         this.type = type;
     }
 
-    /**
-     *
-     * @return   the category
-     */
-    public String getCategory() { return type; }
+//    /**
+//     *
+//     * @return   the category
+//     */
+//    public String getCategory() { return type; }
 
     /**
      *
