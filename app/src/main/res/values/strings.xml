@@ -60,5 +60,8 @@
     <string name="search_by_category">Search Item By Category</string>
 
     <string name="item">Items:</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="view_map">View Map</string>
 
 </resources>

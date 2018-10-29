@@ -67,4 +67,19 @@ public class AppActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ItemSearchByCategoryActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * When the "View Map" Button is pressed it sends the user to the a screen that displays a google map with the locations
+     *
+     * @param v the view
+     */
+    public void onViewMapPress(View v) {
+        model = Model.getInstance();
+        if (model.noLocations()) {
+            Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivity(intent);
+        }
+    }
 }
