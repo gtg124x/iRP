@@ -75,15 +75,6 @@ public class Model {
      */
     private ItemManager itemManager;
 
-    public void setAccountManager(AccountManager accountManager) { this.accountManager = accountManager; }
-    public void setLocationManager(LocationManager locationManager) { this.locationManager = locationManager; }
-    public void setItemManager(ItemManager itemManager) { this.itemManager = itemManager; }
-
-    public AccountManager getAccountManager() { return accountManager; }
-    public LocationManager getLocationManager() { return locationManager; }
-    public ItemManager getItemManager() { return itemManager; }
-
-
 //    /****************************************************************************************
 //     *    PASS THROUGH VALUES FROM SPINNERS TO ACTIVITY PAGES
 //     ****************************************************************************************
@@ -111,7 +102,55 @@ public class Model {
 
 
 //    /****************************************************************************************
-//     *    ACCOUNT MANAGER METHODS
+//     *    DATA MANAGER GETTERS AND SETTERS
+//     ****************************************************************************************
+//     */
+
+    /**
+     * gets the accountManager
+     *
+     * @return the accountManager
+     */
+    public AccountManager getAccountManager() { return accountManager; }
+
+    /**
+     * gets the locationManager
+     *
+     * @return the locationManager
+     */
+    public LocationManager getLocationManager() { return locationManager; }
+
+    /**
+     * gets the itemManager
+     *
+     * @return the itemManager
+     */
+    public ItemManager getItemManager() { return itemManager; }
+
+    /**
+     * sets the accountManager
+     *
+     * @param accountManager the accountManager
+     */
+    public void setAccountManager(AccountManager accountManager) { this.accountManager = accountManager; }
+
+    /**
+     * sets the locationManager
+     *
+     * @param locationManager the locationManager
+     */
+    public void setLocationManager(LocationManager locationManager) { this.locationManager = locationManager; }
+
+    /**
+     * sets the itemManager
+     *
+     * @param itemManager the itemManager
+     */
+    public void setItemManager(ItemManager itemManager) { this.itemManager = itemManager; }
+
+
+//    /****************************************************************************************
+//     *    ACCOUNT MANAGER PASS THROUGH METHODS
 //     *    Notes: Pass through methods from Controller to Model, being from the
 //     *           RegistrationActivity to AccountManager.
 //     ****************************************************************************************
@@ -155,7 +194,7 @@ public class Model {
 
 
 //    /****************************************************************************************
-//     *    LOCATION MANAGER METHODS
+//     *    LOCATION MANAGER PASS THROUGH METHODS
 //     *    Notes: Pass through methods from Controller to Model, being from the
 //     *           AdminActivity to LocationManager.
 //     ****************************************************************************************
@@ -197,13 +236,26 @@ public class Model {
     public List<String> getLocationsAsStringWithAllLocationOption() { return locationManager.getLocationsAsStringArrayWithAllLocationOption(); }
 
 
-    /****************************************************************************************
-     *    ITEM MANAGER METHODS
-     *    Notes: Pass through methods from Controller to Model, being from the
-     *           AddDonationActivity to ItemManager.
-     ****************************************************************************************
-     */
+//    /****************************************************************************************
+//     *    ITEM MANAGER PASS THROUGH METHODS
+//     *    Notes: Pass through methods from Controller to Model, being from the
+//     *           AddDonationActivity to ItemManager.
+//     ****************************************************************************************
+//     */
 
+    /**
+     * Validates the user input then adds the item into the inventory
+     *
+     * @param timeStamp         the account login name
+     * @param dateStamp         date stamp for the item
+     * @param location          location for the item
+     * @param category          category for the item
+     * @param dollarValue       dollar value for the item
+     * @param shortDescription   short description for the item
+     * @param fullDescription    full description for the item
+     *
+     * @return the result of the adding and item to inventory in the form of AddDonationResultENUM
+     */
     public AddDonationResultENUM validateAndAddItemToInventory(String timeStamp, String dateStamp,
                                                                Location location, CategoryENUM category,
                                                                String dollarValue, String shortDescription,
@@ -218,13 +270,6 @@ public class Model {
 //     * @return if the inventory is empty
 //     */
 //    public boolean inventoryEmpty() { return itemManager.itemListEmpty(); }
-
-//    /**
-//     * adds and item to the inventory
-//     *
-//     *  @param item a donation item
-//     */
-//    public void addToInventory(Item item) { itemManager.addToItemManager(item);}
 
 //    /**
 //     * a list of items that have been added to the app

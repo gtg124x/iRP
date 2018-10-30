@@ -172,14 +172,6 @@ class ItemManager implements Serializable {
 
     }
 
-    /**
-     * adds an item to the inventory
-     *
-     * @param item a donated item at a location
-     */
-    public void addToItemManager(Item item) {
-        inventory.add(item);
-    }
 
     /**
      * returns a list of items that have been added to the app
