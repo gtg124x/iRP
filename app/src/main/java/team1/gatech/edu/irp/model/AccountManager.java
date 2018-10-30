@@ -1,4 +1,5 @@
 package team1.gatech.edu.irp.model;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,22 +24,22 @@ class AccountManager implements Serializable {
      * adds an account to the system
      *
      *  @param name an account name
-     *  @param pword an account password
+     *  @param password an account password
      *  @param cInfo an account contact info
      *  @param userTypeEnum an account type
      *  @return result of registration
      */
-    public RegistrationResultENUM addToAccounts(String name, String pword, String cInfo, UserTypeENUM userTypeEnum) {
+    public RegistrationResultENUM addToAccounts(String name, String password, String cInfo, UserTypeENUM userTypeEnum) {
         if (accountNameNotValid(name)) {
             return RegistrationResultENUM.NAME_INVALID;
         } else if (accountNameIsTaken(name)) {
             return RegistrationResultENUM.NAME_TAKEN;
-        } else if (accountPasswordNotValid(pword)) {
+        } else if (accountPasswordNotValid(password)) {
             return RegistrationResultENUM.PASSWORD_INVALID;
         } else if (accountEmailNotValid(cInfo)) {
             return RegistrationResultENUM.EMAIL_INVALID;
         } else {
-            return createAccounts(name, pword, cInfo, userTypeEnum);
+            return createAccounts(name, password, cInfo, userTypeEnum);
         }
     }
 
@@ -82,38 +83,50 @@ class AccountManager implements Serializable {
      * adds an account to the system
      *
      *  @param name an account name
-     *  @param pword an account password
+     *  @param password an account password
      *  @param cInfo an account contact info
      *  @param userTypeEnum an account type
      *
      *  @return success
      */
-    private RegistrationResultENUM createAccounts(String name, String pword, String cInfo, UserTypeENUM userTypeEnum) {
-        Account newAccount = new Account(name, pword, cInfo, userTypeEnum);
+    private RegistrationResultENUM createAccounts(String name, String password, String cInfo, UserTypeENUM userTypeEnum) {
+        Account newAccount = new Account(name, password, cInfo, userTypeEnum, AccountStateENUM.UNLOCKED);
         accounts.put(name, newAccount);
         return RegistrationResultENUM.SUCCESS;
     }
 
     /**
-     * checks is user name and passord match
+     * checks is user name and password match
      *
      *  @param name an account name
-     *  @param pword an account password
+     *  @param password an account password
      *
      *  @return success
      */
-    public boolean loginCheck(String name, String pword) {
+    public boolean loginCheck(String name, String password) {
         boolean success = false;
-        //boolean failure = false;
         if (accounts.containsKey(name)) {
-            if (accounts.get(name) == null) {
-                return success;
-            }
-            if (accounts.get(name).getPassword().equals(pword)) {
+            if (getAccountName(name).getPassword().equals(password)
+                    && getAccountName(name).getAccountState() == AccountStateENUM.UNLOCKED) {
                 success = true;
             }
         }
         return success;
+    }
+
+    /**
+     * gets and account given a name
+     * does the null check and keeps the code checker happy
+     *
+     *  @param name an account name
+     *
+     *  @return the account
+     */
+    private Account getAccountName(String name) {
+        if (name != null) {
+            return accounts.get(name);
+        }
+        return new Account();
     }
 
     /**
@@ -124,23 +137,7 @@ class AccountManager implements Serializable {
      *  @return the user type
      */
     public UserTypeENUM lookupUserType(String name) {
-//        return accounts.get(name).getUserType();
-
-        //UserTypeENUM userType;
-
-        try {
-            return accounts.get(name).getUserType();
-
-        } catch(java.lang.NullPointerException ex) {
-            return UserTypeENUM.USER;
-        }
-
-
-
-
-
-
-
+        return getAccountName(name).getUserType();
     }
 
 }

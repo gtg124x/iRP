@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.PersistenceManager;
+
 import android.view.View;
 import android.content.Intent;
 import android.widget.Toast;
@@ -18,7 +20,7 @@ import java.io.File;
  *
  */
 public class WelcomeActivity extends AppCompatActivity {
-    private Model model;
+    //private Model model;
 
 
     @Override
@@ -45,15 +47,18 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     /**
      * When the user clicks the load data button it loads the saved data
      *
      */
     public void onLoadDataOnPressed(View v) {
-        model = model.getInstance();
+        //Model model = null;
+        //Model model = Model.getInstance();
         File file;
-        file = new File(this.getFilesDir(), model.DEFAULT_BINARY_FILE_NAME);
-        boolean success = model.loadBinary(file);
+        file = new File(this.getFilesDir(), "data.bin");
+//        boolean success = model.loadBinary(file);
+        boolean success = PersistenceManager.loadBinary(file);
         if (success) {
             Toast.makeText(this, "Data has been loaded.", Toast.LENGTH_SHORT).show();
         } else {
@@ -67,10 +72,12 @@ public class WelcomeActivity extends AppCompatActivity {
      *
      */
     public void onSaveDataOnPressed(View v) {
-        model = model.getInstance();
+        //Model model = null;
+        //Model model = model.getInstance();
         File file;
-        file = new File(this.getFilesDir(), model.DEFAULT_BINARY_FILE_NAME);
-        boolean success =  model.saveBinary(file);
+        file = new File(this.getFilesDir(), "data.bin");
+        //boolean success =  model.saveBinary(file);
+        boolean success =  PersistenceManager.saveBinary(file);
         if (success) {
             Toast.makeText(this, "Data has been saved.", Toast.LENGTH_SHORT).show();
         } else {
@@ -83,16 +90,23 @@ public class WelcomeActivity extends AppCompatActivity {
      *
      */
     public void onClearDataOnPressed(View v) {
-        model = model.getInstance();
-        File file;
-        file = new File(this.getFilesDir(), model.DEFAULT_BINARY_FILE_NAME);
-        boolean success =  model.deleteBinary(file);
+        //Model model = null;
+        //Model model = model.getInstance();
+        File file = new File(this.getFilesDir(), "data.bin");
+        //file.delete();
+//        boolean success =  model.deleteBinary(file);
+        boolean success =  PersistenceManager.deleteBinary(file);
         if (success) {
             Toast.makeText(this, "Data has been deleted.", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "ERROR: Data has NOT been deleted.", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
+
+
 
 
 }

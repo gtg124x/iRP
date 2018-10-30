@@ -49,10 +49,10 @@ public class Model {
 //     ****************************************************************************************
 //     */
 
-    /**
-     * File for persistence data
-     */
-    public final static String DEFAULT_BINARY_FILE_NAME = "data.bin";
+//    /**
+//     * File for persistence data
+//     */
+//    public final static String DEFAULT_BINARY_FILE_NAME = "data.bin";
 
 
 //    /****************************************************************************************
@@ -74,6 +74,14 @@ public class Model {
      *  holds the items
      */
     private ItemManager itemManager;
+
+    public void setAccountManager(AccountManager accountManager) { this.accountManager = accountManager; }
+    public void setLocationManager(LocationManager locationManager) { this.locationManager = locationManager; }
+    public void setItemManager(ItemManager itemManager) { this.itemManager = itemManager; }
+
+    public AccountManager getAccountManager() { return accountManager; }
+    public LocationManager getLocationManager() { return locationManager; }
+    public ItemManager getItemManager() { return itemManager; }
 
 
 //    /****************************************************************************************
@@ -378,84 +386,83 @@ public class Model {
     }
 
 
-//    /****************************************************************************************
-//     *    PERSISTENCE DATA METHODS
-//     ****************************************************************************************
+////    /****************************************************************************************
+////     *    PERSISTENCE DATA METHODS
+////     ****************************************************************************************
+////     */
+//
+//
+//    /**
+//     * Deletes the Binary file
+//     *
+//     * @param file the file that holds the persistence data
 //     */
-
-    /**
-     * Deletes the Binary file
-     *
-     * @param file the file that holds the persistence data
-     */
-    public boolean deleteBinary(File file) {
-        boolean success = true;
-            file.delete();
-        return success;
-    }
-
-    /**
-     * Loads the Binary file
-     *
-     * @param file the file that holds the persistence data
-     */
-    public boolean loadBinary(File file) {
-        boolean success = true;
-        try {
-//            /**
-//             * To read, we must use the ObjectInputStream since we want to read our model in with
-//             * a single read.
-//             */
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-            // assuming we saved our top level object, we read it back in with one line of code.
-            accountManager = (AccountManager) in.readObject();
-            locationManager =  (LocationManager) in.readObject();
-            itemManager = (ItemManager) in.readObject();
-            in.close();
-        } catch (IOException e) {
-            success = false;
-        } catch (ClassNotFoundException e) {
-           success = false;
-        }
-
-        return success;
-    }
-
-    /**
-     * Saves the Binary file
-     *
-     * @param file the file that holds the persistence data
-     */
-    public boolean saveBinary(File file) {
-        boolean success = true;
-        try {
-
-//            /**
-//             * For binary, we use Serialization, so everything we write has to implement
-//             * the Serializable interface.  Fortunately all the collection classes and APi classes
-//             * that we might use are already Serializable.  You just have to make sure your
-//             * classes implement Serializable.
-//             *
-//             * We have to use an ObjectOutputStream to write objects.
-//             * One thing to be careful of:  You cannot serialize static data.
-//             *
-//             */
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
-
-//            /**
-//             * We basically can save our entire data model with one write, since this will follow
-//             * all the links and pointers to save everything.  Just save the top level object.
-//             */
-            out.writeObject(accountManager);
-            out.writeObject(locationManager);
-            out.writeObject(itemManager);
-
-            out.close();
-
-        } catch (IOException e) {
-            success = false;
-        }
-        return success;
-    }
+//    public boolean deleteBinary(File file) {
+//        return file.delete();
+//    }
+//
+//    /**
+//     * Loads the Binary file
+//     *
+//     * @param file the file that holds the persistence data
+//     */
+//    public boolean loadBinary(File file) {
+//        boolean success = true;
+//        try {
+////            /**
+////             * To read, we must use the ObjectInputStream since we want to read our model in with
+////             * a single read.
+////             */
+//            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+//            // assuming we saved our top level object, we read it back in with one line of code.
+//            accountManager = (AccountManager) in.readObject();
+//            locationManager =  (LocationManager) in.readObject();
+//            itemManager = (ItemManager) in.readObject();
+//            in.close();
+//        } catch (IOException e) {
+//            success = false;
+//        } catch (ClassNotFoundException e) {
+//           success = false;
+//        }
+//
+//        return success;
+//    }
+//
+//    /**
+//     * Saves the Binary file
+//     *
+//     * @param file the file that holds the persistence data
+//     */
+//    public boolean saveBinary(File file) {
+//        boolean success = true;
+//        try {
+//
+////            /**
+////             * For binary, we use Serialization, so everything we write has to implement
+////             * the Serializable interface.  Fortunately all the collection classes and APi classes
+////             * that we might use are already Serializable.  You just have to make sure your
+////             * classes implement Serializable.
+////             *
+////             * We have to use an ObjectOutputStream to write objects.
+////             * One thing to be careful of:  You cannot serialize static data.
+////             *
+////             */
+//            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+//
+////            /**
+////             * We basically can save our entire data model with one write, since this will follow
+////             * all the links and pointers to save everything.  Just save the top level object.
+////             */
+//            out.writeObject(accountManager);
+//            out.writeObject(locationManager);
+//            out.writeObject(itemManager);
+//
+//            out.close();
+//
+//        } catch (IOException e) {
+//            success = false;
+//        }
+//        return success;
+//    }
 
 }

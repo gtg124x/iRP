@@ -1,5 +1,7 @@
 package team1.gatech.edu.irp.model;
 
+import android.support.annotation.NonNull;
+
 /** Result of adding a donation Enum */
 public enum AddDonationResultENUM {
 
@@ -35,6 +37,8 @@ public enum AddDonationResultENUM {
      *
      * @return the display string representation of the registration result
      */
+    @NonNull
+    @Override
     public String toString() { return result; }
 
 }

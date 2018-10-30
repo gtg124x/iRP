@@ -1,5 +1,7 @@
 package team1.gatech.edu.irp.model;
 
+import android.support.annotation.NonNull;
+
 /** Donation category Enum */
 public enum CategoryENUM {
 
@@ -39,6 +41,8 @@ public enum CategoryENUM {
      *
      * @return the display string representation of the category
      */
+    @NonNull
+    @Override
     public String toString() { return type; }
 }
 

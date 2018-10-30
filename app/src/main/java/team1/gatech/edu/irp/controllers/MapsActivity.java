@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
+    //private GoogleMap  mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        if(mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
     }
 
 
@@ -41,10 +43,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
 
         Model model = Model.getInstance();
 
@@ -52,9 +52,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for (Location l : locations) {
             LatLng marker = new LatLng(l.getLatitude(), l.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(marker).title(l.getName()).snippet("Phone Number: " + l.getPhoneNumber()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
+            googleMap.addMarker(new MarkerOptions().position(marker).title(l.getName()).snippet("Phone Number: " + l.getPhoneNumber()));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
         }
-
     }
 }

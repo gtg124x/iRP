@@ -1,5 +1,7 @@
 package team1.gatech.edu.irp.model;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 
@@ -168,6 +170,7 @@ public class Item implements Serializable {
      *
      * @return the display string representation
      */
+    @NonNull
     @Override
     public String toString() {
         return shortDescripiton;
@@ -180,6 +183,9 @@ public class Item implements Serializable {
      */
     @Override
     public boolean equals(Object o) {
+        if (!(o instanceof Item)) {
+            return false;
+        }
         Item i = (Item) o;
         return (i.getShortDescripiton().equals(shortDescripiton));
     }

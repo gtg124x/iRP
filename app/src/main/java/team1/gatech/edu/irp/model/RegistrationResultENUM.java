@@ -1,5 +1,7 @@
 package team1.gatech.edu.irp.model;
 
+import android.support.annotation.NonNull;
+
 /**
  *
  * This class represents the results from registration attempt
@@ -36,6 +38,8 @@ public enum RegistrationResultENUM {
      *
      * @return the display string representation of the registration result
      */
+    @NonNull
+    @Override
     public String toString() { return result; }
 
 }

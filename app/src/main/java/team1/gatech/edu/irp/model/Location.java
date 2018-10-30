@@ -1,6 +1,8 @@
 package team1.gatech.edu.irp.model;
 
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 
@@ -258,6 +260,7 @@ public class Location implements Serializable {
      *
      * @return the display string representation
      */
+    @NonNull
     @Override
     public String toString() {
         return _name + " " + _streetAddress;
@@ -270,6 +273,9 @@ public class Location implements Serializable {
      */
     @Override
     public boolean equals(Object o) {
+        if (!(o instanceof Location)) {
+            return false;
+        }
         Location l = (Location) o;
         return (l.getName().equals(_name));
     }

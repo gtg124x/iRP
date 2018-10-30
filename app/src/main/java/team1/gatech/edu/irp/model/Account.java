@@ -1,5 +1,7 @@
 package team1.gatech.edu.irp.model;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 /****************************************************************************************
@@ -42,17 +44,17 @@ class Account implements Serializable {
         this.accountState = accountState;
     }
 
-    /**
-     * Make a new account
-     * @param userName         the account login name
-     * @param password          the account password
-     * @param contactInfo       the account contact Information
-     * @param userType          the type of user
-     *
-     */
-    public Account(String userName, String password, String contactInfo, UserTypeENUM userType) {
-        this(userName, password, contactInfo, userType,  AccountStateENUM.UNLOCKED);
-    }
+//    /**
+//     * Make a new account
+//     * @param userName         the account login name
+//     * @param password          the account password
+//     * @param contactInfo       the account contact Information
+//     * @param userType          the type of user
+//     *
+//     */
+//    public Account(String userName, String password, String contactInfo, UserTypeENUM userType) {
+//        this(userName, password, contactInfo, userType,  AccountStateENUM.UNLOCKED);
+//    }
 
 //    /**
 //     * Make a new account
@@ -65,13 +67,13 @@ class Account implements Serializable {
 //        this(userName, password, contactInfo, UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
 //    }
 
-//    /**
-//     * No param constructor -- DO NOT CALL NORMALLY
-//     * This constructor only for GUI use in edit/new account dialog
-//     */
-//    public Account() {
-//        this("enter new name" , "NA", "enter email address", UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
-//    }
+    /**
+     * No param constructor -- DO NOT CALL NORMALLY
+     * This constructor only for GUI use in edit/new account dialog
+     */
+    public Account() {
+        this("mitch" , "1234", "you@me.com", UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
+    }
 
 
 //    /**
@@ -116,12 +118,12 @@ class Account implements Serializable {
 //     */
 //    public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
 
-//    /**
-//     * getter for the account state
-//     *
-//     * @return the account state
-//     */
-//    public AccountStateENUM getAccountState() { return accountState; }
+    /**
+     * getter for the account state
+     *
+     * @return the account state
+     */
+    public AccountStateENUM getAccountState() { return accountState; }
 
 //    /**
 //     * sets the account state
@@ -150,6 +152,7 @@ class Account implements Serializable {
      *
      * @return the display string representation
      */
+    @NonNull
     @Override
     public String toString() {
         return userName + " " + contactInfo + " " + userType;

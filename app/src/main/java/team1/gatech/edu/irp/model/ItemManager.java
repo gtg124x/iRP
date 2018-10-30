@@ -85,10 +85,12 @@ class ItemManager implements Serializable {
             int minAsInt = Integer.parseInt(minAsString);
             int secAsInt = Integer.parseInt(secAsString);
 
-            if (hourAsInt < 0 || hourAsInt >= 24) { return false; }
-            else if (minAsInt < 0 || minAsInt >= 60) { return false; }
-            else if (secAsInt < 0 || secAsInt >= 60) { return false; }
-            else { return true; }
+//            if (hourAsInt < 0 || hourAsInt >= 24) { return false; }
+//            else if (minAsInt < 0 || minAsInt >= 60) { return false; }
+//            else if (secAsInt < 0 || secAsInt >= 60) { return false; }
+//            else { return true; }
+
+            return (hourAsInt < 0 || hourAsInt >= 24 || minAsInt < 0 || minAsInt >= 60 || secAsInt < 0 || secAsInt >= 60);
 
         } catch (NumberFormatException e) {
             return false;
@@ -118,13 +120,17 @@ class ItemManager implements Serializable {
             int dateAsInt = Integer.parseInt(dateString);
             int yearAsInt = Integer.parseInt(yearAsString);
 
-            if (monthAsInt < 1 || monthAsInt > 12) { return false; }
-            else if (dateAsInt < 0 || dateAsInt > 31) { return false; }
-            else if (yearAsInt < 2000 || yearAsInt >= 2020) { return false; }
-            else if ((monthAsInt == 4 || monthAsInt == 6 || monthAsInt == 9 || monthAsInt == 11)
-                    && (dateAsInt > 30)) { return false; }
-            else if (monthAsInt == 2 && dateAsInt > 28) { return false; }
-            else { return true; }
+//            if (monthAsInt < 1 || monthAsInt > 12) { return false; }
+//            else if (dateAsInt < 0 || dateAsInt > 31) { return false; }
+//            else if (yearAsInt < 2000 || yearAsInt >= 2020) { return false; }
+//            else if ((monthAsInt == 4 || monthAsInt == 6 || monthAsInt == 9 || monthAsInt == 11)
+//                    && (dateAsInt > 30)) { return false; }
+//            else if (monthAsInt == 2 && dateAsInt > 28) { return false; }
+//            else { return true; }
+
+            return (monthAsInt < 1 || monthAsInt > 12 || dateAsInt < 0 || dateAsInt > 31 || yearAsInt < 2000 || yearAsInt >= 2020
+                    || ((monthAsInt == 4 || monthAsInt == 6 || monthAsInt == 9 || monthAsInt == 11) && (dateAsInt > 30))
+                    || (monthAsInt == 2 && dateAsInt > 29));
 
         } catch (NumberFormatException e) {
             return false;
@@ -151,10 +157,14 @@ class ItemManager implements Serializable {
             int changeAsInt = Integer.parseInt(change);
             int dollarsAsInt = Integer.parseInt(dollars);
 
-            if (changeAsInt < 0 || changeAsInt > 99) { return false; }
-            else if (dollarsAsInt < 0) { return false; }
-            else if (dollarsAsInt == 0 && changeAsInt == 0) { return false; }
-            else { return true; }
+            return (changeAsInt < 0 || changeAsInt > 99 || dollarsAsInt < 0 || (dollarsAsInt == 0 && changeAsInt == 0));
+
+//            if (changeAsInt < 0 || changeAsInt > 99) { return false; }
+//            else if (dollarsAsInt < 0) { return false; }
+//            else if (dollarsAsInt == 0 && changeAsInt == 0) { return false; }
+//            else { return true; }
+
+
 
         } catch (NumberFormatException e) {
             return false;

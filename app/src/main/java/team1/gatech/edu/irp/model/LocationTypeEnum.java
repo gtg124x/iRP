@@ -1,5 +1,7 @@
 package team1.gatech.edu.irp.model;
 
+import android.support.annotation.NonNull;
+
 /**
  *
  * This class represents the different types of locations
@@ -35,6 +37,8 @@ public enum LocationTypeEnum {
     /**
      * @return the display string representation of the location type
      */
+    @NonNull
+    @Override
     public String toString() {
         return type;
     }

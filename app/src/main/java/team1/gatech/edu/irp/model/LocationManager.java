@@ -45,7 +45,7 @@ class LocationManager implements Serializable {
         CSVFile csvFile = new CSVFile(inputStream);
         ArrayList<String[]> scoreList;
         scoreList = csvFile.read();
-        boolean success = true;
+        //boolean success = true;
 
         for (int i = 1; i < scoreList.size(); i++) {
             Location tempLoc = new Location(Integer.parseInt(scoreList.get(i)[0]), scoreList.get(i)[1],
@@ -55,15 +55,15 @@ class LocationManager implements Serializable {
                     scoreList.get(i)[9], scoreList.get(i)[10]);
             for (Location x : locations) {
                 if ((x.equals(tempLoc))) {
-                    success = false;
-                    return success;
+                    //success = false;
+                    return false;
                 }
             }
             //locationsAsStringArray.add(tempLoc.toString());
             locations.add(tempLoc);
 
         }
-        return success;
+        return true;
     }
 
     /**
