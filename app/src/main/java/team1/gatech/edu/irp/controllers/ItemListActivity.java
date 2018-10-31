@@ -5,11 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.Item;
 import team1.gatech.edu.irp.model.Model;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,11 +29,13 @@ public class ItemListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_list);
 
         model = Model.getInstance();
-        List<String> itemList = model.getCurrentItemList();
+        List<Item> itemListItem = model.getCurrentItemList();
         itemSpinner = findViewById(R.id.spinnerItemListing);
 
 
 //      Set up the adapter to display the allowable items in the spinner
+        List<String> itemList = model.getInventoryAsString(itemListItem);
+
         ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, itemList);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(itemAdapter);
@@ -45,8 +51,11 @@ public class ItemListActivity extends AppCompatActivity {
         if (model.isCurrentItemListEmpty()) {
             Toast.makeText(this, "No Items Found In Search", Toast.LENGTH_SHORT).show();
         } else {
-            String currItem = ((String) itemSpinner.getSelectedItem());
-            model.setCurrentItemDetails(currItem);
+            //String currItem = ((String) itemSpinner.getSelectedItem());
+            int selectionNumber = itemSpinner.getSelectedItemPosition();
+            List<Item> itemListItem = model.getCurrentItemList();
+
+            model.setCurrentItemDetails(itemListItem.get(selectionNumber));
             Intent intent = new Intent(this, ItemDetailsActivity.class);
             startActivity(intent);
         }

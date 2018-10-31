@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.Item;
 import team1.gatech.edu.irp.model.Model;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -49,7 +50,7 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
         String itemName = itemNameTextView.getText().toString();
         String currLoc = ((String) LocationSpinner.getSelectedItem());
 
-        List<String> itemListByNameAndLocation = model.getInventoryByNameAndLocation(itemName, currLoc);
+        List<Item> itemListByNameAndLocation = model.getInventoryByNameAndLocation(itemName, currLoc);
         model.setCurrentItemList(itemListByNameAndLocation);
 
         Intent intent = new Intent(this, ItemListActivity.class);

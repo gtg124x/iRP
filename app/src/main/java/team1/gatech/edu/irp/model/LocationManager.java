@@ -29,10 +29,10 @@ class LocationManager implements Serializable {
      */
     private List<String> locationsAsStringArray;
 
-    /**
-     * array to hold string representation of locations with All locations as first option
-     */
-    private final List<String> locationsAsStringArrayWithAllLocationOption = new ArrayList<>();
+//    /**
+//     * array to hold string representation of locations with All locations as first option
+//     */
+//    private final List<String> locationsAsStringArrayWithAllLocationOption = new ArrayList<>();
 
     /****************************************************************************************
      *    LOCATION METHODS
@@ -102,6 +102,7 @@ class LocationManager implements Serializable {
      * @return list of locations represented as Strings with All locations as first option
      */
     public List<String> getLocationsAsStringArrayWithAllLocationOption() {
+        List<String> locationsAsStringArrayWithAllLocationOption = new ArrayList<>();
         String allLocations = "All Locations";
         locationsAsStringArrayWithAllLocationOption.add(allLocations);
         locationsAsStringArrayWithAllLocationOption.addAll(locationsAsStringArray);

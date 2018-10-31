@@ -1,5 +1,6 @@
 package team1.gatech.edu.irp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import android.view.View;
 
@@ -66,7 +67,7 @@ public class Model {
     /**
      * the currently item list from ItemSearchByCategoryActivity
      */
-    private List<String> _currentItemList;
+    private List<Item> _currentItemList;
 
     /**
      * the currently selected location of the LocationListActivity
@@ -262,7 +263,7 @@ public class Model {
      * @param  location currently selected location to view
      * @return list of items represented as Strings
      */
-    public List<String> getInventoryByLocation(Location location) { return itemManager.getItemListByLocation(location); }
+    public List<Item> getInventoryByLocation(Location location) { return itemManager.getItemListByLocation(location); }
 
     /**
      * determines if the inventory at a location is empty or no
@@ -280,7 +281,7 @@ public class Model {
      *
      * @return list of items in inventory at a particular location and category
      */
-    public List<String> getInventoryByCategoryAndLocation(CategoryENUM category, String locationString ) {
+    public List<Item> getInventoryByCategoryAndLocation(CategoryENUM category, String locationString ) {
         return itemManager.getItemListByCategoryAndLocation(category, locationString);
     }
 
@@ -292,10 +293,20 @@ public class Model {
      *
      * @return list of items in inventory at a particular location and name
      */
-    public List<String> getInventoryByNameAndLocation(String name, String locationString ) {
+    public List<Item> getInventoryByNameAndLocation(String name, String locationString ) {
         return itemManager.getItemListByNameAndLocation(name, locationString);
     }
 
+    /**
+     * converts list of items to strings
+     *
+     * @param itemList item list
+     *
+     * @return list of items in as strings
+     */
+    public List<String> getInventoryAsString(List<Item> itemList ) {
+        return itemManager.getItemListAsString(itemList);
+    }
 
 //    /****************************************************************************************
 //     *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
@@ -307,7 +318,7 @@ public class Model {
      *
      * @param currentItemList the currently selected Item
      */
-    public void setCurrentItemList(List<String> currentItemList) {
+    public void setCurrentItemList(List<Item> currentItemList) {
         _currentItemList = currentItemList;
     }
 
@@ -316,7 +327,7 @@ public class Model {
      *
      * @return the currently selected item
      */
-    public List<String> getCurrentItemList() {
+    public List<Item> getCurrentItemList() {
        return _currentItemList;
     }
 
@@ -387,12 +398,13 @@ public class Model {
      *
      * @param currentItemDetails the currently selected item on the LocationDetailActivity spinner
      */
-    public void setCurrentItemDetails(String currentItemDetails) {
-        for (Item item : itemManager.getItemManagerAsItemArray()) {
-            if (item.toString().equals(currentItemDetails)) {
-                _currentItemDetails = item;
-            }
-        }
+    public void setCurrentItemDetails(Item currentItemDetails) {
+//        for (Item item : itemManager.getItemManagerAsItemArray()) {
+//            if (item.toString().equals(currentItemDetails) && item.) {
+//                _currentItemDetails = item;
+//            }
+//        }
+        _currentItemDetails = currentItemDetails;
     }
 
     /**

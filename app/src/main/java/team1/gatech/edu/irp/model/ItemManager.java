@@ -210,11 +210,11 @@ class ItemManager implements Serializable {
      *
      * @return list of items in inventory at a particular location
      */
-    public List<String> getItemListByLocation(Location location) {
-        List<String> itemLocationList = new ArrayList<>();
+    public List<Item> getItemListByLocation(Location location) {
+        List<Item> itemLocationList = new ArrayList<>();
         for (Item i : inventory) {
             if (i.getLocation().equals(location)) {
-                itemLocationList.add(i.toString());
+                itemLocationList.add(i);
             }
         }
         return itemLocationList;
@@ -228,18 +228,18 @@ class ItemManager implements Serializable {
      *
      * @return list of items in inventory at a particular location and category
      */
-    public List<String> getItemListByCategoryAndLocation(CategoryENUM category, String location) {
-        List<String> itemLocationList = new ArrayList<>();
+    public List<Item> getItemListByCategoryAndLocation(CategoryENUM category, String location) {
+        List<Item> itemLocationList = new ArrayList<>();
         if (location.equals("All Locations")) {
             for (Item i : inventory) {
                 if (i.getCategory().equals(category)) {
-                    itemLocationList.add(i.toString());
+                    itemLocationList.add(i);
                 }
             }
         } else {
             for (Item i : inventory) {
                 if (i.getLocation().toString().equals(location) && i.getCategory().equals(category)) {
-                    itemLocationList.add(i.toString());
+                    itemLocationList.add(i);
                 }
             }
         }
@@ -254,18 +254,18 @@ class ItemManager implements Serializable {
      *
      * @return list of items in inventory at a particular location and name
      */
-    public List<String> getItemListByNameAndLocation(String name, String location) {
-        List<String> itemLocationList = new ArrayList<>();
+    public List<Item> getItemListByNameAndLocation(String name, String location) {
+        List<Item> itemLocationList = new ArrayList<>();
         if (location.equals("All Locations")) {
             for (Item i : inventory) {
                 if (i.getShortDescription().equals(name)) {
-                    itemLocationList.add(i.toString());
+                    itemLocationList.add(i);
                 }
             }
         } else {
             for (Item i : inventory) {
                 if (i.getLocation().toString().equals(location) && i.getShortDescription().equals(name)) {
-                    itemLocationList.add(i.toString());
+                    itemLocationList.add(i);
                 }
             }
         }
@@ -288,6 +288,20 @@ class ItemManager implements Serializable {
         return itemLocationList.size() == EMPTY;
     }
 
+    /**
+     * converts list of items to strings
+     *
+     * @param itemList item list
+     *
+     * @return list of items in as strings
+     */
+    public List<String> getItemListAsString(List<Item> itemList ) {
+        List<String> itemLocationList = new ArrayList<>();
+        for (Item i : itemList) {
+            itemLocationList.add(i.toString());
+            }
+        return itemLocationList;
+    }
 
 
 }

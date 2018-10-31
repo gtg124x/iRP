@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.Item;
 import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.Model;
 import android.view.View;
@@ -74,7 +75,8 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
 
 //      Set up the adapter to display the allowable locations in the spinner
-        List<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
+        List<Item> currentLocationItemListItem = model.getInventoryByLocation(currSelectedLocation);
+        List<String> currentLocationItemList = model.getInventoryAsString(currentLocationItemListItem);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, currentLocationItemList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -94,8 +96,12 @@ public class LocationDetailsActivity extends AppCompatActivity {
         if (model.isInventoryByLocationEmpty(currSelectedLocation)) {
             Toast.makeText(this, "No Items Have Been Added To Inventory", Toast.LENGTH_SHORT).show();
         } else {
-            String currItem = ((String) itemSpinner.getSelectedItem());
-            model.setCurrentItemDetails(currItem);
+//            String currItem = ((String) itemSpinner.getSelectedItem());
+            int selectionNumber = itemSpinner.getSelectedItemPosition();
+            List<Item> currentLocationItemListItem = model.getInventoryByLocation(currSelectedLocation);
+
+
+            model.setCurrentItemDetails(currentLocationItemListItem.get(selectionNumber));
             Intent intent = new Intent(this, ItemDetailsActivity.class);
             startActivity(intent);
         }

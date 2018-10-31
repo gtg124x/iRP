@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.Item;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.CategoryENUM;
 import android.view.View;
@@ -55,8 +56,9 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         model.setCurrentCategoryAddDonation(categoryString);
         CategoryENUM category = model.getCurrentCategoryAddDonation();
 
-        List<String> itemListByCategoryAndLocation = model.getInventoryByCategoryAndLocation(category, currLoc);
-        model.setCurrentItemList(itemListByCategoryAndLocation);
+        List<Item> itemListByCategoryAndLocationItem = model.getInventoryByCategoryAndLocation(category, currLoc);
+        //List<String> itemListByCategoryAndLocation = model.getInventoryAsString(itemListByCategoryAndLocationItem)
+        model.setCurrentItemList(itemListByCategoryAndLocationItem);
 
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
