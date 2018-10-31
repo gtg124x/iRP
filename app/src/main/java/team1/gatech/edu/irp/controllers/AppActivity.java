@@ -34,14 +34,16 @@ public class AppActivity extends AppCompatActivity {
     }
 
     /**
-     * When the View Locations Button is pressed it sends the user to the a screen that displays the locations in a spinner
+     * When the View Locations Button is pressed it sends the user to the a screen that displays
+     * the locations in a spinner
      *
      * @param v the view
      */
     public void onViewLocationUserOnPress(View v) {
         model = Model.getInstance();
         if (model.noLocations()) {
-            Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No Locations have been loaded by Admin.",
+                    Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, LocationListActivity.class);
             startActivity(intent);
@@ -49,7 +51,8 @@ public class AppActivity extends AppCompatActivity {
     }
 
     /**
-     * When the Search By Name Button is pressed is sends you to a screen where the user can search the inventory by name
+     * When the Search By Name Button is pressed is sends you to a screen where the user can
+     * search the inventory by name
      *
      * @param v the view
      */
@@ -59,7 +62,8 @@ public class AppActivity extends AppCompatActivity {
     }
 
     /**
-     * When the Search By Category Button is pressed is sends you to a screen where the user can search the inventory by category
+     * When the Search By Category Button is pressed is sends you to a screen where the user can
+     * search the inventory by category
      *
      * @param v the view
      */
@@ -69,14 +73,16 @@ public class AppActivity extends AppCompatActivity {
     }
 
     /**
-     * When the "View Map" Button is pressed it sends the user to the a screen that displays a google map with the locations
+     * When the "View Map" Button is pressed it sends the user to the a screen that displays a
+     * google map with the locations
      *
      * @param v the view
      */
     public void onViewMapPress(View v) {
         model = Model.getInstance();
         if (model.noLocations()) {
-            Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No Locations have been loaded by Admin.",
+                    Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, MapsActivity.class);
             startActivity(intent);

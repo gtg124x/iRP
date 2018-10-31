@@ -33,14 +33,16 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     /**
-     * When the View Locations Button is pressed it sends the admin to the a screen that displays the locations in a spinner
+     * When the View Locations Button is pressed it sends the admin to the a screen that displays
+     * the locations in a spinner
      *
      * @param v the view
      */
     public void onViewLocationAdminOnPress(View v) {
         model = Model.getInstance();
         if (model.noLocations()) {
-            Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No Locations have been loaded by Admin.",
+                    Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, LocationListActivity.class);
             startActivity(intent);
@@ -56,9 +58,11 @@ public class AdminActivity extends AppCompatActivity {
         model = Model.getInstance();
         boolean success = model.loadLocations(v);
         if (success) {
-            Toast.makeText(this, "Locations have been loaded.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Locations have been loaded.",
+                    Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Duplicate Locations will not be added.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Duplicate Locations will not be added.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 }

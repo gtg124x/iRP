@@ -29,7 +29,8 @@ class AccountManager implements Serializable {
      *  @param userTypeEnum an account type
      *  @return result of registration
      */
-    public RegistrationResultENUM addToAccounts(String name, String password, String cInfo, UserTypeENUM userTypeEnum) {
+    public RegistrationResultENUM addToAccounts(String name, String password, String cInfo,
+                                                UserTypeENUM userTypeEnum) {
         if (accountNameNotValid(name)) {
             return RegistrationResultENUM.NAME_INVALID;
         } else if (accountNameIsTaken(name)) {
@@ -89,8 +90,10 @@ class AccountManager implements Serializable {
      *  @param userTypeEnum an account type
      *
      */
-    private void createAccounts(String name, String password, String cInfo, UserTypeENUM userTypeEnum) {
-        Account newAccount = new Account(name, password, cInfo, userTypeEnum, AccountStateENUM.UNLOCKED);
+    private void createAccounts(String name, String password, String cInfo,
+                                UserTypeENUM userTypeEnum) {
+        Account newAccount = new Account(name, password, cInfo, userTypeEnum,
+                AccountStateENUM.UNLOCKED);
         accounts.put(name, newAccount);
         //return RegistrationResultENUM.SUCCESS;
     }

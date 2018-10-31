@@ -44,14 +44,16 @@ public class AddDonationActivity extends AppCompatActivity {
 
 
 //      Set up the adapter to display the allowable location in the spinner
-        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
+        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, model.getLocationsAsString());
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(locationAdapter);
         locationSpinner.setSelection(0);
 
 
 //      Set up the adapter to display the allowable category in the spinner
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CategoryENUM.getCategoryStringList());
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, CategoryENUM.getCategoryStringList());
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
         categorySpinner.setSelection(0);
@@ -93,23 +95,36 @@ public class AddDonationActivity extends AppCompatActivity {
 
 //         Validates the user input and adds it to the inventory if correct
 //         Returns the result of the attempt to add to inventory
-        AddDonationResultENUM addDonationResult = model.validateAndAddItemToInventory(timeStamp, dateStamp,
-                location, category, dollarValue, shortDescription, fullDescription);
+        AddDonationResultENUM addDonationResult = model.validateAndAddItemToInventory(timeStamp,
+                dateStamp, location, category, dollarValue, shortDescription, fullDescription);
 
         if (addDonationResult == AddDonationResultENUM.TIME_INVALID) {
-            Toast.makeText(this, "Time Stamp must be in 24 Hour:Min:Sec form ex. 05:02:02", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    "Time Stamp must be in 24 Hour:Min:Sec form ex. 05:02:02",
+                    Toast.LENGTH_SHORT).show();
         } else if (addDonationResult == AddDonationResultENUM.DATE_INVALID) {
-            Toast.makeText(this, "Date Stamp must be in Month/Day/Year form ex. 02-04-2018", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    "Date Stamp must be in Month/Day/Year form ex. 02-04-2018",
+                    Toast.LENGTH_SHORT).show();
         } else if (addDonationResult == AddDonationResultENUM.VALUE_INVALID) {
-            Toast.makeText(this, "Dollar Value must be $xx.xx form ex. 0.19", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    "Dollar Value must be $xx.xx form ex. 0.19",
+                    Toast.LENGTH_SHORT).show();
         } else if (addDonationResult == AddDonationResultENUM.SHORT_DESCRIPTION_INVALID_TO_SHORT) {
-            Toast.makeText(this, "Short Description must be longer than 2 characters.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    "Short Description must be longer than 2 characters.",
+                    Toast.LENGTH_SHORT).show();
         } else if (addDonationResult == AddDonationResultENUM.SHORT_DESCRIPTION_INVALID_TO_LONG) {
-            Toast.makeText(this, "Short Description less than or equal to 15 characters..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    "Short Description less than or equal to 15 characters..",
+                    Toast.LENGTH_SHORT).show();
         } else if (addDonationResult == AddDonationResultENUM.LONG_DESCRIPTION_INVALID_TO_SHORT) {
-            Toast.makeText(this, "Full Description must be longer than 2 characters.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    "Full Description must be longer than 2 characters.",
+                    Toast.LENGTH_SHORT).show();
         } else if (addDonationResult == AddDonationResultENUM.SUCCESS) {
-            Toast.makeText(this, "Item added to Inventory.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Item added to Inventory.",
+                    Toast.LENGTH_SHORT).show();
             finish();
         }
     }

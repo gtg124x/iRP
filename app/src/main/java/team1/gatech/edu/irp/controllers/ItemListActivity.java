@@ -12,8 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +34,8 @@ public class ItemListActivity extends AppCompatActivity {
 //      Set up the adapter to display the allowable items in the spinner
         List<String> itemList = model.getInventoryAsString(itemListItem);
 
-        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, itemList);
+        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, itemList);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(itemAdapter);
         itemSpinner.setSelection(0);
@@ -49,7 +48,8 @@ public class ItemListActivity extends AppCompatActivity {
     public void onViewItemDetailsOnPress(View view) {
         model = Model.getInstance();
         if (model.isCurrentItemListEmpty()) {
-            Toast.makeText(this, "No Items Found In Search", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No Items Found In Search",
+                    Toast.LENGTH_SHORT).show();
         } else {
             //String currItem = ((String) itemSpinner.getSelectedItem());
             int selectionNumber = itemSpinner.getSelectedItemPosition();

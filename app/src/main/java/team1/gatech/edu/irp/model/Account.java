@@ -47,7 +47,8 @@ class Account implements Serializable {
      * @param accountState      the state of the account
      *
      */
-    public Account(String userName, String password, String contactInfo, UserTypeENUM userType, AccountStateENUM accountState) {
+    public Account(String userName, String password, String contactInfo, UserTypeENUM userType,
+                   AccountStateENUM accountState) {
         this.userName = userName;
         this.password = password;
         this.contactInfo = contactInfo;
@@ -60,7 +61,8 @@ class Account implements Serializable {
      * This constructor only for GUI use in edit/new account dialog
      */
     public Account() {
-        this("bob_waters" , "cs2340", "bob@gatech.edu", UserTypeENUM.USER, AccountStateENUM.LOCKED);
+        this("bob_waters" , "cs2340", "bob@gatech.edu",
+                UserTypeENUM.USER, AccountStateENUM.LOCKED);
     }
 
 
@@ -123,7 +125,9 @@ class Account implements Serializable {
 //     *
 //     * @param accountState the account state
 //     */
-//    public void setAccountState(AccountStateENUM accountState) { this.accountState = accountState; }
+    public void setAccountState(AccountStateENUM accountState) {
+        this.accountState = accountState;
+    }
 
     /**
      * getter for the user type
