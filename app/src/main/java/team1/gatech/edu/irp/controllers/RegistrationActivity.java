@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.CategoryENUM;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.RegistrationResultENUM;
 import team1.gatech.edu.irp.model.UserTypeENUM;

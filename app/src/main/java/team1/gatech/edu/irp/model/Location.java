@@ -85,22 +85,22 @@ public class Location implements Serializable {
 
     }
 
-    /**
-     * No param constructor -- DO NOT CALL NORMALLY
-     */
-    public Location() {
-        _id = 201;
-        _name = "H&M";
-        _latitude = 38.89770;
-        _longitude = 77.03650;
-        _streetAddress = "MAIN STREET";
-        _city = "Atlanta";
-        _state = "GA";
-        _zipCode = 12345;
-        _locationType = LocationTypeEnum.DROPOFF;
-        _phoneNumber = "(770) 634 - 5309";
-        _websiteLink = "www.testsite.com";
-    }
+//    /**
+//     * No param constructor -- DO NOT CALL NORMALLY
+//     */
+//    public Location() {
+//        _id = 201;
+//        _name = "H&M";
+//        _latitude = 38.89770;
+//        _longitude = 77.03650;
+//        _streetAddress = "MAIN STREET";
+//        _city = "Atlanta";
+//        _state = "GA";
+//        _zipCode = 12345;
+//        _locationType = LocationTypeEnum.DROPOFF;
+//        _phoneNumber = "(770) 634 - 5309";
+//        _websiteLink = "www.testsite.com";
+//    }
 
 
 //         GETTERS AND SETTERS

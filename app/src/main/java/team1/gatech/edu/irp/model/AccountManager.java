@@ -17,7 +17,7 @@ class AccountManager implements Serializable {
     /**
      * list of account objects
      */
-    private Map<String, Account> accounts = new HashMap<>();
+    private final Map<String, Account> accounts = new HashMap<>();
 
 
     /**

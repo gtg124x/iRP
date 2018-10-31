@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 
 class CSVFile {
-    private InputStream inputStream;
+    private final InputStream inputStream;
 
     public CSVFile(InputStream inputStream){
         this.inputStream = inputStream;

@@ -22,7 +22,7 @@ class LocationManager implements Serializable {
     /**
      * holds the list of all locations
      */
-    private List<Location> locations = new ArrayList<>();
+    private final List<Location> locations = new ArrayList<>();
 
     /**
      * array to hold string representation of locations
@@ -32,7 +32,7 @@ class LocationManager implements Serializable {
     /**
      * array to hold string representation of locations with All locations as first option
      */
-    private List<String> locationsAsStringArrayWithAllLocationOption = new ArrayList<>();
+    private final List<String> locationsAsStringArrayWithAllLocationOption = new ArrayList<>();
 
     /****************************************************************************************
      *    LOCATION METHODS

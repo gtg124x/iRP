@@ -18,7 +18,7 @@ class ItemManager implements Serializable {
     /**
      * holds the items that are donated
      */
-    private List<Item> inventory = new ArrayList<>();
+    private final List<Item> inventory = new ArrayList<>();
 
     /**
      * used to test if inventory is empty
@@ -184,7 +184,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateShortDescription(String shortD) {
-        return ((shortD.length() < 2) || (shortD.equals("")));
+        return (shortD.length() < 2);
     }
 
     /**
@@ -195,7 +195,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateShortDescriptionLong(String shortD) {
-        return (shortD.length() >= 15) || (shortD.equals(""));
+        return (shortD.length() >= 15);
     }
 
     /**
@@ -206,7 +206,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateFullDescription(String fullD) {
-        return (fullD.length() < 3) || (fullD.equals(""));
+        return (fullD.length() < 3);
     }
 
     /**

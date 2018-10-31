@@ -72,7 +72,7 @@ class Account implements Serializable {
      * This constructor only for GUI use in edit/new account dialog
      */
     public Account() {
-        this("mitch" , "1234", "you@me.com", UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
+        this("bobwaters" , "cs2340", "bob@gatech.edu", UserTypeENUM.USER, AccountStateENUM.LOCKED);
     }
 
 
