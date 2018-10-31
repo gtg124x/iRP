@@ -9,7 +9,6 @@ import java.util.List;
 public enum CategoryENUM {
 
     /**
-     * Created by mitchellalvarado on 10/14/18.
      *
      * This class represents the different categories of donations
      */

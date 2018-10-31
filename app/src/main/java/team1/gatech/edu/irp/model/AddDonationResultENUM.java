@@ -8,9 +8,9 @@ public enum AddDonationResultENUM {
     TIME_INVALID ("Time Invalid"),
     DATE_INVALID ("Date Taken"),
     VALUE_INVALID ("Value Invalid"),
-    SHORTDESCRIPTION_INVALID_TO_SHORT ("Short Description To Short Invalid"),
-    SHORTDESCRIPTION_INVALID_TO_LONG ("Short Description To Long Invalid"),
-    LONGDESCRIPTION_INVALID_TO_SHORT ("Long Description Invalid"),
+    SHORT_DESCRIPTION_INVALID_TO_SHORT ("Short Description To Short Invalid"),
+    SHORT_DESCRIPTION_INVALID_TO_LONG ("Short Description To Long Invalid"),
+    LONG_DESCRIPTION_INVALID_TO_SHORT ("Long Description Invalid"),
     SUCCESS ("Success");
 
 
@@ -31,7 +31,7 @@ public enum AddDonationResultENUM {
 //     *
 //     * @return   the registration result
 //     */
-//    public String getReuslt() { return result; }
+//    public String getResult() { return result; }
 
     /**
      *

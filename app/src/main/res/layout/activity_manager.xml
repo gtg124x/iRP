@@ -7,7 +7,7 @@
     tools:context=".controllers.ManagerActivity">
 
     <Button
-        android:id="@+id/Mangager_Logout_Button"
+        android:id="@+id/Manager_Logout_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -42,5 +42,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Mangager_Logout_Button" />
+        app:layout_constraintTop_toBottomOf="@+id/Manager_Logout_Button" />
 </android.support.constraint.ConstraintLayout>

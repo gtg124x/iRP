@@ -43,7 +43,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         TextView nameField = findViewById(R.id.LocationNameText);
         nameField.setText(name);
 
-        TextView addressField = findViewById(R.id.adressText);
+        TextView addressField = findViewById(R.id.addressText);
         addressField.setText(address);
 
         TextView cityField = findViewById(R.id.CityText);

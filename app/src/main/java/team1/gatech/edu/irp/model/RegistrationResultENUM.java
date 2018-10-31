@@ -32,7 +32,7 @@ public enum RegistrationResultENUM {
 //     *
 //     * @return   the registration result
 //     */
-//    public String getReuslt() { return result; }
+//    public String getResult() { return result; }
 
     /**
      *

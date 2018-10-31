@@ -60,14 +60,14 @@ public class RegistrationActivity extends AppCompatActivity {
     public void onAddPressed(View view) {
         Model model = Model.getInstance();
         String name = loginName.getText().toString();
-        String pword = password.getText().toString();
+        String passwordString = password.getText().toString();
         String cInfo = contactInfo.getText().toString();
         String userTypeEnumString = (String) userTypeSpinner.getSelectedItem();
 
         model.setCurrentUserTypeRegistration(userTypeEnumString);
         UserTypeENUM userTypeEnum = model.getCurrentUserTypeRegistration();
 
-        RegistrationResultENUM registrationResult = model.addAccount(name, pword, cInfo, userTypeEnum);
+        RegistrationResultENUM registrationResult = model.addAccount(name, passwordString, cInfo, userTypeEnum);
 
         if (registrationResult == RegistrationResultENUM.NAME_INVALID) {
             Toast.makeText(this, "User Name must be at least 4 characters long.", Toast.LENGTH_SHORT).show();

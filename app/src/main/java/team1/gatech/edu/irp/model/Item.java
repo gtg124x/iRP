@@ -12,6 +12,11 @@ import java.io.Serializable;
  */
 public class Item implements Serializable {
 
+///*********************************************************************************************
+// *    ATTRIBUTES
+// *****************************************************************************************
+// */
+
     /** time stamp for the item */
     private String timeStamp;
 
@@ -28,11 +33,16 @@ public class Item implements Serializable {
     private String dollarValue;
 
     /** short description for the item */
-    private String shortDescripiton;
+    private String shortDescription;
 
     /** full description for the item */
-    private String fullDescripiton;
+    private String fullDescription;
 
+
+///*********************************************************************************************
+// *    CONSTRUCTORS
+// *    ****************************************************************************************
+// */
 
     /**
      * Make a new item
@@ -41,19 +51,19 @@ public class Item implements Serializable {
      * @param location          location for the item
      * @param category          category for the item
      * @param dollarValue       dollar value for the item
-     * @param shortDescripiton   short description for the item
-     * @param fullDescripiton    full description for the item
+     * @param shortDescription   short description for the item
+     * @param fullDescription    full description for the item
      *
      */
     public Item(String timeStamp, String dateStamp, Location location, CategoryENUM category, String dollarValue,
-                String shortDescripiton, String fullDescripiton) {
+                String shortDescription, String fullDescription) {
         this.timeStamp = timeStamp;
         this.dateStamp = dateStamp;
         this.location = location;
         this.category = category;
         this.dollarValue = dollarValue;
-        this.shortDescripiton = shortDescripiton;
-        this.fullDescripiton = fullDescripiton;
+        this.shortDescription = shortDescription;
+        this.fullDescription = fullDescription;
     }
 
 //    /**
@@ -64,6 +74,11 @@ public class Item implements Serializable {
 //                "10.00", "Best Shirt Ever", "Really Old Shirt");
 //    }
 
+
+///*********************************************************************************************
+// *    GETTERS AND SETTERS
+// *****************************************************************************************
+// */
 
     /**
      * getter for the timeStamp
@@ -136,32 +151,32 @@ public class Item implements Serializable {
 //    public void setDollarValue(String dollarValue) { this.dollarValue = dollarValue; }
 
     /**
-     * getter for the shortDescripiton
+     * getter for the shortDescription
      *
-     * @return the shortDescripiton
+     * @return the shortDescription
      */
-    public String getShortDescripiton() { return shortDescripiton; }
+    public String getShortDescription() { return shortDescription; }
 
 //    /**
-//     * sets the shortDescripiton
+//     * sets the shortDescription
 //     *
-//     * @param shortDescripiton the shortDescripiton
+//     * @param shortDescription the shortDescription
 //     */
-//    public void setShortDescripiton(String shortDescripiton) { this.shortDescripiton = shortDescripiton; }
+//    public void setShortDescription(String shortDescription) { this.shortDescription = shortDescription; }
 
     /**
-     * getter for the fullDescripiton
+     * getter for the fullDescription
      *
-     * @return the fullDescripiton
+     * @return the fullDescription
      */
-    public String getFullDescripiton() { return fullDescripiton; }
+    public String getFullDescription() { return fullDescription; }
 
 //    /**
-//     * sets the fullDescripiton
+//     * sets the fullDescription
 //     *
-//     * @param fullDescripiton the fullDescripiton
+//     * @param fullDescription the fullDescription
 //     */
-//    public void setFullDescripiton(String fullDescripiton) { this.fullDescripiton = fullDescripiton; }
+//    public void setFullDescription(String fullDescription) { this.fullDescription = fullDescription; }
 
 
 
@@ -173,7 +188,7 @@ public class Item implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        return shortDescripiton;
+        return shortDescription;
     }
 
     /**
@@ -187,7 +202,7 @@ public class Item implements Serializable {
             return false;
         }
         Item i = (Item) o;
-        return (i.getShortDescripiton().equals(shortDescripiton));
+        return (i.getShortDescription().equals(shortDescription));
     }
 
 

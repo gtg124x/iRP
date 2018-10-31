@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LocationNameText" />
 
     <TextView
-        android:id="@+id/adressText"
+        android:id="@+id/addressText"
         android:layout_width="215dp"
         android:layout_height="19dp"
         android:layout_marginStart="8dp"
@@ -50,7 +50,7 @@
         android:layout_marginStart="104dp"
         android:text="@string/city"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adressText" />
+        app:layout_constraintTop_toBottomOf="@+id/addressText" />
 
     <TextView
         android:id="@+id/CityText"
@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/CityLabel"
-        app:layout_constraintTop_toBottomOf="@+id/adressText" />
+        app:layout_constraintTop_toBottomOf="@+id/addressText" />
 
     <TextView
         android:id="@+id/StateLabel"

@@ -45,20 +45,20 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Login Button Handler.
      * Valid the login and get the user type to determine which screen to navigate towards
-     * Graps the user input and sends it to model for verification.
+     * Grabs the user input and sends it to model for verification.
      */
     public void onLoginPressed(View v) {
         Model model = Model.getInstance();
 
         String name = userName.getText().toString();
-        String pword = password.getText().toString();
+        String passwordString = password.getText().toString();
 
-        if (model.validateLogin(name, pword)) {
+        if (model.validateLogin(name, passwordString)) {
             UserTypeENUM userType = model.getUserType(name);
             if (userType == UserTypeENUM.ADMIN) {
                 Intent intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);
-            } else if (userType == UserTypeENUM.LOCALEMPLOYEE) {
+            } else if (userType == UserTypeENUM.LOCAL_EMPLOYEE) {
                 Intent intent = new Intent(this, LocalEmployeeActivity.class);
                 startActivity(intent);
             } else if (userType == UserTypeENUM.MANAGER) {

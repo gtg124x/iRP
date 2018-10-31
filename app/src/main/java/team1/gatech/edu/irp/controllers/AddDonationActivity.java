@@ -102,11 +102,11 @@ public class AddDonationActivity extends AppCompatActivity {
             Toast.makeText(this, "Date Stamp must be in Month/Day/Year form ex. 02-04-2018", Toast.LENGTH_SHORT).show();
         } else if (addDonationResult == AddDonationResultENUM.VALUE_INVALID) {
             Toast.makeText(this, "Dollar Value must be $xx.xx form ex. 0.19", Toast.LENGTH_SHORT).show();
-        } else if (addDonationResult == AddDonationResultENUM.SHORTDESCRIPTION_INVALID_TO_SHORT) {
+        } else if (addDonationResult == AddDonationResultENUM.SHORT_DESCRIPTION_INVALID_TO_SHORT) {
             Toast.makeText(this, "Short Description must be longer than 2 characters.", Toast.LENGTH_SHORT).show();
-        } else if (addDonationResult == AddDonationResultENUM.SHORTDESCRIPTION_INVALID_TO_LONG) {
+        } else if (addDonationResult == AddDonationResultENUM.SHORT_DESCRIPTION_INVALID_TO_LONG) {
             Toast.makeText(this, "Short Description less than or equal to 15 characters..", Toast.LENGTH_SHORT).show();
-        } else if (addDonationResult == AddDonationResultENUM.LONGDESCRIPTION_INVALID_TO_SHORT) {
+        } else if (addDonationResult == AddDonationResultENUM.LONG_DESCRIPTION_INVALID_TO_SHORT) {
             Toast.makeText(this, "Full Description must be longer than 2 characters.", Toast.LENGTH_SHORT).show();
         } else if (addDonationResult == AddDonationResultENUM.SUCCESS) {
             Toast.makeText(this, "Item added to Inventory.", Toast.LENGTH_SHORT).show();

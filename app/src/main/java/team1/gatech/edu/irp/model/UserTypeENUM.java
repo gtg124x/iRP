@@ -12,7 +12,7 @@ import java.util.List;
 public enum UserTypeENUM {
 
     USER ("User"),
-    LOCALEMPLOYEE ("Local Employee"),
+    LOCAL_EMPLOYEE ("Local Employee"),
     MANAGER ("Manager"),
     ADMIN ("Admin");
 

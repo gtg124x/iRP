@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
  */
 public enum LocationTypeEnum {
 
-    DROPOFF("Drop off"),
+    DROP_OFF("Drop off"),
     STORE("Store"),
     WAREHOUSE("Warehouse");
 
@@ -48,13 +48,13 @@ public enum LocationTypeEnum {
      */
     public static LocationTypeEnum convertType(String typeAsString) {
         if (typeAsString.equalsIgnoreCase("Drop off")) {
-            return LocationTypeEnum.DROPOFF;
+            return LocationTypeEnum.DROP_OFF;
         } else if (typeAsString.equalsIgnoreCase("Store")) {
             return LocationTypeEnum.STORE;
         } else if (typeAsString.equalsIgnoreCase("Warehouse")) {
             return LocationTypeEnum.WAREHOUSE;
         } else {
-            return LocationTypeEnum.DROPOFF;
+            return LocationTypeEnum.DROP_OFF;
         }
     }
 

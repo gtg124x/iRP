@@ -163,25 +163,25 @@ public class Model {
      * adds an account to the system
      *
      *  @param name an account name
-     *  @param pword an account password
+     *  @param passwordString an account password
      *  @param cInfo an account contact info
      *  @param userTypeEnum an account type
      *  @return success
      */
-    public RegistrationResultENUM addAccount(String name, String pword, String cInfo, UserTypeENUM userTypeEnum) {
-        return accountManager.addToAccounts(name, pword, cInfo, userTypeEnum);
+    public RegistrationResultENUM addAccount(String name, String passwordString, String cInfo, UserTypeENUM userTypeEnum) {
+        return accountManager.addToAccounts(name, passwordString, cInfo, userTypeEnum);
     }
 
     /**
      * validate the login information
      *
      *  @param name an account name
-     *  @param pword an account password
+     *  @param passwordString an account password
      *
      *  @return success
      */
-    public boolean validateLogin(String name, String pword) {
-        return accountManager.loginCheck(name, pword);
+    public boolean validateLogin(String name, String passwordString) {
+        return accountManager.loginCheck(name, passwordString);
     }
 
     /**
@@ -286,7 +286,7 @@ public class Model {
 //     *
 //     * @return list of items represented as Strings
 //     */
-//    public List<String> getInvtoryAsStringArrary() { return itemManager.getItemManagerAsStringArray(); }
+//    public List<String> getInventoryAsStringArray() { return itemManager.getItemManagerAsStringArray(); }
 
     /**
      * a list of items represented as Strings that have been added to the a selected location

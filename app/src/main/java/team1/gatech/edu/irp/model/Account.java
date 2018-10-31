@@ -11,6 +11,12 @@ import java.io.Serializable;
  */
 class Account implements Serializable {
 
+
+///*********************************************************************************************
+// *    ATTRIBUTES
+// *****************************************************************************************
+// */
+
     /** login name for the account */
     private String userName;
 
@@ -26,6 +32,11 @@ class Account implements Serializable {
     /** account type admin, user, local emp, or manager*/
     private UserTypeENUM userType;
 
+
+///*********************************************************************************************
+// *    CONSTRUCTORS
+// *    ****************************************************************************************
+// */
 
     /**
      * Make a new account
@@ -72,9 +83,14 @@ class Account implements Serializable {
      * This constructor only for GUI use in edit/new account dialog
      */
     public Account() {
-        this("bobwaters" , "cs2340", "bob@gatech.edu", UserTypeENUM.USER, AccountStateENUM.LOCKED);
+        this("bob_waters" , "cs2340", "bob@gatech.edu", UserTypeENUM.USER, AccountStateENUM.LOCKED);
     }
 
+
+///*********************************************************************************************
+// *    GETTERS AND SETTERS
+// *****************************************************************************************
+// */
 
 //    /**
 //     * getter for the user name

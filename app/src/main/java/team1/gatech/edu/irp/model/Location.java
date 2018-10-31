@@ -15,8 +15,10 @@ import java.io.Serializable;
 public class Location implements Serializable {
 
 
-//         ATTRIBUTES
-//         Notes: allow us to assign unique number to the location
+///*********************************************************************************************
+// *    ATTRIBUTES
+// *****************************************************************************************
+// */
 
     /** unique id number */
     private int _id;
@@ -51,7 +53,12 @@ public class Location implements Serializable {
     /** the website link */
     private String _websiteLink;
 
-//         CONSTRUCTORS
+
+///*********************************************************************************************
+// *    CONSTRUCTORS
+// *    ****************************************************************************************
+// */
+
     /**
      * Makes a new Location
      * @param id  the id of the location as an integer
@@ -64,7 +71,7 @@ public class Location implements Serializable {
      * @param zipCode the latitude of the zipCode like "30332"
      * @param locationType the locationType of the location like "Drop off"
      * @param phoneNumber the phoneNumber of the location like "(770) 634 - 5309"
-     * @param websiteLink the website link of the location like "www.gooddonation.com"
+     * @param websiteLink the website link of the location like "www.goodDonation.com"
      *
      */
     public Location(int id, String name, Double latitude, Double longitude, String streetAddress,
@@ -85,25 +92,11 @@ public class Location implements Serializable {
 
     }
 
-//    /**
-//     * No param constructor -- DO NOT CALL NORMALLY
-//     */
-//    public Location() {
-//        _id = 201;
-//        _name = "H&M";
-//        _latitude = 38.89770;
-//        _longitude = 77.03650;
-//        _streetAddress = "MAIN STREET";
-//        _city = "Atlanta";
-//        _state = "GA";
-//        _zipCode = 12345;
-//        _locationType = LocationTypeEnum.DROPOFF;
-//        _phoneNumber = "(770) 634 - 5309";
-//        _websiteLink = "www.testsite.com";
-//    }
 
-
-//         GETTERS AND SETTERS
+///*********************************************************************************************
+// *    GETTERS AND SETTERS
+// *****************************************************************************************
+// */
 
     /**
      * getter for the location name

@@ -30,7 +30,7 @@
     <string name="add_button">Add</string>
     <string name="irp">iRP</string>
     <string name="registration">Registration</string>
-    <string name="irp_decription">an internal resource planning app</string>
+    <string name="irp_description">an internal resource planning app</string>
     <string name="item_list">Item List</string>
     <string name="view_item">View Item</string>
     <string name="back">Back</string>
@@ -42,13 +42,13 @@
     <string name="full_description">Full Description</string>
     <string name="submit">Submit</string>
 
-    <string name="time_stamp_colen">Time Stamp: </string>
-    <string name="date_stamp_colen">Date Stamp: </string>
-    <string name="category_colens">Category : </string>
-    <string name="location_colen">Location : </string>
-    <string name="value_colen">Value: </string>
-    <string name="short_description_colen">Short Description: </string>
-    <string name="full_description_colen">Full Description: </string>
+    <string name="time_stamp_colon">Time Stamp: </string>
+    <string name="date_stamp_colon">Date Stamp: </string>
+    <string name="category_colons">Category : </string>
+    <string name="location_colon">Location : </string>
+    <string name="value_colon">Value: </string>
+    <string name="short_description_colon">Short Description: </string>
+    <string name="full_description_colon">Full Description: </string>
 
     <string name="load_data">Load Data</string>
     <string name="save_data">Save Data</string>

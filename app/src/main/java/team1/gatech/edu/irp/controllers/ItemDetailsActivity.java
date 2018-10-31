@@ -30,8 +30,8 @@ public class ItemDetailsActivity extends AppCompatActivity {
         String location = model.getCurrentItemDetails().getLocation().toString();
         String category = model.getCurrentItemDetails().getCategory().toString();
         String value = model.getCurrentItemDetails().getDollarValue();
-        String shortDescription = model.getCurrentItemDetails().getShortDescripiton();
-        String fullDescription = model.getCurrentItemDetails().getFullDescripiton();
+        String shortDescription = model.getCurrentItemDetails().getShortDescription();
+        String fullDescription = model.getCurrentItemDetails().getFullDescription();
 
 
 
@@ -51,10 +51,10 @@ public class ItemDetailsActivity extends AppCompatActivity {
         String moneySignAndValue = "$ " + value;
         valueField.setText(moneySignAndValue);
 
-        TextView shortDescriptionField = findViewById(R.id.ShortDecriptionText);
+        TextView shortDescriptionField = findViewById(R.id.ShortDescriptionText);
         shortDescriptionField.setText(shortDescription);
 
-        TextView fullDescriptionField = findViewById(R.id.FullDecriptionText);
+        TextView fullDescriptionField = findViewById(R.id.FullDescriptionText);
         fullDescriptionField.setText(fullDescription);
 
 

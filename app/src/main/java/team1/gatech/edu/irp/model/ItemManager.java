@@ -51,11 +51,11 @@ class ItemManager implements Serializable {
         } else if (validateDollarValue(dollarValue)) {
             return AddDonationResultENUM.VALUE_INVALID;
         } else if (validateShortDescription(shortDescription)) {
-            return AddDonationResultENUM.SHORTDESCRIPTION_INVALID_TO_SHORT;
+            return AddDonationResultENUM.SHORT_DESCRIPTION_INVALID_TO_SHORT;
         } else if (validateShortDescriptionLong(shortDescription) ) {
-            return AddDonationResultENUM.SHORTDESCRIPTION_INVALID_TO_LONG;
+            return AddDonationResultENUM.SHORT_DESCRIPTION_INVALID_TO_LONG;
         } else if (validateFullDescription(fullDescription)) {
-            return AddDonationResultENUM.LONGDESCRIPTION_INVALID_TO_SHORT;
+            return AddDonationResultENUM.LONG_DESCRIPTION_INVALID_TO_SHORT;
         } else {
             Item item = new Item(timeStamp, dateStamp, location, category, dollarValue, shortDescription, fullDescription);
             inventory.add(item);
@@ -73,9 +73,9 @@ class ItemManager implements Serializable {
     private boolean validateTimeStamp(String time) {
         if (time.equals("")) { return true; }
         if (time.length() != 8) { return true; }
-        String firstColen = "" + time.charAt(2);
-        String secondColen = "" + time.charAt(5);
-        if (!(firstColen.equals(":")) || !(secondColen.equals(":"))) { return true; }
+        String firstColon = "" + time.charAt(2);
+        String secondColon = "" + time.charAt(5);
+        if (!(firstColon.equals(":")) || !(secondColon.equals(":"))) { return true; }
 
         String hourAsString = "" + time.charAt(0) + time.charAt(1);
         String minAsString = "" + time.charAt(3) + time.charAt(4);
@@ -109,9 +109,9 @@ class ItemManager implements Serializable {
     private boolean validateDateStamp(String date) {
         if (date.equals("")) { return true; }
         if (date.length() != 10) { return true; }
-        String firstDast = "" + date.charAt(2);
+        String firstDash = "" + date.charAt(2);
         String secondDash = "" + date.charAt(5);
-        if (!(firstDast.equals("-")) || !(secondDash.equals("-"))) { return true; }
+        if (!(firstDash.equals("-")) || !(secondDash.equals("-"))) { return true; }
 
         String monthAsString = "" + date.charAt(0) + date.charAt(1);
         String dateString = "" + date.charAt(3) + date.charAt(4);
@@ -284,13 +284,13 @@ class ItemManager implements Serializable {
         List<String> itemLocationList = new ArrayList<>();
         if (location.equals("All Locations")) {
             for (Item i : inventory) {
-                if (i.getShortDescripiton().equals(name)) {
+                if (i.getShortDescription().equals(name)) {
                     itemLocationList.add(i.toString());
                 }
             }
         } else {
             for (Item i : inventory) {
-                if (i.getLocation().toString().equals(location) && i.getShortDescripiton().equals(name)) {
+                if (i.getLocation().toString().equals(location) && i.getShortDescription().equals(name)) {
                     itemLocationList.add(i.toString());
                 }
             }

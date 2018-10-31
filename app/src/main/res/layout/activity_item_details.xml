@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/time_stamp_colen"
+        android:text="@string/time_stamp_colon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="4dp"
-        android:text="@string/date_stamp_colen"
+        android:text="@string/date_stamp_colon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TimeStampLabelTextView" />
 
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
-        android:text="@string/location_colen"
+        android:text="@string/location_colon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DateStampLabelTextView" />
 
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
-        android:text="@string/category_colens"
+        android:text="@string/category_colons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LocationLabelTextView" />
 
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="4dp"
-        android:text="@string/value_colen"
+        android:text="@string/value_colon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CategoryLabelTextView" />
 
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/short_description_colen"
+        android:text="@string/short_description_colon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ValueLabelTextView" />
 
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:text="@string/full_description_colen"
+        android:text="@string/full_description_colon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ShortDescriptionLabelTextView" />
 
@@ -147,7 +147,7 @@
         app:layout_constraintTop_toBottomOf="@+id/CategoryText" />
 
     <TextView
-        android:id="@+id/ShortDecriptionText"
+        android:id="@+id/ShortDescriptionText"
         android:layout_width="207dp"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
@@ -159,7 +159,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ValueText" />
 
     <TextView
-        android:id="@+id/FullDecriptionText"
+        android:id="@+id/FullDescriptionText"
         android:layout_width="346dp"
         android:layout_height="62dp"
         android:layout_marginStart="8dp"
