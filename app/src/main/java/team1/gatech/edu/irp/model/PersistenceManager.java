@@ -16,6 +16,8 @@ public class PersistenceManager {
     /**
      * Deletes the Binary file
      *
+     * Note: DOES NOT DELETE TEMP DATA IN ARRAY'S, JUST DELETES THE FILE!
+     *
      * @param file the file that holds the persistence data
      * @return the success
      */

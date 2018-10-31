@@ -39,7 +39,8 @@ class AccountManager implements Serializable {
         } else if (accountEmailNotValid(cInfo)) {
             return RegistrationResultENUM.EMAIL_INVALID;
         } else {
-            return createAccounts(name, password, cInfo, userTypeEnum);
+            createAccounts(name, password, cInfo, userTypeEnum);
+            return RegistrationResultENUM.SUCCESS;
         }
     }
 
@@ -87,12 +88,11 @@ class AccountManager implements Serializable {
      *  @param cInfo an account contact info
      *  @param userTypeEnum an account type
      *
-     *  @return success
      */
-    private RegistrationResultENUM createAccounts(String name, String password, String cInfo, UserTypeENUM userTypeEnum) {
+    private void createAccounts(String name, String password, String cInfo, UserTypeENUM userTypeEnum) {
         Account newAccount = new Account(name, password, cInfo, userTypeEnum, AccountStateENUM.UNLOCKED);
         accounts.put(name, newAccount);
-        return RegistrationResultENUM.SUCCESS;
+        //return RegistrationResultENUM.SUCCESS;
     }
 
     /**

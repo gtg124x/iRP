@@ -12,20 +12,20 @@ import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.RegistrationResultENUM;
 import team1.gatech.edu.irp.model.UserTypeENUM;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 
 /**
  * Account Registration Screen
  */
-public class RegistrationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class RegistrationActivity extends AppCompatActivity {
+        //implements AdapterView.OnItemSelectedListener {
 
     private TextView loginName;
     private TextView password;
     private TextView contactInfo;
     private Spinner userTypeSpinner;
-    private String userT;
+    //private String userT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
             Toast.makeText(this, "Password must be at least 4 characters long.", Toast.LENGTH_SHORT).show();
         } else if (registrationResult == RegistrationResultENUM.EMAIL_INVALID) {
             Toast.makeText(this, "Must Enter Valid Email Address.", Toast.LENGTH_SHORT).show();
-        } else if (registrationResult == RegistrationResultENUM.SUCCESS) {
+        } else {
             Toast.makeText(this, "Account Created.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, WelcomeActivity.class);
             startActivity(intent);
@@ -91,18 +91,18 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
     }
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        userT = parent.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        userT = "User";
-    }
-
-
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//        userT = parent.getItemAtPosition(position).toString();
+//    }
+//
+//    @Override
+//    public void onNothingSelected(AdapterView<?> parent) {
+//        userT = "User";
+//    }
+//
+//
 
 
 

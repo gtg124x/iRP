@@ -70,5 +70,5 @@
         app:layout_constraintHorizontal_bias="0.004"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserName_Box"
-        android:importantForAutofill="no" />
+        />
 </android.support.constraint.ConstraintLayout>

@@ -44,17 +44,17 @@ class ItemManager implements Serializable {
     public AddDonationResultENUM validateAndAddItemToItemManager(String timeStamp, String dateStamp, Location location,
                                                                  CategoryENUM category, String dollarValue,
                                                                  String shortDescription, String fullDescription) {
-        if (!validiateTimeStamp(timeStamp)) {
+        if (validateTimeStamp(timeStamp)) {
             return AddDonationResultENUM.TIME_INVALID;
-        } else if (!validiateDateStamp(dateStamp)) {
+        } else if (validateDateStamp(dateStamp)) {
             return AddDonationResultENUM.DATE_INVALID;
-        } else if (!validiateDollarValue(dollarValue)) {
+        } else if (validateDollarValue(dollarValue)) {
             return AddDonationResultENUM.VALUE_INVALID;
-        } else if (shortDescription.length() < 3) {
+        } else if (validateShortDescription(shortDescription)) {
             return AddDonationResultENUM.SHORTDESCRIPTION_INVALID_TO_SHORT;
-        } else if (shortDescription.length() > 15 ) {
+        } else if (validateShortDescriptionLong(shortDescription) ) {
             return AddDonationResultENUM.SHORTDESCRIPTION_INVALID_TO_LONG;
-        } else if (fullDescription.length() < 3) {
+        } else if (validateFullDescription(fullDescription)) {
             return AddDonationResultENUM.LONGDESCRIPTION_INVALID_TO_SHORT;
         } else {
             Item item = new Item(timeStamp, dateStamp, location, category, dollarValue, shortDescription, fullDescription);
@@ -70,11 +70,11 @@ class ItemManager implements Serializable {
      *
      * @return the result success of the validation
      */
-    private boolean validiateTimeStamp(String time) {
-        if (time.length() != 8) { return false; }
+    private boolean validateTimeStamp(String time) {
+        if (time.length() != 8) { return true; }
         String firstColen = "" + time.charAt(2);
         String secondColen = "" + time.charAt(5);
-        if (!(firstColen.equals(":")) || !(secondColen.equals(":"))) { return false; }
+        if (!(firstColen.equals(":")) || !(secondColen.equals(":"))) { return true; }
 
         String hourAsString = "" + time.charAt(0) + time.charAt(1);
         String minAsString = "" + time.charAt(3) + time.charAt(4);
@@ -93,7 +93,7 @@ class ItemManager implements Serializable {
             return (hourAsInt < 0 || hourAsInt >= 24 || minAsInt < 0 || minAsInt >= 60 || secAsInt < 0 || secAsInt >= 60);
 
         } catch (NumberFormatException e) {
-            return false;
+            return true;
         }
 
     }
@@ -105,11 +105,11 @@ class ItemManager implements Serializable {
      *
      * @return the result success of the validation
      */
-    private boolean validiateDateStamp(String date) {
-        if (date.length() != 10) { return false; }
+    private boolean validateDateStamp(String date) {
+        if (date.length() != 10) { return true; }
         String firstDast = "" + date.charAt(2);
         String secondDash = "" + date.charAt(5);
-        if (!(firstDast.equals("-")) || !(secondDash.equals("-"))) { return false; }
+        if (!(firstDast.equals("-")) || !(secondDash.equals("-"))) { return true; }
 
         String monthAsString = "" + date.charAt(0) + date.charAt(1);
         String dateString = "" + date.charAt(3) + date.charAt(4);
@@ -133,7 +133,7 @@ class ItemManager implements Serializable {
                     || (monthAsInt == 2 && dateAsInt > 29));
 
         } catch (NumberFormatException e) {
-            return false;
+            return true;
         }
 
     }
@@ -145,13 +145,13 @@ class ItemManager implements Serializable {
      *
      * @return the result success of the validation
      */
-    private boolean validiateDollarValue(String dollarValue) {
-        if (dollarValue.length() < 4) { return false; }
+    private boolean validateDollarValue(String dollarValue) {
+        if (dollarValue.length() < 4) { return true; }
 
         String change = "" + dollarValue.charAt(dollarValue.length() - 2) + dollarValue.charAt(dollarValue.length() - 1);
         String dollars = "" + dollarValue.substring(0, dollarValue.length() - 3);
         String decimalPoint = "" + dollarValue.charAt(dollarValue.length() - 3);
-        if (!(decimalPoint.equals("."))) { return false; }
+        if (!(decimalPoint.equals("."))) { return true; }
 
         try {
             int changeAsInt = Integer.parseInt(change);
@@ -167,11 +167,44 @@ class ItemManager implements Serializable {
 
 
         } catch (NumberFormatException e) {
-            return false;
+            return true;
         }
 
     }
 
+
+    /**
+     * helper method to validate the user input for the short description field if to short
+     *
+     * @param shortD the short description
+     *
+     * @return the result success of the validation
+     */
+    private boolean validateShortDescription(String shortD) {
+        return (shortD.length() < 2);
+    }
+
+    /**
+     * helper method to validate the user input for the short description field if to long
+     *
+     * @param shortD the short description
+     *
+     * @return the result success of the validation
+     */
+    private boolean validateShortDescriptionLong(String shortD) {
+        return (shortD.length() >= 15);
+    }
+
+    /**
+     * helper method to validate the user input for the full description field if to short
+     *
+     * @param fullD the full description
+     *
+     * @return the result success of the validation
+     */
+    private boolean validateFullDescription(String fullD) {
+        return (fullD.length() < 3);
+    }
 
     /**
      * returns a list of items that have been added to the app
@@ -180,18 +213,18 @@ class ItemManager implements Serializable {
      */
     public List<Item> getItemManagerAsItemArray() { return inventory; }
 
-    /**
-     * returns a list of items represented as Strings that have been added to the app
-     *
-     * @return list of items represented as Strings
-     */
-    public List<String> getItemManagerAsStringArray() {
-        List<String> inventoryStringArray = new ArrayList<>();
-        for (Item i : inventory) {
-            inventoryStringArray.add(i.toString());
-        }
-        return inventoryStringArray;
-    }
+//    /**
+//     * returns a list of items represented as Strings that have been added to the app
+//     *
+//     * @return list of items represented as Strings
+//     */
+//    public List<String> getItemManagerAsStringArray() {
+//        List<String> inventoryStringArray = new ArrayList<>();
+//        for (Item i : inventory) {
+//            inventoryStringArray.add(i.toString());
+//        }
+//        return inventoryStringArray;
+//    }
 
     /**
      * finds the items sorted by location
@@ -262,20 +295,14 @@ class ItemManager implements Serializable {
         return itemLocationList;
     }
 
-    /**
-     * tests whether or not the inventory is empty
-     *
-     * @return if the inventory is empty
-     */
-    public boolean itemListEmpty() {
-//        boolean success;
-//        if (inventory.size() == 0) {
-//            success = true;
-//        } else {
-//            success = false;
-//        }
-        return (inventory.size() == 0);
-    }
+//    /**
+//     * tests whether or not the inventory is empty
+//     *
+//     * @return if the inventory is empty
+//     */
+//    public boolean itemListEmpty() {
+//        return (inventory.size() == 0);
+//    }
 
     /**
      * determines if the inventory at a location is empty or no
