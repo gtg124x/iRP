@@ -19,8 +19,6 @@ import java.io.File;
  *
  */
 public class WelcomeActivity extends AppCompatActivity {
-    //private Model model;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +50,8 @@ public class WelcomeActivity extends AppCompatActivity {
      *
      */
     public void onLoadDataOnPressed(View v) {
-        //Model model = null;
-        //Model model = Model.getInstance();
         File file;
         file = new File(this.getFilesDir(), "data.bin");
-//        boolean success = model.loadBinary(file);
         boolean success = PersistenceManager.loadBinary(file);
         if (success) {
             Toast.makeText(this, "Data has been loaded.", Toast.LENGTH_SHORT).show();
@@ -71,11 +66,8 @@ public class WelcomeActivity extends AppCompatActivity {
      *
      */
     public void onSaveDataOnPressed(View v) {
-        //Model model = null;
-        //Model model = model.getInstance();
         File file;
         file = new File(this.getFilesDir(), "data.bin");
-        //boolean success =  model.saveBinary(file);
         boolean success =  PersistenceManager.saveBinary(file);
         if (success) {
             Toast.makeText(this, "Data has been saved.", Toast.LENGTH_SHORT).show();
@@ -89,11 +81,7 @@ public class WelcomeActivity extends AppCompatActivity {
      *
      */
     public void onClearDataOnPressed(View v) {
-        //Model model = null;
-        //Model model = model.getInstance();
         File file = new File(this.getFilesDir(), "data.bin");
-        //file.delete();
-//        boolean success =  model.deleteBinary(file);
         boolean success =  PersistenceManager.deleteBinary(file);
         if (success) {
             Toast.makeText(this, "Data has been deleted.", Toast.LENGTH_SHORT).show();
@@ -101,12 +89,6 @@ public class WelcomeActivity extends AppCompatActivity {
             Toast.makeText(this, "ERROR: Data has NOT been deleted.", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
-
-
 
 }
 

@@ -55,29 +55,6 @@ class Account implements Serializable {
         this.accountState = accountState;
     }
 
-//    /**
-//     * Make a new account
-//     * @param userName         the account login name
-//     * @param password          the account password
-//     * @param contactInfo       the account contact Information
-//     * @param userType          the type of user
-//     *
-//     */
-//    public Account(String userName, String password, String contactInfo, UserTypeENUM userType) {
-//        this(userName, password, contactInfo, userType,  AccountStateENUM.UNLOCKED);
-//    }
-
-//    /**
-//     * Make a new account
-//     * @param userName         the account login name
-//     * @param password          the account password
-//     * @param contactInfo       the account contact Information
-//     *
-//     */
-//    public Account(String userName, String password, String contactInfo) {
-//        this(userName, password, contactInfo, UserTypeENUM.USER, AccountStateENUM.UNLOCKED);
-//    }
-
     /**
      * No param constructor -- DO NOT CALL NORMALLY
      * This constructor only for GUI use in edit/new account dialog
@@ -162,8 +139,6 @@ class Account implements Serializable {
 //     */
 //    public void setUserType(UserTypeENUM userType) { this.userType = userType; }
 
-
-
     /**
      *
      * @return the display string representation
@@ -173,7 +148,6 @@ class Account implements Serializable {
     public String toString() {
         return userName + " " + contactInfo + " " + userType;
     }
-
 
 
 }

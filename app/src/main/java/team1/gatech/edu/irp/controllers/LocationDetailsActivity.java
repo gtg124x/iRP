@@ -73,8 +73,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         itemSpinner = findViewById(R.id.ItemSpinner);
 
 
-//          Set up the adapter to display the allowable locations in the spinner
-
+//      Set up the adapter to display the allowable locations in the spinner
         List<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, currentLocationItemList);

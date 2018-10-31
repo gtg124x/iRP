@@ -66,14 +66,6 @@ public class Item implements Serializable {
         this.fullDescription = fullDescription;
     }
 
-//    /**
-//     * No param constructor -- DO NOT CALL NORMALLY
-//     */
-//    public Item() {
-//        this("12:00:00" , "12-25-2018", new Location(), CategoryENUM.CLOTHING,
-//                "10.00", "Best Shirt Ever", "Really Old Shirt");
-//    }
-
 
 ///*********************************************************************************************
 // *    GETTERS AND SETTERS
@@ -204,7 +196,6 @@ public class Item implements Serializable {
         Item i = (Item) o;
         return (i.getShortDescription().equals(shortDescription));
     }
-
 
 
 }

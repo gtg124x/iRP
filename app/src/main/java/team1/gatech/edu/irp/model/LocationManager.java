@@ -45,7 +45,6 @@ class LocationManager implements Serializable {
         CSVFile csvFile = new CSVFile(inputStream);
         ArrayList<String[]> scoreList;
         scoreList = csvFile.read();
-        //boolean success = true;
 
         for (int i = 1; i < scoreList.size(); i++) {
             Location tempLoc = new Location(Integer.parseInt(scoreList.get(i)[0]), scoreList.get(i)[1],
@@ -59,7 +58,6 @@ class LocationManager implements Serializable {
                     return false;
                 }
             }
-            //locationsAsStringArray.add(tempLoc.toString());
             locations.add(tempLoc);
 
         }
@@ -72,16 +70,8 @@ class LocationManager implements Serializable {
      * @return if there are no locations entered in the app
      */
     public boolean locationListEmpty() {
-//        boolean success;
-//        if (locations.size() == 0) {
-//            success = true;
-//        } else {
-//            success = false;
-//        }
         return (locations.size() == 0);
     }
-
-
 
     /**
      * returns a list of locations that have been added to the app
@@ -104,20 +94,6 @@ class LocationManager implements Serializable {
         }
         return locationsAsStringArray;
     }
-
-//    /**
-//     * converts a location in string form to a location object
-//     *
-//     * @return a location
-//     */
-//    public Location convertStringToLocation(String locationString) {
-//        for (Location l : locations) {
-//            if (l.getName().equals(locationString)) {
-//                return l;
-//            }
-//        }
-//        return new Location();
-//    }
 
     /**
      * returns a list of locations represented as Strings with All locations as first option

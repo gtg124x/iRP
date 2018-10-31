@@ -39,17 +39,6 @@ public class Model {
 
 
 //    /****************************************************************************************
-//     *    PERSISTENCE DATA ATTRIBUTE
-//     ****************************************************************************************
-//     */
-
-//    /**
-//     * File for persistence data
-//     */
-//    public final static String DEFAULT_BINARY_FILE_NAME = "data.bin";
-
-
-//    /****************************************************************************************
 //     *     DATA MANGER ATTRIBUTES
 //     ****************************************************************************************
 //     */
@@ -267,27 +256,6 @@ public class Model {
                 dollarValue, shortDescription, fullDescription);
     }
 
-//    /**
-//     * tests whether or not the inventory is empty
-//     *
-//     * @return if the inventory is empty
-//     */
-//    public boolean inventoryEmpty() { return itemManager.itemListEmpty(); }
-
-//    /**
-//     * a list of items that have been added to the app
-//     *
-//     * @return list of items objects
-//     */
-//    public List<Item> getInventoryAsItemArray() { return itemManager.getItemManagerAsItemArray(); }
-
-//    /**
-//     * a list of items represented as Strings that have been added to the app
-//     *
-//     * @return list of items represented as Strings
-//     */
-//    public List<String> getInventoryAsStringArray() { return itemManager.getItemManagerAsStringArray(); }
-
     /**
      * a list of items represented as Strings that have been added to the a selected location
      *
@@ -358,12 +326,6 @@ public class Model {
      * @return if the inventory is empty
      */
     public boolean isCurrentItemListEmpty() {
-//        boolean success;
-//        if( _currentItemList.size() == 0) {
-//            success = true;
-//        } else {
-//            success = false;
-//        }
         return ( _currentItemList.size() == 0);
     }
 
@@ -477,83 +439,5 @@ public class Model {
         }
     }
 
-////    /****************************************************************************************
-////     *    PERSISTENCE DATA METHODS
-////     ****************************************************************************************
-////     */
-//
-//
-//    /**
-//     * Deletes the Binary file
-//     *
-//     * @param file the file that holds the persistence data
-//     */
-//    public boolean deleteBinary(File file) {
-//        return file.delete();
-//    }
-//
-//    /**
-//     * Loads the Binary file
-//     *
-//     * @param file the file that holds the persistence data
-//     */
-//    public boolean loadBinary(File file) {
-//        boolean success = true;
-//        try {
-////            /**
-////             * To read, we must use the ObjectInputStream since we want to read our model in with
-////             * a single read.
-////             */
-//            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-//            // assuming we saved our top level object, we read it back in with one line of code.
-//            accountManager = (AccountManager) in.readObject();
-//            locationManager =  (LocationManager) in.readObject();
-//            itemManager = (ItemManager) in.readObject();
-//            in.close();
-//        } catch (IOException e) {
-//            success = false;
-//        } catch (ClassNotFoundException e) {
-//           success = false;
-//        }
-//
-//        return success;
-//    }
-//
-//    /**
-//     * Saves the Binary file
-//     *
-//     * @param file the file that holds the persistence data
-//     */
-//    public boolean saveBinary(File file) {
-//        boolean success = true;
-//        try {
-//
-////            /**
-////             * For binary, we use Serialization, so everything we write has to implement
-////             * the Serializable interface.  Fortunately all the collection classes and APi classes
-////             * that we might use are already Serializable.  You just have to make sure your
-////             * classes implement Serializable.
-////             *
-////             * We have to use an ObjectOutputStream to write objects.
-////             * One thing to be careful of:  You cannot serialize static data.
-////             *
-////             */
-//            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
-//
-////            /**
-////             * We basically can save our entire data model with one write, since this will follow
-////             * all the links and pointers to save everything.  Just save the top level object.
-////             */
-//            out.writeObject(accountManager);
-//            out.writeObject(locationManager);
-//            out.writeObject(itemManager);
-//
-//            out.close();
-//
-//        } catch (IOException e) {
-//            success = false;
-//        }
-//        return success;
-//    }
 
 }

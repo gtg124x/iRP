@@ -40,9 +40,8 @@ public enum UserTypeENUM {
         for (UserTypeENUM userType : UserTypeENUM.values()) {
             UserTypeENUMList.add(userType.toString());
         }
-        return UserTypeENUMList; }
-
-
+        return UserTypeENUMList;
+    }
 
     /**
      *

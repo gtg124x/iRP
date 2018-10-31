@@ -27,12 +27,6 @@ public enum AddDonationResultENUM {
         this.result = result;
     }
 
-//    /**
-//     *
-//     * @return   the registration result
-//     */
-//    public String getResult() { return result; }
-
     /**
      *
      * @return the display string representation of the registration result

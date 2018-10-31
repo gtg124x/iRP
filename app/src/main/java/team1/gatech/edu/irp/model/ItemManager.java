@@ -11,9 +11,12 @@ import java.util.List;
  */
 class ItemManager implements Serializable {
 
-//    INVENTORY ATTRIBUTES
-//    Notes: Same as locations, I created two arrays one to hold Item obj and one to hold
-//    the toString of the obj for display on the spinner
+//    /***************************************************************************************
+//     *    INVENTORY ATTRIBUTES
+//     *    Notes: Same as locations, I created two arrays one to hold Item obj and one to hold
+//     *    the toString of the obj for display on the spinner
+//     ****************************************************************************************
+//     */
 
     /**
      * holds the items that are donated
@@ -26,7 +29,11 @@ class ItemManager implements Serializable {
     private static final int EMPTY = 0;
 
 
-//    INVENTORY METHODS
+
+//    /***************************************************************************************
+//     *    INVENTORY METHODS
+//     ****************************************************************************************
+//     */
 
     /**
      * Validates the user input then adds the item into the inventory
@@ -86,11 +93,6 @@ class ItemManager implements Serializable {
             int minAsInt = Integer.parseInt(minAsString);
             int secAsInt = Integer.parseInt(secAsString);
 
-//            if (hourAsInt < 0 || hourAsInt >= 24) { return false; }
-//            else if (minAsInt < 0 || minAsInt >= 60) { return false; }
-//            else if (secAsInt < 0 || secAsInt >= 60) { return false; }
-//            else { return true; }
-
             return (hourAsInt < 0 || hourAsInt >= 24 || minAsInt < 0 || minAsInt >= 60 || secAsInt < 0 || secAsInt >= 60);
 
         } catch (NumberFormatException e) {
@@ -121,14 +123,6 @@ class ItemManager implements Serializable {
             int monthAsInt = Integer.parseInt(monthAsString);
             int dateAsInt = Integer.parseInt(dateString);
             int yearAsInt = Integer.parseInt(yearAsString);
-
-//            if (monthAsInt < 1 || monthAsInt > 12) { return false; }
-//            else if (dateAsInt < 0 || dateAsInt > 31) { return false; }
-//            else if (yearAsInt < 2000 || yearAsInt >= 2020) { return false; }
-//            else if ((monthAsInt == 4 || monthAsInt == 6 || monthAsInt == 9 || monthAsInt == 11)
-//                    && (dateAsInt > 30)) { return false; }
-//            else if (monthAsInt == 2 && dateAsInt > 28) { return false; }
-//            else { return true; }
 
             return (monthAsInt < 1 || monthAsInt > 12 || dateAsInt < 0 || dateAsInt > 31 || yearAsInt < 2000 || yearAsInt >= 2020
                     || ((monthAsInt == 4 || monthAsInt == 6 || monthAsInt == 9 || monthAsInt == 11) && (dateAsInt > 30))
@@ -161,13 +155,6 @@ class ItemManager implements Serializable {
             int dollarsAsInt = Integer.parseInt(dollars);
 
             return (changeAsInt < 0 || changeAsInt > 99 || dollarsAsInt < 0 || (dollarsAsInt == 0 && changeAsInt == 0));
-
-//            if (changeAsInt < 0 || changeAsInt > 99) { return false; }
-//            else if (dollarsAsInt < 0) { return false; }
-//            else if (dollarsAsInt == 0 && changeAsInt == 0) { return false; }
-//            else { return true; }
-
-
 
         } catch (NumberFormatException e) {
             return true;
@@ -215,19 +202,6 @@ class ItemManager implements Serializable {
      * @return list of Item objects
      */
     public List<Item> getItemManagerAsItemArray() { return inventory; }
-
-//    /**
-//     * returns a list of items represented as Strings that have been added to the app
-//     *
-//     * @return list of items represented as Strings
-//     */
-//    public List<String> getItemManagerAsStringArray() {
-//        List<String> inventoryStringArray = new ArrayList<>();
-//        for (Item i : inventory) {
-//            inventoryStringArray.add(i.toString());
-//        }
-//        return inventoryStringArray;
-//    }
 
     /**
      * finds the items sorted by location
@@ -297,15 +271,6 @@ class ItemManager implements Serializable {
         }
         return itemLocationList;
     }
-
-//    /**
-//     * tests whether or not the inventory is empty
-//     *
-//     * @return if the inventory is empty
-//     */
-//    public boolean itemListEmpty() {
-//        return (inventory.size() == 0);
-//    }
 
     /**
      * determines if the inventory at a location is empty or no

@@ -19,7 +19,6 @@ import android.widget.Toast;
  * Account Registration Screen
  */
 public class RegistrationActivity extends AppCompatActivity {
-        //implements AdapterView.OnItemSelectedListener {
 
     private TextView loginName;
     private TextView password;
@@ -92,21 +91,5 @@ public class RegistrationActivity extends AppCompatActivity {
     public void onCancelPressed(View view) {
         finish();
     }
-
-
-//    @Override
-//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//
-//        userT = parent.getItemAtPosition(position).toString();
-//    }
-//
-//    @Override
-//    public void onNothingSelected(AdapterView<?> parent) {
-//        userT = "User";
-//    }
-//
-//
-
-
 
 }

@@ -27,12 +27,6 @@ public enum LocationTypeEnum {
         this.type = type;
     }
 
-//    /**
-//     * @return the location type
-//     */
-//    public String getType() {
-//        return type;
-//    }
 
     /**
      * @return the display string representation of the location type
