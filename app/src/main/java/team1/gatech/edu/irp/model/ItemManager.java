@@ -48,9 +48,13 @@ class ItemManager implements Serializable {
      *
      * @return the result of the adding and item to inventory in the form of AddDonationResultENUM
      */
-    public AddDonationResultENUM validateAndAddItemToItemManager(String timeStamp, String dateStamp, Location location,
-                                                                 CategoryENUM category, String dollarValue,
-                                                                 String shortDescription, String fullDescription) {
+    public AddDonationResultENUM validateAndAddItemToItemManager(String timeStamp,
+                                                                 String dateStamp,
+                                                                 Location location,
+                                                                 CategoryENUM category,
+                                                                 String dollarValue,
+                                                                 String shortDescription,
+                                                                 String fullDescription) {
         if (validateTimeStamp(timeStamp)) {
             return AddDonationResultENUM.TIME_INVALID;
         } else if (validateDateStamp(dateStamp)) {
@@ -64,7 +68,8 @@ class ItemManager implements Serializable {
         } else if (validateFullDescription(fullDescription)) {
             return AddDonationResultENUM.LONG_DESCRIPTION_INVALID_TO_SHORT;
         } else {
-            Item item = new Item(timeStamp, dateStamp, location, category, dollarValue, shortDescription, fullDescription);
+            Item item = new Item(timeStamp, dateStamp, location, category, dollarValue,
+                    shortDescription, fullDescription);
             inventory.add(item);
             return AddDonationResultENUM.SUCCESS;
         }
@@ -93,7 +98,8 @@ class ItemManager implements Serializable {
             int minAsInt = Integer.parseInt(minAsString);
             int secAsInt = Integer.parseInt(secAsString);
 
-            return (hourAsInt < 0 || hourAsInt >= 24 || minAsInt < 0 || minAsInt >= 60 || secAsInt < 0 || secAsInt >= 60);
+            return (hourAsInt < 0 || hourAsInt >= 24 || minAsInt < 0 || minAsInt >= 60
+                    || secAsInt < 0 || secAsInt >= 60);
 
         } catch (NumberFormatException e) {
             return true;
@@ -117,16 +123,18 @@ class ItemManager implements Serializable {
 
         String monthAsString = "" + date.charAt(0) + date.charAt(1);
         String dateString = "" + date.charAt(3) + date.charAt(4);
-        String yearAsString = "" + date.charAt(6) + date.charAt(7) + date.charAt(8) + date.charAt(9);
+        String yearAsString = "" + date.charAt(6) + date.charAt(7) + date.charAt(8)
+                + date.charAt(9);
 
         try {
             int monthAsInt = Integer.parseInt(monthAsString);
             int dateAsInt = Integer.parseInt(dateString);
             int yearAsInt = Integer.parseInt(yearAsString);
 
-            return (monthAsInt < 1 || monthAsInt > 12 || dateAsInt < 0 || dateAsInt > 31 || yearAsInt < 2000 || yearAsInt >= 2020
-                    || ((monthAsInt == 4 || monthAsInt == 6 || monthAsInt == 9 || monthAsInt == 11) && (dateAsInt > 30))
-                    || (monthAsInt == 2 && dateAsInt > 29));
+            return (monthAsInt < 1 || monthAsInt > 12 || dateAsInt < 0 || dateAsInt > 31
+                    || yearAsInt < 2000 || yearAsInt >= 2020 || ((monthAsInt == 4
+                    || monthAsInt == 6 || monthAsInt == 9 || monthAsInt == 11)
+                    && (dateAsInt > 30)) || (monthAsInt == 2 && dateAsInt > 29));
 
         } catch (NumberFormatException e) {
             return true;
@@ -145,7 +153,8 @@ class ItemManager implements Serializable {
         if (dollarValue.equals("")) { return true; }
         if (dollarValue.length() < 4) { return true; }
 
-        String change = "" + dollarValue.charAt(dollarValue.length() - 2) + dollarValue.charAt(dollarValue.length() - 1);
+        String change = "" + dollarValue.charAt(dollarValue.length() - 2)
+                + dollarValue.charAt(dollarValue.length() - 1);
         String dollars = "" + dollarValue.substring(0, dollarValue.length() - 3);
         String decimalPoint = "" + dollarValue.charAt(dollarValue.length() - 3);
         if (!(decimalPoint.equals("."))) { return true; }
@@ -154,7 +163,8 @@ class ItemManager implements Serializable {
             int changeAsInt = Integer.parseInt(change);
             int dollarsAsInt = Integer.parseInt(dollars);
 
-            return (changeAsInt < 0 || changeAsInt > 99 || dollarsAsInt < 0 || (dollarsAsInt == 0 && changeAsInt == 0));
+            return (changeAsInt < 0 || changeAsInt > 99 || dollarsAsInt < 0
+                    || (dollarsAsInt == 0 && changeAsInt == 0));
 
         } catch (NumberFormatException e) {
             return true;
@@ -238,7 +248,8 @@ class ItemManager implements Serializable {
             }
         } else {
             for (Item i : inventory) {
-                if (i.getLocation().toString().equals(location) && i.getCategory().equals(category)) {
+                if (i.getLocation().toString().equals(location)
+                        && i.getCategory().equals(category)) {
                     itemLocationList.add(i);
                 }
             }
@@ -264,7 +275,8 @@ class ItemManager implements Serializable {
             }
         } else {
             for (Item i : inventory) {
-                if (i.getLocation().toString().equals(location) && i.getShortDescription().equals(name)) {
+                if (i.getLocation().toString().equals(location)
+                        && i.getShortDescription().equals(name)) {
                     itemLocationList.add(i);
                 }
             }

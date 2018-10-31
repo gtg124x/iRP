@@ -31,14 +31,16 @@ public class ManagerActivity extends AppCompatActivity {
     }
 
     /**
-     * When the View Locations Button is pressed it sends the manager to the a screen that displays the locations in a spinner
+     * When the View Locations Button is pressed it sends the manager to the a screen that
+     * displays the locations in a spinner
      *
      * @param v the view
      */
     public void onViewLocationManagerOnPress(View v) {
         Model model = Model.getInstance();
         if (model.noLocations()) {
-            Toast.makeText(this, "No Locations have been loaded by Admin.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No Locations have been loaded by Admin.",
+                    Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, LocationListActivity.class);
             startActivity(intent);

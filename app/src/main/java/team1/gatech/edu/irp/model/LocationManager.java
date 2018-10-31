@@ -47,10 +47,13 @@ class LocationManager implements Serializable {
         scoreList = csvFile.read();
 
         for (int i = 1; i < scoreList.size(); i++) {
-            Location tempLoc = new Location(Integer.parseInt(scoreList.get(i)[0]), scoreList.get(i)[1],
-                    Double.parseDouble(scoreList.get(i)[2]), Double.parseDouble(scoreList.get(i)[3]),
+            Location tempLoc = new Location(Integer.parseInt(scoreList.get(i)[0]),
+                    scoreList.get(i)[1],
+                    Double.parseDouble(scoreList.get(i)[2]),
+                    Double.parseDouble(scoreList.get(i)[3]),
                     scoreList.get(i)[4], scoreList.get(i)[5], scoreList.get(i)[6],
-                    Integer.parseInt(scoreList.get(i)[7]), LocationTypeEnum.convertType(scoreList.get(i)[8]),
+                    Integer.parseInt(scoreList.get(i)[7]),
+                    LocationTypeEnum.convertType(scoreList.get(i)[8]),
                     scoreList.get(i)[9], scoreList.get(i)[10]);
             for (Location x : locations) {
                 if ((x.equals(tempLoc))) {

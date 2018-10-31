@@ -55,8 +55,8 @@ public class Item implements Serializable {
      * @param fullDescription    full description for the item
      *
      */
-    public Item(String timeStamp, String dateStamp, Location location, CategoryENUM category, String dollarValue,
-                String shortDescription, String fullDescription) {
+    public Item(String timeStamp, String dateStamp, Location location, CategoryENUM category,
+                String dollarValue, String shortDescription, String fullDescription) {
         this.timeStamp = timeStamp;
         this.dateStamp = dateStamp;
         this.location = location;
@@ -154,7 +154,9 @@ public class Item implements Serializable {
 //     *
 //     * @param shortDescription the shortDescription
 //     */
-//    public void setShortDescription(String shortDescription) { this.shortDescription = shortDescription; }
+//    public void setShortDescription(String shortDescription) {
+//        this.shortDescription = shortDescription;
+// }
 
     /**
      * getter for the fullDescription
@@ -168,7 +170,9 @@ public class Item implements Serializable {
 //     *
 //     * @param fullDescription the fullDescription
 //     */
-//    public void setFullDescription(String fullDescription) { this.fullDescription = fullDescription; }
+//    public void setFullDescription(String fullDescription) {
+//        this.fullDescription = fullDescription;
+//    }
 
 
 

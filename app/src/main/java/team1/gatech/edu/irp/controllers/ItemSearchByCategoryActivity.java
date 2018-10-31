@@ -32,13 +32,15 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
 
 //      Set up the adapter to display the allowable locations in the spinner
         List<String> locationsList = model.getLocationsAsStringWithAllLocationOption();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locationsList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, locationsList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationSpinner.setAdapter(adapter);
         LocationSpinner.setSelection(0);
 
 //      Set up the adapter to display the categories in the spinner
-        ArrayAdapter<String> adapterCat = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CategoryENUM.getCategoryStringList());
+        ArrayAdapter<String> adapterCat = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, CategoryENUM.getCategoryStringList());
         adapterCat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         CategorySpinner.setAdapter(adapterCat);
         CategorySpinner.setSelection(0);
@@ -56,8 +58,9 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         model.setCurrentCategoryAddDonation(categoryString);
         CategoryENUM category = model.getCurrentCategoryAddDonation();
 
-        List<Item> itemListByCategoryAndLocationItem = model.getInventoryByCategoryAndLocation(category, currLoc);
-        //List<String> itemListByCategoryAndLocation = model.getInventoryAsString(itemListByCategoryAndLocationItem)
+        List<Item> itemListByCategoryAndLocationItem =
+                model.getInventoryByCategoryAndLocation(category, currLoc);
+
         model.setCurrentItemList(itemListByCategoryAndLocationItem);
 
         Intent intent = new Intent(this, ItemListActivity.class);

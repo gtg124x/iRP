@@ -43,7 +43,8 @@ public class RegistrationActivity extends AppCompatActivity {
 //        /**
 //         * Set up the adapter to display the allowable class standing in the spinner
 //         */
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, UserTypeENUM.getUserTypeStringList());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, UserTypeENUM.getUserTypeStringList());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeSpinner.setAdapter(adapter);
     }
@@ -66,16 +67,21 @@ public class RegistrationActivity extends AppCompatActivity {
         model.setCurrentUserTypeRegistration(userTypeEnumString);
         UserTypeENUM userTypeEnum = model.getCurrentUserTypeRegistration();
 
-        RegistrationResultENUM registrationResult = model.addAccount(name, passwordString, cInfo, userTypeEnum);
+        RegistrationResultENUM registrationResult = model.addAccount(name, passwordString,
+                cInfo, userTypeEnum);
 
         if (registrationResult == RegistrationResultENUM.NAME_INVALID) {
-            Toast.makeText(this, "User Name must be at least 4 characters long.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User Name must be at least 4 characters long.",
+                    Toast.LENGTH_SHORT).show();
         } else if (registrationResult == RegistrationResultENUM.NAME_TAKEN) {
-            Toast.makeText(this, "User Name is already taken.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User Name is already taken.",
+                    Toast.LENGTH_SHORT).show();
         } else if (registrationResult == RegistrationResultENUM.PASSWORD_INVALID) {
-            Toast.makeText(this, "Password must be at least 4 characters long.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password must be at least 4 characters long.",
+                    Toast.LENGTH_SHORT).show();
         } else if (registrationResult == RegistrationResultENUM.EMAIL_INVALID) {
-            Toast.makeText(this, "Must Enter Valid Email Address.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Must Enter Valid Email Address.",
+                    Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Account Created.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, WelcomeActivity.class);

@@ -125,14 +125,18 @@ public class Model {
      *
      * @param accountManager the accountManager
      */
-    public void setAccountManager(AccountManager accountManager) { this.accountManager = accountManager; }
+    public void setAccountManager(AccountManager accountManager) {
+        this.accountManager = accountManager;
+    }
 
     /**
      * sets the locationManager
      *
      * @param locationManager the locationManager
      */
-    public void setLocationManager(LocationManager locationManager) { this.locationManager = locationManager; }
+    public void setLocationManager(LocationManager locationManager) {
+        this.locationManager = locationManager;
+    }
 
     /**
      * sets the itemManager
@@ -158,7 +162,8 @@ public class Model {
      *  @param userTypeEnum an account type
      *  @return success
      */
-    public RegistrationResultENUM addAccount(String name, String passwordString, String cInfo, UserTypeENUM userTypeEnum) {
+    public RegistrationResultENUM addAccount(String name, String passwordString, String cInfo,
+                                             UserTypeENUM userTypeEnum) {
         return accountManager.addToAccounts(name, passwordString, cInfo, userTypeEnum);
     }
 
@@ -219,14 +224,19 @@ public class Model {
      *
      * @return list of locations represented as Strings
      */
-    public List<String> getLocationsAsString() { return locationManager.getLocationAsStringArray(); }
+    public List<String> getLocationsAsString() {
+        return locationManager.getLocationAsStringArray();
+    }
 
     /**
-     * a list of locations represented as Strings that have been added to the app with All locations as first option
+     * a list of locations represented as Strings that have been added to the app with All
+     * locations as first option
      *
      * @return list of locations represented as Strings with All locations as first option
      */
-    public List<String> getLocationsAsStringWithAllLocationOption() { return locationManager.getLocationsAsStringArrayWithAllLocationOption(); }
+    public List<String> getLocationsAsStringWithAllLocationOption() {
+        return locationManager.getLocationsAsStringArrayWithAllLocationOption();
+    }
 
 
 //    /****************************************************************************************
@@ -249,12 +259,15 @@ public class Model {
      *
      * @return the result of the adding and item to inventory in the form of AddDonationResultENUM
      */
-    public AddDonationResultENUM validateAndAddItemToInventory(String timeStamp, String dateStamp,
-                                                               Location location, CategoryENUM category,
-                                                               String dollarValue, String shortDescription,
+    public AddDonationResultENUM validateAndAddItemToInventory(String timeStamp,
+                                                               String dateStamp,
+                                                               Location location,
+                                                               CategoryENUM category,
+                                                               String dollarValue,
+                                                               String shortDescription,
                                                                String fullDescription) {
-        return itemManager.validateAndAddItemToItemManager(timeStamp, dateStamp, location, category,
-                dollarValue, shortDescription, fullDescription);
+        return itemManager.validateAndAddItemToItemManager(timeStamp, dateStamp, location,
+                category, dollarValue, shortDescription, fullDescription);
     }
 
     /**
@@ -263,7 +276,9 @@ public class Model {
      * @param  location currently selected location to view
      * @return list of items represented as Strings
      */
-    public List<Item> getInventoryByLocation(Location location) { return itemManager.getItemListByLocation(location); }
+    public List<Item> getInventoryByLocation(Location location) {
+        return itemManager.getItemListByLocation(location);
+    }
 
     /**
      * determines if the inventory at a location is empty or no
@@ -271,7 +286,9 @@ public class Model {
      * @param  location currently selected location to analyze for inventory size
      * @return if the inventory is empty
      */
-    public boolean isInventoryByLocationEmpty(Location location) { return itemManager.isItemListByLocationEmpty(location); }
+    public boolean isInventoryByLocationEmpty(Location location) {
+        return itemManager.isItemListByLocationEmpty(location);
+    }
 
     /**
      * finds the items sorted by location and category
@@ -281,7 +298,8 @@ public class Model {
      *
      * @return list of items in inventory at a particular location and category
      */
-    public List<Item> getInventoryByCategoryAndLocation(CategoryENUM category, String locationString ) {
+    public List<Item> getInventoryByCategoryAndLocation(CategoryENUM category,
+                                                        String locationString ) {
         return itemManager.getItemListByCategoryAndLocation(category, locationString);
     }
 
@@ -374,7 +392,8 @@ public class Model {
     /**
      * sets the selected Location on the AddDonationActivity spinner
      *
-     * @param currentLocationAddDonation the currently selected location on the AddDonationActivity spinner
+     * @param currentLocationAddDonation the currently selected location on the
+     *                                   AddDonationActivity spinner
      */
     public void setCurrentLocationAddDonation(String currentLocationAddDonation) {
         for (Location l : locationManager.getLocationAsLocationArray()) {
@@ -419,7 +438,8 @@ public class Model {
     /**
      * sets the selected Category on the LocationDetailActivity spinner
      *
-     * @param currentItemDetails the currently selected Category on the LocationDetailActivity spinner
+     * @param currentItemDetails the currently selected Category on the
+     *                           LocationDetailActivity spinner
      */
     public void setCurrentCategoryAddDonation(String currentItemDetails) {
         for (CategoryENUM category : CategoryENUM.values()) {

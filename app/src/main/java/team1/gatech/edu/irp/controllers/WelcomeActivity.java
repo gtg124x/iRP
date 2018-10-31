@@ -56,7 +56,8 @@ public class WelcomeActivity extends AppCompatActivity {
         if (success) {
             Toast.makeText(this, "Data has been loaded.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "ERROR: No saved data to load.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ERROR: No saved data to load.",
+                    Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -72,7 +73,8 @@ public class WelcomeActivity extends AppCompatActivity {
         if (success) {
             Toast.makeText(this, "Data has been saved.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "ERROR: Data has NOT been saved.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ERROR: Data has NOT been saved.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -86,7 +88,8 @@ public class WelcomeActivity extends AppCompatActivity {
         if (success) {
             Toast.makeText(this, "Data has been deleted.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "ERROR: Data has NOT been deleted.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ERROR: Data has NOT been deleted.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
