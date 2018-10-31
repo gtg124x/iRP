@@ -94,6 +94,10 @@ public class Model {
      */
     private Item _currentItemDetails;
 
+    /**
+     * convert string to CategoryENUM for AddDonationActivity
+     */
+    private CategoryENUM _currentCategory;
 
 //    /****************************************************************************************
 //     *    DATA MANAGER GETTERS AND SETTERS
@@ -420,6 +424,28 @@ public class Model {
         for (Item item : itemManager.getItemManagerAsItemArray()) {
             if (item.toString().equals(currentItemDetails)) {
                 _currentItemDetails = item;
+            }
+        }
+    }
+
+    /**
+     * passes through the selected Item on the LocationDetailActivity spinner
+     *
+     * @return the currently selected item of the LocationDetailActivity
+     */
+    public CategoryENUM getCurrentCategoryAddDonation() {
+        return _currentCategory;
+    }
+
+    /**
+     * sets the selected item on the LocationDetailActivity spinner
+     *
+     * @param currentItemDetails the currently selected item on the LocationDetailActivity spinner
+     */
+    public void setCurrentCategoryAddDonation(String currentItemDetails) {
+        for (CategoryENUM category : CategoryENUM.values()) {
+            if (category.toString().equals(currentItemDetails)) {
+                _currentCategory = category;
             }
         }
     }

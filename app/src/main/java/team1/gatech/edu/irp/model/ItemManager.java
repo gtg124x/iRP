@@ -71,6 +71,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateTimeStamp(String time) {
+        if (time.equals("")) { return true; }
         if (time.length() != 8) { return true; }
         String firstColen = "" + time.charAt(2);
         String secondColen = "" + time.charAt(5);
@@ -106,6 +107,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateDateStamp(String date) {
+        if (date.equals("")) { return true; }
         if (date.length() != 10) { return true; }
         String firstDast = "" + date.charAt(2);
         String secondDash = "" + date.charAt(5);
@@ -146,6 +148,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateDollarValue(String dollarValue) {
+        if (dollarValue.equals("")) { return true; }
         if (dollarValue.length() < 4) { return true; }
 
         String change = "" + dollarValue.charAt(dollarValue.length() - 2) + dollarValue.charAt(dollarValue.length() - 1);
@@ -181,7 +184,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateShortDescription(String shortD) {
-        return (shortD.length() < 2);
+        return ((shortD.length() < 2) || (shortD.equals("")));
     }
 
     /**
@@ -192,7 +195,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateShortDescriptionLong(String shortD) {
-        return (shortD.length() >= 15);
+        return (shortD.length() >= 15) || (shortD.equals(""));
     }
 
     /**
@@ -203,7 +206,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateFullDescription(String fullD) {
-        return (fullD.length() < 3);
+        return (fullD.length() < 3) || (fullD.equals(""));
     }
 
     /**

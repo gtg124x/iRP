@@ -30,7 +30,7 @@ public class ItemListActivity extends AppCompatActivity {
 
 
 //      Set up the adapter to display the allowable items in the spinner
-        ArrayAdapter<String> itemAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, itemList);
+        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, itemList);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(itemAdapter);
         itemSpinner.setSelection(0);

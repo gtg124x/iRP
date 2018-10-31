@@ -1,0 +1,239 @@
+Index: app/src/main/java/team1/gatech/edu/irp/controllers/LocationListActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/team1/gatech/edu/irp/controllers/LocationListActivity.java	(revision 520292851772f525b4d8eae3806b6e19722d3678)
++++ app/src/main/java/team1/gatech/edu/irp/controllers/LocationListActivity.java	(date 1540959906000)
+@@ -27,7 +27,7 @@
+         Model model = Model.getInstance();
+ 
+ //       Set up the adapter to display the allowable locations in the spinner
+-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
++        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
+         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         LocationSpinner.setAdapter(adapter);
+         LocationSpinner.setSelection(0);
+Index: app/src/main/java/team1/gatech/edu/irp/controllers/AddDonationActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/team1/gatech/edu/irp/controllers/AddDonationActivity.java	(revision 520292851772f525b4d8eae3806b6e19722d3678)
++++ app/src/main/java/team1/gatech/edu/irp/controllers/AddDonationActivity.java	(date 1540964546000)
+@@ -44,17 +44,18 @@
+ 
+ 
+ //      Set up the adapter to display the allowable location in the spinner
+-        ArrayAdapter<String> locationAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
++        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, model.getLocationsAsString());
+         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         locationSpinner.setAdapter(locationAdapter);
+         locationSpinner.setSelection(0);
+ 
+ 
+ //      Set up the adapter to display the allowable category in the spinner
+-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, CategoryENUM.values());
++        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CategoryENUM.getCategoryStringList());
+         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         categorySpinner.setAdapter(categoryAdapter);
+         categorySpinner.setSelection(0);
++
+     }
+ 
+     /**
+@@ -68,17 +69,27 @@
+         String timeStamp = timeStampTextView.getText().toString();
+         String dateStamp = dateStampTextView.getText().toString();
+         String locationString = ((String) locationSpinner.getSelectedItem());
+-        CategoryENUM category = (CategoryENUM) categorySpinner.getSelectedItem();
++        String categoryString = (String) categorySpinner.getSelectedItem();
+         String dollarValue = dollarValueTextView.getText().toString();
+         String shortDescription = shortDescriptionTextView.getText().toString();
+         String fullDescription = fullDescriptionTextView.getText().toString();
+ 
+ 
++
++        if (timeStamp.length() == 0 || dateStamp.length() == 0 || dollarValue.length() == 0
++                || shortDescription.length() == 0 || fullDescription.length() == 0) {
++            Toast.makeText(this, "Invalid Data.", Toast.LENGTH_SHORT).show();
++        }
++
++
+ //      Sets the current location in the model, but converts it from a Location Object to a
+ //      String Object so that the location can be displayed as a String on the Item Details Screen
+         model.setCurrentLocationAddDonation(locationString);
+         Location location = model.getCurrentLocationAddDonation();
+ 
++        model.setCurrentCategoryAddDonation(categoryString);
++        CategoryENUM category = model.getCurrentCategoryAddDonation();
++
+ 
+ //         Validates the user input and adds it to the inventory if correct
+ //         Returns the result of the attempt to add to inventory
+Index: app/src/main/java/team1/gatech/edu/irp/model/CategoryENUM.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/team1/gatech/edu/irp/model/CategoryENUM.java	(revision 520292851772f525b4d8eae3806b6e19722d3678)
++++ app/src/main/java/team1/gatech/edu/irp/model/CategoryENUM.java	(date 1540960639000)
+@@ -2,6 +2,9 @@
+ 
+ import android.support.annotation.NonNull;
+ 
++import java.util.ArrayList;
++import java.util.List;
++
+ /** Donation category Enum */
+ public enum CategoryENUM {
+ 
+@@ -31,11 +34,22 @@
+         this.type = type;
+     }
+ 
+-//    /**
+-//     *
+-//     * @return   the category
+-//     */
+-//    public String getCategory() { return type; }
++    /**
++     * get the categories as a String List for Spinner
++     * Done to take care of warnings about casting
++     *
++     * @return   the category
++     */
++    public static List<String> getCategoryStringList() {
++        List<String> categoryStringList = new ArrayList<>();
++        for (CategoryENUM category : CategoryENUM.values()) {
++            categoryStringList.add(category.toString());
++        }
++        return categoryStringList; }
++
++
++
++
+ 
+     /**
+      *
+Index: app/src/main/java/team1/gatech/edu/irp/model/ItemManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/team1/gatech/edu/irp/model/ItemManager.java	(revision 520292851772f525b4d8eae3806b6e19722d3678)
++++ app/src/main/java/team1/gatech/edu/irp/model/ItemManager.java	(date 1540960923000)
+@@ -71,6 +71,7 @@
+      * @return the result success of the validation
+      */
+     private boolean validateTimeStamp(String time) {
++        if (time.equals("")) { return true; }
+         if (time.length() != 8) { return true; }
+         String firstColen = "" + time.charAt(2);
+         String secondColen = "" + time.charAt(5);
+@@ -106,6 +107,7 @@
+      * @return the result success of the validation
+      */
+     private boolean validateDateStamp(String date) {
++        if (date.equals("")) { return true; }
+         if (date.length() != 10) { return true; }
+         String firstDast = "" + date.charAt(2);
+         String secondDash = "" + date.charAt(5);
+@@ -146,6 +148,7 @@
+      * @return the result success of the validation
+      */
+     private boolean validateDollarValue(String dollarValue) {
++        if (dollarValue.equals("")) { return true; }
+         if (dollarValue.length() < 4) { return true; }
+ 
+         String change = "" + dollarValue.charAt(dollarValue.length() - 2) + dollarValue.charAt(dollarValue.length() - 1);
+@@ -181,7 +184,7 @@
+      * @return the result success of the validation
+      */
+     private boolean validateShortDescription(String shortD) {
+-        return (shortD.length() < 2);
++        return ((shortD.length() < 2) || (shortD.equals("")));
+     }
+ 
+     /**
+@@ -192,7 +195,7 @@
+      * @return the result success of the validation
+      */
+     private boolean validateShortDescriptionLong(String shortD) {
+-        return (shortD.length() >= 15);
++        return (shortD.length() >= 15) || (shortD.equals(""));
+     }
+ 
+     /**
+@@ -203,7 +206,7 @@
+      * @return the result success of the validation
+      */
+     private boolean validateFullDescription(String fullD) {
+-        return (fullD.length() < 3);
++        return (fullD.length() < 3) || (fullD.equals(""));
+     }
+ 
+     /**
+Index: app/src/main/java/team1/gatech/edu/irp/controllers/ItemListActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/team1/gatech/edu/irp/controllers/ItemListActivity.java	(revision 520292851772f525b4d8eae3806b6e19722d3678)
++++ app/src/main/java/team1/gatech/edu/irp/controllers/ItemListActivity.java	(date 1540960100000)
+@@ -30,7 +30,7 @@
+ 
+ 
+ //      Set up the adapter to display the allowable items in the spinner
+-        ArrayAdapter<String> itemAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, itemList);
++        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, itemList);
+         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         itemSpinner.setAdapter(itemAdapter);
+         itemSpinner.setSelection(0);
+Index: app/src/main/java/team1/gatech/edu/irp/model/Model.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/team1/gatech/edu/irp/model/Model.java	(revision 520292851772f525b4d8eae3806b6e19722d3678)
++++ app/src/main/java/team1/gatech/edu/irp/model/Model.java	(date 1540964108000)
+@@ -94,6 +94,10 @@
+      */
+     private Item _currentItemDetails;
+ 
++    /**
++     * convert string to CategoryENUM for AddDonationActivity
++     */
++    private CategoryENUM _currentCategory;
+ 
+ //    /****************************************************************************************
+ //     *    DATA MANAGER GETTERS AND SETTERS
+@@ -424,6 +428,28 @@
+         }
+     }
+ 
++    /**
++     * passes through the selected Item on the LocationDetailActivity spinner
++     *
++     * @return the currently selected item of the LocationDetailActivity
++     */
++    public CategoryENUM getCurrentCategoryAddDonation() {
++        return _currentCategory;
++    }
++
++    /**
++     * sets the selected item on the LocationDetailActivity spinner
++     *
++     * @param currentItemDetails the currently selected item on the LocationDetailActivity spinner
++     */
++    public void setCurrentCategoryAddDonation(String currentItemDetails) {
++        for (CategoryENUM category : CategoryENUM.values()) {
++            if (category.toString().equals(currentItemDetails)) {
++                _currentCategory = category;
++            }
++        }
++    }
++
+ 
+ ////    /****************************************************************************************
+ ////     *    PERSISTENCE DATA METHODS
