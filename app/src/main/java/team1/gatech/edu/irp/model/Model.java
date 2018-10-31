@@ -99,6 +99,11 @@ public class Model {
      */
     private CategoryENUM _currentCategory;
 
+    /**
+     * convert string to UserTypeENUM for RegistrationActivity
+     */
+    private UserTypeENUM _currentUserType;
+
 //    /****************************************************************************************
 //     *    DATA MANAGER GETTERS AND SETTERS
 //     ****************************************************************************************
@@ -429,18 +434,18 @@ public class Model {
     }
 
     /**
-     * passes through the selected Item on the LocationDetailActivity spinner
+     * passes through the selected Category on the LocationDetailActivity spinner
      *
-     * @return the currently selected item of the LocationDetailActivity
+     * @return the currently selected Category of the LocationDetailActivity
      */
     public CategoryENUM getCurrentCategoryAddDonation() {
         return _currentCategory;
     }
 
     /**
-     * sets the selected item on the LocationDetailActivity spinner
+     * sets the selected Category on the LocationDetailActivity spinner
      *
-     * @param currentItemDetails the currently selected item on the LocationDetailActivity spinner
+     * @param currentItemDetails the currently selected Category on the LocationDetailActivity spinner
      */
     public void setCurrentCategoryAddDonation(String currentItemDetails) {
         for (CategoryENUM category : CategoryENUM.values()) {
@@ -450,6 +455,27 @@ public class Model {
         }
     }
 
+    /**
+     * passes through the selected UserType on the RegistrationActivity spinner
+     *
+     * @return the currently selected UserType of the RegistrationActivity
+     */
+    public UserTypeENUM getCurrentUserTypeRegistration() {
+        return _currentUserType;
+    }
+
+    /**
+     * sets the selected UserType on the RegistrationActivity spinner
+     *
+     * @param currentUserType the currently selected UserType on the RegistrationActivity spinner
+     */
+    public void setCurrentUserTypeRegistration(String currentUserType) {
+        for (UserTypeENUM userType : UserTypeENUM.values()) {
+            if (userType.toString().equals(currentUserType)) {
+                _currentUserType = userType;
+            }
+        }
+    }
 
 ////    /****************************************************************************************
 ////     *    PERSISTENCE DATA METHODS

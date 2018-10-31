@@ -47,10 +47,6 @@ public enum CategoryENUM {
         }
         return categoryStringList; }
 
-
-
-
-
     /**
      *
      * @return the display string representation of the category

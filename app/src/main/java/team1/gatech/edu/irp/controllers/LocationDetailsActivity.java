@@ -77,7 +77,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
         List<String> currentLocationItemList = model.getInventoryByLocation(currSelectedLocation);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, currentLocationItemList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, currentLocationItemList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(adapter);
         itemSpinner.setSelection(0);

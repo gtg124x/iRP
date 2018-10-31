@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.CategoryENUM;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.RegistrationResultENUM;
 import team1.gatech.edu.irp.model.UserTypeENUM;
@@ -44,7 +45,7 @@ public class RegistrationActivity extends AppCompatActivity {
 //        /**
 //         * Set up the adapter to display the allowable class standing in the spinner
 //         */
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, UserTypeENUM.values());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, UserTypeENUM.getUserTypeStringList());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeSpinner.setAdapter(adapter);
     }
@@ -62,7 +63,10 @@ public class RegistrationActivity extends AppCompatActivity {
         String name = loginName.getText().toString();
         String pword = password.getText().toString();
         String cInfo = contactInfo.getText().toString();
-        UserTypeENUM userTypeEnum = (UserTypeENUM) userTypeSpinner.getSelectedItem();
+        String userTypeEnumString = (String) userTypeSpinner.getSelectedItem();
+
+        model.setCurrentUserTypeRegistration(userTypeEnumString);
+        UserTypeENUM userTypeEnum = model.getCurrentUserTypeRegistration();
 
         RegistrationResultENUM registrationResult = model.addAccount(name, pword, cInfo, userTypeEnum);
 
