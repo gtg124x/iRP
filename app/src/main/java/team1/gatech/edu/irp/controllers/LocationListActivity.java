@@ -9,6 +9,7 @@ import team1.gatech.edu.irp.model.Model;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import java.util.List;
 
 /**
  * Displays a list of locations.
@@ -25,14 +26,24 @@ public class LocationListActivity extends AppCompatActivity {
 
         LocationSpinner = findViewById(R.id.SpinnerLocation);
         Model model = Model.getInstance();
-
+        List<String> locationsList = getLocations(model);
 //     Set up the adapter to display the allowable locations in the spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, model.getLocationsAsString());
+                android.R.layout.simple_spinner_item, locationsList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationSpinner.setAdapter(adapter);
         LocationSpinner.setSelection(0);
 
+    }
+
+    /**
+     * gets the location list
+     *
+     * @param model the model
+     * @return location list
+     */
+    private List<String> getLocations(Model model) {
+        return model.getLocationsAsString();
     }
 
     /**
@@ -44,10 +55,19 @@ public class LocationListActivity extends AppCompatActivity {
         Model model = Model.getInstance();
 
         String currLoc = ((String) LocationSpinner.getSelectedItem());
-        model.setCurrentLocation(currLoc);
-
+//        model.setCurrentLocation(currLoc);
+        setLocation(model, currLoc);
         Intent intent = new Intent(this, LocationDetailsActivity.class);
         startActivity(intent);
+    }
+
+    /**
+     * gets the inventory by category and location
+     *
+     * @param model the model
+     */
+    private void setLocation(Model model, String location) {
+        model.setCurrentLocation(location);
     }
 
     /**

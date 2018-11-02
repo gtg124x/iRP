@@ -20,6 +20,9 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
     private Spinner LocationSpinner;
     private Spinner CategorySpinner;
 
+    private String currLoc;
+    private CategoryENUM category;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +33,8 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
 
 
 //      Set up the adapter to display the allowable locations in the spinner
-        List<String> locationsList = model.getLocationsAsStringWithAllLocationOption();
+//        List<String> locationsList = model.getLocationsAsStringWithAllLocationOption();
+        List<String> locationsList = getLocationsAll(model);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, locationsList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -46,6 +50,16 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
     }
 
     /**
+     * gets the location list with all locations option
+     *
+     * @param model the model
+     * @return location list with all locations option
+     */
+    private List<String> getLocationsAll(Model model) {
+        return model.getLocationsAsStringWithAllLocationOption();
+    }
+
+    /**
      * When the user presses the View Item Details button is sends them to the Item Details Screen
      *
      * @param v the view
@@ -53,14 +67,24 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
     public void onViewItemDetailsFromNameCategoryOnPress(View v) {
         Model model = Model.getInstance();
 
-        String currLoc = ((String) LocationSpinner.getSelectedItem());
+        currLoc = ((String) LocationSpinner.getSelectedItem());
 
-        CategoryENUM category = (CategoryENUM) CategorySpinner.getSelectedItem();
+        category = (CategoryENUM) CategorySpinner.getSelectedItem();
 
-        model.setInventoryByCategoryAndLocation(category, currLoc);
+//        model.setInventoryByCategoryAndLocation(category, currLoc);
+        getInventory(model);
 
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
+    }
+
+    /**
+     * gets the inventory by category and location
+     *
+     * @param model the model
+     */
+    private void getInventory(Model model) {
+        model.setInventoryByCategoryAndLocation(category, currLoc);
     }
 
     /**

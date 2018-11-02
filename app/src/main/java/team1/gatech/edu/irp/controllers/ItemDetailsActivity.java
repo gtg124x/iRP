@@ -27,7 +27,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
         Model model = Model.getInstance();
 
-        List<String> itemString = model.getSelectedItemFromItemListAndSendToItemDetails();
+        List<String> itemString = getSelectedItem(model);
 
         String timeStamp = itemString.get(0);
         String dateStamp = itemString.get(1);
@@ -71,6 +71,15 @@ public class ItemDetailsActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * gets the selected item from the model and returns the details
+     *
+     * @param model the model
+     * @return item details
+     */
+    private List<String> getSelectedItem(Model model) {
+        return model.getSelectedItemFromItemListAndSendToItemDetails();
+    }
 
 }
 

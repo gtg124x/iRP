@@ -41,8 +41,9 @@ public class LocationDetailsActivity extends AppCompatActivity {
      */
     private void helper() {
         Model model = Model.getInstance();
-        List<String> locationString =
-                model.getSelectedLocationFromLocationListAndSendToLocationDetails();
+        List<String> locationString = getSelectedLocation(model);
+//                model.getSelectedLocationFromLocationListAndSendToLocationDetails();
+
         name = locationString.get(0);
         address = locationString.get(1);
         city = locationString.get(2);
@@ -53,6 +54,16 @@ public class LocationDetailsActivity extends AppCompatActivity {
         website = locationString.get(7);
         latitude = locationString.get(8);
         longitude = locationString.get(9);
+    }
+
+    /**
+     * gets the selected location
+     *
+     * @param model the model
+     * @return the selected location
+     */
+    private List<String> getSelectedLocation(Model model) {
+        return model.getSelectedLocationFromLocationListAndSendToLocationDetails();
     }
 
     /**
@@ -100,13 +111,24 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
         itemSpinner = findViewById(R.id.ItemSpinner);
 
-        currentLocationItemListItem = model.getInventoryByLocation();
+//        currentLocationItemListItem = model.getInventoryByLocation();
+        currentLocationItemListItem = getInventoryList(model);
 
         ArrayAdapter<Item> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, currentLocationItemListItem);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(adapter);
         itemSpinner.setSelection(0);
+    }
+
+    /**
+     * gets the item list
+     *
+     * @param model the model
+     * @return the item list
+     */
+    private List<Item> getInventoryList(Model model) {
+        return model.getInventoryByLocation();
     }
 
     /**
@@ -123,7 +145,8 @@ public class LocationDetailsActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         } else {
             int selectionNumber = itemSpinner.getSelectedItemPosition();
-            model.setSelectedItemFromItemListAndSendToItemDetails(selectionNumber);
+//            model.setSelectedItemFromItemListAndSendToItemDetails(selectionNumber);
+            setSelectedItem(model, selectionNumber);
             Intent intent = new Intent(this, ItemDetailsActivity.class);
             startActivity(intent);
         }
@@ -138,6 +161,14 @@ public class LocationDetailsActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * send selected item to details page
+     *
+     * @param model the model
+     */
+    private void setSelectedItem(Model model, int number) {
+        model.setSelectedItemFromItemListAndSendToItemDetails(number);
+    }
 
 }
 

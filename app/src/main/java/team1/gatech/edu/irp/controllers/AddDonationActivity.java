@@ -7,6 +7,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
+
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.CategoryENUM;
 import team1.gatech.edu.irp.model.Location;
@@ -26,6 +29,15 @@ public class AddDonationActivity extends AppCompatActivity {
     private TextView shortDescriptionTextView;
     private TextView fullDescriptionTextView;
 
+    private String timeStamp;
+    private String dateStamp;
+    private Location location;
+    private CategoryENUM category;
+    private String dollarValue;
+    private String shortDescription;
+    private String fullDescription;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +55,12 @@ public class AddDonationActivity extends AppCompatActivity {
         fullDescriptionTextView = findViewById(R.id.FullDescriptionEditText);
 
 
+
+
 //      Set up the adapter to display the allowable location in the spinner
         ArrayAdapter<Location> locationAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, model.getLocations());
+                android.R.layout.simple_spinner_item, getMeLocations(model));
+//        android.R.layout.simple_spinner_item, model.getLocations());
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(locationAdapter);
         locationSpinner.setSelection(0);
@@ -68,13 +83,13 @@ public class AddDonationActivity extends AppCompatActivity {
     public void onSubmitOnPress(View view) {
         Model model = Model.getInstance();
 
-        String timeStamp = timeStampTextView.getText() + "";
-        String dateStamp = dateStampTextView.getText() + "";
-        Location location = ((Location) locationSpinner.getSelectedItem());
-        CategoryENUM category= (CategoryENUM) categorySpinner.getSelectedItem();
-        String dollarValue = dollarValueTextView.getText() + "";
-        String shortDescription = shortDescriptionTextView.getText() + "";
-        String fullDescription = fullDescriptionTextView.getText() + "";
+        timeStamp = timeStampTextView.getText() + "";
+        dateStamp = dateStampTextView.getText() + "";
+        location = ((Location) locationSpinner.getSelectedItem());
+        category= (CategoryENUM) categorySpinner.getSelectedItem();
+        dollarValue = dollarValueTextView.getText() + "";
+        shortDescription = shortDescriptionTextView.getText() + "";
+        fullDescription = fullDescriptionTextView.getText() + "";
 
 
         if (timeStamp.isEmpty() || dateStamp.isEmpty() || dollarValue.isEmpty()
@@ -84,8 +99,20 @@ public class AddDonationActivity extends AppCompatActivity {
 
 //         Validates the user input and adds it to the inventory if correct
 //         Returns the result of the attempt to add to inventory
-        AddDonationResultENUM addDonationResult = model.validateAndAddItemToInventory(timeStamp,
-                dateStamp, location, category, dollarValue, shortDescription, fullDescription);
+//        AddDonationResultENUM addDonationResult = model.validateAndAddItemToInventory(timeStamp,
+//                dateStamp, location, category, dollarValue, shortDescription, fullDescription);
+
+//        List<String> details = new ArrayList<>();
+//        details.add(timeStamp);
+//        details.add(dateStamp);
+//        details.add(dollarValue);
+//        details.add(shortDescription);
+//        details.add(fullDescription);
+
+        AddDonationResultENUM addDonationResult = validate(model);
+
+//                model.validateAndAddItemToInventory(timeStamp,
+//                dateStamp, location, category, dollarValue, shortDescription, fullDescription);
 
         if (addDonationResult == AddDonationResultENUM.TIME_INVALID) {
             Toast.makeText(this,
@@ -126,6 +153,26 @@ public class AddDonationActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * gets the locations from the model
+     *
+     * @param model the model
+     * @return list of locations
+     */
+    private List<Location> getMeLocations(Model model) {
+        return model.getLocations();
+    }
+
+    /**
+     * gets the result code from the model and adds and account if valid
+     *
+     * @param model the model
+     * @return validation result
+     */
+    private AddDonationResultENUM validate(Model model) {
+        return model.validateAndAddItemToInventory(timeStamp, dateStamp, location, category,
+                dollarValue, shortDescription, fullDescription);
+    }
 
 }
 

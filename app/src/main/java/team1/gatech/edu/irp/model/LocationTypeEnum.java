@@ -56,17 +56,6 @@ public enum LocationTypeEnum {
     }
 
 
-//          if (typeAsString.equalsIgnoreCase("Drop off")) {
-//            return LocationTypeEnum.DROP_OFF;
-//        } else if (typeAsString.equalsIgnoreCase("Store")) {
-//            return LocationTypeEnum.STORE;
-//        } else if (typeAsString.equalsIgnoreCase("Warehouse")) {
-//            return LocationTypeEnum.WAREHOUSE;
-//        } else {
-//            return LocationTypeEnum.DROP_OFF;
-//        }
-//    }
-
 }
 
 

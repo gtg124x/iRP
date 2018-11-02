@@ -41,7 +41,8 @@ public class LocalEmployeeActivity extends AppCompatActivity {
      */
     public void onViewLocationLocalEmployeeOnPress(View v) {
         Model model = Model.getInstance();
-        if (model.noLocations()) {
+//        if (model.noLocations()) {
+        if(locationEmpty(model)) {
             Toast.makeText(this, "No Locations have been loaded by Admin.",
                     Toast.LENGTH_SHORT).show();
         } else {
@@ -51,21 +52,40 @@ public class LocalEmployeeActivity extends AppCompatActivity {
     }
 
     /**
+     * gets the location list with all locations option
+     *
+     * @param model the model
+     * @return success
+     */
+    private boolean locationEmpty(Model model) {
+        return model.noLocations();
+    }
+
+    /**
      * When the Add Donation Button is pressed is sends you to the add donation screen
      *
      * @param v the view
      */
     public void onAddDonationOnPress(View v) {
         Model model = Model.getInstance();
-        List<Location> locations = model.getLocations();
+//        List<Location> locations = model.getLocations();
+        List<Location> locations = getCurrentLocations(model);
         if (locations.isEmpty()) {
             Toast.makeText(this, "No Locations have been loaded by Admin.",
                     Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, AddDonationActivity.class);
             startActivity(intent);
-
         }
+    }
 
+    /**
+     * gets the locations
+     *
+     * @param model the model
+     * @return list of locations
+     */
+    private List<Location> getCurrentLocations(Model model) {
+        return model.getLocations();
     }
 }

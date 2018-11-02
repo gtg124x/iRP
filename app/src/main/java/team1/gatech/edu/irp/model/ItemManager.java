@@ -234,11 +234,23 @@ class ItemManager implements Serializable {
         List<Item> itemLocationList = new ArrayList<>();
         for (Item i : inventory) {
             Location currentLocation = i.getLocation();
-            if (currentLocation.equals(location)) {
+//            if (currentLocation.equals(location)) {
+            if (locationsEqual(currentLocation, location)) {
                 itemLocationList.add(i);
             }
         }
         return itemLocationList;
+    }
+
+    /**
+     * checks if the current location equals the location
+     *
+     * @param location1 first location
+     * @param location2 second location
+     * @return success
+     */
+    private boolean locationsEqual(Location location1, Location location2) {
+        return location1.equals(location2);
     }
 
     /**

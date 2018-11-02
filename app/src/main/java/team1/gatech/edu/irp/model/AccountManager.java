@@ -49,6 +49,7 @@ class AccountManager implements Serializable {
      * validates that the user input in the name field is valid
      *
      *  @param name the account name
+     *  @return success
      */
     private boolean accountNameNotValid(String name) {
         return (name.length() < 4);
@@ -58,6 +59,7 @@ class AccountManager implements Serializable {
      * validates that the user input in the name field has not already been taken
      *
      *  @param uName the account name
+     *  @return success
      */
     private boolean accountNameIsTaken(String uName) {
         return accounts.containsKey(uName);
@@ -67,6 +69,7 @@ class AccountManager implements Serializable {
      * validates that the user input in the password field is valid
      *
      *  @param password the account password
+     *  @return success
      */
     private boolean accountPasswordNotValid(String password) {
         return (password.length() < 4);
@@ -76,6 +79,7 @@ class AccountManager implements Serializable {
      * validates that the user input in the email field is valid
      *
      *  @param email the account email
+     *  @return success
      */
     private boolean accountEmailNotValid(String email) {
         return (!email.contains("@") || !email.contains("."));
@@ -110,10 +114,40 @@ class AccountManager implements Serializable {
         if (accounts.containsKey(name)) {
             Account accountName = getAccountName(name);
             if (verifyPasswordAndState(accountName, password)) {
-                userType = accountName.getUserType();
+                userType = getAccountUserType(accountName);
             }
         }
         return userType;
+    }
+
+    /**
+     * gets and account user type
+     * does the null check and keeps the code checker happy
+     *
+     *  @param account an account
+     *
+     *  @return the user type
+     */
+    private UserTypeENUM getAccountUserType(Account account) {
+        if (account != null) {
+            return account.getUserType();
+        }
+        return UserTypeENUM.USER;
+    }
+
+    /**
+     * gets and account given a name
+     * does the null check and keeps the code checker happy
+     *
+     *  @param name an account name
+     *
+     *  @return the account
+     */
+    private Account getAccountName(String name) {
+        if (name != null) {
+            return accounts.get(name);
+        }
+        return new Account();
     }
 
     /**
@@ -134,19 +168,6 @@ class AccountManager implements Serializable {
         return success;
     }
 
-    /**
-     * gets and account given a name
-     * does the null check and keeps the code checker happy
-     *
-     *  @param name an account name
-     *
-     *  @return the account
-     */
-    private Account getAccountName(String name) {
-        if (name != null) {
-            return accounts.get(name);
-        }
-        return new Account();
-    }
+
 
 }
