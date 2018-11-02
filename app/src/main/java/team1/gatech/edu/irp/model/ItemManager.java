@@ -2,6 +2,7 @@ package team1.gatech.edu.irp.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /****************************************************************************************
@@ -21,12 +22,7 @@ class ItemManager implements Serializable {
     /**
      * holds the items that are donated
      */
-    private final List<Item> inventory = new ArrayList<>();
-
-    /**
-     * used to test if inventory is empty
-     */
-//    private static final int EMPTY = 0;
+    private final Collection<Item> inventory = new ArrayList<>();
 
     private static final int MAX_HOURS = 24;
     private static final int MAX_MINUTES = 24;
@@ -102,12 +98,10 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateTimeStamp(String time) {
-//        if (time.equals("")) { return true; }
         if ("".equals(time)) { return true; }
         if (time.length() != 8) { return true; }
         String firstColon = "" + time.charAt(2);
         String secondColon = "" + time.charAt(5);
-//        if (!(firstColon.equals(":")) || !(secondColon.equals(":"))) { return true; }
         if (!(":".equals(firstColon)) || !(":".equals(secondColon))) { return true; }
 
         String hourAsString = "" + time.charAt(0) + time.charAt(1);
@@ -163,7 +157,6 @@ class ItemManager implements Serializable {
             return true;
         }
     }
-
 
     /**
      * helper method to validate the user input for the dollarValue field
@@ -229,12 +222,6 @@ class ItemManager implements Serializable {
         return (fullD.length() < 3);
     }
 
-//    /**
-//     * returns a list of items that have been added to the app
-//     *
-//     * @return list of Item objects
-//     */
-//    public List<Item> getItemManagerAsItemArray() { return inventory; }
 
     /**
      * finds the items sorted by location
@@ -246,7 +233,8 @@ class ItemManager implements Serializable {
     public List<Item> getItemListByLocation(Location location) {
         List<Item> itemLocationList = new ArrayList<>();
         for (Item i : inventory) {
-            if (i.getLocation().equals(location)) {
+            Location currentLocation = i.getLocation();
+            if (currentLocation.equals(location)) {
                 itemLocationList.add(i);
             }
         }
@@ -265,32 +253,17 @@ class ItemManager implements Serializable {
         List<Item> itemLocationList = new ArrayList<>();
         for (Item i : inventory) {
             CategoryENUM itemCategory = i.getCategory();
+            Location currentLocation = i.getLocation();
+            String currentLocationString = currentLocation + "";
             if ("All Locations".equals(location) && itemCategory.equals(category)) {
                     itemLocationList.add(i);
-            } else if (i.getLocation().toString().equals(location)
+            } else if (currentLocationString.equals(location)
                         && itemCategory.equals(category)) {
                     itemLocationList.add(i);
             }
         }
         return itemLocationList;
     }
-//        List<Item> itemLocationList = new ArrayList<>();
-//        if ("All Locations".equals(location)) {
-//            for (Item i : inventory) {
-//                if (i.getCategory().equals(category)) {
-//                    itemLocationList.add(i);
-//                }
-//            }
-//        } else {
-//            for (Item i : inventory) {
-//                if (i.getLocation().toString().equals(location)
-//                        && i.getCategory().equals(category)) {
-//                    itemLocationList.add(i);
-//                }
-//            }
-//        }
-//        return itemLocationList;
-//    }
 
     /**
      * finds the items sorted by location and name
@@ -304,71 +277,17 @@ class ItemManager implements Serializable {
         List<Item> itemLocationList = new ArrayList<>();
         for (Item i : inventory) {
             String shortDescription = i.getShortDescription();
+            Location currentLocation = i.getLocation();
+            String currentLocationString = currentLocation + "";
             if ("All Locations".equals(location) && shortDescription.equals(name)) {
                 itemLocationList.add(i);
-            } else if (i.getLocation().toString().equals(location)
+            } else if (currentLocationString.equals(location)
                     && shortDescription.equals(name)) {
                     itemLocationList.add(i);
             }
         }
         return itemLocationList;
     }
-
-
-//    public List<Item> getItemListByNameAndLocation(String name, String location) {
-//        List<Item> itemLocationList = new ArrayList<>();
-//        if ("All Locations".equals(location)) {
-//            for (Item i : inventory) {
-//                if (i.getShortDescription().equals(name)) {
-//                    itemLocationList.add(i);
-//                }
-//            }
-//        } else {
-//            for (Item i : inventory) {
-//                if (i.getLocation().toString().equals(location)
-//                        && i.getShortDescription().equals(name)) {
-//                    itemLocationList.add(i);
-//                }
-//            }
-//        }
-//        return itemLocationList;
-//    }
-
-
-//    /**
-//     * determines if the inventory at a location is empty or no
-//     *
-//     * @param  location currently selected location to analyze for inventory size
-//     * @return if the inventory is empty
-//     */
-//    public boolean isItemListByLocationEmpty(Location location) {
-//        List<String> itemLocationList = new ArrayList<>();
-//        for (Item i : inventory) {
-//            if (i.getLocation().equals(location)) {
-//                itemLocationList.add(i.toString());
-//            }
-//        }
-//        return itemLocationList.isEmpty();
-//    }
-
-//    /**
-//     * converts list of items to strings
-//     *
-//     * @param itemList item list
-//     *
-//     * @return list of items in as strings
-//     */
-//    public List<String> getItemListAsString(List<Item> itemList ) {
-//        List<String> itemLocationList = new ArrayList<>();
-//        for (Item i : itemList) {
-//            itemLocationList.add(i.toString());
-//            }
-//        return itemLocationList;
-//    }
-
-
-
-
 
 }
 

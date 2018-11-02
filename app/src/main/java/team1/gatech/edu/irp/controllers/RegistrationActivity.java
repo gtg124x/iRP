@@ -24,7 +24,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private TextView password;
     private TextView contactInfo;
     private Spinner userTypeSpinner;
-    //private String userT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +42,8 @@ public class RegistrationActivity extends AppCompatActivity {
 //        /**
 //         * Set up the adapter to display the allowable class standing in the spinner
 //         */
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, UserTypeENUM.getUserTypeStringList());
+        ArrayAdapter<UserTypeENUM> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, UserTypeENUM.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeSpinner.setAdapter(adapter);
     }
@@ -59,13 +58,10 @@ public class RegistrationActivity extends AppCompatActivity {
      */
     public void onAddPressed(View view) {
         Model model = Model.getInstance();
-        String name = loginName.getText().toString();
-        String passwordString = password.getText().toString();
-        String cInfo = contactInfo.getText().toString();
-        String userTypeEnumString = (String) userTypeSpinner.getSelectedItem();
-
-        model.setCurrentUserTypeRegistration(userTypeEnumString);
-        UserTypeENUM userTypeEnum = model.getCurrentUserTypeRegistration();
+        String name = loginName.getText() + "";
+        String passwordString = password.getText() + "";
+        String cInfo = contactInfo.getText() + "";
+        UserTypeENUM userTypeEnum = (UserTypeENUM) userTypeSpinner.getSelectedItem();
 
         RegistrationResultENUM registrationResult = model.addAccount(name, passwordString,
                 cInfo, userTypeEnum);

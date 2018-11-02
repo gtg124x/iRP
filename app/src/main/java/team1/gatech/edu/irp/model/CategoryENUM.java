@@ -30,19 +30,6 @@ public enum CategoryENUM {
         this.type = type;
     }
 
-//    /**
-//     * get the categories as a String List for Spinner
-//     * Done to take care of warnings about casting
-//     *
-//     * @return   the category
-//     */
-//    public static List<String> getCategoryStringList() {
-//        List<String> categoryStringList = new ArrayList<>();
-//        for (CategoryENUM category : CategoryENUM.values()) {
-//            categoryStringList.add(category.toString());
-//        }
-//        return categoryStringList; }
-
     /**
      *
      * @return the display string representation of the category

@@ -29,14 +29,6 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
         List<String> itemString = model.getSelectedItemFromItemListAndSendToItemDetails();
 
-//        String timeStamp = model.getCurrentItemDetails().getTimeStamp();
-//        String dateStamp = model.getCurrentItemDetails().getDateStamp();
-//        String location = model.getCurrentItemDetails().getLocation().toString();
-//        String category = model.getCurrentItemDetails().getCategory().toString();
-//        String value = model.getCurrentItemDetails().getDollarValue();
-//        String shortDescription = model.getCurrentItemDetails().getShortDescription();
-//        String fullDescription = model.getCurrentItemDetails().getFullDescription();
-
         String timeStamp = itemString.get(0);
         String dateStamp = itemString.get(1);
         String location = itemString.get(2);

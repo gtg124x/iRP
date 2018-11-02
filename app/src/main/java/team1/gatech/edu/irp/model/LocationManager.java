@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import team1.gatech.edu.irp.R;
+
+import android.content.res.Resources;
 import android.view.View;
 
 class LocationManager implements Serializable {
@@ -41,8 +43,9 @@ class LocationManager implements Serializable {
      */
 
     public boolean loadLocationsFromCSV(View v) {
+        Resources resources = v.getResources();
+        InputStream inputStream = resources.openRawResource(R.raw.locationdata);
 
-        InputStream inputStream = v.getResources().openRawResource(R.raw.locationdata);
         CSVFile csvFile = new CSVFile(inputStream);
         List<String[]> scoreList;
         scoreList = csvFile.read();

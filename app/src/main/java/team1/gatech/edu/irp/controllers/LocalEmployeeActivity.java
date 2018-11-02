@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.Model;
 import android.view.View;
 import android.widget.Toast;
+
+import java.util.List;
 
 /**
  * Location employee home screen that appears after login
@@ -54,7 +57,8 @@ public class LocalEmployeeActivity extends AppCompatActivity {
      */
     public void onAddDonationOnPress(View v) {
         Model model = Model.getInstance();
-        if (model.getLocations().isEmpty()) {
+        List<Location> locations = model.getLocations();
+        if (locations.isEmpty()) {
             Toast.makeText(this, "No Locations have been loaded by Admin.",
                     Toast.LENGTH_SHORT).show();
         } else {

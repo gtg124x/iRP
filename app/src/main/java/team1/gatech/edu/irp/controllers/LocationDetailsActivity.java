@@ -66,19 +66,6 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
         Model model = Model.getInstance();
 
-//        List<String> locationString =
-//                model.getSelectedLocationFromLocationListAndSendToLocationDetails();
-//        name = locationString.get(0);
-//        address = locationString.get(1);
-//        city = locationString.get(2);
-//        state = locationString.get(3);
-//        zip = locationString.get(4);
-//        locationType = locationString.get(5);
-//        phoneNumber = locationString.get(6);
-//        website = locationString.get(7);
-//        latitude = locationString.get(8);
-//        longitude = locationString.get(9);
-
         helper();
 
         TextView nameField = findViewById(R.id.LocationNameText);

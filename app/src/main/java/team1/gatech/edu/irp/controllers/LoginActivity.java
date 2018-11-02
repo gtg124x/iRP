@@ -54,14 +54,14 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginPressed(View v) {
         Model model = Model.getInstance();
 
-        String name = userName.getText().toString();
-        String passwordString = password.getText().toString();
+        CharSequence nameChar = userName.getText();
+
+        String name = nameChar.toString();
+        String passwordString = password.getText() + "";
 
         UserTypeENUM userType = model.validateLogin(name, passwordString);
 
-//        if (model.validateLogin(name, passwordString)) {
         if (userType != null) {
-            //UserTypeENUM userType = model.getUserType(name);
             if (userType == UserTypeENUM.ADMIN) {
                 Intent intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);

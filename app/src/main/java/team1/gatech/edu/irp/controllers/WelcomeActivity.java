@@ -56,7 +56,6 @@ public class WelcomeActivity extends AppCompatActivity {
         Model model = Model.getInstance();
         File file;
         file = new File(this.getFilesDir(), "data.bin");
-//        boolean success = PersistenceManager.loadBinary(file);
         boolean success = model.loadBinary(file);
         if (success) {
             Toast.makeText(this, "Data has been loaded.", Toast.LENGTH_SHORT).show();
@@ -76,7 +75,6 @@ public class WelcomeActivity extends AppCompatActivity {
         Model model = Model.getInstance();
         File file;
         file = new File(this.getFilesDir(), "data.bin");
-//        boolean success =  PersistenceManager.saveBinary(file);
         boolean success =  model.saveBinary(file);
         if (success) {
             Toast.makeText(this, "Data has been saved.", Toast.LENGTH_SHORT).show();
@@ -94,7 +92,6 @@ public class WelcomeActivity extends AppCompatActivity {
     public void onClearDataOnPressed(View v) {
         Model model = Model.getInstance();
         File file = new File(this.getFilesDir(), "data.bin");
-//        boolean success =  PersistenceManager.deleteBinary(file);
         boolean success =  model.deleteBinary(file);
         if (success) {
             Toast.makeText(this, "Data has been deleted.", Toast.LENGTH_SHORT).show();

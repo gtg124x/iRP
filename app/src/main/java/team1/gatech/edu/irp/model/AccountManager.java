@@ -95,27 +95,7 @@ class AccountManager implements Serializable {
         Account newAccount = new Account(name, password, cInfo, userTypeEnum,
                 AccountStateENUM.UNLOCKED);
         accounts.put(name, newAccount);
-        //return RegistrationResultENUM.SUCCESS;
     }
-
-//    /**
-//     * checks is user name and password match
-//     *
-//     *  @param name an account name
-//     *  @param password an account password
-//     *
-//     *  @return success
-//     */
-//    public boolean loginCheck(String name, String password) {
-//        boolean success = false;
-//        if (accounts.containsKey(name)) {
-//            if ((getAccountName(name).getPassword().equals(password))
-//                    && (getAccountName(name).getAccountState() == AccountStateENUM.UNLOCKED)) {
-//                success = true;
-//            }
-//        }
-//        return success;
-//    }
 
     /**
      * checks is user name and password match
@@ -130,9 +110,6 @@ class AccountManager implements Serializable {
         if (accounts.containsKey(name)) {
             Account accountName = getAccountName(name);
             if (verifyPasswordAndState(accountName, password)) {
-
-//            if ((accountName.getPassword().equals(password))
-//                    && (accountName.getAccountState() == AccountStateENUM.UNLOCKED)) {
                 userType = accountName.getUserType();
             }
         }
@@ -149,7 +126,8 @@ class AccountManager implements Serializable {
      */
     private boolean verifyPasswordAndState(Account accountName, String password) {
         boolean success = false;
-        if ((accountName.getPassword().equals(password))
+        String accountPassword = accountName.getPassword();
+        if ((accountPassword.equals(password))
                 && (accountName.getAccountState() == AccountStateENUM.UNLOCKED)) {
             success = true;
         }
@@ -169,17 +147,6 @@ class AccountManager implements Serializable {
             return accounts.get(name);
         }
         return new Account();
-    }
-
-    /**
-     * looks up the user type given a user name
-     *
-     *  @param name an account name
-     *
-     *  @return the user type
-     */
-    public UserTypeENUM lookupUserType(String name) {
-        return getAccountName(name).getUserType();
     }
 
 }

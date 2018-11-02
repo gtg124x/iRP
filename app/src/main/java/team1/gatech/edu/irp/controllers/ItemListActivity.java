@@ -22,8 +22,6 @@ public class ItemListActivity extends AppCompatActivity {
     private Model model;
     private int size;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +34,6 @@ public class ItemListActivity extends AppCompatActivity {
 
 
 //      Set up the adapter to display the allowable items in the spinner
-        //List<String> itemList = model.getInventoryAsString(itemListItem);
-
-//        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(this,
-//                android.R.layout.simple_spinner_item, itemList);
         ArrayAdapter<Item> itemAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, itemListItem);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -53,22 +47,12 @@ public class ItemListActivity extends AppCompatActivity {
      */
     public void onViewItemDetailsOnPress(View view) {
         model = Model.getInstance();
-        //List<Item> currentItemList = model.getCurrentItemList();
-
-
-
 
         if (size == 0) {
-//        if (model.isCurrentItemListEmpty()) {
             Toast.makeText(this, "No Items Found In Search",
                     Toast.LENGTH_SHORT).show();
         } else {
-            //String currItem = ((String) itemSpinner.getSelectedItem());
             int selectionNumber = itemSpinner.getSelectedItemPosition();
-            //List<Item> itemListItem = model.getCurrentItemList();
-
-            //model.setSelectedItemFromItemListAndSendToItemDetails(itemListItem.get(
-            // selectionNumber));
 
             model.setSelectedItemFromItemListAndSendToItemDetails(selectionNumber);
 

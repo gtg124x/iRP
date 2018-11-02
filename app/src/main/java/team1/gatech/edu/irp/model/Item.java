@@ -176,8 +176,6 @@ public class Item implements Serializable {
 //        this.fullDescription = fullDescription;
 //    }
 
-
-
     /**
      * Override the toString to just return the "Short Description"
      *
@@ -200,7 +198,8 @@ public class Item implements Serializable {
             return false;
         }
         Item i = (Item) o;
-        return (i.getShortDescription().equals(shortDescription));
+        String name = i.getShortDescription();
+        return (name.equals(shortDescription));
     }
 
     /**
@@ -224,8 +223,8 @@ public class Item implements Serializable {
         List<String> items = new ArrayList<>();
         items.add(currentItemDetails.getTimeStamp());
         items.add(currentItemDetails.getDateStamp());
-        items.add(currentItemDetails.getLocation().toString());
-        items.add(currentItemDetails.getCategory().toString());
+        items.add(currentItemDetails.getLocation() + "");
+        items.add(currentItemDetails.getCategory() + "");
         items.add(currentItemDetails.getDollarValue());
         items.add(currentItemDetails.getShortDescription());
         items.add(currentItemDetails.getFullDescription());

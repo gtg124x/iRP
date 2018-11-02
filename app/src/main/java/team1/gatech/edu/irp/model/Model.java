@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.List;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.view.View;
  *    MODEL
  ****************************************************************************************
  */
-public class Model {
+public final class Model {
 
 //    /****************************************************************************************
 //     *    MODEL STUFF
@@ -66,57 +67,6 @@ public class Model {
 
 
 //    /****************************************************************************************
-//     *    DATA MANAGER GETTERS AND SETTERS
-//     ****************************************************************************************
-//     */
-
-    /**
-     * gets the accountManager
-     *
-     * @return the accountManager
-     */
-    public AccountManager getAccountManager() { return accountManager; }
-
-    /**
-     * gets the locationManager
-     *
-     * @return the locationManager
-     */
-    public LocationManager getLocationManager() { return locationManager; }
-
-    /**
-     * gets the itemManager
-     *
-     * @return the itemManager
-     */
-    public ItemManager getItemManager() { return itemManager; }
-
-    /**
-     * sets the accountManager
-     *
-     * @param accountManager the accountManager
-     */
-    public void setAccountManager(AccountManager accountManager) {
-        this.accountManager = accountManager;
-    }
-
-    /**
-     * sets the locationManager
-     *
-     * @param locationManager the locationManager
-     */
-    public void setLocationManager(LocationManager locationManager) {
-        this.locationManager = locationManager;
-    }
-
-    /**
-     * sets the itemManager
-     *
-     * @param itemManager the itemManager
-     */
-    public void setItemManager(ItemManager itemManager) { this.itemManager = itemManager; }
-
-//    /****************************************************************************************
 //     *    PASS THROUGH VALUES FROM SPINNERS TO ACTIVITY PAGES
 //     ****************************************************************************************
 //     */
@@ -131,25 +81,10 @@ public class Model {
      */
     private Location selectedLocation;
 
-//    /**
-//     * the currently selected location, defaults to first location for AddDonationActivity
-//     */
-//    private Location _currentLocationAddDonation;
-
     /**
      * convert string to location for LocationDetailActivity
      */
     private Item selectedItemFromItemList;
-
-//    /**
-//     * convert string to CategoryENUM for AddDonationActivity
-//     */
-//    private CategoryENUM _currentCategory;
-
-    /**
-     * convert string to UserTypeENUM for RegistrationActivity
-     */
-    private UserTypeENUM _currentUserType;
 
 //    /****************************************************************************************
 //     *    ACCOUNT MANAGER PASS THROUGH METHODS
@@ -183,17 +118,6 @@ public class Model {
     public UserTypeENUM validateLogin(String name, String passwordString) {
         return accountManager.loginCheck(name, passwordString);
     }
-
-//    /**
-//     * retrieves the user type from a valid account
-//     *
-//     *  @param name an account name
-//     *
-//     *  @return user type
-//     */
-//    public UserTypeENUM getUserType(String name) {
-//        return accountManager.lookupUserType(name);
-//    }
 
 
 //    /****************************************************************************************
@@ -276,16 +200,6 @@ public class Model {
                 category, dollarValue, shortDescription, fullDescription);
     }
 
-//    /**
-//     * a list of items represented as Strings that have been added to the a selected location
-//     *
-//     * @param  location currently selected location to view
-//     * @return list of items represented as Strings
-//     */
-//    public List<Item> getInventoryByLocation(Location location) {
-//
-//        return itemManager.getItemListByLocation(location);
-//    }
     /**
      * a list of items represented as Strings that have been added to the a selected location
      *
@@ -296,78 +210,34 @@ public class Model {
         return _currentItemList;
     }
 
-//    /**
-//     * determines if the inventory at a location is empty or no
-//     *
-//     * @param  location currently selected location to analyze for inventory size
-//     * @return if the inventory is empty
-//     */
-//    public boolean isInventoryByLocationEmpty(Location location) {
-//        return itemManager.isItemListByLocationEmpty(location);
-//    }
-
-//    /**
-//     * finds the items sorted by location and category
-//     *
-//     * @param category item category
-//     * @param locationString store location
-//     *
-//     * @return list of items in inventory at a particular location and category
-//     */
-//    public List<Item> getInventoryByCategoryAndLocation(CategoryENUM category,
-//                                                        String locationString ) {
-//        _currentItemList = itemManager.getItemListByCategoryAndLocation(category, locationString)
-//        return _currentItemList;
-//    }
-
     /**
      * finds the items sorted by location and category
      *
      * @param category item category
-     * @param locationString store location
+     * @param location store location
      *
      */
     public void setInventoryByCategoryAndLocation(CategoryENUM category,
-                                                        String locationString ) {
-        _currentItemList = itemManager.getItemListByCategoryAndLocation(category, locationString);
-        //return _currentItemList;
+                                                        String location ) {
+        _currentItemList = itemManager.getItemListByCategoryAndLocation(category, location);
     }
 
     /**
      * finds the items sorted by location and name
      *
      * @param name item name
-     * @param locationString store location
+     * @param location store location
      *
      */
-    public void setInventoryByNameAndLocation(String name, String locationString ) {
-        _currentItemList = itemManager.getItemListByNameAndLocation(name, locationString);
+    public void setInventoryByNameAndLocation(String name, String location ) {
+        _currentItemList = itemManager.getItemListByNameAndLocation(name, location);
     }
-
-//    /**
-//     * converts list of items to strings
-//     *
-//     * @param itemList item list
-//     *
-//     * @return list of items in as strings
-//     */
-//    public List<String> getInventoryAsString(List<Item> itemList ) {
-//        return itemManager.getItemListAsString(itemList);
-//    }
 
 //    /****************************************************************************************
 //     *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
 //     ****************************************************************************************
 //     */
 
-//    /**
-//     * set the selected Item on the spinner
-//     *
-//     * @param currentItemList the currently selected Item
-//     */
-//    public void setCurrentItemList(List<Item> currentItemList) {
-//        _currentItemList = currentItemList;
-//    }
 
     /**
      * get the selected Item on the spinner
@@ -378,32 +248,6 @@ public class Model {
        return _currentItemList;
     }
 
-//    /**
-//     * checks if the current item list is empty
-//     *
-//     * @return if the currently selected item
-//     */
-//    public boolean currentItemListIsEmpty() {
-//        return _currentItemList.isEmpty();
-//    }
-
-//    /**
-//     * determines if the inventory selected by a spinner is empty or not
-//     *
-//     * @return if the inventory is empty
-//     */
-//    public boolean isCurrentItemListEmpty() {
-//        return ( _currentItemList.isEmpty());
-//    }
-
-//    /**
-//     * passes through the selected Location on the LocationListActivity spinner
-//     *
-//     * @return the currently selected location of the LocationListActivity
-//     */
-//    public Location getCurrentLocation() {
-//        return selectedLocation;
-//    }
 
     /**
      * sets the selected Location on the LocationListActivity spinner
@@ -412,43 +256,12 @@ public class Model {
      */
     public void setCurrentLocation(String currentLocation) {
         for (Location l : locationManager.getLocationAsLocationArray()) {
-            if (l.toString().equals(currentLocation)) {
+            String currentLocationName = l.toString();
+            if (currentLocationName.equals(currentLocation)) {
                 selectedLocation = l;
             }
         }
     }
-
-//    /**
-//     * passes through the selected Location on the AddDonationActivity spinner
-//     *
-//     * @return the currently selected location of the AddDonationActivity
-//     */
-//    public Location getCurrentLocationAddDonation() {
-//        return _currentLocationAddDonation;
-//    }
-
-//    /**
-//     * sets the selected Location on the AddDonationActivity spinner
-//     *
-//     * @param currentLocationAddDonation the currently selected location on the
-//     *                                   AddDonationActivity spinner
-//     */
-//    public void setCurrentLocationAddDonation(String currentLocationAddDonation) {
-//        for (Location l : locationManager.getLocationAsLocationArray()) {
-//            if (l.toString().equals(currentLocationAddDonation)) {
-//                _currentLocationAddDonation = l;
-//            }
-//        }
-//    }
-
-//    /**
-//     * passes through the selected Item on the LocationDetailActivity spinner
-//     *
-//     * @return the currently selected item of the LocationDetailActivity
-//     */
-//    public Item getCurrentItemDetails() {
-//        return selectedItemFromItemList;
-//    }
 
     /**
      * gets the details of selected Item
@@ -466,12 +279,6 @@ public class Model {
      * @param selectionNumber the number of the selected item from the spinner
      */
     public void setSelectedItemFromItemListAndSendToItemDetails(int selectionNumber) {
-//        for (Item item : itemManager.getItemManagerAsItemArray()) {
-//            if (item.toString().equals(currentItemDetails) && item.) {
-//                _currentItemDetails = item;
-//            }
-//        }
-
         selectedItemFromItemList = _currentItemList.get(selectionNumber);
 
 
@@ -485,60 +292,6 @@ public class Model {
     public List<String> getSelectedLocationFromLocationListAndSendToLocationDetails() {
         return Location.getSelectedLocationDetailsForLocationDetailsActivity(selectedLocation);
     }
-
-
-
-
-
-//    /**
-//     * passes through the selected Category on the LocationDetailActivity spinner
-//     *
-//     * @return the currently selected Category of the LocationDetailActivity
-//     */
-//    public CategoryENUM getCurrentCategoryAddDonation() {
-//        return _currentCategory;
-//    }
-
-//    /**
-//     * sets the selected Category on the LocationDetailActivity spinner
-//     *
-//     * @param currentItemDetails the currently selected Category on the
-//     *                           LocationDetailActivity spinner
-//     */
-//    public void setCurrentCategoryAddDonation(String currentItemDetails) {
-//        for (CategoryENUM category : CategoryENUM.values()) {
-//            if (category.toString().equals(currentItemDetails)) {
-//                _currentCategory = category;
-//            }
-//        }
-//    }
-
-    /**
-     * passes through the selected UserType on the RegistrationActivity spinner
-     *
-     * @return the currently selected UserType of the RegistrationActivity
-     */
-    public UserTypeENUM getCurrentUserTypeRegistration() {
-        return _currentUserType;
-    }
-
-    /**
-     * sets the selected UserType on the RegistrationActivity spinner
-     *
-     * @param currentUserType the currently selected UserType on the RegistrationActivity spinner
-     */
-    public void setCurrentUserTypeRegistration(String currentUserType) {
-        for (UserTypeENUM userType : UserTypeENUM.values()) {
-            if (userType.toString().equals(currentUserType)) {
-                _currentUserType = userType;
-            }
-        }
-    }
-
-
-
-
-
 
     /**
      * Deletes the Binary file
@@ -598,7 +351,7 @@ public class Model {
     public boolean saveBinary(File file) {
         boolean success = true;
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
             out.writeObject(accountManager);
             out.writeObject(locationManager);
             out.writeObject(itemManager);
@@ -608,24 +361,5 @@ public class Model {
         }
         return success;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -272,7 +272,8 @@ public class Location implements Serializable {
             return false;
         }
         Location l = (Location) o;
-        return (l.getName().equals(_name));
+        String currentName = l.getName();
+        return (currentName.equals(_name));
     }
 
     /**
@@ -297,7 +298,8 @@ public class Location implements Serializable {
         items.add(currentLocationDetails.getCity());
         items.add(currentLocationDetails.getState());
         items.add(currentLocationDetails.getZipCode() + "");
-        items.add(currentLocationDetails.getLocationType().toString());
+        LocationTypeEnum currentLocation = currentLocationDetails.getLocationType();
+        items.add(currentLocation + "");
         items.add(currentLocationDetails.getPhoneNumber());
         items.add(currentLocationDetails.getWebsiteLink());
         items.add(currentLocationDetails.getLatitude() + "");

@@ -39,24 +39,4 @@ class CSVFile {
         return resultList;
     }
 
-
-//    public List<String[]>  read(){
-//        List<String[]> resultList = new ArrayList<>();
-//
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-//        try {
-//            String csvLine;
-//            while ((csvLine = reader.readLine()) != null) {
-//                String[] row = csvLine.split(",");
-//                resultList.add(row);
-//            }
-//            inputStream.close();
-//        }
-//        catch (IOException ex) {
-//            throw new RuntimeException("Error in reading CSV file: "+ex);
-//        }
-//        return resultList;
-//    }
-
-
 }

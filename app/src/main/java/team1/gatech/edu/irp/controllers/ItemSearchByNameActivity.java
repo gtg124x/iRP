@@ -49,16 +49,11 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
     public void onViewItemDetailsFromNameSearchOnPress(View v) {
         Model model = Model.getInstance();
 
-        String itemName = itemNameTextView.getText().toString();
+        CharSequence itemNameChar = itemNameTextView.getText();
+        String itemName = itemNameChar.toString();
         String currLoc = ((String) LocationSpinner.getSelectedItem());
 
-//        List<Item> itemListByNameAndLocation
-//                = model.getInventoryByNameAndLocation(itemName, currLoc);
-//        model.setCurrentItemList(itemListByNameAndLocation);
-
-//        List<Item> itemListByNameAndLocation
         model.setInventoryByNameAndLocation(itemName, currLoc);
-//        model.setCurrentItemList(itemListByNameAndLocation);
 
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
