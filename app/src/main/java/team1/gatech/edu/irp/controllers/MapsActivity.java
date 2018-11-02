@@ -51,7 +51,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Model model = Model.getInstance();
 
-        List<Location> locations = model.getLocations();
+//        List<Location> locations = model.getLocations();
+        List<Location> locations = getLocations(model);
         for (Location l : locations) {
 
             List<String> nameAndPhoneNumber = l.getNameAndPhoneNumber();
@@ -67,6 +68,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     "Phone Number: " + phone));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
         }
-
     }
+
+    /**
+     * gets the list of locations
+     *
+     * @param model the model
+     * @return list of locations
+     */
+    private List<Location> getLocations(Model model) {
+        return model.getLocations();
+    }
+
 }

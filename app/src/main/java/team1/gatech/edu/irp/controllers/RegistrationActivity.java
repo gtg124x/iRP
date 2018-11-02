@@ -63,8 +63,8 @@ public class RegistrationActivity extends AppCompatActivity {
         String cInfo = contactInfo.getText() + "";
         UserTypeENUM userTypeEnum = (UserTypeENUM) userTypeSpinner.getSelectedItem();
 
-        RegistrationResultENUM registrationResult = model.addAccount(name, passwordString,
-                cInfo, userTypeEnum);
+        RegistrationResultENUM registrationResult =validateLoginToModel(model, name,
+                passwordString, cInfo, userTypeEnum);
 
         if (registrationResult == RegistrationResultENUM.NAME_INVALID) {
             Toast.makeText(this, "User Name must be at least 4 characters long.",
@@ -84,6 +84,21 @@ public class RegistrationActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    /**
+     * validates the login
+     *
+     * @param model the model
+     * @param name the name
+     * @param passwordString the pas
+     * @return the result of registration
+     */
+    private RegistrationResultENUM validateLoginToModel(Model model, String name,
+                                                        String passwordString, String cInfo,
+                                                        UserTypeENUM userTypeEnum) {
+        return model.addAccount(name, passwordString, cInfo, userTypeEnum);
+    }
+
 
     /**
      * Sends them back to the Welcome Screen

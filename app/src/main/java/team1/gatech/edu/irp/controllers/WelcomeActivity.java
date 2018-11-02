@@ -56,7 +56,8 @@ public class WelcomeActivity extends AppCompatActivity {
         Model model = Model.getInstance();
         File file;
         file = new File(this.getFilesDir(), "data.bin");
-        boolean success = model.loadBinary(file);
+//        boolean success = model.loadBinary(file);
+        boolean success = load(model, file);
         if (success) {
             Toast.makeText(this, "Data has been loaded.", Toast.LENGTH_SHORT).show();
         } else {
@@ -64,6 +65,16 @@ public class WelcomeActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    /**
+     * load binary file
+     *
+     * @param model the model
+     * @return success
+     */
+    private boolean load(Model model, File file) {
+        return model.loadBinary(file);
     }
 
     /**
@@ -75,13 +86,24 @@ public class WelcomeActivity extends AppCompatActivity {
         Model model = Model.getInstance();
         File file;
         file = new File(this.getFilesDir(), "data.bin");
-        boolean success =  model.saveBinary(file);
+//        boolean success =  model.saveBinary(file);
+        boolean success = save(model, file);
         if (success) {
             Toast.makeText(this, "Data has been saved.", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "ERROR: Data has NOT been saved.",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * save binary file
+     *
+     * @param model the model
+     * @return success
+     */
+    private boolean save(Model model, File file) {
+        return model.saveBinary(file);
     }
 
     /**
@@ -92,13 +114,24 @@ public class WelcomeActivity extends AppCompatActivity {
     public void onClearDataOnPressed(View v) {
         Model model = Model.getInstance();
         File file = new File(this.getFilesDir(), "data.bin");
-        boolean success =  model.deleteBinary(file);
+//        boolean success = model.deleteBinary(file);
+        boolean success = clear(model, file);
         if (success) {
             Toast.makeText(this, "Data has been deleted.", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "ERROR: Data has NOT been deleted.",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * clear binary file
+     *
+     * @param model the model
+     * @return success
+     */
+    private boolean clear(Model model, File file) {
+        return model.deleteBinary(file);
     }
 
 }

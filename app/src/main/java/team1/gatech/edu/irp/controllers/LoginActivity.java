@@ -59,7 +59,9 @@ public class LoginActivity extends AppCompatActivity {
         String name = nameChar.toString();
         String passwordString = password.getText() + "";
 
-        UserTypeENUM userType = model.validateLogin(name, passwordString);
+//        UserTypeENUM userType = model.validateLogin(name, passwordString);
+        UserTypeENUM userType = validateLoginToModel(model, name, passwordString);
+
 
         if (userType != null) {
             if (userType == UserTypeENUM.ADMIN) {
@@ -79,6 +81,18 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Invalid Username/Password combination",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * send selected item to details page
+     *
+     * @param model the model
+     * @param name the name
+     * @param passwordString password
+     * @return the User Type
+     */
+    private UserTypeENUM validateLoginToModel(Model model, String name, String passwordString) {
+        return model.validateLogin(name, passwordString);
     }
 
 }
