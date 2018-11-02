@@ -57,8 +57,11 @@ public class LoginActivity extends AppCompatActivity {
         String name = userName.getText().toString();
         String passwordString = password.getText().toString();
 
-        if (model.validateLogin(name, passwordString)) {
-            UserTypeENUM userType = model.getUserType(name);
+        UserTypeENUM userType = model.validateLogin(name, passwordString);
+
+//        if (model.validateLogin(name, passwordString)) {
+        if (userType != null) {
+            //UserTypeENUM userType = model.getUserType(name);
             if (userType == UserTypeENUM.ADMIN) {
                 Intent intent = new Intent(this, AdminActivity.class);
                 startActivity(intent);

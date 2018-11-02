@@ -1,6 +1,11 @@
 package team1.gatech.edu.irp.model;
 
-import java.util.Collections;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import android.view.View;
 
@@ -175,20 +180,20 @@ public class Model {
      *
      *  @return success
      */
-    public boolean validateLogin(String name, String passwordString) {
+    public UserTypeENUM validateLogin(String name, String passwordString) {
         return accountManager.loginCheck(name, passwordString);
     }
 
-    /**
-     * retrieves the user type from a valid account
-     *
-     *  @param name an account name
-     *
-     *  @return user type
-     */
-    public UserTypeENUM getUserType(String name) {
-        return accountManager.lookupUserType(name);
-    }
+//    /**
+//     * retrieves the user type from a valid account
+//     *
+//     *  @param name an account name
+//     *
+//     *  @return user type
+//     */
+//    public UserTypeENUM getUserType(String name) {
+//        return accountManager.lookupUserType(name);
+//    }
 
 
 //    /****************************************************************************************
@@ -288,7 +293,7 @@ public class Model {
      */
     public List<Item> getInventoryByLocation() {
         _currentItemList = itemManager.getItemListByLocation(selectedLocation);
-        return Collections.unmodifiableList(_currentItemList);
+        return _currentItemList;
     }
 
 //    /**
@@ -372,6 +377,15 @@ public class Model {
     public List<Item> getCurrentItemList() {
        return _currentItemList;
     }
+
+//    /**
+//     * checks if the current item list is empty
+//     *
+//     * @return if the currently selected item
+//     */
+//    public boolean currentItemListIsEmpty() {
+//        return _currentItemList.isEmpty();
+//    }
 
 //    /**
 //     * determines if the inventory selected by a spinner is empty or not
@@ -520,6 +534,98 @@ public class Model {
             }
         }
     }
+
+
+
+
+
+
+    /**
+     * Deletes the Binary file
+     *
+     * Note: DOES NOT DELETE TEMP DATA IN ARRAY'S, JUST DELETES THE FILE!
+     *
+     * @param file the file that holds the persistence data
+     * @return the success
+     */
+    public boolean deleteBinary(File file) {
+        return file.delete();
+    }
+
+    /**
+     * Loads the Binary file
+     * To read, we must use the ObjectInputStream since we want to read our model in with
+     * a single read.
+     *
+     * @param file the file that holds the persistence data
+     * @return the success
+     */
+    public boolean loadBinary(File file) {
+        boolean success = true;
+        try {
+            //Model model = Model.getInstance();
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            // assuming we saved our top level object, we read it back in with one line of code.
+            accountManager = (AccountManager) in.readObject();
+            locationManager = (LocationManager) in.readObject();
+            itemManager = (ItemManager) in.readObject();
+            in.close();
+        } catch (IOException e) {
+            success = false;
+        } catch (ClassNotFoundException e) {
+            success = false;
+        }
+        return success;
+    }
+
+    /**
+     * Saves the Binary file
+     *
+     * For binary, we use Serialization, so everything we write has to implement
+     * the Serializable interface.  Fortunately all the collection classes and APi classes
+     * that we might use are already Serializable.  You just have to make sure your
+     * classes implement Serializable.
+     *
+     * We have to use an ObjectOutputStream to write objects.
+     * One thing to be careful of:  You cannot serialize static data.
+     *
+     * We basically can save our entire data model with one write, since this will follow
+     * all the links and pointers to save everything.  Just save the top level object.
+     *
+     * @param file the file that holds the persistence data
+     * @return the success
+     */
+    public boolean saveBinary(File file) {
+        boolean success = true;
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(accountManager);
+            out.writeObject(locationManager);
+            out.writeObject(itemManager);
+            out.close();
+        } catch (IOException e) {
+            success = false;
+        }
+        return success;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

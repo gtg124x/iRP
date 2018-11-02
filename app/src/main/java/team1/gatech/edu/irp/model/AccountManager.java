@@ -98,6 +98,25 @@ class AccountManager implements Serializable {
         //return RegistrationResultENUM.SUCCESS;
     }
 
+//    /**
+//     * checks is user name and password match
+//     *
+//     *  @param name an account name
+//     *  @param password an account password
+//     *
+//     *  @return success
+//     */
+//    public boolean loginCheck(String name, String password) {
+//        boolean success = false;
+//        if (accounts.containsKey(name)) {
+//            if ((getAccountName(name).getPassword().equals(password))
+//                    && (getAccountName(name).getAccountState() == AccountStateENUM.UNLOCKED)) {
+//                success = true;
+//            }
+//        }
+//        return success;
+//    }
+
     /**
      * checks is user name and password match
      *
@@ -106,13 +125,33 @@ class AccountManager implements Serializable {
      *
      *  @return success
      */
-    public boolean loginCheck(String name, String password) {
-        boolean success = false;
+    public UserTypeENUM loginCheck(String name, String password) {
+        UserTypeENUM userType = null;
         if (accounts.containsKey(name)) {
-            if ((getAccountName(name).getPassword().equals(password))
-                    && (getAccountName(name).getAccountState() == AccountStateENUM.UNLOCKED)) {
-                success = true;
+            Account accountName = getAccountName(name);
+            if (verifyPasswordAndState(accountName, password)) {
+
+//            if ((accountName.getPassword().equals(password))
+//                    && (accountName.getAccountState() == AccountStateENUM.UNLOCKED)) {
+                userType = accountName.getUserType();
             }
+        }
+        return userType;
+    }
+
+    /**
+     * verifies account and password match
+     *
+     *  @param accountName an account
+     *  @param password an account password
+     *
+     *  @return success
+     */
+    private boolean verifyPasswordAndState(Account accountName, String password) {
+        boolean success = false;
+        if ((accountName.getPassword().equals(password))
+                && (accountName.getAccountState() == AccountStateENUM.UNLOCKED)) {
+            success = true;
         }
         return success;
     }

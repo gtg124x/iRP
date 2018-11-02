@@ -33,6 +33,8 @@ public class LocationDetailsActivity extends AppCompatActivity {
     private String latitude;
     private String longitude;
 
+    private List<Item> currentLocationItemListItem;
+
     /**
      * sets the fill data
      *
@@ -111,7 +113,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
         itemSpinner = findViewById(R.id.ItemSpinner);
 
-        List<Item> currentLocationItemListItem = model.getInventoryByLocation();
+        currentLocationItemListItem = model.getInventoryByLocation();
 
         ArrayAdapter<Item> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, currentLocationItemListItem);
@@ -128,21 +130,12 @@ public class LocationDetailsActivity extends AppCompatActivity {
      */
     public void onViewItemOnPress(View v) {
         Model model = Model.getInstance();
-        List<Item> currentItemList = model.getCurrentItemList();
-        //Location currSelectedLocation = model.getCurrentLocation();
-//        if (model.isInventoryByLocationEmpty(currSelectedLocation)) {
-        if (currentItemList.isEmpty()) {
+        //List<Item> currentItemList = model.getCurrentItemList();
+        if (currentLocationItemListItem.isEmpty()) {
             Toast.makeText(this, "No Items Have Been Added To Inventory",
                     Toast.LENGTH_SHORT).show();
         } else {
-//            String currItem = ((String) itemSpinner.getSelectedItem());
             int selectionNumber = itemSpinner.getSelectedItemPosition();
-           // List<Item> currentLocationItemListItem =
-                   // model.getInventoryByLocation(currSelectedLocation);
-
-            //model.setCurrentItemList(currentLocationItemListItem);
-
-
             model.setSelectedItemFromItemListAndSendToItemDetails(selectionNumber);
             Intent intent = new Intent(this, ItemDetailsActivity.class);
             startActivity(intent);

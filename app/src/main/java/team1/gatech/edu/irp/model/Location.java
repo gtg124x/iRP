@@ -305,5 +305,28 @@ public class Location implements Serializable {
         return items;
     }
 
+    /**
+     * getter for the name and phoneNumber
+     *
+     * @return the list with name and phone number
+     */
+    public List<String> getNameAndPhoneNumber() {
+        List<String> nameAndPhoneNumber = new ArrayList<>();
+        nameAndPhoneNumber.add(_name);
+        nameAndPhoneNumber.add(_phoneNumber);
+        return nameAndPhoneNumber;
+    }
+
+    /**
+     * getter for the name and phoneNumber
+     *
+     * @return the list with name and phone number
+     */
+    public List<Double> getLatitudeAndLongitude() {
+        List<Double> latitudeAndLongitude = new ArrayList<>();
+        latitudeAndLongitude.add(_latitude);
+        latitudeAndLongitude.add(_longitude);
+        return latitudeAndLongitude;
+    }
 }
 

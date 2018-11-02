@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.Model;
+
 import java.util.List;
 
 
@@ -51,12 +52,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Model model = Model.getInstance();
 
         List<Location> locations = model.getLocations();
-
         for (Location l : locations) {
-            LatLng marker = new LatLng(l.getLatitude(), l.getLongitude());
-            googleMap.addMarker(new MarkerOptions().position(marker).title(l.
-                    getName()).snippet("Phone Number: " + l.getPhoneNumber()));
+
+            List<String> nameAndPhoneNumber = l.getNameAndPhoneNumber();
+            String name = nameAndPhoneNumber.get(0);
+            String phone = nameAndPhoneNumber.get(1);
+
+            List<Double> latitudeAndLongitude = l.getLatitudeAndLongitude();
+            Double latitude = latitudeAndLongitude.get(0);
+            Double longitude = latitudeAndLongitude.get(1);
+
+            LatLng marker = new LatLng(latitude, longitude);
+            googleMap.addMarker(new MarkerOptions().position(marker).title(name).snippet(
+                    "Phone Number: " + phone));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
         }
+
+//        for (Location l : locations) {
+//            LatLng marker = new LatLng(l.getLatitude(), l.getLongitude());
+//            googleMap.addMarker(new MarkerOptions().position(marker).title(l.
+//                    getName()).snippet("Phone Number: " + l.getPhoneNumber()));
+//            googleMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
+//        }
     }
 }
