@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
+import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.CategoryENUM;
 import android.view.View;
@@ -20,8 +21,8 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
     private Spinner LocationSpinner;
     private Spinner CategorySpinner;
 
-    private String currLoc;
-    private CategoryENUM category;
+    //private String currLoc;
+    //private CategoryENUM category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +68,13 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
     public void onViewItemDetailsFromNameCategoryOnPress(View v) {
         Model model = Model.getInstance();
 
-        currLoc = ((String) LocationSpinner.getSelectedItem());
+        String currLoc = ((String) LocationSpinner.getSelectedItem());
 
-        category = (CategoryENUM) CategorySpinner.getSelectedItem();
+        CategoryENUM category = (CategoryENUM) CategorySpinner.getSelectedItem();
 
 //        model.setInventoryByCategoryAndLocation(category, currLoc);
-        getInventory(model);
+
+        getInventory(model, category, currLoc);
 
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
@@ -83,7 +85,7 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
      *
      * @param model the model
      */
-    private void getInventory(Model model) {
+    private void getInventory(Model model, CategoryENUM category, String currLoc) {
         model.setInventoryByCategoryAndLocation(category, currLoc);
     }
 

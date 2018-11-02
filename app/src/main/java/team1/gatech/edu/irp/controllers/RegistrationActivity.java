@@ -63,7 +63,7 @@ public class RegistrationActivity extends AppCompatActivity {
         String cInfo = contactInfo.getText() + "";
         UserTypeENUM userTypeEnum = (UserTypeENUM) userTypeSpinner.getSelectedItem();
 
-        RegistrationResultENUM registrationResult =validateLoginToModel(model, name,
+        RegistrationResultENUM registrationResult = validateRegistrationToModel(model, name,
                 passwordString, cInfo, userTypeEnum);
 
         if (registrationResult == RegistrationResultENUM.NAME_INVALID) {
@@ -93,7 +93,7 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param passwordString the pas
      * @return the result of registration
      */
-    private RegistrationResultENUM validateLoginToModel(Model model, String name,
+    private RegistrationResultENUM validateRegistrationToModel(Model model, String name,
                                                         String passwordString, String cInfo,
                                                         UserTypeENUM userTypeEnum) {
         return model.addAccount(name, passwordString, cInfo, userTypeEnum);

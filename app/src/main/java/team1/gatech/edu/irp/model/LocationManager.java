@@ -112,7 +112,7 @@ class LocationManager implements Serializable {
         List<String> locationsAsStringArrayWithAllLocationOption = new ArrayList<>();
         String allLocations = "All Locations";
         locationsAsStringArrayWithAllLocationOption.add(allLocations);
-        locationsAsStringArrayWithAllLocationOption.addAll(locationsAsStringArray);
+        locationsAsStringArrayWithAllLocationOption.addAll(getLocationAsStringArray());
         return locationsAsStringArrayWithAllLocationOption;
     }
 

@@ -25,7 +25,7 @@ class ItemManager implements Serializable {
     private final Collection<Item> inventory = new ArrayList<>();
 
     private static final int MAX_HOURS = 24;
-    private static final int MAX_MINUTES = 24;
+    private static final int MAX_MINUTES = 60;
     private static final int MAX_SECONDS = 60;
     private static final int JANUARY = 1;
     private static final int FEBRUARY = 2;
