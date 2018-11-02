@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Item;
 import team1.gatech.edu.irp.model.Model;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -44,6 +43,8 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
 
     /**
      * When the user presses the View Item Details button is sends them to the Item Details Screen
+     *
+     * @param v the view
      */
     public void onViewItemDetailsFromNameSearchOnPress(View v) {
         Model model = Model.getInstance();
@@ -51,9 +52,13 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
         String itemName = itemNameTextView.getText().toString();
         String currLoc = ((String) LocationSpinner.getSelectedItem());
 
-        List<Item> itemListByNameAndLocation
-                = model.getInventoryByNameAndLocation(itemName, currLoc);
-        model.setCurrentItemList(itemListByNameAndLocation);
+//        List<Item> itemListByNameAndLocation
+//                = model.getInventoryByNameAndLocation(itemName, currLoc);
+//        model.setCurrentItemList(itemListByNameAndLocation);
+
+//        List<Item> itemListByNameAndLocation
+        model.setInventoryByNameAndLocation(itemName, currLoc);
+//        model.setCurrentItemList(itemListByNameAndLocation);
 
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
@@ -61,6 +66,8 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
 
     /**
      * When the user presses the Back button is sends them back to user home screen
+     *
+     * @param v the view
      */
     public void onItemSearchByCategoryBackOnPress(View v) {
         finish();

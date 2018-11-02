@@ -4,6 +4,8 @@ package team1.gatech.edu.irp.model;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /****************************************************************************************
@@ -271,6 +273,36 @@ public class Location implements Serializable {
         }
         Location l = (Location) o;
         return (l.getName().equals(_name));
+    }
+
+    /**
+     * new hash code
+     */
+    @Override
+    public int hashCode() {
+        return _name.hashCode();
+    }
+
+    /**
+     * a list of details for an item to be decoded in the controller
+     *
+     * @param currentLocationDetails the currently selected item on the
+     * @return the item details in a string
+     */
+    public static List<String> getSelectedLocationDetailsForLocationDetailsActivity(
+            Location currentLocationDetails) {
+        List<String> items = new ArrayList<>();
+        items.add(currentLocationDetails.getName());
+        items.add(currentLocationDetails.getStreetAddress());
+        items.add(currentLocationDetails.getCity());
+        items.add(currentLocationDetails.getState());
+        items.add(currentLocationDetails.getZipCode() + "");
+        items.add(currentLocationDetails.getLocationType().toString());
+        items.add(currentLocationDetails.getPhoneNumber());
+        items.add(currentLocationDetails.getWebsiteLink());
+        items.add(currentLocationDetails.getLatitude() + "");
+        items.add(currentLocationDetails.getLongitude() + "");
+        return items;
     }
 
 }

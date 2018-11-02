@@ -15,6 +15,10 @@ import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.Model;
 import java.util.List;
 
+
+/**
+ * Map Activity Screen
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     @Override

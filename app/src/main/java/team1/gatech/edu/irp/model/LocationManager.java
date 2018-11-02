@@ -3,6 +3,7 @@ package team1.gatech.edu.irp.model;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import team1.gatech.edu.irp.R;
 import android.view.View;
@@ -43,7 +44,7 @@ class LocationManager implements Serializable {
 
         InputStream inputStream = v.getResources().openRawResource(R.raw.locationdata);
         CSVFile csvFile = new CSVFile(inputStream);
-        ArrayList<String[]> scoreList;
+        List<String[]> scoreList;
         scoreList = csvFile.read();
 
         for (int i = 1; i < scoreList.size(); i++) {
@@ -73,7 +74,7 @@ class LocationManager implements Serializable {
      * @return if there are no locations entered in the app
      */
     public boolean locationListEmpty() {
-        return (locations.size() == 0);
+        return (locations.isEmpty());
     }
 
     /**
@@ -82,7 +83,7 @@ class LocationManager implements Serializable {
      * @return list of Location objects
      */
     public List<Location> getLocationAsLocationArray() {
-        return locations;
+        return Collections.unmodifiableList(locations);
     }
 
     /**

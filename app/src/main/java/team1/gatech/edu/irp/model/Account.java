@@ -125,9 +125,9 @@ class Account implements Serializable {
 //     *
 //     * @param accountState the account state
 //     */
-    public void setAccountState(AccountStateENUM accountState) {
-        this.accountState = accountState;
-    }
+//    public void setAccountState(AccountStateENUM accountState) {
+//        this.accountState = accountState;
+//    }
 
     /**
      * getter for the user type

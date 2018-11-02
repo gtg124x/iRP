@@ -20,6 +20,9 @@ import java.util.List;
 public class ItemListActivity extends AppCompatActivity {
     private Spinner itemSpinner;
     private Model model;
+    private int size;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +31,17 @@ public class ItemListActivity extends AppCompatActivity {
 
         model = Model.getInstance();
         List<Item> itemListItem = model.getCurrentItemList();
+        size = itemListItem.size();
         itemSpinner = findViewById(R.id.spinnerItemListing);
 
 
 //      Set up the adapter to display the allowable items in the spinner
-        List<String> itemList = model.getInventoryAsString(itemListItem);
+        //List<String> itemList = model.getInventoryAsString(itemListItem);
 
-        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, itemList);
+//        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(this,
+//                android.R.layout.simple_spinner_item, itemList);
+        ArrayAdapter<Item> itemAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, itemListItem);
         itemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         itemSpinner.setAdapter(itemAdapter);
         itemSpinner.setSelection(0);
@@ -47,15 +53,25 @@ public class ItemListActivity extends AppCompatActivity {
      */
     public void onViewItemDetailsOnPress(View view) {
         model = Model.getInstance();
-        if (model.isCurrentItemListEmpty()) {
+        //List<Item> currentItemList = model.getCurrentItemList();
+
+
+
+
+        if (size == 0) {
+//        if (model.isCurrentItemListEmpty()) {
             Toast.makeText(this, "No Items Found In Search",
                     Toast.LENGTH_SHORT).show();
         } else {
             //String currItem = ((String) itemSpinner.getSelectedItem());
             int selectionNumber = itemSpinner.getSelectedItemPosition();
-            List<Item> itemListItem = model.getCurrentItemList();
+            //List<Item> itemListItem = model.getCurrentItemList();
 
-            model.setCurrentItemDetails(itemListItem.get(selectionNumber));
+            //model.setSelectedItemFromItemListAndSendToItemDetails(itemListItem.get(
+            // selectionNumber));
+
+            model.setSelectedItemFromItemListAndSendToItemDetails(selectionNumber);
+
             Intent intent = new Intent(this, ItemDetailsActivity.class);
             startActivity(intent);
         }
@@ -63,6 +79,8 @@ public class ItemListActivity extends AppCompatActivity {
 
     /**
      * When the user presses the Back button is sends them back to search by category/name Activity
+     *
+     * @param view the view
      */
     public void onItemListBackOnPress(View view) {
         finish();

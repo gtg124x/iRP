@@ -3,6 +3,8 @@ package team1.gatech.edu.irp.model;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /****************************************************************************************
@@ -200,6 +202,37 @@ public class Item implements Serializable {
         Item i = (Item) o;
         return (i.getShortDescription().equals(shortDescription));
     }
+
+    /**
+     * new hash code
+     */
+    @Override
+    public int hashCode() {
+        return shortDescription.hashCode();
+    }
+
+    /**
+     * turn the selected item into and an array of information for decoding in the controller
+     *
+     *
+     * @param currentItemDetails the currently selected item on the
+     *
+     * @return list of item details
+     */
+    public static List<String> getSelectedItemDetailsForItemsDetailsActivity(
+            Item currentItemDetails) {
+        List<String> items = new ArrayList<>();
+        items.add(currentItemDetails.getTimeStamp());
+        items.add(currentItemDetails.getDateStamp());
+        items.add(currentItemDetails.getLocation().toString());
+        items.add(currentItemDetails.getCategory().toString());
+        items.add(currentItemDetails.getDollarValue());
+        items.add(currentItemDetails.getShortDescription());
+        items.add(currentItemDetails.getFullDescription());
+        return items;
+    }
+
+
 
 
 }

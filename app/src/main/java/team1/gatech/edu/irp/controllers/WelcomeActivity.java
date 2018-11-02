@@ -29,6 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
     /**
      * When the user clicks the login button it sends them to the loginActivity
      *
+     * @param v the view
      */
     public void onLoginClicked(View v) {
         Intent intent = new Intent(this, LoginActivity.class);
@@ -38,6 +39,7 @@ public class WelcomeActivity extends AppCompatActivity {
     /**
      * When the user clicks the register button it sends them to the RegistrationActivity
      *
+     * @param v the view
      */
     public void onRegistrationClicked(View v) {
         Intent intent = new Intent(this, RegistrationActivity.class);
@@ -48,6 +50,7 @@ public class WelcomeActivity extends AppCompatActivity {
     /**
      * When the user clicks the load data button it loads the saved data
      *
+     * @param v the view
      */
     public void onLoadDataOnPressed(View v) {
         File file;
@@ -65,6 +68,7 @@ public class WelcomeActivity extends AppCompatActivity {
     /**
      * When the user clicks the save data button it saves the data
      *
+     * @param v the view
      */
     public void onSaveDataOnPressed(View v) {
         File file;
@@ -81,6 +85,7 @@ public class WelcomeActivity extends AppCompatActivity {
     /**
      * When the user clicks the clear data button it erases the data
      *
+     * @param v the view
      */
     public void onClearDataOnPressed(View v) {
         File file = new File(this.getFilesDir(), "data.bin");

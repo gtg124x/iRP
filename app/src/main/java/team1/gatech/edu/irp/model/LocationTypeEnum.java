@@ -38,20 +38,34 @@ public enum LocationTypeEnum {
     }
 
     /**
+     *  converts the type of location as a string to a enum
+     *
+     * @param typeAsString the type of location as a string
      * @return the location type
      */
     public static LocationTypeEnum convertType(String typeAsString) {
-        if (typeAsString.equalsIgnoreCase("Drop off")) {
+        if ("Drop off".equalsIgnoreCase(typeAsString)) {
             return LocationTypeEnum.DROP_OFF;
-        } else if (typeAsString.equalsIgnoreCase("Store")) {
+        } else if ("Store".equalsIgnoreCase(typeAsString)) {
             return LocationTypeEnum.STORE;
-        } else if (typeAsString.equalsIgnoreCase("Warehouse")) {
+        } else if ("Warehouse".equalsIgnoreCase(typeAsString)) {
             return LocationTypeEnum.WAREHOUSE;
         } else {
             return LocationTypeEnum.DROP_OFF;
         }
     }
 
+
+//          if (typeAsString.equalsIgnoreCase("Drop off")) {
+//            return LocationTypeEnum.DROP_OFF;
+//        } else if (typeAsString.equalsIgnoreCase("Store")) {
+//            return LocationTypeEnum.STORE;
+//        } else if (typeAsString.equalsIgnoreCase("Warehouse")) {
+//            return LocationTypeEnum.WAREHOUSE;
+//        } else {
+//            return LocationTypeEnum.DROP_OFF;
+//        }
+//    }
 
 }
 

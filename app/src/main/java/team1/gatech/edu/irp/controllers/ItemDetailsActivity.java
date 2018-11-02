@@ -8,6 +8,8 @@ import team1.gatech.edu.irp.model.Model;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Screen that displays the details of an item
  */
@@ -25,15 +27,23 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
         Model model = Model.getInstance();
 
-        String timeStamp = model.getCurrentItemDetails().getTimeStamp();
-        String dateStamp = model.getCurrentItemDetails().getDateStamp();
-        String location = model.getCurrentItemDetails().getLocation().toString();
-        String category = model.getCurrentItemDetails().getCategory().toString();
-        String value = model.getCurrentItemDetails().getDollarValue();
-        String shortDescription = model.getCurrentItemDetails().getShortDescription();
-        String fullDescription = model.getCurrentItemDetails().getFullDescription();
+        List<String> itemString = model.getSelectedItemFromItemListAndSendToItemDetails();
 
+//        String timeStamp = model.getCurrentItemDetails().getTimeStamp();
+//        String dateStamp = model.getCurrentItemDetails().getDateStamp();
+//        String location = model.getCurrentItemDetails().getLocation().toString();
+//        String category = model.getCurrentItemDetails().getCategory().toString();
+//        String value = model.getCurrentItemDetails().getDollarValue();
+//        String shortDescription = model.getCurrentItemDetails().getShortDescription();
+//        String fullDescription = model.getCurrentItemDetails().getFullDescription();
 
+        String timeStamp = itemString.get(0);
+        String dateStamp = itemString.get(1);
+        String location = itemString.get(2);
+        String category = itemString.get(3);
+        String value = itemString.get(4);
+        String shortDescription = itemString.get(5);
+        String fullDescription = itemString.get(6);
 
         TextView timeStampField = findViewById(R.id.TimeStampText);
         timeStampField.setText(timeStamp);
@@ -62,6 +72,8 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
     /**
      * When the user presses the Back button is sends them back the LocationDetailsActivity
+     *
+     * @param v the view
      */
     public void onBackItemDetailsOnPress(View v) {
         finish();

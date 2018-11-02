@@ -26,9 +26,28 @@ class ItemManager implements Serializable {
     /**
      * used to test if inventory is empty
      */
-    private static final int EMPTY = 0;
+//    private static final int EMPTY = 0;
 
+    private static final int MAX_HOURS = 24;
+    private static final int MAX_MINUTES = 24;
+    private static final int MAX_SECONDS = 60;
+    private static final int JANUARY = 1;
+    private static final int FEBRUARY = 2;
+    private static final int APRIL = 4;
+    private static final int JUNE = 6;
+    private static final int SEPTEMBER = 9;
+    private static final int NOVEMBER = 11;
+    private static final int DECEMBER = 12;
 
+    private static final int FEBRUARY_MONTH_MAX = 29;
+    private static final int MONTH_LOW_MAX = 30;
+    private static final int MONTH_HIGH_MAX = 31;
+    private static final int YEAR_LOW_MAX = 2000;
+    private static final int YEAR_HIGH_MAX = 3000;
+
+    private static final int MAX_DOLLARS = 99;
+
+    private static final int MAX_SHORT_DESCRIPTION = 15;
 
 //    /***************************************************************************************
 //     *    INVENTORY METHODS
@@ -83,11 +102,13 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateTimeStamp(String time) {
-        if (time.equals("")) { return true; }
+//        if (time.equals("")) { return true; }
+        if ("".equals(time)) { return true; }
         if (time.length() != 8) { return true; }
         String firstColon = "" + time.charAt(2);
         String secondColon = "" + time.charAt(5);
-        if (!(firstColon.equals(":")) || !(secondColon.equals(":"))) { return true; }
+//        if (!(firstColon.equals(":")) || !(secondColon.equals(":"))) { return true; }
+        if (!(":".equals(firstColon)) || !(":".equals(secondColon))) { return true; }
 
         String hourAsString = "" + time.charAt(0) + time.charAt(1);
         String minAsString = "" + time.charAt(3) + time.charAt(4);
@@ -98,8 +119,8 @@ class ItemManager implements Serializable {
             int minAsInt = Integer.parseInt(minAsString);
             int secAsInt = Integer.parseInt(secAsString);
 
-            return (hourAsInt < 0 || hourAsInt >= 24 || minAsInt < 0 || minAsInt >= 60
-                    || secAsInt < 0 || secAsInt >= 60);
+            return ((hourAsInt < 0) || (hourAsInt >= MAX_HOURS) || (minAsInt < 0)
+                    || (minAsInt >= MAX_MINUTES) || (secAsInt < 0) || (secAsInt >= MAX_SECONDS));
 
         } catch (NumberFormatException e) {
             return true;
@@ -115,11 +136,11 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateDateStamp(String date) {
-        if (date.equals("")) { return true; }
+        if ("".equals(date)) { return true; }
         if (date.length() != 10) { return true; }
         String firstDash = "" + date.charAt(2);
         String secondDash = "" + date.charAt(5);
-        if (!(firstDash.equals("-")) || !(secondDash.equals("-"))) { return true; }
+        if (!("-".equals(firstDash)) || !("-".equals(secondDash))) { return true; }
 
         String monthAsString = "" + date.charAt(0) + date.charAt(1);
         String dateString = "" + date.charAt(3) + date.charAt(4);
@@ -131,16 +152,18 @@ class ItemManager implements Serializable {
             int dateAsInt = Integer.parseInt(dateString);
             int yearAsInt = Integer.parseInt(yearAsString);
 
-            return (monthAsInt < 1 || monthAsInt > 12 || dateAsInt < 0 || dateAsInt > 31
-                    || yearAsInt < 2000 || yearAsInt >= 2020 || ((monthAsInt == 4
-                    || monthAsInt == 6 || monthAsInt == 9 || monthAsInt == 11)
-                    && (dateAsInt > 30)) || (monthAsInt == 2 && dateAsInt > 29));
+            return ((monthAsInt < JANUARY) || (monthAsInt > DECEMBER) || (dateAsInt < 0)
+                    || (dateAsInt > MONTH_HIGH_MAX) || (yearAsInt < YEAR_LOW_MAX)
+                    || (yearAsInt >= YEAR_HIGH_MAX)
+                    || (((monthAsInt == APRIL) || (monthAsInt == JUNE) || (monthAsInt == SEPTEMBER)
+                    || (monthAsInt == NOVEMBER)) && (dateAsInt > MONTH_LOW_MAX))
+                    || ((monthAsInt == FEBRUARY) && (dateAsInt > FEBRUARY_MONTH_MAX)));
 
         } catch (NumberFormatException e) {
             return true;
         }
-
     }
+
 
     /**
      * helper method to validate the user input for the dollarValue field
@@ -150,21 +173,21 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateDollarValue(String dollarValue) {
-        if (dollarValue.equals("")) { return true; }
+        if ("".equals(dollarValue)) { return true; }
         if (dollarValue.length() < 4) { return true; }
 
         String change = "" + dollarValue.charAt(dollarValue.length() - 2)
                 + dollarValue.charAt(dollarValue.length() - 1);
         String dollars = "" + dollarValue.substring(0, dollarValue.length() - 3);
         String decimalPoint = "" + dollarValue.charAt(dollarValue.length() - 3);
-        if (!(decimalPoint.equals("."))) { return true; }
+        if (!(".".equals(decimalPoint))) { return true; }
 
         try {
             int changeAsInt = Integer.parseInt(change);
             int dollarsAsInt = Integer.parseInt(dollars);
 
-            return (changeAsInt < 0 || changeAsInt > 99 || dollarsAsInt < 0
-                    || (dollarsAsInt == 0 && changeAsInt == 0));
+            return ((changeAsInt < 0) || (changeAsInt > MAX_DOLLARS) || (dollarsAsInt < 0)
+                    || ((dollarsAsInt == 0) && (changeAsInt == 0)));
 
         } catch (NumberFormatException e) {
             return true;
@@ -192,7 +215,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateShortDescriptionLong(String shortD) {
-        return (shortD.length() >= 15);
+        return (shortD.length() >= MAX_SHORT_DESCRIPTION);
     }
 
     /**
@@ -206,12 +229,12 @@ class ItemManager implements Serializable {
         return (fullD.length() < 3);
     }
 
-    /**
-     * returns a list of items that have been added to the app
-     *
-     * @return list of Item objects
-     */
-    public List<Item> getItemManagerAsItemArray() { return inventory; }
+//    /**
+//     * returns a list of items that have been added to the app
+//     *
+//     * @return list of Item objects
+//     */
+//    public List<Item> getItemManagerAsItemArray() { return inventory; }
 
     /**
      * finds the items sorted by location
@@ -240,22 +263,34 @@ class ItemManager implements Serializable {
      */
     public List<Item> getItemListByCategoryAndLocation(CategoryENUM category, String location) {
         List<Item> itemLocationList = new ArrayList<>();
-        if (location.equals("All Locations")) {
-            for (Item i : inventory) {
-                if (i.getCategory().equals(category)) {
+        for (Item i : inventory) {
+            CategoryENUM itemCategory = i.getCategory();
+            if ("All Locations".equals(location) && itemCategory.equals(category)) {
                     itemLocationList.add(i);
-                }
-            }
-        } else {
-            for (Item i : inventory) {
-                if (i.getLocation().toString().equals(location)
-                        && i.getCategory().equals(category)) {
+            } else if (i.getLocation().toString().equals(location)
+                        && itemCategory.equals(category)) {
                     itemLocationList.add(i);
-                }
             }
         }
         return itemLocationList;
     }
+//        List<Item> itemLocationList = new ArrayList<>();
+//        if ("All Locations".equals(location)) {
+//            for (Item i : inventory) {
+//                if (i.getCategory().equals(category)) {
+//                    itemLocationList.add(i);
+//                }
+//            }
+//        } else {
+//            for (Item i : inventory) {
+//                if (i.getLocation().toString().equals(location)
+//                        && i.getCategory().equals(category)) {
+//                    itemLocationList.add(i);
+//                }
+//            }
+//        }
+//        return itemLocationList;
+//    }
 
     /**
      * finds the items sorted by location and name
@@ -267,53 +302,72 @@ class ItemManager implements Serializable {
      */
     public List<Item> getItemListByNameAndLocation(String name, String location) {
         List<Item> itemLocationList = new ArrayList<>();
-        if (location.equals("All Locations")) {
-            for (Item i : inventory) {
-                if (i.getShortDescription().equals(name)) {
-                    itemLocationList.add(i);
-                }
-            }
-        } else {
-            for (Item i : inventory) {
-                if (i.getLocation().toString().equals(location)
-                        && i.getShortDescription().equals(name)) {
-                    itemLocationList.add(i);
-                }
-            }
-        }
-        return itemLocationList;
-    }
-
-    /**
-     * determines if the inventory at a location is empty or no
-     *
-     * @param  location currently selected location to analyze for inventory size
-     * @return if the inventory is empty
-     */
-    public boolean isItemListByLocationEmpty(Location location) {
-        List<String> itemLocationList = new ArrayList<>();
         for (Item i : inventory) {
-            if (i.getLocation().equals(location)) {
-                itemLocationList.add(i.toString());
+            String shortDescription = i.getShortDescription();
+            if ("All Locations".equals(location) && shortDescription.equals(name)) {
+                itemLocationList.add(i);
+            } else if (i.getLocation().toString().equals(location)
+                    && shortDescription.equals(name)) {
+                    itemLocationList.add(i);
             }
         }
-        return itemLocationList.size() == EMPTY;
-    }
-
-    /**
-     * converts list of items to strings
-     *
-     * @param itemList item list
-     *
-     * @return list of items in as strings
-     */
-    public List<String> getItemListAsString(List<Item> itemList ) {
-        List<String> itemLocationList = new ArrayList<>();
-        for (Item i : itemList) {
-            itemLocationList.add(i.toString());
-            }
         return itemLocationList;
     }
+
+
+//    public List<Item> getItemListByNameAndLocation(String name, String location) {
+//        List<Item> itemLocationList = new ArrayList<>();
+//        if ("All Locations".equals(location)) {
+//            for (Item i : inventory) {
+//                if (i.getShortDescription().equals(name)) {
+//                    itemLocationList.add(i);
+//                }
+//            }
+//        } else {
+//            for (Item i : inventory) {
+//                if (i.getLocation().toString().equals(location)
+//                        && i.getShortDescription().equals(name)) {
+//                    itemLocationList.add(i);
+//                }
+//            }
+//        }
+//        return itemLocationList;
+//    }
+
+
+//    /**
+//     * determines if the inventory at a location is empty or no
+//     *
+//     * @param  location currently selected location to analyze for inventory size
+//     * @return if the inventory is empty
+//     */
+//    public boolean isItemListByLocationEmpty(Location location) {
+//        List<String> itemLocationList = new ArrayList<>();
+//        for (Item i : inventory) {
+//            if (i.getLocation().equals(location)) {
+//                itemLocationList.add(i.toString());
+//            }
+//        }
+//        return itemLocationList.isEmpty();
+//    }
+
+//    /**
+//     * converts list of items to strings
+//     *
+//     * @param itemList item list
+//     *
+//     * @return list of items in as strings
+//     */
+//    public List<String> getItemListAsString(List<Item> itemList ) {
+//        List<String> itemLocationList = new ArrayList<>();
+//        for (Item i : itemList) {
+//            itemLocationList.add(i.toString());
+//            }
+//        return itemLocationList;
+//    }
+
+
+
 
 
 }

@@ -54,7 +54,7 @@ public class LocalEmployeeActivity extends AppCompatActivity {
      */
     public void onAddDonationOnPress(View v) {
         Model model = Model.getInstance();
-        if (model.getLocations().size() == 0) {
+        if (model.getLocations().isEmpty()) {
             Toast.makeText(this, "No Locations have been loaded by Admin.",
                     Toast.LENGTH_SHORT).show();
         } else {

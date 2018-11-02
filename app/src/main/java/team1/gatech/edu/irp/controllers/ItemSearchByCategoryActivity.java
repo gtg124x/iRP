@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Item;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.CategoryENUM;
 import android.view.View;
@@ -39,8 +38,10 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         LocationSpinner.setSelection(0);
 
 //      Set up the adapter to display the categories in the spinner
-        ArrayAdapter<String> adapterCat = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, CategoryENUM.getCategoryStringList());
+//        ArrayAdapter<String> adapterCat = new ArrayAdapter<>(this,
+//                android.R.layout.simple_spinner_item, CategoryENUM.getCategoryStringList());
+        ArrayAdapter<CategoryENUM> adapterCat = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, CategoryENUM.values());
         adapterCat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         CategorySpinner.setAdapter(adapterCat);
         CategorySpinner.setSelection(0);
@@ -48,20 +49,24 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
 
     /**
      * When the user presses the View Item Details button is sends them to the Item Details Screen
+     *
+     * @param v the view
      */
     public void onViewItemDetailsFromNameCategoryOnPress(View v) {
         Model model = Model.getInstance();
 
         String currLoc = ((String) LocationSpinner.getSelectedItem());
-        String categoryString = (String) CategorySpinner.getSelectedItem();
+//        String categoryString = (String) CategorySpinner.getSelectedItem();
 
-        model.setCurrentCategoryAddDonation(categoryString);
-        CategoryENUM category = model.getCurrentCategoryAddDonation();
+//        model.setCurrentCategoryAddDonation(categoryString);
+//        CategoryENUM category = model.getCurrentCategoryAddDonation();
 
-        List<Item> itemListByCategoryAndLocationItem =
-                model.getInventoryByCategoryAndLocation(category, currLoc);
+        CategoryENUM category = (CategoryENUM) CategorySpinner.getSelectedItem();
 
-        model.setCurrentItemList(itemListByCategoryAndLocationItem);
+        //List<Item> itemListByCategoryAndLocationItem =
+                model.setInventoryByCategoryAndLocation(category, currLoc);
+
+        //model.setCurrentItemList(itemListByCategoryAndLocationItem);
 
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
@@ -69,6 +74,8 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
 
     /**
      * When the user presses the Back button is sends them back to user home screen
+     *
+     * @param v the view
      */
     public void onItemSearchByCategoryBackOnPress(View v) {
         finish();

@@ -36,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Cancel Button Handler.
      * Return to previous screen when pressed
+     *
+     * @param v the view
      */
     public void onCancelLoginPressed(View v) {
         Intent intent = new Intent(this, WelcomeActivity.class);
@@ -46,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
      * Login Button Handler.
      * Valid the login and get the user type to determine which screen to navigate towards
      * Grabs the user input and sends it to model for verification.
+     *
+     * @param v the view
      */
     public void onLoginPressed(View v) {
         Model model = Model.getInstance();

@@ -109,8 +109,8 @@ class AccountManager implements Serializable {
     public boolean loginCheck(String name, String password) {
         boolean success = false;
         if (accounts.containsKey(name)) {
-            if (getAccountName(name).getPassword().equals(password)
-                    && getAccountName(name).getAccountState() == AccountStateENUM.UNLOCKED) {
+            if ((getAccountName(name).getPassword().equals(password))
+                    && (getAccountName(name).getAccountState() == AccountStateENUM.UNLOCKED)) {
                 success = true;
             }
         }

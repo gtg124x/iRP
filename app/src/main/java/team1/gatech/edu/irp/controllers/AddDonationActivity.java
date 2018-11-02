@@ -44,16 +44,20 @@ public class AddDonationActivity extends AppCompatActivity {
 
 
 //      Set up the adapter to display the allowable location in the spinner
-        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, model.getLocationsAsString());
+//        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this,
+//                android.R.layout.simple_spinner_item, model.getLocationsAsString());
+        ArrayAdapter<Location> locationAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, model.getLocations());
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(locationAdapter);
         locationSpinner.setSelection(0);
 
 
 //      Set up the adapter to display the allowable category in the spinner
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, CategoryENUM.getCategoryStringList());
+//        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this,
+//                android.R.layout.simple_spinner_item, CategoryENUM.getCategoryStringList());
+        ArrayAdapter<CategoryENUM> categoryAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, CategoryENUM.values());
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
         categorySpinner.setSelection(0);
@@ -70,27 +74,33 @@ public class AddDonationActivity extends AppCompatActivity {
 
         String timeStamp = timeStampTextView.getText().toString();
         String dateStamp = dateStampTextView.getText().toString();
-        String locationString = ((String) locationSpinner.getSelectedItem());
-        String categoryString = (String) categorySpinner.getSelectedItem();
+//        String locationString = ((String) locationSpinner.getSelectedItem());
+        Location location = ((Location) locationSpinner.getSelectedItem());
+//        String categoryString = (String) categorySpinner.getSelectedItem();
+        CategoryENUM category= (CategoryENUM) categorySpinner.getSelectedItem();
         String dollarValue = dollarValueTextView.getText().toString();
         String shortDescription = shortDescriptionTextView.getText().toString();
         String fullDescription = fullDescriptionTextView.getText().toString();
 
-
-
-        if (timeStamp.length() == 0 || dateStamp.length() == 0 || dollarValue.length() == 0
-                || shortDescription.length() == 0 || fullDescription.length() == 0) {
+        if (timeStamp.isEmpty() || dateStamp.isEmpty() || dollarValue.isEmpty()
+                || shortDescription.isEmpty() || fullDescription.isEmpty() ) {
             Toast.makeText(this, "Invalid Data.", Toast.LENGTH_SHORT).show();
         }
 
 
+//        if (timeStamp.length() == 0 || dateStamp.length() == 0 || dollarValue.length() == 0
+//                || shortDescription.length() == 0 || fullDescription.length() == 0) {
+//            Toast.makeText(this, "Invalid Data.", Toast.LENGTH_SHORT).show();
+//        }
+
+
 //      Sets the current location in the model, but converts it from a Location Object to a
 //      String Object so that the location can be displayed as a String on the Item Details Screen
-        model.setCurrentLocationAddDonation(locationString);
-        Location location = model.getCurrentLocationAddDonation();
+        //model.setCurrentLocationAddDonation(locationString);
+        //Location location = model.getCurrentLocationAddDonation();
 
-        model.setCurrentCategoryAddDonation(categoryString);
-        CategoryENUM category = model.getCurrentCategoryAddDonation();
+        //model.setCurrentCategoryAddDonation(categoryString);
+        //CategoryENUM category = model.getCurrentCategoryAddDonation();
 
 
 //         Validates the user input and adds it to the inventory if correct
@@ -131,6 +141,8 @@ public class AddDonationActivity extends AppCompatActivity {
 
     /**
      * When the user presses the Back button is sends them back to the Local Employee home screen
+     *
+     * @param v the view
      */
     public void onAddDonationBackOnPress(View v) {
         finish();
