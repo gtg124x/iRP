@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Item;
-import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.ItemServiceFacade;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -40,9 +40,11 @@ public class LocationDetailsActivity extends AppCompatActivity {
      *
      */
     private void helper() {
-        Model model = Model.getInstance();
-        List<String> locationString = getSelectedLocation(model);
+//        Model model = Model.getInstance();
+//        List<String> locationString = getSelectedLocation(model);
 //                model.getSelectedLocationFromLocationListAndSendToLocationDetails();
+        ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
+        List<String> locationString = getSelectedLocation(itemServiceFacade);
 
         name = locationString.get(0);
         address = locationString.get(1);
@@ -59,12 +61,22 @@ public class LocationDetailsActivity extends AppCompatActivity {
     /**
      * gets the selected location
      *
-     * @param model the model
+     * @param itemServiceFacade the itemServiceFacade
      * @return the selected location
      */
-    private List<String> getSelectedLocation(Model model) {
-        return model.getSelectedLocationFromLocationListAndSendToLocationDetails();
+    private List<String> getSelectedLocation(ItemServiceFacade itemServiceFacade) {
+        return itemServiceFacade.getSelectedLocationFromLocationListAndSendToLocationDetails();
     }
+
+//    /**
+//     * gets the selected location
+//     *
+//     * @param model the model
+//     * @return the selected location
+//     */
+//    private List<String> getSelectedLocation(Model model) {
+//        return model.getSelectedLocationFromLocationListAndSendToLocationDetails();
+//    }
 
     /**
      * Displays the details of a location
@@ -75,7 +87,9 @@ public class LocationDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_details);
 
-        Model model = Model.getInstance();
+        //Model model = Model.getInstance();
+
+        ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
 
         helper();
 
@@ -112,7 +126,8 @@ public class LocationDetailsActivity extends AppCompatActivity {
         itemSpinner = findViewById(R.id.ItemSpinner);
 
 //        currentLocationItemListItem = model.getInventoryByLocation();
-        currentLocationItemListItem = getInventoryList(model);
+//        currentLocationItemListItem = getInventoryList(model);
+        currentLocationItemListItem = getInventoryList(itemServiceFacade);
 
         ArrayAdapter<Item> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, currentLocationItemListItem);
@@ -124,12 +139,22 @@ public class LocationDetailsActivity extends AppCompatActivity {
     /**
      * gets the item list
      *
-     * @param model the model
+     * @param itemServiceFacade the itemServiceFacade
      * @return the item list
      */
-    private List<Item> getInventoryList(Model model) {
-        return model.getInventoryByLocation();
+    private List<Item> getInventoryList(ItemServiceFacade itemServiceFacade) {
+        return itemServiceFacade.getInventoryByLocation();
     }
+
+//    /**
+//     * gets the item list
+//     *
+//     * @param model the model
+//     * @return the item list
+//     */
+//    private List<Item> getInventoryList(Model model) {
+//        return model.getInventoryByLocation();
+//    }
 
     /**
      * Upon selecting the "View Items" Button, display the detail of the item.
@@ -138,7 +163,8 @@ public class LocationDetailsActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onViewItemOnPress(View v) {
-        Model model = Model.getInstance();
+//        Model model = Model.getInstance();
+        ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         //List<Item> currentItemList = model.getCurrentItemList();
         if (currentLocationItemListItem.isEmpty()) {
             Toast.makeText(this, "No Items Have Been Added To Inventory",
@@ -146,7 +172,8 @@ public class LocationDetailsActivity extends AppCompatActivity {
         } else {
             int selectionNumber = itemSpinner.getSelectedItemPosition();
 //            model.setSelectedItemFromItemListAndSendToItemDetails(selectionNumber);
-            setSelectedItem(model, selectionNumber);
+//            setSelectedItem(model, selectionNumber);
+            setSelectedItem(itemServiceFacade, selectionNumber);
             Intent intent = new Intent(this, ItemDetailsActivity.class);
             startActivity(intent);
         }
@@ -164,11 +191,20 @@ public class LocationDetailsActivity extends AppCompatActivity {
     /**
      * send selected item to details page
      *
-     * @param model the model
+     * @param itemServiceFacade the itemServiceFacade
      */
-    private void setSelectedItem(Model model, int number) {
-        model.setSelectedItemFromItemListAndSendToItemDetails(number);
+    private void setSelectedItem(ItemServiceFacade itemServiceFacade, int number) {
+        itemServiceFacade.setSelectedItemFromItemListAndSendToItemDetails(number);
     }
+
+//    /**
+//     * send selected item to details page
+//     *
+//     * @param model the model
+//     */
+//    private void setSelectedItem(Model model, int number) {
+//        model.setSelectedItemFromItemListAndSendToItemDetails(number);
+//    }
 
 }
 

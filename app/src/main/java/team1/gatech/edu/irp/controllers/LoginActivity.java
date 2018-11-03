@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import team1.gatech.edu.irp.R;
 import android.view.View;
-import team1.gatech.edu.irp.model.Model;
+
+import team1.gatech.edu.irp.model.AccountServiceFacade;
 import team1.gatech.edu.irp.model.UserTypeENUM;
 import android.content.Intent;
 import android.widget.Toast;
@@ -52,16 +53,16 @@ public class LoginActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onLoginPressed(View v) {
-        Model model = Model.getInstance();
-
+//        Model model = Model.getInstance();
+        AccountServiceFacade accountServiceFacade = AccountServiceFacade.getInstance();
         CharSequence nameChar = userName.getText();
 
         String name = nameChar.toString();
         String passwordString = password.getText() + "";
 
 //        UserTypeENUM userType = model.validateLogin(name, passwordString);
-        UserTypeENUM userType = validateLoginToModel(model, name, passwordString);
-
+//        UserTypeENUM userType = validateLoginToModel(model, name, passwordString);
+        UserTypeENUM userType = validateLoginToModel(accountServiceFacade, name, passwordString);
 
         if (userType != null) {
             if (userType == UserTypeENUM.ADMIN) {
@@ -86,13 +87,26 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * send selected item to details page
      *
-     * @param model the model
+     * @param accountServiceFacade the accountServiceFacade
      * @param name the name
      * @param passwordString password
      * @return the User Type
      */
-    private UserTypeENUM validateLoginToModel(Model model, String name, String passwordString) {
-        return model.validateLogin(name, passwordString);
+    private UserTypeENUM validateLoginToModel(AccountServiceFacade accountServiceFacade,
+                                              String name, String passwordString) {
+        return accountServiceFacade.validateLogin(name, passwordString);
     }
+
+//    /**
+//     * send selected item to details page
+//     *
+//     * @param model the model
+//     * @param name the name
+//     * @param passwordString password
+//     * @return the User Type
+//     */
+//    private UserTypeENUM validateLoginToModel(Model model, String name, String passwordString) {
+//        return model.validateLogin(name, passwordString);
+//    }
 
 }

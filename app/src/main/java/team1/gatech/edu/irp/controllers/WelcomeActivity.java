@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.PersistenceServiceFacade;
 
 import android.view.View;
 import android.content.Intent;
@@ -53,11 +53,13 @@ public class WelcomeActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onLoadDataOnPressed(View v) {
-        Model model = Model.getInstance();
+        PersistenceServiceFacade persistenceServiceFacade = PersistenceServiceFacade.getInstance();
+        //Model model = Model.getInstance();
         File file;
         file = new File(this.getFilesDir(), "data.bin");
 //        boolean success = model.loadBinary(file);
-        boolean success = load(model, file);
+//        boolean success = load(model, file);
+        boolean success = load(persistenceServiceFacade, file);
         if (success) {
             Toast.makeText(this, "Data has been loaded.", Toast.LENGTH_SHORT).show();
         } else {
@@ -70,12 +72,23 @@ public class WelcomeActivity extends AppCompatActivity {
     /**
      * load binary file
      *
-     * @param model the model
+     * @param persistenceServiceFacade the persistenceServiceFacade
      * @return success
      */
-    private boolean load(Model model, File file) {
-        return model.loadBinary(file);
+    private boolean load(PersistenceServiceFacade persistenceServiceFacade, File file) {
+        return persistenceServiceFacade.loadBinary(file);
     }
+
+
+//    /**
+//     * load binary file
+//     *
+//     * @param model the model
+//     * @return success
+//     */
+//    private boolean load(Model model, File file) {
+//        return model.loadBinary(file);
+//    }
 
     /**
      * When the user clicks the save data button it saves the data
@@ -83,11 +96,13 @@ public class WelcomeActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onSaveDataOnPressed(View v) {
-        Model model = Model.getInstance();
+//        Model model = Model.getInstance();
+        PersistenceServiceFacade persistenceServiceFacade = PersistenceServiceFacade.getInstance();
         File file;
         file = new File(this.getFilesDir(), "data.bin");
 //        boolean success =  model.saveBinary(file);
-        boolean success = save(model, file);
+//        boolean success = save(model, file);
+        boolean success = save(persistenceServiceFacade, file);
         if (success) {
             Toast.makeText(this, "Data has been saved.", Toast.LENGTH_SHORT).show();
         } else {
@@ -99,12 +114,22 @@ public class WelcomeActivity extends AppCompatActivity {
     /**
      * save binary file
      *
-     * @param model the model
+     * @param persistenceServiceFacade the persistenceServiceFacade
      * @return success
      */
-    private boolean save(Model model, File file) {
-        return model.saveBinary(file);
+    private boolean save(PersistenceServiceFacade persistenceServiceFacade, File file) {
+        return persistenceServiceFacade.saveBinary(file);
     }
+
+//    /**
+//     * save binary file
+//     *
+//     * @param model the model
+//     * @return success
+//     */
+//    private boolean save(Model model, File file) {
+//        return model.saveBinary(file);
+//    }
 
     /**
      * When the user clicks the clear data button it erases the data
@@ -112,10 +137,12 @@ public class WelcomeActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onClearDataOnPressed(View v) {
-        Model model = Model.getInstance();
+//        Model model = Model.getInstance();
+        PersistenceServiceFacade persistenceServiceFacade = PersistenceServiceFacade.getInstance();
         File file = new File(this.getFilesDir(), "data.bin");
 //        boolean success = model.deleteBinary(file);
-        boolean success = clear(model, file);
+//        boolean success = clear(model, file);
+        boolean success = clear(persistenceServiceFacade, file);
         if (success) {
             Toast.makeText(this, "Data has been deleted.", Toast.LENGTH_SHORT).show();
         } else {
@@ -127,11 +154,11 @@ public class WelcomeActivity extends AppCompatActivity {
     /**
      * clear binary file
      *
-     * @param model the model
+     * @param persistenceServiceFacade the persistenceServiceFacade
      * @return success
      */
-    private boolean clear(Model model, File file) {
-        return model.deleteBinary(file);
+    private boolean clear(PersistenceServiceFacade persistenceServiceFacade, File file) {
+        return persistenceServiceFacade.deleteBinary(file);
     }
 
 }

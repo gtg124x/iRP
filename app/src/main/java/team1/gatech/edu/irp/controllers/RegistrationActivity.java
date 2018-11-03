@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.AccountServiceFacade;
 import team1.gatech.edu.irp.model.RegistrationResultENUM;
 import team1.gatech.edu.irp.model.UserTypeENUM;
 import android.widget.Toast;
@@ -57,15 +57,17 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param view the button
      */
     public void onAddPressed(View view) {
-        Model model = Model.getInstance();
+//        Model model = Model.getInstance();
+        AccountServiceFacade accountServiceFacade = AccountServiceFacade.getInstance();
         String name = loginName.getText() + "";
         String passwordString = password.getText() + "";
         String cInfo = contactInfo.getText() + "";
         UserTypeENUM userTypeEnum = (UserTypeENUM) userTypeSpinner.getSelectedItem();
 
-        RegistrationResultENUM registrationResult = validateRegistrationToModel(model, name,
-                passwordString, cInfo, userTypeEnum);
-
+//        RegistrationResultENUM registrationResult = validateRegistrationToModel(model, name,
+//                passwordString, cInfo, userTypeEnum);
+        RegistrationResultENUM registrationResult = validateRegistrationToModel(
+                accountServiceFacade, name, passwordString, cInfo, userTypeEnum);
         if (registrationResult == RegistrationResultENUM.NAME_INVALID) {
             Toast.makeText(this, "User Name must be at least 4 characters long.",
                     Toast.LENGTH_SHORT).show();
@@ -88,16 +90,30 @@ public class RegistrationActivity extends AppCompatActivity {
     /**
      * validates the login
      *
-     * @param model the model
+     * @param accountServiceFacade the accountServiceFacade
      * @param name the name
      * @param passwordString the pas
      * @return the result of registration
      */
-    private RegistrationResultENUM validateRegistrationToModel(Model model, String name,
-                                                        String passwordString, String cInfo,
-                                                        UserTypeENUM userTypeEnum) {
-        return model.addAccount(name, passwordString, cInfo, userTypeEnum);
+    private RegistrationResultENUM validateRegistrationToModel(
+            AccountServiceFacade accountServiceFacade, String name,String passwordString,
+            String cInfo, UserTypeENUM userTypeEnum) {
+        return accountServiceFacade.addAccount(name, passwordString, cInfo, userTypeEnum);
     }
+
+//    /**
+//     * validates the login
+//     *
+//     * @param model the model
+//     * @param name the name
+//     * @param passwordString the pas
+//     * @return the result of registration
+//     */
+//    private RegistrationResultENUM validateRegistrationToModel(Model model, String name,
+//                                                        String passwordString, String cInfo,
+//                                                        UserTypeENUM userTypeEnum) {
+//        return model.addAccount(name, passwordString, cInfo, userTypeEnum);
+//    }
 
 
     /**

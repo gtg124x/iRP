@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.ItemServiceFacade;
+import team1.gatech.edu.irp.model.LocationServiceFacade;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -25,8 +26,12 @@ public class LocationListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_location_list);
 
         LocationSpinner = findViewById(R.id.SpinnerLocation);
-        Model model = Model.getInstance();
-        List<String> locationsList = getLocations(model);
+//        Model model = Model.getInstance();
+//        List<String> locationsList = getLocations(model);
+
+        LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
+        List<String> locationsList = getLocations(locationServiceFacade);
+
 //     Set up the adapter to display the allowable locations in the spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, locationsList);
@@ -39,12 +44,23 @@ public class LocationListActivity extends AppCompatActivity {
     /**
      * gets the location list
      *
-     * @param model the model
+     * @param locationServiceFacade the locationServiceFacade
      * @return location list
      */
-    private List<String> getLocations(Model model) {
-        return model.getLocationsAsString();
+    private List<String> getLocations(LocationServiceFacade locationServiceFacade) {
+        return locationServiceFacade.getLocationsAsString();
     }
+
+
+//    /**
+//     * gets the location list
+//     *
+//     * @param model the model
+//     * @return location list
+//     */
+//    private List<String> getLocations(Model model) {
+//        return model.getLocationsAsString();
+//    }
 
     /**
      * Upon pressing the "View Location Details" Button, it displays the details of a location
@@ -52,11 +68,12 @@ public class LocationListActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onViewLocationDetailsOnPress(View v) {
-        Model model = Model.getInstance();
-
+//        Model model = Model.getInstance();
+        ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         String currLoc = ((String) LocationSpinner.getSelectedItem());
 //        model.setCurrentLocation(currLoc);
-        setLocation(model, currLoc);
+//        setLocation(model, currLoc);
+        setLocation(itemServiceFacade, currLoc);
         Intent intent = new Intent(this, LocationDetailsActivity.class);
         startActivity(intent);
     }
@@ -64,11 +81,21 @@ public class LocationListActivity extends AppCompatActivity {
     /**
      * gets the inventory by category and location
      *
-     * @param model the model
+     * @param itemServiceFacade the itemServiceFacade
      */
-    private void setLocation(Model model, String location) {
-        model.setCurrentLocation(location);
+    private void setLocation(ItemServiceFacade itemServiceFacade, String location) {
+        itemServiceFacade.setCurrentLocation(location);
     }
+
+
+//    /**
+//     * gets the inventory by category and location
+//     *
+//     * @param model the model
+//     */
+//    private void setLocation(Model model, String location) {
+//        model.setCurrentLocation(location);
+//    }
 
     /**
      * Upon pressing the "Back" Button it returns back to the respective account type home screen
