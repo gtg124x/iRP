@@ -179,7 +179,7 @@ public final class ItemServiceFacade {
 
 //        for (Location l : locationManager.getLocationAsLocationArray()) {
 
-        for (Location l : getLocation(locationManager)) {
+        for (Location l : locationArray) {
             String currentLocationName = l.toString();
             if (currentLocationName.equals(currentLocation)) {
                 selectedLocation = l;

@@ -1,7 +1,5 @@
 package team1.gatech.edu.irp.model;
 
-import java.util.List;
-
 
     /****************************************************************************************
      *    MODEL
@@ -65,25 +63,7 @@ import java.util.List;
         }
 
 
-//    /****************************************************************************************
-//     *    PASS THROUGH VALUES FROM SPINNERS TO ACTIVITY PAGES
-//     ****************************************************************************************
-//     */
 
-        /**
-         * the currently item list from ItemSearchByCategoryActivity
-         */
-        private List<Item> _currentItemList;
-
-        /**
-         * the currently selected location of the LocationListActivity
-         */
-        private Location selectedLocation;
-
-        /**
-         * convert string to location for LocationDetailActivity
-         */
-        private Item selectedItemFromItemList;
 
 //    /****************************************************************************************
 //     *    ACCOUNT MANAGER PASS THROUGH METHODS
