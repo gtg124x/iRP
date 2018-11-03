@@ -27,10 +27,10 @@ class LocationManager implements Serializable {
      */
     private final List<Location> locations = new ArrayList<>();
 
-    /**
-     * array to hold string representation of locations
-     */
-    private List<String> locationsAsStringArray;
+//    /**
+//     * array to hold string representation of locations
+//     */
+//    private List<String> locationsAsStringArray;
 
 
     /****************************************************************************************
@@ -91,11 +91,11 @@ class LocationManager implements Serializable {
      * @return list of locations represented as Strings
      */
     public List<String> getLocationAsStringArray() {
-        locationsAsStringArray = new ArrayList<>();
+        List<String> locationsAsStringArray = new ArrayList<>();
         for (Location l : locations) {
             locationsAsStringArray.add(l.toString());
         }
-        return locationsAsStringArray;
+        return Collections.unmodifiableList(locationsAsStringArray);
     }
 
     /**

@@ -98,8 +98,14 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateTimeStamp(String time) {
-        if ("".equals(time)) { return true; }
-        if (time.length() != 8) { return true; }
+//        if ("".equals(time)) { return true; }
+//        if (time.length() != 8) { return true; }
+
+        if (emptyAndLengthTimeCheck(time)) {
+            return true;
+        }
+//        if (("".equals(time)) || (time.length() != 8)) { return true; }
+
         String firstColon = "" + time.charAt(2);
         String secondColon = "" + time.charAt(5);
         if (!(":".equals(firstColon)) || !(":".equals(secondColon))) { return true; }
@@ -113,13 +119,29 @@ class ItemManager implements Serializable {
             int minAsInt = Integer.parseInt(minAsString);
             int secAsInt = Integer.parseInt(secAsString);
 
-            return ((hourAsInt < 0) || (hourAsInt >= MAX_HOURS) || (minAsInt < 0)
-                    || (minAsInt >= MAX_MINUTES) || (secAsInt < 0) || (secAsInt >= MAX_SECONDS));
+            boolean hourCheck = ((hourAsInt < 0) || (hourAsInt >= MAX_HOURS));
+            boolean minuteCheck = ((minAsInt < 0) || (minAsInt >= MAX_MINUTES));
+            boolean secondCheck = ((secAsInt < 0) || (secAsInt >= MAX_SECONDS));
+
+            return (hourCheck || minuteCheck || secondCheck);
+
+//            return ((hourAsInt < 0) || (hourAsInt >= MAX_HOURS) || (minAsInt < 0)
+//                    || (minAsInt >= MAX_MINUTES) || (secAsInt < 0) || (secAsInt >= MAX_SECONDS));
 
         } catch (NumberFormatException e) {
             return true;
         }
 
+    }
+
+    /**
+     * checks if the time length is correct and that it is not empty
+     *
+     * @param time the time
+     * @return success
+     */
+    private boolean emptyAndLengthTimeCheck(String time) {
+        return (("".equals(time)) || (time.length() != 8));
     }
 
     /**
@@ -130,11 +152,12 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateDateStamp(String date) {
-        if ("".equals(date)) { return true; }
-        if (date.length() != 10) { return true; }
+//        if ("".equals(date)) { return true; }
+//        if (date.length() != 10) { return true; }
+        if (isEmptyOrToLong(date)) { return true; }
         String firstDash = "" + date.charAt(2);
         String secondDash = "" + date.charAt(5);
-        if (!("-".equals(firstDash)) || !("-".equals(secondDash))) { return true; }
+        if (isNotInCorrectForm(firstDash, secondDash)) { return true; }
 
         String monthAsString = "" + date.charAt(0) + date.charAt(1);
         String dateString = "" + date.charAt(3) + date.charAt(4);
@@ -146,16 +169,96 @@ class ItemManager implements Serializable {
             int dateAsInt = Integer.parseInt(dateString);
             int yearAsInt = Integer.parseInt(yearAsString);
 
-            return ((monthAsInt < JANUARY) || (monthAsInt > DECEMBER) || (dateAsInt < 0)
-                    || (dateAsInt > MONTH_HIGH_MAX) || (yearAsInt < YEAR_LOW_MAX)
-                    || (yearAsInt >= YEAR_HIGH_MAX)
-                    || (((monthAsInt == APRIL) || (monthAsInt == JUNE) || (monthAsInt == SEPTEMBER)
-                    || (monthAsInt == NOVEMBER)) && (dateAsInt > MONTH_LOW_MAX))
-                    || ((monthAsInt == FEBRUARY) && (dateAsInt > FEBRUARY_MONTH_MAX)));
+
+            return (monthCheck(monthAsInt) || dateCheck(dateAsInt) || yearCheck(yearAsInt)
+                    || dayMonthCheck(monthAsInt, dateAsInt)
+                    || februaryCheck(monthAsInt, dateAsInt));
+
+//            return ((monthAsInt < JANUARY) || (monthAsInt > DECEMBER) ||
+//                    (dateAsInt < 0) || (dateAsInt > MONTH_HIGH_MAX) ||
+//                    (yearAsInt < YEAR_LOW_MAX) || (yearAsInt >= YEAR_HIGH_MAX)
+//                    || (((monthAsInt == APRIL) || (monthAsInt == JUNE)
+// || (monthAsInt == SEPTEMBER)
+//                    || (monthAsInt == NOVEMBER)) && (dateAsInt > MONTH_LOW_MAX))
+//                    || ((monthAsInt == FEBRUARY) && (dateAsInt > FEBRUARY_MONTH_MAX)));
 
         } catch (NumberFormatException e) {
             return true;
         }
+    }
+
+    /**
+     * checks if the date length is correct and that it is not empty
+     *
+     * @param firstDash a dash
+     * @param secondDash another dash
+     * @return success
+     */
+    private boolean isNotInCorrectForm(String firstDash, String secondDash) {
+        return (!("-".equals(firstDash)) || !("-".equals(secondDash)));
+    }
+
+    /**
+     * checks if the date length is correct and that it is not empty
+     *
+     * @param date the date
+     * @return success
+     */
+    private boolean isEmptyOrToLong(String date) {
+        return (("".equals(date)) || (date.length() != 10));
+    }
+
+    /**
+     * validate the month
+     *
+     * @param monthAsInt the month
+     * @return success
+     */
+    private boolean monthCheck(int monthAsInt) {
+        return ((monthAsInt < JANUARY) || (monthAsInt > DECEMBER));
+    }
+
+    /**
+     * validate the date
+     *
+     * @param dateAsInt the date
+     * @return success
+     */
+    private boolean dateCheck(int dateAsInt) {
+        return ((dateAsInt < 0) || (dateAsInt > MONTH_HIGH_MAX) );
+    }
+
+    /**
+     * validate the year
+     *
+     * @param yearAsInt the year
+     * @return success
+     */
+    private boolean yearCheck(int yearAsInt) {
+        return ((yearAsInt < YEAR_LOW_MAX) || (yearAsInt >= YEAR_HIGH_MAX));
+    }
+
+    /**
+     * validate the day and month
+     *
+     * @param monthAsInt the month
+     * @param dateAsInt the date
+     * @return success
+     */
+    private boolean dayMonthCheck(int monthAsInt, int dateAsInt)  {
+        return (((monthAsInt == APRIL) || (monthAsInt == JUNE) || (monthAsInt == SEPTEMBER)
+                || (monthAsInt == NOVEMBER)) && (dateAsInt > MONTH_LOW_MAX));
+    }
+
+    /**
+     * validate february and day
+     *
+     * @param monthAsInt the month
+     * @param dateAsInt the date
+     * @return success
+     */
+    private boolean februaryCheck(int monthAsInt, int dateAsInt)  {
+        return (((monthAsInt == FEBRUARY) && (dateAsInt > FEBRUARY_MONTH_MAX)));
     }
 
     /**
@@ -221,6 +324,17 @@ class ItemManager implements Serializable {
     private boolean validateFullDescription(String fullD) {
         return (fullD.length() < 3);
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**

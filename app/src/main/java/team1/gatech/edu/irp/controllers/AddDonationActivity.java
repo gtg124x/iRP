@@ -85,8 +85,9 @@ public class AddDonationActivity extends AppCompatActivity {
         fullDescription = fullDescriptionTextView.getText() + "";
 
 
-        if (timeStamp.isEmpty() || dateStamp.isEmpty() || dollarValue.isEmpty()
-                || shortDescription.isEmpty() || fullDescription.isEmpty() ) {
+//        if (timeStamp.isEmpty() || dateStamp.isEmpty() || dollarValue.isEmpty()
+//                || shortDescription.isEmpty() || fullDescription.isEmpty() ) {
+        if (isEmpty()) {
             Toast.makeText(this, "Invalid Data.", Toast.LENGTH_SHORT).show();
         }
 
@@ -120,6 +121,16 @@ public class AddDonationActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             finish();
         }
+    }
+
+    /**
+     * is empty check
+     *
+     * @return if the strings are empty
+     */
+    private boolean isEmpty() {
+        return (timeStamp.isEmpty() || dateStamp.isEmpty() || dollarValue.isEmpty()
+                || shortDescription.isEmpty() || fullDescription.isEmpty());
     }
 
     /**

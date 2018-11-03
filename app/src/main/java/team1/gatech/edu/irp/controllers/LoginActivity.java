@@ -68,10 +68,12 @@ public class LoginActivity extends AppCompatActivity {
             } else if (userType == UserTypeENUM.LOCAL_EMPLOYEE) {
                 Intent intent = new Intent(this, LocalEmployeeActivity.class);
                 startActivity(intent);
-            } else if (userType == UserTypeENUM.MANAGER) {
+            }
+            else if (userType == UserTypeENUM.MANAGER) {
                 Intent intent = new Intent(this, ManagerActivity.class);
                 startActivity(intent);
-            } else {
+            }
+            else {
                 Intent intent = new Intent(this, AppActivity.class);
                 startActivity(intent);
             }

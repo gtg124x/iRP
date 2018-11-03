@@ -15,7 +15,7 @@ package team1.gatech.edu.irp.model;
         /**
          * Singleton instance
          */
-        private static AccountServiceFacade _instance = new AccountServiceFacade();
+        private static final AccountServiceFacade _instance = new AccountServiceFacade();
 
         /**
          * getter for model

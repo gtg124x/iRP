@@ -17,7 +17,7 @@ public final class LocationServiceFacade {
     /**
      * Singleton instance
      */
-    private static LocationServiceFacade _instance = new LocationServiceFacade();
+    private static final LocationServiceFacade _instance = new LocationServiceFacade();
 
     /**
      * getter for model

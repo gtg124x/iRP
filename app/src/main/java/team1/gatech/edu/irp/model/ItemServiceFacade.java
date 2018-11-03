@@ -1,5 +1,6 @@
 package team1.gatech.edu.irp.model;
 
+import java.util.Collections;
 import java.util.List;
 
 /****************************************************************************************
@@ -16,7 +17,7 @@ public final class ItemServiceFacade {
     /**
      * Singleton instance
      */
-    private static ItemServiceFacade _instance = new ItemServiceFacade();
+    private static final ItemServiceFacade _instance = new ItemServiceFacade();
 
     /**
      * getter for model
@@ -123,7 +124,7 @@ public final class ItemServiceFacade {
      */
     public List<Item> getInventoryByLocation() {
         _currentItemList = itemManager.getItemListByLocation(selectedLocation);
-        return _currentItemList;
+        return Collections.unmodifiableList(_currentItemList);
     }
 
     /**
@@ -161,7 +162,7 @@ public final class ItemServiceFacade {
      * @return the currently selected item
      */
     public List<Item> getCurrentItemList() {
-        return _currentItemList;
+        return Collections.unmodifiableList(_currentItemList);
     }
 
 
