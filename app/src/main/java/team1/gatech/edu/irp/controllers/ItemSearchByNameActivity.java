@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.ItemServiceFacade;
+import team1.gatech.edu.irp.model.LocationServiceFacade;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -21,8 +22,8 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
     private Spinner LocationSpinner;
     private TextView itemNameTextView;
 
-    private String itemName;
-    private String currLoc;
+//    private String itemName;
+//    private String currLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,13 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_search_by_name);
 
         LocationSpinner = findViewById(R.id.SpinnerLocationItemSearchByName);
-        Model model = Model.getInstance();
+        //Model model = Model.getInstance();
+        LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
 
 //      Set up the adapter to display the allowable location in the spinner
 //        List<String> locationsList = model.getLocationsAsStringWithAllLocationOption();
-        List<String> locationsList = getLocationsAll(model);
+//        List<String> locationsList = getLocationsAll(model);
+        List<String> locationsList = getLocationsAll(locationServiceFacade);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, locationsList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -48,12 +51,22 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
     /**
      * gets the location list with all locations option
      *
-     * @param model the model
+     * @param locationServiceFacade the locationServiceFacade
      * @return location list with all locations option
      */
-    private List<String> getLocationsAll(Model model) {
-        return model.getLocationsAsStringWithAllLocationOption();
+    private List<String> getLocationsAll(LocationServiceFacade locationServiceFacade) {
+        return locationServiceFacade.getLocationsAsStringWithAllLocationOption();
     }
+
+//    /**
+//     * gets the location list with all locations option
+//     *
+//     * @param model the model
+//     * @return location list with all locations option
+//     */
+//    private List<String> getLocationsAll(Model model) {
+//        return model.getLocationsAsStringWithAllLocationOption();
+//    }
 
     /**
      * When the user presses the View Item Details button is sends them to the Item Details Screen
@@ -61,15 +74,15 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onViewItemDetailsFromNameSearchOnPress(View v) {
-        Model model = Model.getInstance();
-
+//        Model model = Model.getInstance();
+        ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         CharSequence itemNameChar = itemNameTextView.getText();
-        itemName = itemNameChar.toString();
-        currLoc = ((String) LocationSpinner.getSelectedItem());
+        String itemName = itemNameChar.toString();
+        String currLoc = ((String) LocationSpinner.getSelectedItem());
 
 //        model.setInventoryByNameAndLocation(itemName, currLoc);
-        getInventory(model);
-
+//        getInventory(model);
+        getInventory(itemServiceFacade, itemName, currLoc);
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
     }
@@ -77,10 +90,11 @@ public class ItemSearchByNameActivity extends AppCompatActivity {
     /**
      * gets the inventory by category and location
      *
-     * @param model the model
+     * @param itemServiceFacade the itemServiceFacade
      */
-    private void getInventory(Model model) {
-        model.setInventoryByNameAndLocation(itemName, currLoc);
+    private void getInventory(ItemServiceFacade itemServiceFacade, String itemName,
+                              String currLoc) {
+        itemServiceFacade.setInventoryByNameAndLocation(itemName, currLoc);
     }
 
     /**

@@ -13,7 +13,8 @@ import java.util.List;
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.CategoryENUM;
 import team1.gatech.edu.irp.model.Location;
-import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.LocationServiceFacade;
+import team1.gatech.edu.irp.model.ItemServiceFacade;
 import team1.gatech.edu.irp.model.AddDonationResultENUM;
 
 /**
@@ -42,9 +43,9 @@ public class AddDonationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_donation);
-        Model model = Model.getInstance();
+//        Model model = Model.getInstance();
 
-
+        LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
 //      Grab the dialog widgets so we can get info for later use
         timeStampTextView = findViewById(R.id.TimeStampEditText);
         dateStampTextView = findViewById(R.id.DateOfDonationEditText);
@@ -59,8 +60,7 @@ public class AddDonationActivity extends AppCompatActivity {
 
 //      Set up the adapter to display the allowable location in the spinner
         ArrayAdapter<Location> locationAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, getMeLocations(model));
-//        android.R.layout.simple_spinner_item, model.getLocations());
+                android.R.layout.simple_spinner_item, getMeLocations(locationServiceFacade));
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(locationAdapter);
         locationSpinner.setSelection(0);
@@ -81,7 +81,8 @@ public class AddDonationActivity extends AppCompatActivity {
      * @param view the button
      */
     public void onSubmitOnPress(View view) {
-        Model model = Model.getInstance();
+        //Model itemServiceFacade = Model.getInstance();
+        ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
 
         timeStamp = timeStampTextView.getText() + "";
         dateStamp = dateStampTextView.getText() + "";
@@ -97,22 +98,7 @@ public class AddDonationActivity extends AppCompatActivity {
             Toast.makeText(this, "Invalid Data.", Toast.LENGTH_SHORT).show();
         }
 
-//         Validates the user input and adds it to the inventory if correct
-//         Returns the result of the attempt to add to inventory
-//        AddDonationResultENUM addDonationResult = model.validateAndAddItemToInventory(timeStamp,
-//                dateStamp, location, category, dollarValue, shortDescription, fullDescription);
-
-//        List<String> details = new ArrayList<>();
-//        details.add(timeStamp);
-//        details.add(dateStamp);
-//        details.add(dollarValue);
-//        details.add(shortDescription);
-//        details.add(fullDescription);
-
-        AddDonationResultENUM addDonationResult = validate(model);
-
-//                model.validateAndAddItemToInventory(timeStamp,
-//                dateStamp, location, category, dollarValue, shortDescription, fullDescription);
+        AddDonationResultENUM addDonationResult = validate(itemServiceFacade);
 
         if (addDonationResult == AddDonationResultENUM.TIME_INVALID) {
             Toast.makeText(this,
@@ -154,24 +140,24 @@ public class AddDonationActivity extends AppCompatActivity {
     }
 
     /**
-     * gets the locations from the model
+     * gets the locations
      *
-     * @param model the model
+     * @param locationServiceFacade the locationServiceFacade
      * @return list of locations
      */
-    private List<Location> getMeLocations(Model model) {
-        return model.getLocations();
+    private List<Location> getMeLocations(LocationServiceFacade locationServiceFacade) {
+        return locationServiceFacade.getLocations();
     }
 
     /**
-     * gets the result code from the model and adds and account if valid
+     * gets the result code from the itemServiceFacade and adds and account if valid
      *
-     * @param model the model
+     * @param itemServiceFacade the itemServiceFacade
      * @return validation result
      */
-    private AddDonationResultENUM validate(Model model) {
-        return model.validateAndAddItemToInventory(timeStamp, dateStamp, location, category,
-                dollarValue, shortDescription, fullDescription);
+    private AddDonationResultENUM validate(ItemServiceFacade itemServiceFacade) {
+        return itemServiceFacade.validateAndAddItemToInventory(timeStamp, dateStamp, location,
+                category, dollarValue, shortDescription, fullDescription);
     }
 
 }

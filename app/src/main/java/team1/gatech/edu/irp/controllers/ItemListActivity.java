@@ -6,7 +6,8 @@ import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Item;
-import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.ItemServiceFacade;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -19,7 +20,6 @@ import java.util.List;
  */
 public class ItemListActivity extends AppCompatActivity {
     private Spinner itemSpinner;
-    private Model model;
     private int size;
 
     @Override
@@ -27,8 +27,10 @@ public class ItemListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
-        model = Model.getInstance();
-        List<Item> itemListItem = model.getCurrentItemList();
+//        Model model = Model.getInstance();
+//        List<Item> itemListItem = model.getCurrentItemList();
+        ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
+        List<Item> itemListItem = getCurrentListOfItems(itemServiceFacade);
         size = itemListItem.size();
         itemSpinner = findViewById(R.id.spinnerItemListing);
 
@@ -41,24 +43,45 @@ public class ItemListActivity extends AppCompatActivity {
         itemSpinner.setSelection(0);
     }
 
+
+    /**
+     * gets the current list of items
+     *
+     * @param itemServiceFacade the itemServiceFacade
+     * @return current list of items
+     */
+    private List<Item> getCurrentListOfItems(ItemServiceFacade itemServiceFacade) {
+        return itemServiceFacade.getCurrentItemList();
+    }
+
     /**
      * After selecting an item it displays the ItemDetailsActivity
      * @param view the button
      */
     public void onViewItemDetailsOnPress(View view) {
-        model = Model.getInstance();
-
+//        model = Model.getInstance();
+        ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         if (size == 0) {
             Toast.makeText(this, "No Items Found In Search",
                     Toast.LENGTH_SHORT).show();
         } else {
             int selectionNumber = itemSpinner.getSelectedItemPosition();
 
-            model.setSelectedItemFromItemListAndSendToItemDetails(selectionNumber);
-
+//            model.setSelectedItemFromItemListAndSendToItemDetails(selectionNumber);
+            getCurrentListOfItems(itemServiceFacade, selectionNumber);
             Intent intent = new Intent(this, ItemDetailsActivity.class);
             startActivity(intent);
         }
+    }
+
+    /**
+     * sets the Selected Item From Item List And Sends it To ItemDetails
+     *
+     * @param itemServiceFacade the itemServiceFacade
+     * @param selectionNumber the index of the selected Item
+     */
+    private void getCurrentListOfItems(ItemServiceFacade itemServiceFacade, int selectionNumber) {
+        itemServiceFacade.setSelectedItemFromItemListAndSendToItemDetails(selectionNumber);
     }
 
     /**

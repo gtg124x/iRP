@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.List;
-import android.view.View;
+//import android.view.View;
 
 /****************************************************************************************
  *    MODEL
@@ -127,20 +127,20 @@ public final class Model {
 //     ****************************************************************************************
 //     */
 
-    /**
-     * loads the locations from CSV file to app
-     *
-     * @param v the view
-     * @return list of Location objects
-     */
-    public boolean loadLocations(View v) { return locationManager.loadLocationsFromCSV(v); }
+//    /**
+//     * loads the locations from CSV file to app
+//     *
+//     * @param v the view
+//     * @return list of Location objects
+//     */
+//    public boolean loadLocations(View v) { return locationManager.loadLocationsFromCSV(v); }
 
-    /**
-     * tests whether or not the location list is empty
-     *
-     * @return if there are no locations entered in the app
-     */
-    public boolean noLocations() { return locationManager.locationListEmpty(); }
+//    /**
+//     * tests whether or not the location list is empty
+//     *
+//     * @return if there are no locations entered in the app
+//     */
+//    public boolean noLocations() { return locationManager.locationListEmpty(); }
 
     /**
      * a list of locations that have been added to the app
@@ -158,15 +158,15 @@ public final class Model {
         return locationManager.getLocationAsStringArray();
     }
 
-    /**
-     * a list of locations represented as Strings that have been added to the app with All
-     * locations as first option
-     *
-     * @return list of locations represented as Strings with All locations as first option
-     */
-    public List<String> getLocationsAsStringWithAllLocationOption() {
-        return locationManager.getLocationsAsStringArrayWithAllLocationOption();
-    }
+//    /**
+//     * a list of locations represented as Strings that have been added to the app with All
+//     * locations as first option
+//     *
+//     * @return list of locations represented as Strings with All locations as first option
+//     */
+//    public List<String> getLocationsAsStringWithAllLocationOption() {
+//        return locationManager.getLocationsAsStringArrayWithAllLocationOption();
+//    }
 
 
 //    /****************************************************************************************
@@ -176,29 +176,29 @@ public final class Model {
 //     ****************************************************************************************
 //     */
 
-    /**
-     * Validates the user input then adds the item into the inventory
-     *
-     * @param timeStamp         the account login name
-     * @param dateStamp         date stamp for the item
-     * @param location          location for the item
-     * @param category          category for the item
-     * @param dollarValue       dollar value for the item
-     * @param shortDescription   short description for the item
-     * @param fullDescription    full description for the item
-     *
-     * @return the result of the adding and item to inventory in the form of AddDonationResultENUM
-     */
-    public AddDonationResultENUM validateAndAddItemToInventory(String timeStamp,
-                                                               String dateStamp,
-                                                               Location location,
-                                                               CategoryENUM category,
-                                                               String dollarValue,
-                                                               String shortDescription,
-                                                               String fullDescription) {
-        return itemManager.validateAndAddItemToItemManager(timeStamp, dateStamp, location,
-                category, dollarValue, shortDescription, fullDescription);
-    }
+//    /**
+//     * Validates the user input then adds the item into the inventory
+//     *
+//     * @param timeStamp         the account login name
+//     * @param dateStamp         date stamp for the item
+//     * @param location          location for the item
+//     * @param category          category for the item
+//     * @param dollarValue       dollar value for the item
+//     * @param shortDescription   short description for the item
+//     * @param fullDescription    full description for the item
+//     *
+//     * @return the result of the adding and item to inventory in the form of AddDonationResultENUM
+//     */
+//    public AddDonationResultENUM validateAndAddItemToInventory(String timeStamp,
+//                                                               String dateStamp,
+//                                                               Location location,
+//                                                               CategoryENUM category,
+//                                                               String dollarValue,
+//                                                               String shortDescription,
+//                                                               String fullDescription) {
+//        return itemManager.validateAndAddItemToItemManager(timeStamp, dateStamp, location,
+//                category, dollarValue, shortDescription, fullDescription);
+//    }
 
     /**
      * a list of items represented as Strings that have been added to the a selected location
@@ -210,28 +210,28 @@ public final class Model {
         return _currentItemList;
     }
 
-    /**
-     * finds the items sorted by location and category
-     *
-     * @param category item category
-     * @param location store location
-     *
-     */
-    public void setInventoryByCategoryAndLocation(CategoryENUM category,
-                                                        String location ) {
-        _currentItemList = itemManager.getItemListByCategoryAndLocation(category, location);
-    }
+//    /**
+//     * finds the items sorted by location and category
+//     *
+//     * @param category item category
+//     * @param location store location
+//     *
+//     */
+//    public void setInventoryByCategoryAndLocation(CategoryENUM category,
+//                                                        String location ) {
+//        _currentItemList = itemManager.getItemListByCategoryAndLocation(category, location);
+//    }
 
-    /**
-     * finds the items sorted by location and name
-     *
-     * @param name item name
-     * @param location store location
-     *
-     */
-    public void setInventoryByNameAndLocation(String name, String location ) {
-        _currentItemList = itemManager.getItemListByNameAndLocation(name, location);
-    }
+//    /**
+//     * finds the items sorted by location and name
+//     *
+//     * @param name item name
+//     * @param location store location
+//     *
+//     */
+//    public void setInventoryByNameAndLocation(String name, String location ) {
+//        _currentItemList = itemManager.getItemListByNameAndLocation(name, location);
+//    }
 
 //    /****************************************************************************************
 //     *    PASS THROUGH METHODS TO PASS VALUES FROM SPINNERS TO OTHER ACTIVITY PAGES
@@ -239,14 +239,14 @@ public final class Model {
 //     */
 
 
-    /**
-     * get the selected Item on the spinner
-     *
-     * @return the currently selected item
-     */
-    public List<Item> getCurrentItemList() {
-       return _currentItemList;
-    }
+//    /**
+//     * get the selected Item on the spinner
+//     *
+//     * @return the currently selected item
+//     */
+//    public List<Item> getCurrentItemList() {
+//       return _currentItemList;
+//    }
 
 
     /**
@@ -263,14 +263,14 @@ public final class Model {
         }
     }
 
-    /**
-     * gets the details of selected Item
-     *
-     * @return item details in a string
-     */
-    public List<String> getSelectedItemFromItemListAndSendToItemDetails() {
-        return Item.getSelectedItemDetailsForItemsDetailsActivity(selectedItemFromItemList);
-    }
+//    /**
+//     * gets the details of selected Item
+//     *
+//     * @return item details in a string
+//     */
+//    public List<String> getSelectedItemFromItemListAndSendToItemDetails() {
+//        return Item.getSelectedItemDetailsForItemsDetailsActivity(selectedItemFromItemList);
+//    }
 
     /**
      * sets the selected item from the spinner on the Item List page and sends it to the item

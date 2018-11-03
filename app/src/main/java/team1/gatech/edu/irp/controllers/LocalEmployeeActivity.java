@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
 import team1.gatech.edu.irp.model.Location;
-import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.LocationServiceFacade;
 import android.view.View;
 import android.widget.Toast;
 
@@ -40,9 +40,10 @@ public class LocalEmployeeActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onViewLocationLocalEmployeeOnPress(View v) {
-        Model model = Model.getInstance();
-//        if (model.noLocations()) {
-        if(locationEmpty(model)) {
+//        Model model = Model.getInstance();
+//        if(locationEmpty(model)) {
+        LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
+        if (locationsEmpty(locationServiceFacade)) {
             Toast.makeText(this, "No Locations have been loaded by Admin.",
                     Toast.LENGTH_SHORT).show();
         } else {
@@ -52,14 +53,24 @@ public class LocalEmployeeActivity extends AppCompatActivity {
     }
 
     /**
-     * gets the location list with all locations option
+     * tests whether or not the location list is empty
      *
-     * @param model the model
-     * @return success
+     * @param locationServiceFacade locationServiceFacade
+     * @return if there are no locations entered in the app
      */
-    private boolean locationEmpty(Model model) {
-        return model.noLocations();
+    private boolean locationsEmpty(LocationServiceFacade locationServiceFacade) {
+        return locationServiceFacade.noLocations();
     }
+
+//    /**
+//     * gets the location list with all locations option
+//     *
+//     * @param model the model
+//     * @return success
+//     */
+//    private boolean locationEmpty(Model model) {
+//        return model.noLocations();
+//    }
 
     /**
      * When the Add Donation Button is pressed is sends you to the add donation screen
@@ -67,9 +78,11 @@ public class LocalEmployeeActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onAddDonationOnPress(View v) {
-        Model model = Model.getInstance();
+//        Model model = Model.getInstance();
 //        List<Location> locations = model.getLocations();
-        List<Location> locations = getCurrentLocations(model);
+//        List<Location> locations = getCurrentLocations(model);
+        LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
+        List<Location> locations = getCurrentLocations(locationServiceFacade);
         if (locations.isEmpty()) {
             Toast.makeText(this, "No Locations have been loaded by Admin.",
                     Toast.LENGTH_SHORT).show();
@@ -82,10 +95,10 @@ public class LocalEmployeeActivity extends AppCompatActivity {
     /**
      * gets the locations
      *
-     * @param model the model
+     * @param locationServiceFacade the model
      * @return list of locations
      */
-    private List<Location> getCurrentLocations(Model model) {
-        return model.getLocations();
+    private List<Location> getCurrentLocations(LocationServiceFacade locationServiceFacade) {
+        return locationServiceFacade.getLocations();
     }
 }

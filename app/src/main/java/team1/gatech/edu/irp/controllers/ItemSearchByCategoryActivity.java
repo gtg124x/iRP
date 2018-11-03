@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.CategoryENUM;
+import team1.gatech.edu.irp.model.ItemServiceFacade;
+import team1.gatech.edu.irp.model.LocationServiceFacade;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -20,21 +22,21 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
     private Spinner LocationSpinner;
     private Spinner CategorySpinner;
 
-    //private String currLoc;
-    //private CategoryENUM category;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_search_by_category);
         LocationSpinner = findViewById(R.id.SpinnerLocationSearchByCategory);
         CategorySpinner = findViewById(R.id.spinnerCategorySearch);
-        Model model = Model.getInstance();
+//        Model model = Model.getInstance();
+
+        LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
 
 
 //      Set up the adapter to display the allowable locations in the spinner
 //        List<String> locationsList = model.getLocationsAsStringWithAllLocationOption();
-        List<String> locationsList = getLocationsAll(model);
+//        List<String> locationsList = getLocationsAll(model);
+        List<String> locationsList = getLocationsAll(locationServiceFacade);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, locationsList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -52,12 +54,22 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
     /**
      * gets the location list with all locations option
      *
-     * @param model the model
+     * @param locationServiceFacade the locationServiceFacade
      * @return location list with all locations option
      */
-    private List<String> getLocationsAll(Model model) {
-        return model.getLocationsAsStringWithAllLocationOption();
+    private List<String> getLocationsAll(LocationServiceFacade locationServiceFacade) {
+        return locationServiceFacade.getLocationsAsStringWithAllLocationOption();
     }
+
+//    /**
+//     * gets the location list with all locations option
+//     *
+//     * @param model the model
+//     * @return location list with all locations option
+//     */
+//    private List<String> getLocationsAll(Model model) {
+//        return model.getLocationsAsStringWithAllLocationOption();
+//    }
 
     /**
      * When the user presses the View Item Details button is sends them to the Item Details Screen
@@ -65,27 +77,39 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onViewItemDetailsFromNameCategoryOnPress(View v) {
-        Model model = Model.getInstance();
-
+//        Model model = Model.getInstance();
+        ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         String currLoc = ((String) LocationSpinner.getSelectedItem());
 
         CategoryENUM category = (CategoryENUM) CategorySpinner.getSelectedItem();
 
 //        model.setInventoryByCategoryAndLocation(category, currLoc);
 
-        getInventory(model, category, currLoc);
-
+//        getInventory(model, category, currLoc);
+        getInventory(itemServiceFacade, category, currLoc);
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
     }
 
+//    /**
+//     * gets the inventory by category and location
+//     *
+//     * @param model the model
+//     */
+//    private void getInventory(Model model, CategoryENUM category, String currLoc) {
+//        model.setInventoryByCategoryAndLocation(category, currLoc);
+//    }
+
     /**
      * gets the inventory by category and location
      *
-     * @param model the model
+     * @param itemServiceFacade the model
+     * @param category the category
+     * @param currLoc current location
      */
-    private void getInventory(Model model, CategoryENUM category, String currLoc) {
-        model.setInventoryByCategoryAndLocation(category, currLoc);
+    private void getInventory(ItemServiceFacade itemServiceFacade, CategoryENUM category,
+                              String currLoc) {
+        itemServiceFacade.setInventoryByCategoryAndLocation(category, currLoc);
     }
 
     /**

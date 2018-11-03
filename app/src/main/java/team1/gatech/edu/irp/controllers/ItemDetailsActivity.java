@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.ItemServiceFacade;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,9 +25,11 @@ public class ItemDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
 
-        Model model = Model.getInstance();
+//        Model model = Model.getInstance();
+//        List<String> itemString = getSelectedItem(model);
 
-        List<String> itemString = getSelectedItem(model);
+        ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
+        List<String> itemString = getSelectedItem(itemServiceFacade);
 
         String timeStamp = itemString.get(0);
         String dateStamp = itemString.get(1);
@@ -74,12 +76,22 @@ public class ItemDetailsActivity extends AppCompatActivity {
     /**
      * gets the selected item from the model and returns the details
      *
-     * @param model the model
+     * @param itemServiceFacade the itemServiceFacade
      * @return item details
      */
-    private List<String> getSelectedItem(Model model) {
-        return model.getSelectedItemFromItemListAndSendToItemDetails();
+    private List<String> getSelectedItem(ItemServiceFacade itemServiceFacade) {
+        return itemServiceFacade.getSelectedItemFromItemListAndSendToItemDetails();
     }
+
+//    /**
+//     * gets the selected item from the model and returns the details
+//     *
+//     * @param model the model
+//     * @return item details
+//     */
+//    private List<String> getSelectedItem(Model model) {
+//        return model.getSelectedItemFromItemListAndSendToItemDetails();
+//    }
 
 }
 

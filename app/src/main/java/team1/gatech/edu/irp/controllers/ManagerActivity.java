@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Model;
+import team1.gatech.edu.irp.model.LocationServiceFacade;
 import android.view.View;
 import android.widget.Toast;
 
@@ -37,9 +37,11 @@ public class ManagerActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onViewLocationManagerOnPress(View v) {
-        Model model = Model.getInstance();
-//        if (model.noLocations()) {
-        if (locationsEmpty(model)) {
+//        Model model = Model.getInstance();
+////        if (model.noLocations()) {
+//        if (locationsEmpty(model)) {
+        LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
+        if (locationsEmpty(locationServiceFacade)) {
             Toast.makeText(this, "No Locations have been loaded by Admin.",
                     Toast.LENGTH_SHORT).show();
         } else {
@@ -50,13 +52,23 @@ public class ManagerActivity extends AppCompatActivity {
     }
 
     /**
-     * checks if there are no locations
+     * tests whether or not the location list is empty
      *
-     * @param model the model
-     * @return success
+     * @param locationServiceFacade locationServiceFacade
+     * @return if there are no locations entered in the app
      */
-    private boolean locationsEmpty(Model model) {
-        return model.noLocations();
+    private boolean locationsEmpty(LocationServiceFacade locationServiceFacade) {
+        return locationServiceFacade.noLocations();
     }
+
+//    /**
+//     * checks if there are no locations
+//     *
+//     * @param model the model
+//     * @return success
+//     */
+//    private boolean locationsEmpty(Model model) {
+//        return model.noLocations();
+//    }
 
 }
