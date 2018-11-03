@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import team1.gatech.edu.irp.R;
-import team1.gatech.edu.irp.model.Location;
 import team1.gatech.edu.irp.model.Model;
 import team1.gatech.edu.irp.model.CategoryENUM;
 import android.view.View;
