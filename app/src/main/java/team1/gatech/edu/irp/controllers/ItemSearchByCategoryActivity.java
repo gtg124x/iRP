@@ -28,14 +28,11 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_search_by_category);
         LocationSpinner = findViewById(R.id.SpinnerLocationSearchByCategory);
         CategorySpinner = findViewById(R.id.spinnerCategorySearch);
-//        Model model = Model.getInstance();
 
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
 
 
 //      Set up the adapter to display the allowable locations in the spinner
-//        List<String> locationsList = model.getLocationsAsStringWithAllLocationOption();
-//        List<String> locationsList = getLocationsAll(model);
         List<String> locationsList = getLocationsAll(locationServiceFacade);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, locationsList);
@@ -61,44 +58,21 @@ public class ItemSearchByCategoryActivity extends AppCompatActivity {
         return locationServiceFacade.getLocationsAsStringWithAllLocationOption();
     }
 
-//    /**
-//     * gets the location list with all locations option
-//     *
-//     * @param model the model
-//     * @return location list with all locations option
-//     */
-//    private List<String> getLocationsAll(Model model) {
-//        return model.getLocationsAsStringWithAllLocationOption();
-//    }
-
     /**
      * When the user presses the View Item Details button is sends them to the Item Details Screen
      *
      * @param v the view
      */
     public void onViewItemDetailsFromNameCategoryOnPress(View v) {
-//        Model model = Model.getInstance();
         ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         String currLoc = ((String) LocationSpinner.getSelectedItem());
 
         CategoryENUM category = (CategoryENUM) CategorySpinner.getSelectedItem();
 
-//        model.setInventoryByCategoryAndLocation(category, currLoc);
-
-//        getInventory(model, category, currLoc);
         getInventory(itemServiceFacade, category, currLoc);
         Intent intent = new Intent(this, ItemListActivity.class);
         startActivity(intent);
     }
-
-//    /**
-//     * gets the inventory by category and location
-//     *
-//     * @param model the model
-//     */
-//    private void getInventory(Model model, CategoryENUM category, String currLoc) {
-//        model.setInventoryByCategoryAndLocation(category, currLoc);
-//    }
 
     /**
      * gets the inventory by category and location

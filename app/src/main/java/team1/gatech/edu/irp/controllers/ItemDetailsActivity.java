@@ -15,8 +15,6 @@ import java.util.List;
  */
 public class ItemDetailsActivity extends AppCompatActivity {
 
-
-
     /**
      * displays the details of an item
      */
@@ -24,9 +22,6 @@ public class ItemDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
-
-//        Model model = Model.getInstance();
-//        List<String> itemString = getSelectedItem(model);
 
         ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         List<String> itemString = getSelectedItem(itemServiceFacade);
@@ -83,15 +78,6 @@ public class ItemDetailsActivity extends AppCompatActivity {
         return itemServiceFacade.getSelectedItemFromItemListAndSendToItemDetails();
     }
 
-//    /**
-//     * gets the selected item from the model and returns the details
-//     *
-//     * @param model the model
-//     * @return item details
-//     */
-//    private List<String> getSelectedItem(Model model) {
-//        return model.getSelectedItemFromItemListAndSendToItemDetails();
-//    }
 
 }
 

@@ -32,10 +32,6 @@ class LocationManager implements Serializable {
      */
     private List<String> locationsAsStringArray;
 
-//    /**
-//     * array to hold string representation of locations with All locations as first option
-//     */
-//    private final List<String> locationsAsStringArrayWithAllLocationOption = new ArrayList<>();
 
     /****************************************************************************************
      *    LOCATION METHODS

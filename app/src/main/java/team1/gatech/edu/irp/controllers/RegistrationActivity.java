@@ -57,15 +57,12 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param view the button
      */
     public void onAddPressed(View view) {
-//        Model model = Model.getInstance();
         AccountServiceFacade accountServiceFacade = AccountServiceFacade.getInstance();
         String name = loginName.getText() + "";
         String passwordString = password.getText() + "";
         String cInfo = contactInfo.getText() + "";
         UserTypeENUM userTypeEnum = (UserTypeENUM) userTypeSpinner.getSelectedItem();
 
-//        RegistrationResultENUM registrationResult = validateRegistrationToModel(model, name,
-//                passwordString, cInfo, userTypeEnum);
         RegistrationResultENUM registrationResult = validateRegistrationToModel(
                 accountServiceFacade, name, passwordString, cInfo, userTypeEnum);
         if (registrationResult == RegistrationResultENUM.NAME_INVALID) {
@@ -100,21 +97,6 @@ public class RegistrationActivity extends AppCompatActivity {
             String cInfo, UserTypeENUM userTypeEnum) {
         return accountServiceFacade.addAccount(name, passwordString, cInfo, userTypeEnum);
     }
-
-//    /**
-//     * validates the login
-//     *
-//     * @param model the model
-//     * @param name the name
-//     * @param passwordString the pas
-//     * @return the result of registration
-//     */
-//    private RegistrationResultENUM validateRegistrationToModel(Model model, String name,
-//                                                        String passwordString, String cInfo,
-//                                                        UserTypeENUM userTypeEnum) {
-//        return model.addAccount(name, passwordString, cInfo, userTypeEnum);
-//    }
-
 
     /**
      * Sends them back to the Welcome Screen

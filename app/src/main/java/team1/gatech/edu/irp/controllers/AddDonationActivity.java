@@ -43,8 +43,6 @@ public class AddDonationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_donation);
-//        Model model = Model.getInstance();
-
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
 //      Grab the dialog widgets so we can get info for later use
         timeStampTextView = findViewById(R.id.TimeStampEditText);
@@ -55,9 +53,6 @@ public class AddDonationActivity extends AppCompatActivity {
         shortDescriptionTextView = findViewById(R.id.DescriptionEditText);
         fullDescriptionTextView = findViewById(R.id.FullDescriptionEditText);
 
-
-
-
 //      Set up the adapter to display the allowable location in the spinner
         ArrayAdapter<Location> locationAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, getMeLocations(locationServiceFacade));
@@ -65,14 +60,12 @@ public class AddDonationActivity extends AppCompatActivity {
         locationSpinner.setAdapter(locationAdapter);
         locationSpinner.setSelection(0);
 
-
 //      Set up the adapter to display the allowable category in the spinner
         ArrayAdapter<CategoryENUM> categoryAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, CategoryENUM.values());
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
         categorySpinner.setSelection(0);
-
     }
 
     /**
@@ -81,7 +74,6 @@ public class AddDonationActivity extends AppCompatActivity {
      * @param view the button
      */
     public void onSubmitOnPress(View view) {
-        //Model itemServiceFacade = Model.getInstance();
         ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
 
         timeStamp = timeStampTextView.getText() + "";

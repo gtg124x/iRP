@@ -37,9 +37,6 @@ public class ManagerActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onViewLocationManagerOnPress(View v) {
-//        Model model = Model.getInstance();
-////        if (model.noLocations()) {
-//        if (locationsEmpty(model)) {
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
         if (locationsEmpty(locationServiceFacade)) {
             Toast.makeText(this, "No Locations have been loaded by Admin.",
@@ -61,14 +58,5 @@ public class ManagerActivity extends AppCompatActivity {
         return locationServiceFacade.noLocations();
     }
 
-//    /**
-//     * checks if there are no locations
-//     *
-//     * @param model the model
-//     * @return success
-//     */
-//    private boolean locationsEmpty(Model model) {
-//        return model.noLocations();
-//    }
 
 }

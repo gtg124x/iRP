@@ -39,29 +39,6 @@ public final class PersistenceServiceFacade {
     private PersistenceServiceFacade() {
     }
 
-
-//    /****************************************************************************************
-//     *     DATA MANGER ATTRIBUTES
-//     ****************************************************************************************
-//     */
-
-    // /**
-    //  *  holds the accounts
-    //  */
-    // private AccountManager accountManager;
-
-    // /**
-    //  *  holds the locations
-    //  */
-    // private LocationManager locationManager;
-
-    // /**
-    //  *  holds the items
-    //  */
-    // private ItemManager itemManager;
-
-
-
     /**
      * Deletes the Binary file
      *
@@ -88,20 +65,12 @@ public final class PersistenceServiceFacade {
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
         ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         try {
-            //Model model = Model.getInstance();
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-            // assuming we saved our top level object, we read it back in with one line of code.
-            // accountManager = (AccountManager) in.readObject();
-            // locationManager = (LocationManager) in.readObject();
-            // itemManager = (ItemManager) in.readObject();
 
             setAccountManager(accountServiceFacade, (AccountManager) in.readObject());
             setLocationManager(locationServiceFacade, (LocationManager) in.readObject());
             setItemManager(itemServiceFacade, (ItemManager) in.readObject());
 
-//            accountServiceFacade.setAccountManager((AccountManager) in.readObject());
-//            locationServiceFacade.setLocationManager((LocationManager) in.readObject());
-//            itemServiceFacade.setItemManager((ItemManager) in.readObject());
             in.close();
         } catch (IOException e) {
             success = false;
@@ -134,9 +103,6 @@ public final class PersistenceServiceFacade {
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
         ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
 
-//        AccountManager accountManager = accountServiceFacade.getAccountManager();
-//        LocationManager locationManager = locationServiceFacade.getLocationManager();
-//        ItemManager itemManager = itemServiceFacade.getItemManager();
         AccountManager accountManager = getAccountManager(accountServiceFacade);
         LocationManager locationManager = getLocationManager(locationServiceFacade);
         ItemManager itemManager = getItemManager(itemServiceFacade);

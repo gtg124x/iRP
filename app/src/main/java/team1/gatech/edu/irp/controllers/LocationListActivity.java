@@ -26,8 +26,6 @@ public class LocationListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_location_list);
 
         LocationSpinner = findViewById(R.id.SpinnerLocation);
-//        Model model = Model.getInstance();
-//        List<String> locationsList = getLocations(model);
 
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
         List<String> locationsList = getLocations(locationServiceFacade);
@@ -51,28 +49,14 @@ public class LocationListActivity extends AppCompatActivity {
         return locationServiceFacade.getLocationsAsString();
     }
 
-
-//    /**
-//     * gets the location list
-//     *
-//     * @param model the model
-//     * @return location list
-//     */
-//    private List<String> getLocations(Model model) {
-//        return model.getLocationsAsString();
-//    }
-
     /**
      * Upon pressing the "View Location Details" Button, it displays the details of a location
      *
      * @param v the view
      */
     public void onViewLocationDetailsOnPress(View v) {
-//        Model model = Model.getInstance();
         ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         String currLoc = ((String) LocationSpinner.getSelectedItem());
-//        model.setCurrentLocation(currLoc);
-//        setLocation(model, currLoc);
         setLocation(itemServiceFacade, currLoc);
         Intent intent = new Intent(this, LocationDetailsActivity.class);
         startActivity(intent);
@@ -87,15 +71,6 @@ public class LocationListActivity extends AppCompatActivity {
         itemServiceFacade.setCurrentLocation(location);
     }
 
-
-//    /**
-//     * gets the inventory by category and location
-//     *
-//     * @param model the model
-//     */
-//    private void setLocation(Model model, String location) {
-//        model.setCurrentLocation(location);
-//    }
 
     /**
      * Upon pressing the "Back" Button it returns back to the respective account type home screen

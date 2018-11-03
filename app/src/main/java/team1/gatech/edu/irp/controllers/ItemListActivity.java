@@ -27,8 +27,6 @@ public class ItemListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
-//        Model model = Model.getInstance();
-//        List<Item> itemListItem = model.getCurrentItemList();
         ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         List<Item> itemListItem = getCurrentListOfItems(itemServiceFacade);
         size = itemListItem.size();
@@ -59,7 +57,6 @@ public class ItemListActivity extends AppCompatActivity {
      * @param view the button
      */
     public void onViewItemDetailsOnPress(View view) {
-//        model = Model.getInstance();
         ItemServiceFacade itemServiceFacade = ItemServiceFacade.getInstance();
         if (size == 0) {
             Toast.makeText(this, "No Items Found In Search",
@@ -67,7 +64,6 @@ public class ItemListActivity extends AppCompatActivity {
         } else {
             int selectionNumber = itemSpinner.getSelectedItemPosition();
 
-//            model.setSelectedItemFromItemListAndSendToItemDetails(selectionNumber);
             getCurrentListOfItems(itemServiceFacade, selectionNumber);
             Intent intent = new Intent(this, ItemDetailsActivity.class);
             startActivity(intent);

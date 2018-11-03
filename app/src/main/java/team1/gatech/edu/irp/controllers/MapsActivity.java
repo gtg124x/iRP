@@ -48,10 +48,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         googleMap.getUiSettings().setZoomControlsEnabled(true);
 
-//        Model model = Model.getInstance();
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
-//        List<Location> locations = model.getLocations();
-//        List<Location> locations = getLocations(model);
+
         List<Location> locations = getLocations(locationServiceFacade);
         for (Location l : locations) {
 
@@ -80,15 +78,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return locationServiceFacade.getLocations();
     }
 
-
-//    /**
-//     * gets the list of locations
-//     *
-//     * @param model the model
-//     * @return list of locations
-//     */
-//    private List<Location> getLocations(Model model) {
-//        return model.getLocations();
-//    }
 
 }

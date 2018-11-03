@@ -40,8 +40,6 @@ public class LocalEmployeeActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onViewLocationLocalEmployeeOnPress(View v) {
-//        Model model = Model.getInstance();
-//        if(locationEmpty(model)) {
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
         if (locationsEmpty(locationServiceFacade)) {
             Toast.makeText(this, "No Locations have been loaded by Admin.",
@@ -62,25 +60,12 @@ public class LocalEmployeeActivity extends AppCompatActivity {
         return locationServiceFacade.noLocations();
     }
 
-//    /**
-//     * gets the location list with all locations option
-//     *
-//     * @param model the model
-//     * @return success
-//     */
-//    private boolean locationEmpty(Model model) {
-//        return model.noLocations();
-//    }
-
     /**
      * When the Add Donation Button is pressed is sends you to the add donation screen
      *
      * @param v the view
      */
     public void onAddDonationOnPress(View v) {
-//        Model model = Model.getInstance();
-//        List<Location> locations = model.getLocations();
-//        List<Location> locations = getCurrentLocations(model);
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
         List<Location> locations = getCurrentLocations(locationServiceFacade);
         if (locations.isEmpty()) {

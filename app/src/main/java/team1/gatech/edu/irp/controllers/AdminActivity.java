@@ -14,8 +14,6 @@ import android.widget.Toast;
  */
 public class AdminActivity extends AppCompatActivity {
 
-    //private Model model;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +38,6 @@ public class AdminActivity extends AppCompatActivity {
      */
     public void onViewLocationAdminOnPress(View v) {
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
-        //model = Model.getInstance();
-//        if (locationServiceFacade.noLocations()) {
         if (locationsEmpty(locationServiceFacade)) {
             Toast.makeText(this, "No Locations have been loaded by Admin.",
                     Toast.LENGTH_SHORT).show();
@@ -68,8 +64,6 @@ public class AdminActivity extends AppCompatActivity {
      */
     public void onLoadLocationOnPress(View v) {
         LocationServiceFacade locationServiceFacade = LocationServiceFacade.getInstance();
-        //model = Model.getInstance();
-//        boolean success = locationServiceFacade.loadLocations(v);
         boolean success = grabLocations(v, locationServiceFacade);
         if (success) {
             Toast.makeText(this, "Locations have been loaded.",
