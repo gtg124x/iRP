@@ -12,6 +12,7 @@ import team1.gatech.edu.irp.model.UserTypeENUM;
 /**
  * Created by Mitchell Alvarado
  */
+@SuppressWarnings("ALL")
 public class AccountManagerAddToAccountTest {
 
     private AccountServiceFacade accountServiceFacade;

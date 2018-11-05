@@ -205,7 +205,7 @@ public class ItemManager implements Serializable {
      * @return success
      */
     private boolean isEmptyOrToLong(String date) {
-        return ((date == null) || ("".equals(date)) || (date.length() != 10));
+        return (("".equals(date)) || (date.length() != 10));
     }
 
     /**
@@ -269,7 +269,7 @@ public class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateDollarValue(String dollarValue) {
-        if ((dollarValue == null) || ("".equals(dollarValue))) { return true; }
+        if ("".equals(dollarValue)) { return true; }
         if (dollarValue.length() < 4) { return true; }
 
         String change = "" + dollarValue.charAt(dollarValue.length() - 2)
@@ -300,7 +300,7 @@ public class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateShortDescription(String shortD) {
-        return ((shortD == null) || (shortD.length() < 2));
+        return ((shortD.length() < 2));
     }
 
     /**
@@ -322,7 +322,7 @@ public class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateFullDescription(String fullD) {
-        return ((fullD == null) || (fullD.length() < 3));
+        return ((fullD.length() < 3));
     }
 
     /**
@@ -334,7 +334,6 @@ public class ItemManager implements Serializable {
      */
     public List<Item> getItemListByLocation(Location location) {
         List<Item> itemLocationList = new ArrayList<>();
-        if (location == null) { return itemLocationList; }
         for (Item i : inventory) {
             Location currentLocation = i.getLocation();
             if (currentLocation == null) { return itemLocationList; }
@@ -366,7 +365,6 @@ public class ItemManager implements Serializable {
      */
     public List<Item> getItemListByCategoryAndLocation(CategoryENUM category, String location) {
         List<Item> itemLocationList = new ArrayList<>();
-        if ((category == null) || (location == null)) { return itemLocationList; }
         for (Item i : inventory) {
             CategoryENUM itemCategory = i.getCategory();
             if (itemCategory == null) { return itemLocationList; }
@@ -393,7 +391,6 @@ public class ItemManager implements Serializable {
      */
     public List<Item> getItemListByNameAndLocation(String name, String location) {
         List<Item> itemLocationList = new ArrayList<>();
-        if ((name == null) || (location == null)) { return itemLocationList; }
         for (Item i : inventory) {
             String shortDescription = i.getShortDescription();
             if (shortDescription == null) { return itemLocationList; }
