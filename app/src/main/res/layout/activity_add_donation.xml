@@ -40,7 +40,9 @@
         android:hint="@string/time_stamp"
         android:inputType="time"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddDonationPageTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/AddDonationPageTextView"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/DateOfDonationEditText"
@@ -51,7 +53,9 @@
         android:hint="@string/date"
         android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TimeStampEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/TimeStampEditText"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <Spinner
         android:id="@+id/AddDonationLocationSpinner"
@@ -87,7 +91,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CategorySpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/CategorySpinner"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/DescriptionEditText"
@@ -101,7 +107,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ValueEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/ValueEditText"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/FullDescriptionEditText"
@@ -116,7 +124,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.964"
-        app:layout_constraintStart_toEndOf="@+id/DescriptionEditText" />
+        app:layout_constraintStart_toEndOf="@+id/DescriptionEditText"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <Button
         android:id="@+id/SubmitButton"

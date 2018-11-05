@@ -73,5 +73,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SpinnerLocationItemSearchByName" />
+        app:layout_constraintTop_toBottomOf="@+id/SpinnerLocationItemSearchByName"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 </android.support.constraint.ConstraintLayout>

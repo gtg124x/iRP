@@ -10,7 +10,7 @@ import java.util.List;
  *    Notes: information holder
  ****************************************************************************************
  */
-class ItemManager implements Serializable {
+public class ItemManager implements Serializable {
 
 //    /***************************************************************************************
 //     *    INVENTORY ATTRIBUTES
@@ -141,7 +141,7 @@ class ItemManager implements Serializable {
      * @return success
      */
     private boolean emptyAndLengthTimeCheck(String time) {
-        return (("".equals(time)) || (time.length() != 8));
+        return ((time == null) || ("".equals(time)) || (time.length() != 8));
     }
 
     /**
@@ -205,7 +205,7 @@ class ItemManager implements Serializable {
      * @return success
      */
     private boolean isEmptyOrToLong(String date) {
-        return (("".equals(date)) || (date.length() != 10));
+        return ((date == null) || ("".equals(date)) || (date.length() != 10));
     }
 
     /**
@@ -269,7 +269,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateDollarValue(String dollarValue) {
-        if ("".equals(dollarValue)) { return true; }
+        if ((dollarValue == null) || ("".equals(dollarValue))) { return true; }
         if (dollarValue.length() < 4) { return true; }
 
         String change = "" + dollarValue.charAt(dollarValue.length() - 2)
@@ -300,7 +300,7 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateShortDescription(String shortD) {
-        return (shortD.length() < 2);
+        return ((shortD == null) || (shortD.length() < 2));
     }
 
     /**
@@ -322,20 +322,8 @@ class ItemManager implements Serializable {
      * @return the result success of the validation
      */
     private boolean validateFullDescription(String fullD) {
-        return (fullD.length() < 3);
+        return ((fullD == null) || (fullD.length() < 3));
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * finds the items sorted by location
@@ -346,9 +334,10 @@ class ItemManager implements Serializable {
      */
     public List<Item> getItemListByLocation(Location location) {
         List<Item> itemLocationList = new ArrayList<>();
+        if (location == null) { return itemLocationList; }
         for (Item i : inventory) {
             Location currentLocation = i.getLocation();
-//            if (currentLocation.equals(location)) {
+            if (currentLocation == null) { return itemLocationList; }
             if (locationsEqual(currentLocation, location)) {
                 itemLocationList.add(i);
             }
@@ -377,9 +366,12 @@ class ItemManager implements Serializable {
      */
     public List<Item> getItemListByCategoryAndLocation(CategoryENUM category, String location) {
         List<Item> itemLocationList = new ArrayList<>();
+        if ((category == null) || (location == null)) { return itemLocationList; }
         for (Item i : inventory) {
             CategoryENUM itemCategory = i.getCategory();
+            if (itemCategory == null) { return itemLocationList; }
             Location currentLocation = i.getLocation();
+            if (currentLocation == null) { return itemLocationList; }
             String currentLocationString = currentLocation + "";
             if ("All Locations".equals(location) && itemCategory.equals(category)) {
                     itemLocationList.add(i);
@@ -401,9 +393,12 @@ class ItemManager implements Serializable {
      */
     public List<Item> getItemListByNameAndLocation(String name, String location) {
         List<Item> itemLocationList = new ArrayList<>();
+        if ((name == null) || (location == null)) { return itemLocationList; }
         for (Item i : inventory) {
             String shortDescription = i.getShortDescription();
+            if (shortDescription == null) { return itemLocationList; }
             Location currentLocation = i.getLocation();
+            if (currentLocation == null) { return itemLocationList; }
             String currentLocationString = currentLocation + "";
             if ("All Locations".equals(location) && shortDescription.equals(name)) {
                 itemLocationList.add(i);

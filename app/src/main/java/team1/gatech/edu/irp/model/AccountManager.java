@@ -12,7 +12,7 @@ import java.util.Map;
  ****************************************************************************************
  */
 
-class AccountManager implements Serializable {
+public class AccountManager implements Serializable {
 
     /**
      * list of account objects
@@ -51,7 +51,7 @@ class AccountManager implements Serializable {
      *  @return success
      */
     private boolean accountNameNotValid(String name) {
-        return (name.length() < 4);
+        return ((name == null) || (name.length() < 2));
     }
 
     /**
@@ -71,7 +71,7 @@ class AccountManager implements Serializable {
      *  @return success
      */
     private boolean accountPasswordNotValid(String password) {
-        return (password.length() < 4);
+        return ((password == null) || (password.length() < 4));
     }
 
     /**
@@ -81,7 +81,7 @@ class AccountManager implements Serializable {
      *  @return success
      */
     private boolean accountEmailNotValid(String email) {
-        return (!email.contains("@") || !email.contains("."));
+        return ((email == null) || (!email.contains("@") || !email.contains(".")));
     }
 
     /**
