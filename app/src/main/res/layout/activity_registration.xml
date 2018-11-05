@@ -108,8 +108,6 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginName"
-        
-        />
+        app:layout_constraintTop_toBottomOf="@+id/LoginName" />
 
 </android.support.constraint.ConstraintLayout>

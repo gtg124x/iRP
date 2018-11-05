@@ -8,12 +8,12 @@
     tools:context=".controllers.WelcomeActivity">
 
     <Button
-        android:id="@+id/LoginAdminButton"
+        android:id="@+id/LoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:onClick="onLoginAdministratorClicked"
-        android:text="@string/login_administrator"
+        android:onClick="onLoginClicked"
+        android:text="@string/login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iRPDescription" />
 
@@ -21,14 +21,14 @@
         android:id="@+id/registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:onClick="onRegistrationClicked"
         android:text="@string/registration"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.219"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginManagerButton" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/LoginButton"
+        app:layout_constraintTop_toBottomOf="@+id/iRPDescription" />
 
     <TextView
         android:id="@+id/welcomeText"
@@ -85,37 +85,5 @@
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toEndOf="@+id/welcomeText"
         app:layout_constraintTop_toBottomOf="@+id/SaveDataButton" />
-
-    <Button
-        android:id="@+id/LoginLocalButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:onClick="onLoginLocalEmployeeClicked"
-        android:text="@string/login_localEmployee"
-        app:layout_constraintStart_toEndOf="@+id/LoginAdminButton"
-        app:layout_constraintTop_toBottomOf="@+id/iRPDescription" />
-
-    <Button
-        android:id="@+id/LoginManagerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:onClick="onLoginManagerClicked"
-        android:text="@string/login_manager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginAdminButton" />
-
-    <Button
-        android:id="@+id/LoginUserButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:onClick="onLoginUserClicked"
-        android:text="@string/login_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
-        app:layout_constraintStart_toEndOf="@+id/LoginManagerButton"
-        app:layout_constraintTop_toBottomOf="@+id/LoginLocalButton" />
 
 </android.support.constraint.ConstraintLayout>

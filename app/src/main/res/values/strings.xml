@@ -62,9 +62,6 @@
 
     <string name="view_map">View Map</string>
 
-    <string name="login_administrator">Login Admin</string>
-    <string name="login_localEmployee">Login Local Employee</string>
-    <string name="login_manager">Login Manager</string>
-    <string name="login_user">Login User</string>
+
 
 </resources>

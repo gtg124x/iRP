@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 //         * Grab the dialog widgets so we can get info for later
 //         */
         userName = findViewById(R.id.UserName_Input);
-        password = findViewById(R.id.UserName_Input);
+        password = findViewById(R.id.TextPassword_Input);
 
     }
 

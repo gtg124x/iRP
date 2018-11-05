@@ -98,16 +98,4 @@ package team1.gatech.edu.irp.model;
             return accountManager.loginCheck(name, passwordString);
         }
 
-        /**
-         * validate the login information
-         *
-         *  @param name an account name
-         *  @param passwordString an account password
-         *
-         *  @return success
-         */
-        public boolean validateLoginAdmin(String name, String passwordString) {
-            return accountManager.loginCheckAdmin(name, passwordString);
-        }
-
     }
