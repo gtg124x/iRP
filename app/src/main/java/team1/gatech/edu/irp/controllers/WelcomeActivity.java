@@ -26,15 +26,56 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
     }
 
+
     /**
      * When the user clicks the login button it sends them to the loginActivity
      *
      * @param v the view
      */
     public void onLoginClicked(View v) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginAdministratorActivity.class);
         startActivity(intent);
     }
+
+    //    /**
+//     * When the user clicks the login button it sends them to the loginActivity
+//     *
+//     * @param v the view
+//     */
+//    public void onLoginAdministratorClicked(View v) {
+//        Intent intent = new Intent(this, LoginAdministratorActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    /**
+//     * When the user clicks the login button it sends them to the loginActivity
+//     *
+//     * @param v the view
+//     */
+//    public void onLoginLocalEmployeeClicked(View v) {
+//        Intent intent = new Intent(this, LoginLocalEmployeeActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    /**
+//     * When the user clicks the login button it sends them to the loginActivity
+//     *
+//     * @param v the view
+//     */
+//    public void onLoginManagerClicked(View v) {
+//        Intent intent = new Intent(this, LoginManagerActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    /**
+//     * When the user clicks the login button it sends them to the loginActivity
+//     *
+//     * @param v the view
+//     */
+//    public void onLoginUserClicked(View v) {
+//        Intent intent = new Intent(this, LoginUserActivity.class);
+//        startActivity(intent);
+//    }
 
     /**
      * When the user clicks the register button it sends them to the RegistrationActivity

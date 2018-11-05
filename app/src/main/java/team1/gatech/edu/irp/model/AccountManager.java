@@ -19,6 +19,7 @@ class AccountManager implements Serializable {
      */
     private final Map<String, Account> accounts = new HashMap<>();
 
+    private final UserTypeENUM administrator = UserTypeENUM.ADMIN;
 
     /**
      * adds an account to the system
@@ -118,6 +119,35 @@ class AccountManager implements Serializable {
             }
         }
         return userType;
+    }
+
+    /**
+     * checks is user name and password match for Admin
+     *
+     *  @param name an account name
+     *  @param password an account password
+     *
+     *  @return success
+     */
+    public boolean loginCheckAdmin(String name, String password) {
+        boolean success = false;
+        Account accountName = accounts.get(name);
+        if (accountName.equals(password)) {
+            if (getAccountUserType(accountName) == administrator) {
+                success = true;
+            }
+        }
+        return success;
+
+
+//        if (accounts.containsKey(name)) {
+//            Account accountName = getAccountName(name);
+//            if (verifyPasswordAndState(accountName, password)
+//                    && (getAccountUserType(accountName) == UserTypeENUM.ADMIN)) {
+//                success = true;
+//            }
+//        }
+//        return success;
     }
 
     /**

@@ -29,10 +29,9 @@ public class LoginActivity extends AppCompatActivity {
 //         * Grab the dialog widgets so we can get info for later
 //         */
         userName = findViewById(R.id.UserName_Input);
-        password = findViewById(R.id.Password_Input);
+        password = findViewById(R.id.UserName_Input);
 
     }
-
 
     /**
      * Cancel Button Handler.
@@ -95,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
                                               String name, String passwordString) {
         return accountServiceFacade.validateLogin(name, passwordString);
     }
+
+
 
 
 }

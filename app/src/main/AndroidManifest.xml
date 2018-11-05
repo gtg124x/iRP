@@ -26,6 +26,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
@@ -64,6 +65,10 @@
         <activity
             android:name=".controllers.MapsActivity"
             android:label="@string/title_activity_maps" />
+        <activity android:name=".controllers.LoginAdministratorActivity" />
+        <activity android:name=".controllers.LoginLocalEmployeeActivity" />
+        <activity android:name=".controllers.LoginManagerActivity" />
+        <activity android:name=".controllers.LoginUserActivity"></activity>
     </application>
 
 </manifest>
