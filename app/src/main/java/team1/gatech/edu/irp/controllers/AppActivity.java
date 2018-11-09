@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 /**
  * User home screen that appears after login
+ *
+ * @author Mitchell_Alvarado
  */
 public class AppActivity extends AppCompatActivity {
 

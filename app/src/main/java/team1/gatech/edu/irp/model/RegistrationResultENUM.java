@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 /**
  *
  * This class represents the results from registration attempt
+ *
+ * @author Mitchell_Alvarado
  */
 public enum RegistrationResultENUM {
 

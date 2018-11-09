@@ -11,6 +11,8 @@ import java.util.List;
  *    ITEM
  *    Notes: information holder
  ****************************************************************************************
+ *
+ * @author Mitchell_Alvarado
  */
 public class Item implements Serializable {
 

@@ -10,8 +10,9 @@ import java.util.Map;
  *    RegistrationActivity when the user clicks the add button. The validation of the
  *    data is done there then the Account obj is added to the accountDataBase
  ****************************************************************************************
+ *
+ * @author Mitchell_Alvarado
  */
-
 public class AccountManager implements Serializable {
 
     /**

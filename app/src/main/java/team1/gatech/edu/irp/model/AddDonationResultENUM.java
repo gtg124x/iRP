@@ -2,7 +2,10 @@ package team1.gatech.edu.irp.model;
 
 import android.support.annotation.NonNull;
 
-/** Result of adding a donation Enum */
+/** Result of adding a donation Enum
+ *
+ * @author Mitchell_Alvarado
+ */
 public enum AddDonationResultENUM {
 
     TIME_INVALID ("Time Invalid"),

@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 /**
  * The login Screen
+ *
+ * @author Mitchell_Alvarado
  */
 public class LoginActivity extends AppCompatActivity {
 

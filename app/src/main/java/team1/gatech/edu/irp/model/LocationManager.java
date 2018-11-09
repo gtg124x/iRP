@@ -10,6 +10,10 @@ import team1.gatech.edu.irp.R;
 import android.content.res.Resources;
 import android.view.View;
 
+/**
+ *
+ * @author Mitchell_Alvarado
+ */
 class LocationManager implements Serializable {
 
 //    /****************************************************************************************

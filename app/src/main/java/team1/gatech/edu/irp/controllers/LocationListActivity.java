@@ -15,6 +15,8 @@ import java.util.List;
 /**
  * Displays a list of locations.
  * Upon selecting a location, the details will be displayed on the LocationDetailsActivity
+ *
+ * @author Mitchell_Alvarado
  */
 public class LocationListActivity extends AppCompatActivity {
 

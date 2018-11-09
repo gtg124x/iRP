@@ -14,6 +14,8 @@ import java.util.List;
 
 /**
  * Location employee home screen that appears after login
+ *
+ * @author Mitchell_Alvarado
  */
 public class LocalEmployeeActivity extends AppCompatActivity {
 

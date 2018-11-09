@@ -2,7 +2,10 @@ package team1.gatech.edu.irp.model;
 
 import android.support.annotation.NonNull;
 
-/** Donation category Enum */
+/** Donation category Enum
+ *
+ * @author Mitchell_Alvarado
+ */
 public enum CategoryENUM {
 
     /**

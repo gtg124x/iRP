@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 /**
  * Account Registration Screen
+ *
+ * @author Mitchell_Alvarado
  */
 public class RegistrationActivity extends AppCompatActivity {
 

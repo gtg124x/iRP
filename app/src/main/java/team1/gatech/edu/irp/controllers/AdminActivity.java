@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 /**
  * Administrator home page that appears after login screen
+ *
+ * @author Mitchell_Alvarado
  */
 public class AdminActivity extends AppCompatActivity {
 

@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 /**
  *
  * This class represents the different types of users
+ *
+ * @author Mitchell_Alvarado
  */
 public enum UserTypeENUM {
 

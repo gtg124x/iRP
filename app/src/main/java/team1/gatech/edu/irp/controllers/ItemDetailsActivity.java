@@ -12,6 +12,8 @@ import java.util.List;
 
 /**
  * Screen that displays the details of an item
+ *
+ * @author Mitchell_Alvarado
  */
 public class ItemDetailsActivity extends AppCompatActivity {
 

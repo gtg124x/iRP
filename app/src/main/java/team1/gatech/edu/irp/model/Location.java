@@ -13,6 +13,8 @@ import java.util.List;
  *    Notes: Represents a single Location which may have much information assigned
  *    information holder
  ****************************************************************************************
+ *
+ * @author Mitchell_Alvarado
  */
 public class Location implements Serializable {
 

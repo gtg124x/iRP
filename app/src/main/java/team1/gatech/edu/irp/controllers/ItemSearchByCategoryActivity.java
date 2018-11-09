@@ -16,6 +16,8 @@ import java.util.List;
 
 /**
  * After a user selects the Search Item by Category, this is the screen that appears
+ *
+ * @author Mitchell_Alvarado
  */
 public class ItemSearchByCategoryActivity extends AppCompatActivity {
 

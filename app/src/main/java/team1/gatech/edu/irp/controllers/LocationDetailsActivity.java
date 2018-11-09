@@ -17,6 +17,7 @@ import java.util.List;
 /**
  * Location Details Screen
  *
+ * @author Mitchell_Alvarado
  */
 public class LocationDetailsActivity extends AppCompatActivity {
 

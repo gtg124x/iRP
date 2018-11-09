@@ -17,6 +17,8 @@ import java.io.File;
  *
  * An activity representing login and register options.
  *
+ *
+ * @author Mitchell_Alvarado
  */
 public class WelcomeActivity extends AppCompatActivity {
 

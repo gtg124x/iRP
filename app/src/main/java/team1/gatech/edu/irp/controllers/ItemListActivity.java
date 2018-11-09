@@ -17,6 +17,8 @@ import java.util.List;
 
 /**
  * Displays the list of items from the search by category/name activity
+ *
+ * @author Mitchell_Alvarado
  */
 public class ItemListActivity extends AppCompatActivity {
     private Spinner itemSpinner;

@@ -192,7 +192,7 @@ public class AccountManagerAddToAccountTest {
     }
 
 
-//        ItemManager.validateAndAddItemToItemManager()
+//        ItemManager.validateAndAddItemToItemManager()  // started someone can finish
 
     //      ItemManager.getItemListByLocation            check:  i.getLocation() for null and String location for null
 

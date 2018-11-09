@@ -19,6 +19,8 @@ import team1.gatech.edu.irp.model.AddDonationResultENUM;
 
 /**
  * Screen that lets a location employee input items details to add to the inventory
+ *
+ * @author Mitchell_Alvarado
  */
 public class AddDonationActivity extends AppCompatActivity {
 

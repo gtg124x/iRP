@@ -18,6 +18,8 @@ import java.util.List;
 
 /**
  * Map Activity Screen
+ *
+ * @author Mitchell_Alvarado
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

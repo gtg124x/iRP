@@ -9,6 +9,8 @@ import java.util.List;
  *    ITEM MANAGER
  *    Notes: information holder
  ****************************************************************************************
+ *
+ * @author Mitchell_Alvarado
  */
 public class ItemManager implements Serializable {
 
@@ -405,6 +407,14 @@ public class ItemManager implements Serializable {
             }
         }
         return itemLocationList;
+    }
+
+    /**
+     * clear inventory
+     *
+     */
+    public void clearInventory(){
+        inventory.clear();
     }
 
 }
