@@ -62,6 +62,9 @@
 
     <string name="view_map">View Map</string>
 
+    <string name="facebook_app_id">add late</string>
+    <string name="facebook_login_protocol_schema">add late</string>
 
 
 </resources>
+
