@@ -9,6 +9,17 @@ import team1.gatech.edu.irp.model.PersistenceServiceFacade;
 import android.view.View;
 import android.content.Intent;
 import android.widget.Toast;
+import android.widget.TextView;
+
+import com.facebook.CallbackManager;
+import com.facebook.AccessToken;
+import com.facebook.FacebookException;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookSdk;
+import com.facebook.login.widget.LoginButton;
+import com.facebook.login.LoginResult;
+import java.util.Arrays;
+
 import java.io.File;
 
 
@@ -22,10 +33,51 @@ import java.io.File;
  */
 public class WelcomeActivity extends AppCompatActivity {
 
+    private static final String EMAIL = "email";
+    CallbackManager callbackManager;
+    TextView txtStatus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_welcome);
+
+
+
+        callbackManager = CallbackManager.Factory.create();
+
+        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        txtStatus = (TextView)findViewById(R.id.txtStatus);
+        loginButton.setReadPermissions(Arrays.asList(EMAIL));
+
+
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                txtStatus.setText("Login Successful\n" + loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                txtStatus.setText("Login Cancelled");
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                txtStatus.setText("Login error: " + exception.getMessage());
+            }
+        });
+
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 
@@ -38,6 +90,8 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+
 
     /**
      * When the user clicks the register button it sends them to the RegistrationActivity
