@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     /**
      * Login Button Handler.
      * Valid the login and get the user type to determine which screen to navigate towards
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param v the view
      */
     public void onLoginPressed(View v) {
+
         AccountServiceFacade accountServiceFacade = AccountServiceFacade.getInstance();
         CharSequence nameChar = userName.getText();
 
