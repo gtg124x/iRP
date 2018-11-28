@@ -37,11 +37,13 @@ public class WelcomeActivity extends AppCompatActivity {
     CallbackManager callbackManager;
     TextView txtStatus;
 
+    boolean FBLogin = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_welcome);
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
 
 
@@ -56,6 +58,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 txtStatus.setText("Login Successful\n" + loginResult.getAccessToken());
+                FBLogin = true;
             }
 
             @Override
@@ -71,7 +74,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-
     }
 
     @Override
@@ -80,6 +82,13 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void onFBLoginClicked(View v) {
+        if (FBLogin) {
+            Intent intent = new Intent(this, AppActivity.class);
+            startActivity(intent);
+        }
+
+    }
 
     /**
      * When the user clicks the login button it sends them to the loginActivity
@@ -90,6 +99,9 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+    //public void onFBLoginClicked(View v) {
+    //}
 
 
 
