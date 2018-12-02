@@ -21,11 +21,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView userName;
     private TextView password;
+    int lock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        lock = 0;
 
 //        /**
 //         * Grab the dialog widgets so we can get info for later
@@ -56,35 +58,48 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void onLoginPressed(View v) {
 
-        AccountServiceFacade accountServiceFacade = AccountServiceFacade.getInstance();
-        CharSequence nameChar = userName.getText();
+            AccountServiceFacade accountServiceFacade = AccountServiceFacade.getInstance();
+            CharSequence nameChar = userName.getText();
 
-        String name = nameChar.toString();
-        String passwordString = password.getText() + "";
+            String name = nameChar.toString();
+            String passwordString = password.getText() + "";
 
-        UserTypeENUM userType = validateLoginToModel(accountServiceFacade, name, passwordString);
+            UserTypeENUM userType = validateLoginToModel(accountServiceFacade, name, passwordString, lock);
+            lock = team1.gatech.edu.irp.model.AccountManager.lockReturn();
 
-        if (userType != null) {
-            if (userType == UserTypeENUM.ADMIN) {
-                Intent intent = new Intent(this, AdminActivity.class);
-                startActivity(intent);
-            } else if (userType == UserTypeENUM.LOCAL_EMPLOYEE) {
-                Intent intent = new Intent(this, LocalEmployeeActivity.class);
-                startActivity(intent);
+            if (userType != null) {
+                if (userType == UserTypeENUM.ADMIN) {
+                    Intent intent = new Intent(this, AdminActivity.class);
+                    startActivity(intent);
+                } else if (userType == UserTypeENUM.LOCAL_EMPLOYEE) {
+                    Intent intent = new Intent(this, LocalEmployeeActivity.class);
+                    startActivity(intent);
+                }
+                else if (userType == UserTypeENUM.MANAGER) {
+                    Intent intent = new Intent(this, ManagerActivity.class);
+                    startActivity(intent);
+                }
+                else if (userType == UserTypeENUM.LOCKED) {
+                    Intent intent = new Intent(this, LockedActivity.class);
+                    startActivity(intent);
+
+                }
+                else {
+                    Intent intent = new Intent(this, AppActivity.class);
+                    startActivity(intent);
+                }
+
+
+            } else {
+                Toast.makeText(this, "Invalid Username/Password combination",
+                        Toast.LENGTH_SHORT).show();
             }
-            else if (userType == UserTypeENUM.MANAGER) {
-                Intent intent = new Intent(this, ManagerActivity.class);
-                startActivity(intent);
-            }
-            else {
-                Intent intent = new Intent(this, AppActivity.class);
-                startActivity(intent);
-            }
-        } else {
-            Toast.makeText(this, "Invalid Username/Password combination",
-                    Toast.LENGTH_SHORT).show();
+
+
         }
-    }
+
+
+
 
     /**
      * send selected item to details page
@@ -95,8 +110,8 @@ public class LoginActivity extends AppCompatActivity {
      * @return the User Type
      */
     private UserTypeENUM validateLoginToModel(AccountServiceFacade accountServiceFacade,
-                                              String name, String passwordString) {
-        return accountServiceFacade.validateLogin(name, passwordString);
+                                              String name, String passwordString, int lock1) {
+        return accountServiceFacade.validateLogin(name, passwordString, lock1);
     }
 
 
