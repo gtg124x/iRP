@@ -13,7 +13,8 @@ public enum UserTypeENUM {
     USER ("User"),
     LOCAL_EMPLOYEE ("Local Employee"),
     MANAGER ("Manager"),
-    ADMIN ("Admin");
+    ADMIN ("Admin"),
+    LOCKED ("Locked");
 
     /** the full string representation of the user type */
     private final String type;
