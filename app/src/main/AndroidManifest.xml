@@ -42,6 +42,7 @@
         <activity android:name=".controllers.AppActivity" />
         <activity android:name=".controllers.RegistrationActivity" />
         <activity android:name=".controllers.LoginActivity" />
+        <activity android:name=".controllers.LockedActivity" />
         <activity android:name=".controllers.AdminActivity" />
         <activity android:name=".controllers.LocalEmployeeActivity" />
         <activity android:name=".controllers.ManagerActivity" />
