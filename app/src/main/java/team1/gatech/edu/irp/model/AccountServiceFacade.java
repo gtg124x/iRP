@@ -96,8 +96,8 @@ public final class AccountServiceFacade {
      *
      *  @return success
      */
-    public UserTypeENUM validateLogin(String name, String passwordString) {
-        return accountManager.loginCheck(name, passwordString);
+    public UserTypeENUM validateLogin(String name, String passwordString, int lock1) {
+        return accountManager.loginCheck(name, passwordString, lock1);
     }
 
 }
