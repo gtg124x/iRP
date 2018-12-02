@@ -1,5 +1,7 @@
 package team1.gatech.edu.irp.controllers;
 
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -19,8 +21,13 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.LoginResult;
 import java.util.Arrays;
+import android.support.constraint.ConstraintLayout;
 
 import java.io.File;
+import java.util.Random;
+
+import android.view.MotionEvent;
+import android.graphics.Color;
 
 
 /**
@@ -33,6 +40,11 @@ import java.io.File;
  */
 public class WelcomeActivity extends AppCompatActivity {
 
+
+
+private ConstraintLayout cl;
+
+
     private static final String EMAIL = "email";
     CallbackManager callbackManager;
     TextView txtStatus;
@@ -43,6 +55,63 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+
+        cl = (ConstraintLayout) findViewById(R.id.background);
+
+        AnimationDrawable aD = (AnimationDrawable)cl.getBackground();
+
+        aD.setEnterFadeDuration(2000);
+
+        aD.setExitFadeDuration(4000);
+
+        aD.start();
+
+        cl.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                String[] color1 = {
+
+                        "#89216B",
+                        "3c1053",
+                        "4b134f",
+                        "642B73",
+                        "45a247",
+                        "8e44ad"
+                };
+
+
+                String[] color2 = {
+
+                        "#DA4453",
+                        "ad5389",
+                        "C6426E",
+                        "159957",
+                        "1CB5E0",
+                        "1CB5E0"
+                };
+
+                Random random = new Random();
+
+                GradientDrawable gb = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
+                        new int[] {Color.parseColor(color1[random.nextInt(6)]), Color.parseColor(color2[random.nextInt(6)])}
+                );
+
+                cl.setBackgroundDrawable(gb);
+
+                return false;
+
+            }
+
+        });
+
+
+
+
+
+        /**
+         Facebook login code below
+         */
         FacebookSdk.sdkInitialize(getApplicationContext());
 
 
