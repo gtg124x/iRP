@@ -14,6 +14,7 @@ import java.util.Map;
  * @author Mitchell_Alvarado
  */
 public class AccountManager implements Serializable {
+    static int lock = 0;
 
     /**
      * list of account objects
@@ -109,15 +110,29 @@ public class AccountManager implements Serializable {
      *
      *  @return success
      */
-    public UserTypeENUM loginCheck(String name, String password) {
+    public UserTypeENUM loginCheck(String name, String password, int lock1) {
         UserTypeENUM userType = null;
+        lock = lock1;
+        if (lock >= 3) {
+            userType = team1.gatech.edu.irp.model.UserTypeENUM.LOCKED;
+            return userType;
+        }
         if (accounts.containsKey(name)) {
             Account accountName = getAccountName(name);
             if (verifyPasswordAndState(accountName, password)) {
                 userType = getAccountUserType(accountName);
+            } else {
+                lock++;
+
             }
+        } else {
+            lock++;
         }
         return userType;
+    }
+
+    public static int lockReturn(){
+        return lock;
     }
 
     /**
